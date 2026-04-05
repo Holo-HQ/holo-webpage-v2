@@ -1,1296 +1,1587 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>HOLO — Mando y Control de Nueva Generación | NEXXO C2</title>
-<meta name="description" content="NEXXO C2: plataforma de Mando y Control diseñada para las Fuerzas Militares de Colombia. Imagen operacional común, ciclo OODA acelerado, soberanía tecnológica total."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles.css"/>
-<style>
-/* ─────────────────────────────────────────────────────────
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>HOLO — Mando y Control de Nueva Generación | NEXXO C2</title>
+  <meta name="description"
+    content="NEXXO C2: plataforma de Mando y Control diseñada para las Fuerzas Militares de Colombia. Imagen operacional común, ciclo OODA acelerado, soberanía tecnológica total." />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3B1BFM324R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-3B1BFM324R');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ─────────────────────────────────────────────────────────
    MONKS-INSPIRED EXTENSIONS FOR HOLO
    Philosophy: editorial typography as layout, numbered rows,
    asymmetric grids, border-based structure, color-block sections
    ───────────────────────────────────────────────────────── */
 
-/* ── EDITORIAL HERO ── */
-.mk-hero {
-  min-height: 100svh;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  padding-top: var(--header);
-  position: relative;
-  overflow: hidden;
-  background: var(--bg);
-}
-.mk-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  opacity: .18;
-  pointer-events: none;
-}
-.mk-hero-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 80px 48px 56px;
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
-  z-index: 2;
-}
-.mk-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 36px;
-}
-.mk-eyebrow-line { width: 36px; height: 1px; background: var(--acc); flex-shrink: 0; }
-.mk-eyebrow-txt {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--t2);
-}
-.mk-h1 {
-  font-size: clamp(52px, 9.5vw, 116px);
-  font-weight: 700;
-  line-height: .93;
-  letter-spacing: -.04em;
-  color: var(--t0);
-  max-width: 880px;
-  margin-bottom: 40px;
-}
-.mk-h1 em { font-style: normal; color: var(--acc); }
-.mk-hero-sub {
-  font-size: clamp(15px, 1.7vw, 19px);
-  color: var(--t1);
-  max-width: 500px;
-  line-height: 1.6;
-  margin-bottom: 40px;
-}
-.mk-hero-acts { display: flex; gap: 12px; flex-wrap: wrap; }
+    /* ── EDITORIAL HERO ── */
+    .mk-hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding-top: var(--header);
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
 
-/* Metrics bar — bottom of hero */
-.mk-hero-metrics {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--b0);
-  position: relative;
-  z-index: 2;
-}
-.mk-metric {
-  padding: 28px 48px;
-  border-right: 1px solid var(--b0);
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.mk-metric:last-child { border-right: none; }
-.mk-metric-n {
-  font-size: clamp(28px, 3.5vw, 44px);
-  font-weight: 700;
-  letter-spacing: -.035em;
-  color: var(--t0);
-  line-height: 1;
-}
-.mk-metric-n sup { font-size: .48em; vertical-align: super; }
-.mk-metric-l {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--t2);
-  line-height: 1.5;
-}
+    .mk-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .18;
+      pointer-events: none;
+    }
 
-/* ── NUMBERED MODULE LIST (Monks signature pattern) ── */
-.mk-mods { padding: 120px 0 0; }
-.mk-mods-head {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 48px 56px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 60px;
-  border-bottom: 1px solid var(--b0);
-}
-.mk-mods-head-sub {
-  font-size: 14px;
-  color: var(--t1);
-  max-width: 360px;
-  text-align: right;
-  line-height: 1.7;
-  flex-shrink: 0;
-}
+    .mk-hero-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px 48px 56px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
 
-/* Each module = full-width clickable row */
-.mk-mod {
-  display: grid;
-  grid-template-columns: 72px 1fr auto;
-  align-items: stretch;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 48px;
-  border-bottom: 1px solid var(--b0);
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-  transition: background .2s;
-  cursor: pointer;
-}
-/* Gold accent bar on hover — vertical left edge */
-.mk-mod::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--acc);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform .35s var(--ease);
-}
-.mk-mod:hover::before { transform: scaleY(1); }
-.mk-mod:hover { background: rgba(200,168,75,.035); }
+    .mk-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
 
-.mk-mod-num {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .12em;
-  color: var(--t2);
-  display: flex;
-  align-items: center;
-  padding: 40px 0;
-  border-right: 1px solid var(--b0);
-  padding-right: 24px;
-  flex-shrink: 0;
-}
-.mk-mod-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-  padding: 40px 40px 40px 0;
-  margin-left: 40px;
-}
-.mk-mod-name {
-  font-size: clamp(20px, 2.6vw, 32px);
-  font-weight: 700;
-  letter-spacing: -.025em;
-  color: var(--t0);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.mk-mod-desc {
-  font-size: 13px;
-  color: var(--t1);
-  line-height: 1.7;
-}
-.mk-mod-cta {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .1em;
-  color: var(--t2);
-  display: flex;
-  align-items: center;
-  padding: 40px 0;
-  white-space: nowrap;
-  transition: color .2s, transform .2s;
-  flex-shrink: 0;
-}
-.mk-mod:hover .mk-mod-cta { color: var(--acc); transform: translateX(5px); }
+    .mk-eyebrow-line {
+      width: 36px;
+      height: 1px;
+      background: var(--acc);
+      flex-shrink: 0;
+    }
 
-/* ── STATEMENT — editorial quote (Monks asymmetric block) ── */
-.mk-stmt {
-  padding: 140px 0;
-  background: var(--bg1);
-  border-top: 1px solid var(--b0);
-  border-bottom: 1px solid var(--b0);
-}
-.mk-stmt-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 48px;
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 80px;
-  align-items: center;
-}
-.mk-stmt-quote {
-  font-size: clamp(30px, 5vw, 64px);
-  font-weight: 700;
-  line-height: 1.06;
-  letter-spacing: -.035em;
-  color: var(--t0);
-}
-.mk-stmt-quote em { font-style: normal; color: var(--acc); }
-.mk-stmt-side { display: flex; flex-direction: column; gap: 28px; }
-.mk-stmt-body { font-size: 14px; color: var(--t1); line-height: 1.75; }
+    .mk-eyebrow-txt {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--t2);
+    }
 
-/* ── FORCES (Monks client-stories style) ── */
-.mk-forces {
-  padding: 120px 0 0;
-  border-top: 1px solid var(--b0);
-}
-.mk-forces-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--b0);
-  margin-top: 64px;
-}
-.mk-force {
-  padding: 52px 44px;
-  border-right: 1px solid var(--b0);
-  position: relative;
-  overflow: hidden;
-  transition: background .25s;
-}
-.mk-force:last-child { border-right: none; }
-/* Force color-top border */
-.mk-force::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  transition: opacity .3s;
-}
-.mk-force.army::before  { background: var(--green); }
-.mk-force.navy::before  { background: var(--cyan); }
-.mk-force.air::before   { background: var(--amber); }
-.mk-force:hover         { background: rgba(255,255,255,.02); }
+    .mk-h1 {
+      font-size: clamp(52px, 9.5vw, 116px);
+      font-weight: 700;
+      line-height: .93;
+      letter-spacing: -.04em;
+      color: var(--t0);
+      max-width: 880px;
+      margin-bottom: 40px;
+    }
 
-.mk-force-tag {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--t2);
-  margin-bottom: 36px;
-  display: block;
-}
-.mk-force-h {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -.02em;
-  color: var(--t0);
-  margin-bottom: 14px;
-  line-height: 1.2;
-}
-.mk-force-p {
-  font-size: 13px;
-  color: var(--t1);
-  line-height: 1.7;
-  margin-bottom: 36px;
-}
-.mk-force-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  list-style: none;
-}
-.mk-force-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  color: var(--t2);
-}
-.mk-force-list li::before {
-  content: '';
-  width: 4px; height: 4px;
-  border-radius: 50% !important;
-  flex-shrink: 0;
-}
-.mk-force.army .mk-force-list li::before { background: var(--green); }
-.mk-force.navy .mk-force-list li::before { background: var(--cyan); }
-.mk-force.air  .mk-force-list li::before { background: var(--amber); }
+    .mk-h1 em {
+      font-style: normal;
+      color: var(--acc);
+    }
 
-/* ── SOCIAL PROOF METRICS BAR ── */
-.mk-proof {
-  border-top: 1px solid var(--b0);
-  border-bottom: 1px solid var(--b0);
-}
-.mk-proof-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.mk-proof-it {
-  padding: 64px 48px;
-  border-right: 1px solid var(--b0);
-}
-.mk-proof-it:last-child { border-right: none; }
-.mk-proof-n {
-  font-size: clamp(40px, 5.5vw, 72px);
-  font-weight: 700;
-  letter-spacing: -.04em;
-  color: var(--t0);
-  line-height: 1;
-  margin-bottom: 10px;
-}
-.mk-proof-n sup { font-size: .44em; vertical-align: super; }
-.mk-proof-l {
-  font-size: 13px;
-  color: var(--t1);
-  line-height: 1.55;
-}
+    .mk-hero-sub {
+      font-size: clamp(15px, 1.7vw, 19px);
+      color: var(--t1);
+      max-width: 500px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
 
-/* ── SOVEREIGNTY GRID ── */
-.mk-sov {
-  padding: 120px 0;
-  background: var(--bg1);
-  border-top: 1px solid var(--b0);
-  border-bottom: 1px solid var(--b0);
-}
-.mk-sov-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--b0);
-  margin-top: 64px;
-}
-.mk-sov-it {
-  padding: 48px 44px;
-  border-right: 1px solid var(--b0);
-}
-.mk-sov-it:last-child { border-right: none; }
-.mk-sov-num {
-  display: block;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--acc);
-  margin-bottom: 24px;
-}
-.mk-sov-h {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -.015em;
-  color: var(--t0);
-  margin-bottom: 12px;
-  line-height: 1.2;
-}
-.mk-sov-b {
-  font-size: 13px;
-  color: var(--t1);
-  line-height: 1.75;
-}
+    .mk-hero-acts {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-/* ── CTA + FORM (Monks multi-zone style) ── */
-.mk-cta {
-  padding: 140px 0;
-  border-top: 1px solid var(--b0);
-  position: relative;
-}
-.mk-cta-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 48px;
-  display: grid;
-  grid-template-columns: 1fr 460px;
-  gap: 80px;
-  align-items: start;
-}
-.mk-cta-h2 {
-  font-size: clamp(40px, 6.5vw, 84px);
-  font-weight: 700;
-  line-height: .98;
-  letter-spacing: -.04em;
-  color: var(--t0);
-  margin-bottom: 28px;
-}
-.mk-cta-h2 em { font-style: normal; color: var(--acc); }
-.mk-cta-body {
-  font-size: 15px;
-  color: var(--t1);
-  line-height: 1.7;
-  margin-bottom: 36px;
-  max-width: 420px;
-}
-.mk-cta-alt {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 28px;
-}
-.mk-cta-alt-line { width: 28px; height: 1px; background: var(--b2); }
-.mk-cta-alt-txt {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--t2);
-}
-.mk-cta-alt-link {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--t1);
-  text-decoration: underline;
-  transition: color .2s;
-}
-.mk-cta-alt-link:hover { color: var(--acc); }
+    /* Metrics bar — bottom of hero */
+    .mk-hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--b0);
+      position: relative;
+      z-index: 2;
+    }
 
-/* Form panel */
-.mk-form-panel {
-  background: var(--bg2);
-  border: 1px solid var(--b1);
-  padding: 44px 40px;
-}
-.mk-form-title {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -.01em;
-  color: var(--t0);
-  margin-bottom: 6px;
-}
-.mk-form-sub {
-  font-size: 12px;
-  font-family: var(--mono);
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  color: var(--t2);
-  margin-bottom: 32px;
-}
-.mk-field {
-  width: 100%;
-  background: var(--bg3);
-  border: 1px solid var(--b0);
-  color: var(--t0);
-  font-family: var(--sans);
-  font-size: 13px;
-  padding: 13px 16px;
-  outline: none;
-  margin-bottom: 10px;
-  transition: border-color .2s;
-  -webkit-appearance: none;
-  border-radius: 0 !important;
-}
-.mk-field:focus { border-color: var(--acc); }
-.mk-field::placeholder { color: var(--t2); }
-.mk-field-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-select.mk-field { cursor: pointer; }
-textarea.mk-field { height: 96px; resize: vertical; }
+    .mk-metric {
+      padding: 28px 48px;
+      border-right: 1px solid var(--b0);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
 
-/* Noise scanline overlay on hero */
-.mk-noise {
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(0,0,0,.03) 3px,
-    rgba(0,0,0,.03) 4px
-  );
-  pointer-events: none;
-  z-index: 1;
-}
+    .mk-metric:last-child {
+      border-right: none;
+    }
 
-/* ── HERO BACKGROUND IMAGE ── */
-.mk-hero-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: .12;
-  pointer-events: none;
-  z-index: 0;
-  mix-blend-mode: luminosity;
-}
+    .mk-metric-n {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -.035em;
+      color: var(--t0);
+      line-height: 1;
+    }
 
-/* ── HERO TACTICAL GRID OVERLAY ── */
-.mk-hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(44,74,30,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(44,74,30,.06) 1px, transparent 1px),
-    linear-gradient(rgba(44,74,30,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(44,74,30,.025) 1px, transparent 1px);
-  background-size: 120px 120px, 120px 120px, 40px 40px, 40px 40px;
-  pointer-events: none;
-  z-index: 0;
-}
+    .mk-metric-n sup {
+      font-size: .48em;
+      vertical-align: super;
+    }
 
-/* ── HERO COLOMBIA FLAG ACCENT ── */
-.mk-hero-flag {
-  position: absolute;
-  right: 48px;
-  top: calc(var(--header) + 40px);
-  width: 36px;
-  height: 24px;
-  background: linear-gradient(
-    to bottom,
-    #FCD116 0%, #FCD116 50%,
-    #003087 50%, #003087 75%,
-    #CE1126 75%, #CE1126 100%
-  );
-  opacity: .75;
-  z-index: 3;
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 0 12px rgba(0,0,0,.4);
-}
+    .mk-metric-l {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--t2);
+      line-height: 1.5;
+    }
 
-/* Colombian flag tricolor strip along hero left edge */
-.mk-hero-tricolor {
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: linear-gradient(
-    to bottom,
-    #FCD116 0%, #FCD116 50%,
-    #003087 50%, #003087 75%,
-    #CE1126 75%, #CE1126 100%
-  );
-  opacity: .5;
-  z-index: 3;
-  pointer-events: none;
-}
+    /* ── NUMBERED MODULE LIST (Monks signature pattern) ── */
+    .mk-mods {
+      padding: 120px 0 0;
+    }
 
-/* ── MODULE THUMBNAIL ── */
-.mk-mod { grid-template-columns: 72px 1fr 220px auto; }
-.mk-mod-thumb-wrap {
-  display: flex;
-  align-items: center;
-  padding: 20px 0 20px 24px;
-  overflow: hidden;
-}
-.mk-mod-thumb {
-  width: 220px;
-  height: 138px;
-  object-fit: cover;
-  opacity: .55;
-  display: block;
-  border: 1px solid var(--b1);
-  transition: opacity .35s var(--ease), transform .35s var(--ease);
-  flex-shrink: 0;
-}
-.mk-mod:hover .mk-mod-thumb {
-  opacity: .85;
-  transform: scale(1.03);
-}
+    .mk-mods-head {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px 56px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 60px;
+      border-bottom: 1px solid var(--b0);
+    }
 
-/* ── STATEMENT IMAGE ── */
-.mk-stmt-img {
-  width: 100%;
-  aspect-ratio: 3/4;
-  object-fit: cover;
-  opacity: .65;
-  display: block;
-  border: 1px solid var(--b1);
-}
+    .mk-mods-head-sub {
+      font-size: 14px;
+      color: var(--t1);
+      max-width: 360px;
+      text-align: right;
+      line-height: 1.7;
+      flex-shrink: 0;
+    }
 
-/* ── EJC ARMY — VERDE OSCURO ── */
-.mk-force.army::before { background: #2C4A1E !important; }
-.mk-force.army .mk-force-list li::before { background: #2C4A1E !important; }
+    /* Each module = full-width clickable row */
+    .mk-mod {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      align-items: stretch;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+      border-bottom: 1px solid var(--b0);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: background .2s;
+      cursor: pointer;
+    }
 
-/* ── FORCE CARD IMAGE ── */
-.mk-force-img {
-  width: calc(100% + 88px);
-  margin: -52px -44px 32px;
-  height: 160px;
-  object-fit: cover;
-  opacity: .45;
-  display: block;
-  border-bottom: 1px solid var(--b1);
-}
+    /* Gold accent bar on hover — vertical left edge */
+    .mk-mod::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--acc);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform .35s var(--ease);
+    }
 
-/* ── RESPONSIVE ── */
-@media(max-width:1100px) {
-  .mk-stmt-inner  { grid-template-columns: 1fr; gap: 40px; }
-  .mk-cta-inner   { grid-template-columns: 1fr; }
-  .mk-cta-h2      { font-size: clamp(36px,6vw,60px); }
-}
-@media(max-width:960px) {
-  .mk-hero-body   { padding: 60px 24px 40px; }
-  .mk-hero-metrics{ grid-template-columns: repeat(2,1fr); }
-  .mk-metric      { padding: 22px 24px; }
-  .mk-mods-head   { flex-direction: column; align-items: flex-start; padding: 0 24px 44px; }
-  .mk-mods-head-sub{ text-align: left; }
-  .mk-mod         { padding: 0 24px; grid-template-columns: 44px 1fr auto; gap: 16px; }
-  .mk-mod-thumb-wrap { display: none; }
-  .mk-mod-num     { font-size: 9px; padding: 28px 14px 28px 0; }
-  .mk-mod-content { grid-template-columns: 1fr; gap: 6px; padding: 28px 0; margin-left: 0; }
-  .mk-mod-cta     { font-size: 9px; padding: 28px 0; }
-  .mk-stmt-inner  { padding: 0 24px; }
-  .mk-forces-grid { grid-template-columns: 1fr; }
-  .mk-force       { border-right: none; border-bottom: 1px solid var(--b0); }
-  .mk-force:last-child { border-bottom: none; }
-  .mk-proof-grid  { grid-template-columns: repeat(2,1fr); }
-  .mk-proof-it    { padding: 48px 24px; }
-  .mk-sov-grid    { grid-template-columns: 1fr; }
-  .mk-sov-it      { border-right: none; border-bottom: 1px solid var(--b0); }
-  .mk-sov-it:last-child { border-bottom: none; }
-  .mk-cta-inner   { padding: 0 24px; }
-  .mk-form-panel  { padding: 32px 24px; }
-  .mk-field-2     { grid-template-columns: 1fr; }
-  .mk-force-img   { width: calc(100% + 48px); margin: -52px -24px 28px; }
-}
-@media(max-width:600px) {
-  .mk-hero-metrics{ grid-template-columns: repeat(2,1fr); }
-  .mk-proof-grid  { grid-template-columns: 1fr 1fr; }
-}
-</style>
-</head>
-<body>
+    .mk-mod:hover::before {
+      transform: scaleY(1);
+    }
 
-<!-- ═══════ HEADER (shared) ═══════ -->
-<header class="header" id="mainHeader">
-  <div class="header-l">
-    <a href="index.html" class="header-logo">HOLO</a>
-    <div class="header-status">
-      <div class="header-dot"></div>
-      <span class="mono">NEXXO C2 ACTIVO</span>
-    </div>
-  </div>
-  <nav class="header-nav" aria-label="Navegación principal">
-    <a href="index.html" class="active">Inicio</a>
-    <a href="radar.html">RADAR</a>
-    <a href="iris.html">IRIS</a>
-    <a href="chat.html">NEXXO Chat</a>
-    <a href="memora.html">Memora</a>
-    <a href="ai.html">HOLO AI</a>
-    <a href="readings.html">Lecturas</a>
-  </nav>
-  <div class="header-r">
-    <a href="#contacto" class="header-cta">Solicitar Demo</a>
-    <button class="hb" id="hb" aria-label="Menú" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
+    .mk-mod:hover {
+      background: rgba(200, 168, 75, .035);
+    }
 
-<div class="mobile-menu" id="mm">
-  <a href="index.html"><span class="mm-i">/00</span>Inicio</a>
-  <a href="radar.html"><span class="mm-i">/01</span>RADAR Dashboard</a>
-  <a href="iris.html"><span class="mm-i">/02</span>IRIS + PRISMA EDGE</a>
-  <a href="chat.html"><span class="mm-i">/03</span>NEXXO Chat</a>
-  <a href="memora.html"><span class="mm-i">/04</span>Memora</a>
-  <a href="ai.html"><span class="mm-i">/05</span>HOLO AI</a>
-  <a href="readings.html"><span class="mm-i">/06</span>Lecturas</a>
-</div>
+    .mk-mod-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--t2);
+      display: flex;
+      align-items: center;
+      padding: 40px 0;
+      border-right: 1px solid var(--b0);
+      padding-right: 24px;
+      flex-shrink: 0;
+    }
 
-<!-- ═══════ HERO — MONKS EDITORIAL ═══════ -->
-<section class="mk-hero" id="inicio" aria-label="Presentación HOLO NEXXO C2">
-  <img src="assets/military-abstract.jpg" class="mk-hero-bg" alt="" aria-hidden="true"/>
-  <div class="mk-hero-grid" aria-hidden="true"></div>
-  <div class="mk-hero-tricolor" aria-hidden="true"></div>
-  <div class="mk-hero-flag" aria-hidden="true" title="Colombia"></div>
-  <canvas id="mk-canvas" class="mk-canvas" aria-hidden="true"></canvas>
-  <div class="mk-noise" aria-hidden="true"></div>
+    .mk-mod-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 40px 40px 40px 0;
+      margin-left: 40px;
+    }
 
-  <div class="mk-hero-body">
-    <div class="mk-eyebrow rv">
-      <div class="mk-eyebrow-line"></div>
-      <span class="mk-eyebrow-txt">HOLO / Sistemas NEXXO C2 — Colombia · 2026</span>
-    </div>
-    <h1 class="mk-h1 rv rd1">
-      Decisiones que<br>
-      <em>merecen datos</em><br>
-      reales.
-    </h1>
-    <p class="mk-hero-sub rv rd2">
-      NEXXO C2 acelera el ciclo OODA de las Fuerzas Militares de Colombia.
-      Imagen operacional común en tiempo real. Soberanía tecnológica total.
-    </p>
-    <div class="mk-hero-acts rv rd3">
-      <a href="#modulos" class="bp">Explorar Módulos →</a>
-      <a href="#contacto" class="bg">Solicitar Demo</a>
-    </div>
-  </div>
+    .mk-mod-name {
+      font-size: clamp(20px, 2.6vw, 32px);
+      font-weight: 700;
+      letter-spacing: -.025em;
+      color: var(--t0);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-  <!-- Bottom metrics strip -->
-  <div class="mk-hero-metrics" aria-label="Métricas clave">
-    <div class="mk-metric rv">
-      <span class="mk-metric-n">19<sup>+</sup></span>
-      <span class="mk-metric-l">Activos militares<br>en tiempo real</span>
-    </div>
-    <div class="mk-metric rv rd1">
-      <span class="mk-metric-n">360°</span>
-      <span class="mk-metric-l">Cobertura nacional<br>terrestre, naval, aérea</span>
-    </div>
-    <div class="mk-metric rv rd2">
-      <span class="mk-metric-n">5</span>
-      <span class="mk-metric-l">Módulos integrados<br>en ecosistema NEXXO</span>
-    </div>
-    <div class="mk-metric rv rd3">
-      <span class="mk-metric-n">100<sup>%</sup></span>
-      <span class="mk-metric-l">Datos bajo control<br>soberano colombiano</span>
-    </div>
-  </div>
-</section>
+    .mk-mod-desc {
+      font-size: 13px;
+      color: var(--t1);
+      line-height: 1.7;
+    }
 
-<!-- ═══════ TICKER ═══════ -->
-<div class="tk" aria-hidden="true"><div class="tk-in">
-  <span class="tk-it"><span>●</span> Imagen Operacional Común (COP)</span>
-  <span class="tk-it"><span>●</span> Ciclo OODA Acelerado</span>
-  <span class="tk-it"><span>●</span> Soberanía Tecnológica</span>
-  <span class="tk-it"><span>●</span> IA Multiagente Operacional</span>
-  <span class="tk-it"><span>●</span> Cifrado End-to-End</span>
-  <span class="tk-it"><span>●</span> Operación DDIL (Denied/Degraded)</span>
-  <span class="tk-it"><span>●</span> Imagen Operacional Común (COP)</span>
-  <span class="tk-it"><span>●</span> Ciclo OODA Acelerado</span>
-  <span class="tk-it"><span>●</span> Soberanía Tecnológica</span>
-  <span class="tk-it"><span>●</span> IA Multiagente Operacional</span>
-  <span class="tk-it"><span>●</span> Cifrado End-to-End</span>
-  <span class="tk-it"><span>●</span> Operación DDIL (Denied/Degraded)</span>
-</div></div>
+    .mk-mod-cta {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      color: var(--t2);
+      display: flex;
+      align-items: center;
+      padding: 40px 0;
+      white-space: nowrap;
+      transition: color .2s, transform .2s;
+      flex-shrink: 0;
+    }
 
-<!-- ═══════ MODULES — MONKS NUMBERED LIST ═══════ -->
-<section class="mk-mods" id="modulos" aria-label="Ecosistema NEXXO C2">
-  <div class="mk-mods-head">
-    <div>
-      <span class="si rv">/0.1 — Ecosistema NEXXO C2</span>
-      <h2 class="sh rv rd1" style="margin-top:12px;max-width:500px">
-        Seis módulos.<br>Una imagen operacional.
-      </h2>
-    </div>
-    <p class="mk-mods-head-sub rv rd2">
-      El sistema completo de Mando y Control diseñado para el teatro de operaciones colombiano.
-      Modular, resiliente, soberano.
-    </p>
-  </div>
+    .mk-mod:hover .mk-mod-cta {
+      color: var(--acc);
+      transform: translateX(5px);
+    }
 
-  <!-- /01 RADAR -->
-  <a href="radar.html" class="mk-mod rv">
-    <span class="mk-mod-num">/01</span>
-    <div class="mk-mod-content">
-      <div class="mk-mod-name">
-        RADAR
-        <span class="pill pill-active"><span class="pill-dot"></span>Activo</span>
-      </div>
-      <p class="mk-mod-desc">
-        Dashboard táctico web con mapa geoespacial de Colombia. COP con tracking de activos
-        terrestres, navales y aéreos en tiempo real. Visión 360° del teatro de operaciones
-        desde cualquier navegador.
-      </p>
-    </div>
-    <div class="mk-mod-thumb-wrap"><img src="assets/radar-dashboard.png" class="mk-mod-thumb" alt="RADAR Dashboard"/></div>
-    <span class="mk-mod-cta">VER MÓDULO →</span>
-  </a>
+    /* ── STATEMENT — editorial quote (Monks asymmetric block) ── */
+    .mk-stmt {
+      padding: 140px 0;
+      background: var(--bg1);
+      border-top: 1px solid var(--b0);
+      border-bottom: 1px solid var(--b0);
+    }
 
-  <!-- /02 IRIS -->
-  <a href="iris.html" class="mk-mod rv rd1">
-    <span class="mk-mod-num">/02</span>
-    <div class="mk-mod-content">
-      <div class="mk-mod-name">
-        IRIS
-        <span class="pill pill-active"><span class="pill-dot"></span>Activo</span>
-      </div>
-      <p class="mk-mod-desc">
-        App móvil de campo. GPS en formato MGRS, telemetría de combustible y municiones,
-        reporte rápido de SITREPs y MEDEVAC. Opera en entornos DDIL sin conectividad constante.
-      </p>
-    </div>
-    <div class="mk-mod-thumb-wrap"><img src="assets/iris-mobile.png" class="mk-mod-thumb" alt="IRIS App móvil"/></div>
-    <span class="mk-mod-cta">VER MÓDULO →</span>
-  </a>
+    .mk-stmt-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 80px;
+      align-items: center;
+    }
 
-  <!-- /03 NEXXO Chat -->
-  <a href="chat.html" class="mk-mod rv rd2">
-    <span class="mk-mod-num">/03</span>
-    <div class="mk-mod-content">
-      <div class="mk-mod-name">
-        NEXXO Chat
-        <span class="pill pill-pilot"><span class="pill-dot"></span>Piloto</span>
-      </div>
-      <p class="mk-mod-desc">
-        Comunicaciones seguras con cifrado end-to-end y asistente de IA integrado para
-        coordinación operacional soberana. Sin dependencia de infraestructura o servidores extranjeros.
-      </p>
-    </div>
-    <div class="mk-mod-thumb-wrap"><img src="assets/nexxo-chat.png" class="mk-mod-thumb" alt="NEXXO Chat"/></div>
-    <span class="mk-mod-cta">VER MÓDULO →</span>
-  </a>
+    .mk-stmt-quote {
+      font-size: clamp(30px, 5vw, 64px);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -.035em;
+      color: var(--t0);
+    }
 
-  <!-- /04 Memora -->
-  <a href="memora.html" class="mk-mod rv">
-    <span class="mk-mod-num">/04</span>
-    <div class="mk-mod-content">
-      <div class="mk-mod-name">
-        Memora
-        <span class="pill pill-dev"><span class="pill-dot"></span>En Desarrollo</span>
-      </div>
-      <p class="mk-mod-desc">
-        Gestión documental clasificada con niveles de seguridad diferenciados. Auditoría completa
-        de acceso y búsqueda inteligente de documentos operacionales. Control granular por perfil.
-      </p>
-    </div>
-    <div class="mk-mod-thumb-wrap"><img src="assets/memora-docs.png" class="mk-mod-thumb" alt="Memora Docs"/></div>
-    <span class="mk-mod-cta">VER MÓDULO →</span>
-  </a>
+    .mk-stmt-quote em {
+      font-style: normal;
+      color: var(--acc);
+    }
 
-  <!-- /05 HOLO AI -->
-  <a href="ai.html" class="mk-mod rv rd1">
-    <span class="mk-mod-num">/05</span>
-    <div class="mk-mod-content">
-      <div class="mk-mod-name">
-        HOLO AI
-        <span class="pill pill-road"><span class="pill-dot"></span>Roadmap</span>
-      </div>
-      <p class="mk-mod-desc">
-        IA multiagente para defensa. Análisis predictivo de amenazas, generación de Cursos de
-        Acción (COA) y fusión de inteligencia HUMINT, SIGINT y GEOINT desde múltiples fuentes.
-      </p>
-    </div>
-    <div class="mk-mod-thumb-wrap"><img src="assets/holo-ai.png" class="mk-mod-thumb" alt="HOLO AI"/></div>
-    <span class="mk-mod-cta">VER MÓDULO →</span>
-  </a>
+    .mk-stmt-side {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
 
-  <!-- /06 PRISMA EDGE -->
-  <a href="iris.html#prisma" class="mk-mod rv rd2">
-    <span class="mk-mod-num">/06</span>
-    <div class="mk-mod-content">
-      <div class="mk-mod-name">
-        PRISMA EDGE
-        <span class="pill pill-active"><span class="pill-dot"></span>Hardware</span>
-      </div>
-      <p class="mk-mod-desc">
-        Dispositivo táctico ruggedizado. Microcontrolador ARM, GPS militar, pantalla OLED,
-        comunicación segura cifrada. Edge computing autónomo en campo de batalla.
-      </p>
-    </div>
-    <div class="mk-mod-thumb-wrap"><img src="assets/prisma-edge.png" class="mk-mod-thumb" alt="PRISMA EDGE"/></div>
-    <span class="mk-mod-cta">VER MÓDULO →</span>
-  </a>
-</section>
+    .mk-stmt-body {
+      font-size: 14px;
+      color: var(--t1);
+      line-height: 1.75;
+    }
 
-<!-- ═══════ STATEMENT — EDITORIAL QUOTE (Monks asymmetric) ═══════ -->
-<div class="mk-stmt" aria-label="Propuesta de valor">
-  <div class="mk-stmt-inner">
-    <h2 class="mk-stmt-quote rv">
-      El comandante decide.<br>
-      <em>NEXXO C2</em> asegura que decide<br>
-      con la mejor información disponible.
-    </h2>
-    <div class="mk-stmt-side">
-      <img src="assets/ChatGPT Image Apr 4, 2026, 06_44_27 PM.png" class="mk-stmt-img rv" alt="Militar colombiano con apoyo a la población civil"/>
-      <p class="mk-stmt-body rv rd1">
-        Las Fuerzas Militares operan con datos fragmentados, ciclos de decisión lentos
-        y dependencia de tecnología extranjera. NEXXO C2 resuelve los tres problemas
-        simultáneamente: soberanía, velocidad y precisión operacional.
-      </p>
-      <a href="#contacto" class="bp rv rd2" style="align-self:flex-start">
-        Iniciar Conversación →
-      </a>
-    </div>
-  </div>
-</div>
+    /* ── FORCES (Monks client-stories style) ── */
+    .mk-forces {
+      padding: 120px 0 0;
+      border-top: 1px solid var(--b0);
+    }
 
-<!-- ═══════ FORCES — MONKS CLIENT STORIES ═══════ -->
-<section aria-label="Fuerzas Militares" id="fuerzas">
-  <div class="mk-forces" style="padding-bottom:0">
-    <div class="ct">
-      <span class="si rv">/0.2 — Fuerzas Militares de Colombia</span>
-      <h2 class="sh rv rd1" style="margin-top:12px">
-        Diseñado para<br>las Tres Fuerzas.
-      </h2>
-    </div>
-    <div class="mk-forces-grid">
+    .mk-forces-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--b0);
+      margin-top: 64px;
+    }
 
-      <div class="mk-force army rv">
-        <img src="assets/ChatGPT Image Apr 4, 2026, 12_09_16 PM.png" class="mk-force-img" alt="Ejército Nacional — Control Operacional Terrestre"/>
-        <span class="mk-force-tag">/01 — Ejército Nacional</span>
-        <h3 class="mk-force-h">Control Operacional Terrestre</h3>
-        <p class="mk-force-p">
-          Tracking de infantería, blindados y artillería en 8 Divisiones.
-          Gestión de líneas de coordinación de fuego, rutas de abastecimiento
-          y zonas de operación en tiempo real.
-        </p>
-        <ul class="mk-force-list">
-          <li>FUDRA y COESE tracking</li>
-          <li>Zonas de operación remota</li>
-          <li>Gestión de helipuertos temporales</li>
-        </ul>
-      </div>
+    .mk-force {
+      padding: 52px 44px;
+      border-right: 1px solid var(--b0);
+      position: relative;
+      overflow: hidden;
+      transition: background .25s;
+    }
 
-      <div class="mk-force navy rv rd1">
-        <img src="assets/TUULAYLWIBA55CURD544CMZFF4.jpeg" class="mk-force-img" alt="Armada Nacional de Colombia — Operaciones Navales y Fluviales"/>
-        <span class="mk-force-tag">/02 — Armada Nacional</span>
-        <h3 class="mk-force-h">Operaciones Navales y Fluviales</h3>
-        <p class="mk-force-p">
-          Monitoreo de buques ARC, lanchas fluviales y operaciones de interdicción
-          en Pacífico, Caribe y ríos principales. Integración AIS y datos radar naval.
-        </p>
-        <ul class="mk-force-list">
-          <li>Integración datos AIS y radar</li>
-          <li>Tracking naval y fluvial diferenciado</li>
-          <li>Interdicción marítima en tiempo real</li>
-        </ul>
-      </div>
+    .mk-force:last-child {
+      border-right: none;
+    }
 
-      <div class="mk-force air rv rd2">
-        <img src="assets/air-mission-track.svg" class="mk-force-img" alt="Fuerza Aeroespacial Colombiana — Seguimiento de misiones"/>
-        <span class="mk-force-tag">/03 — Fuerza Aeroespacial (FACS)</span>
-        <h3 class="mk-force-h">Seguimiento de Misiones Aéreas</h3>
-        <p class="mk-force-p">
-          Control de aeronaves con telemetría de combustible y estado de misión.
-          Planes de vuelo activos, UAVs y coordinación de apoyo aéreo cercano (CAS).
-        </p>
-        <ul class="mk-force-list">
-          <li>Apoyo aéreo cercano (CAS)</li>
-          <li>Reconocimiento e inteligencia</li>
-          <li>Transporte estratégico</li>
-        </ul>
-      </div>
+    /* Force color-top border */
+    .mk-force::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      transition: opacity .3s;
+    }
 
-    </div>
-  </div>
-</section>
+    .mk-force.army::before {
+      background: var(--green);
+    }
 
-<!-- ═══════ SOCIAL PROOF — METRICS BAR ═══════ -->
-<div class="mk-proof" aria-label="Métricas del sistema">
-  <div class="mk-proof-grid">
-    <div class="mk-proof-it rv">
-      <div class="mk-proof-n">5<sup>+</sup></div>
-      <p class="mk-proof-l">Años de I+D en tecnología<br>de defensa colombiana</p>
-    </div>
-    <div class="mk-proof-it rv rd1">
-      <div class="mk-proof-n">360°</div>
-      <p class="mk-proof-l">Cobertura de dominio<br>terrestre, naval y aéreo</p>
-    </div>
-    <div class="mk-proof-it rv rd2">
-      <div class="mk-proof-n">100<sup>%</sup></div>
-      <p class="mk-proof-l">Datos bajo soberanía<br>y jurisdicción colombiana</p>
-    </div>
-    <div class="mk-proof-it rv rd3">
-      <div class="mk-proof-n">DDIL</div>
-      <p class="mk-proof-l">Opera en ambientes Denied,<br>Degraded, Intermittent, Limited</p>
-    </div>
-  </div>
-</div>
+    .mk-force.navy::before {
+      background: var(--cyan);
+    }
 
-<!-- ═══════ SOVEREIGNTY ═══════ -->
-<section class="mk-sov" id="soberania" aria-label="Soberanía tecnológica">
-  <div class="ct">
-    <span class="si rv">/0.3 — Soberanía Tecnológica</span>
-    <h2 class="sh rv rd1" style="margin-top:12px">
-      Sin puertas traseras.<br>Sin dependencias.
-    </h2>
-    <p class="ss rv rd2">
-      La independencia tecnológica no es opcional. Es el fundamento de la seguridad nacional colombiana.
-    </p>
-  </div>
-  <div class="mk-sov-grid" style="max-width:1280px;margin-left:auto;margin-right:auto;padding:0 48px">
-    <div class="mk-sov-it rv">
-      <span class="mk-sov-num">/01 — Infraestructura</span>
-      <h4 class="mk-sov-h">On-Premise o Nube Soberana</h4>
-      <p class="mk-sov-b">
-        Despliegue en infraestructura del Ministerio de Defensa. Sin dependencia de
-        hyperscalers extranjeros. Control total sobre datos operacionales clasificados.
-        Nube táctica en servidores bajo custodia militar.
-      </p>
-    </div>
-    <div class="mk-sov-it rv rd1">
-      <span class="mk-sov-num">/02 — Normativa</span>
-      <h4 class="mk-sov-h">Auditoría y Cumplimiento</h4>
-      <p class="mk-sov-b">
-        Arquitectura diseñada según estándares de seguridad de la información militar colombiana.
-        Cifrado certificado, auditoría completa de acceso. 100% del código fuente disponible
-        para inspección del CCOC.
-      </p>
-    </div>
-    <div class="mk-sov-it rv rd2">
-      <span class="mk-sov-num">/03 — Transferencia</span>
-      <h4 class="mk-sov-h">Capacidades al Estado</h4>
-      <p class="mk-sov-b">
-        Programa de formación para ingenieros militares colombianos. El objetivo: que Colombia
-        opere, mantenga y evolucione NEXXO C2 de forma completamente autónoma en el largo plazo.
-      </p>
-    </div>
-  </div>
-</section>
+    .mk-force.air::before {
+      background: var(--amber);
+    }
 
-<!-- ═══════ CTA + FORM — MONKS MULTI-ZONE ═══════ -->
-<section class="mk-cta" id="contacto" aria-label="Contacto y demostración">
-  <div class="mk-cta-inner">
+    .mk-force:hover {
+      background: rgba(255, 255, 255, .02);
+    }
 
-    <div>
-      <span class="si rv" style="display:block;margin-bottom:20px">/0.4 — Iniciar Conversación</span>
-      <h2 class="mk-cta-h2 rv rd1">
-        Hay mucho<br>
-        por <em>construir.</em>
-      </h2>
-      <p class="mk-cta-body rv rd2">
-        HOLO trabaja con las Fuerzas Militares de Colombia, entidades de defensa regional
-        y organismos de seguridad ambiental. Conectemos y exploremos cómo NEXXO C2 puede
-        fortalecer su capacidad operacional.
-      </p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap" class="rv rd3">
-        <a href="mailto:contacto@holo.com.co" class="bp">Escribir al Equipo →</a>
-        <a href="#modulos" class="bg">Ver Módulos</a>
-      </div>
-      <div class="mk-cta-alt rv rd4">
-        <div class="mk-cta-alt-line"></div>
-        <span class="mk-cta-alt-txt">O contacte directamente</span>
-        <a href="mailto:contacto@holo.com.co" class="mk-cta-alt-link">contacto@holo.com.co</a>
-      </div>
-    </div>
+    .mk-force-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--t2);
+      margin-bottom: 36px;
+      display: block;
+    }
 
-    <div class="mk-form-panel rv rd2">
-      <h3 class="mk-form-title">Solicitar Demostración</h3>
-      <p class="mk-form-sub">Sesión técnica con el equipo HOLO</p>
-      <form action="mailto:contacto@holo.com.co" method="get" novalidate>
-        <div class="mk-field-2">
-          <input type="text"  class="mk-field" placeholder="Nombre completo" required/>
-          <input type="text"  class="mk-field" placeholder="Cargo / Rango" required/>
-        </div>
-        <input type="email" class="mk-field" placeholder="Correo institucional" required/>
-        <select class="mk-field" required>
-          <option value="" disabled selected>Organización</option>
-          <option>Ejército Nacional</option>
-          <option>Armada Nacional de Colombia</option>
-          <option>Fuerza Aeroespacial Colombiana (FACS)</option>
-          <option>Ministerio de Defensa Nacional</option>
-          <option>Policía Nacional</option>
-          <option>Entidad de seguridad regional</option>
-          <option>Otro</option>
-        </select>
-        <select class="mk-field">
-          <option value="" disabled selected>Módulo de interés</option>
-          <option>RADAR — Dashboard táctico</option>
-          <option>IRIS — App móvil de campo</option>
-          <option>NEXXO Chat — Comunicaciones seguras</option>
-          <option>Memora — Gestión documental</option>
-          <option>HOLO AI — Inteligencia artificial</option>
-          <option>PRISMA EDGE — Hardware táctico</option>
-          <option>Ecosistema completo NEXXO C2</option>
-        </select>
-        <textarea class="mk-field" placeholder="Describe el requerimiento operacional..."></textarea>
-        <button type="submit" class="bp" style="width:100%;justify-content:center;margin-top:4px">
-          Enviar Solicitud →
-        </button>
-      </form>
-    </div>
+    .mk-force-h {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--t0);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
 
-  </div>
-</section>
+    .mk-force-p {
+      font-size: 13px;
+      color: var(--t1);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
 
-<!-- ═══════ FOOTER ═══════ -->
-<footer><div class="ct">
-  <div class="ft-grid">
-    <div class="ft-brand">
-      <div class="ft-logo">HOLO</div>
-      <p>Empresa colombiana de tecnología de defensa y seguridad nacional. Desarrolladores del ecosistema NEXXO C2.</p>
-    </div>
-    <div>
-      <div class="ft-ct">Módulos</div>
-      <ul class="ft-links">
-        <li><a href="radar.html">RADAR</a></li>
-        <li><a href="iris.html">IRIS</a></li>
-        <li><a href="chat.html">NEXXO Chat</a></li>
-        <li><a href="memora.html">Memora</a></li>
-        <li><a href="ai.html">HOLO AI</a></li>
-        <li><a href="iris.html#prisma">PRISMA EDGE</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="ft-ct">Compañía</div>
-      <ul class="ft-links">
-        <li><a href="#fuerzas">Fuerzas</a></li>
-        <li><a href="#soberania">Soberanía</a></li>
-        <li><a href="#">Carreras</a></li>
-        <li><a href="#">Prensa</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="ft-ct">Legal</div>
-      <ul class="ft-links">
-        <li><a href="#">Términos de Uso</a></li>
-        <li><a href="#">Privacidad</a></li>
-        <li><a href="#">Seguridad</a></li>
-        <li><a href="#">Clasificación</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="ft-bot">
-    <p>© 2026 HOLO Technologies SAS — Colombia. Todos los derechos reservados.</p>
-    <p>NEXXO C2 v2.4 · SISTEMA: OPERATIVO · BUILD: 2026.04</p>
-  </div>
-</div></footer>
+    .mk-force-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      list-style: none;
+    }
 
-<!-- ═══════ SCRIPTS ═══════ -->
-<script>
-// Header scroll
-const h = document.getElementById('mainHeader');
-window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 40));
+    .mk-force-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--t2);
+    }
 
-// Mobile menu
-const hb = document.getElementById('hb'), mm = document.getElementById('mm');
-hb.addEventListener('click', () => {
-  const o = mm.classList.toggle('open');
-  hb.classList.toggle('open', o);
-  hb.setAttribute('aria-expanded', o);
-  document.body.style.overflow = o ? 'hidden' : '';
-});
-mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  mm.classList.remove('open');
-  hb.classList.remove('open');
-  hb.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-}));
+    .mk-force-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50% !important;
+      flex-shrink: 0;
+    }
 
-// Scroll reveal
-const obs = new IntersectionObserver(
-  e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('iv'); obs.unobserve(x.target); } }),
-  { threshold: .08, rootMargin: '0px 0px -40px 0px' }
-);
-document.querySelectorAll('.rv').forEach(e => obs.observe(e));
+    .mk-force.army .mk-force-list li::before {
+      background: var(--green);
+    }
 
-// Smooth anchor navigation
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
-});
-</script>
+    .mk-force.navy .mk-force-list li::before {
+      background: var(--cyan);
+    }
 
-<!-- ─── HERO CANVAS: Tactical C2 Network ─── -->
-<script>
-(function () {
-  'use strict';
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    .mk-force.air .mk-force-list li::before {
+      background: var(--amber);
+    }
 
-  const canvas = document.getElementById('mk-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+    /* ── SOCIAL PROOF METRICS BAR ── */
+    .mk-proof {
+      border-top: 1px solid var(--b0);
+      border-bottom: 1px solid var(--b0);
+    }
 
-  let W, H;
-  const GOLD  = [200, 168, 75];
-  const CYAN  = [6, 182, 212];
-  const GREEN = [34, 197, 94];
+    .mk-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
 
-  // Tactical nodes representing Colombian military locations
-  const BASE_NODES = [
-    { nx: .47, ny: .52, type: 'hq',    col: GOLD  },  // Bogotá
-    { nx: .42, ny: .10, type: 'naval', col: CYAN  },  // Cartagena
-    { nx: .56, ny: .28, type: 'army',  col: GREEN },  // Bucaramanga
-    { nx: .35, ny: .68, type: 'army',  col: GREEN },  // Cali
-    { nx: .65, ny: .15, type: 'ops',   col: GOLD  },  // Catatumbo
-    { nx: .28, ny: .80, type: 'coast', col: CYAN  },  // Tumaco
-    { nx: .58, ny: .88, type: 'river', col: CYAN  },  // Leticia
-    { nx: .34, ny: .38, type: 'army',  col: GREEN },  // Medellín
-    { nx: .72, ny: .38, type: 'ops',   col: GOLD  },  // Arauca
-    { nx: .50, ny: .70, type: 'army',  col: GREEN },  // Neiva
-    { nx: .62, ny: .60, type: 'army',  col: GREEN },  // Villavicencio
-  ];
+    .mk-proof-it {
+      padding: 64px 48px;
+      border-right: 1px solid var(--b0);
+    }
 
-  let nodes = [];
-  let packets = [];
-  let raf;
+    .mk-proof-it:last-child {
+      border-right: none;
+    }
 
-  function rgb(c, a) { return `rgba(${c[0]},${c[1]},${c[2]},${a})`; }
+    .mk-proof-n {
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 700;
+      letter-spacing: -.04em;
+      color: var(--t0);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
 
-  function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    nodes = BASE_NODES.map(n => ({
-      x: n.nx * W, y: n.ny * H,
-      col: n.col, type: n.type,
-      pulse: Math.random() * Math.PI * 2,
-    }));
-  }
+    .mk-proof-n sup {
+      font-size: .44em;
+      vertical-align: super;
+    }
 
-  // Spawn data packet along an edge
-  function spawnPacket() {
-    const i = Math.floor(Math.random() * nodes.length);
-    let j = Math.floor(Math.random() * nodes.length);
-    if (j === i) j = (j + 1) % nodes.length;
-    packets.push({ from: nodes[i], to: nodes[j], t: 0, speed: .004 + Math.random() * .004, col: nodes[i].col });
-  }
-  setInterval(spawnPacket, 600);
+    .mk-proof-l {
+      font-size: 13px;
+      color: var(--t1);
+      line-height: 1.55;
+    }
 
-  function draw(ts) {
-    ctx.clearRect(0, 0, W, H);
-    const T = ts * .001;
+    /* ── SOVEREIGNTY GRID ── */
+    .mk-sov {
+      padding: 120px 0;
+      background: var(--bg1);
+      border-top: 1px solid var(--b0);
+      border-bottom: 1px solid var(--b0);
+    }
 
-    // ── Edges ──
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const d  = Math.sqrt(dx * dx + dy * dy);
-        const maxD = Math.min(W, H) * .42;
-        if (d < maxD) {
-          const a = (1 - d / maxD) * .18;
-          ctx.beginPath();
-          ctx.strokeStyle = rgb(GOLD, a);
-          ctx.lineWidth = .6;
-          ctx.setLineDash([4, 6]);
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.stroke();
-          ctx.setLineDash([]);
-        }
+    .mk-sov-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--b0);
+      margin-top: 64px;
+    }
+
+    .mk-sov-it {
+      padding: 48px 44px;
+      border-right: 1px solid var(--b0);
+    }
+
+    .mk-sov-it:last-child {
+      border-right: none;
+    }
+
+    .mk-sov-num {
+      display: block;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--acc);
+      margin-bottom: 24px;
+    }
+
+    .mk-sov-h {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.015em;
+      color: var(--t0);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .mk-sov-b {
+      font-size: 13px;
+      color: var(--t1);
+      line-height: 1.75;
+    }
+
+    /* ── CTA + FORM (Monks multi-zone style) ── */
+    .mk-cta {
+      padding: 140px 0;
+      border-top: 1px solid var(--b0);
+      position: relative;
+    }
+
+    .mk-cta-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .mk-cta-h2 {
+      font-size: clamp(40px, 6.5vw, 84px);
+      font-weight: 700;
+      line-height: .98;
+      letter-spacing: -.04em;
+      color: var(--t0);
+      margin-bottom: 28px;
+    }
+
+    .mk-cta-h2 em {
+      font-style: normal;
+      color: var(--acc);
+    }
+
+    .mk-cta-body {
+      font-size: 15px;
+      color: var(--t1);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 420px;
+    }
+
+    .mk-cta-alt {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .mk-cta-alt-line {
+      width: 28px;
+      height: 1px;
+      background: var(--b2);
+    }
+
+    .mk-cta-alt-txt {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--t2);
+    }
+
+    .mk-cta-alt-link {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--t1);
+      text-decoration: underline;
+      transition: color .2s;
+    }
+
+    .mk-cta-alt-link:hover {
+      color: var(--acc);
+    }
+
+    /* Form panel */
+    .mk-form-panel {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      padding: 44px 40px;
+    }
+
+    .mk-form-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: var(--t0);
+      margin-bottom: 6px;
+    }
+
+    .mk-form-sub {
+      font-size: 12px;
+      font-family: var(--mono);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--t2);
+      margin-bottom: 32px;
+    }
+
+    .mk-field {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--b0);
+      color: var(--t0);
+      font-family: var(--sans);
+      font-size: 13px;
+      padding: 13px 16px;
+      outline: none;
+      margin-bottom: 10px;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+      border-radius: 0 !important;
+    }
+
+    .mk-field:focus {
+      border-color: var(--acc);
+    }
+
+    .mk-field::placeholder {
+      color: var(--t2);
+    }
+
+    .mk-field-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    select.mk-field {
+      cursor: pointer;
+    }
+
+    textarea.mk-field {
+      height: 96px;
+      resize: vertical;
+    }
+
+    /* Noise scanline overlay on hero */
+    .mk-noise {
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(0deg,
+          transparent,
+          transparent 3px,
+          rgba(0, 0, 0, .03) 3px,
+          rgba(0, 0, 0, .03) 4px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── HERO BACKGROUND IMAGE ── */
+    .mk-hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .12;
+      pointer-events: none;
+      z-index: 0;
+      mix-blend-mode: luminosity;
+    }
+
+    /* ── HERO TACTICAL GRID OVERLAY ── */
+    .mk-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(44, 74, 30, .06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(44, 74, 30, .06) 1px, transparent 1px),
+        linear-gradient(rgba(44, 74, 30, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(44, 74, 30, .025) 1px, transparent 1px);
+      background-size: 120px 120px, 120px 120px, 40px 40px, 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HERO COLOMBIA FLAG ACCENT ── */
+    .mk-hero-flag {
+      position: absolute;
+      right: 48px;
+      top: calc(var(--header) + 40px);
+      width: 36px;
+      height: 24px;
+      background: linear-gradient(to bottom,
+          #FCD116 0%, #FCD116 50%,
+          #003087 50%, #003087 75%,
+          #CE1126 75%, #CE1126 100%);
+      opacity: .75;
+      z-index: 3;
+      border: 1px solid rgba(255, 255, 255, .12);
+      box-shadow: 0 0 12px rgba(0, 0, 0, .4);
+    }
+
+    /* Colombian flag tricolor strip along hero left edge */
+    .mk-hero-tricolor {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom,
+          #FCD116 0%, #FCD116 50%,
+          #003087 50%, #003087 75%,
+          #CE1126 75%, #CE1126 100%);
+      opacity: .5;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* ── MODULE THUMBNAIL ── */
+    .mk-mod {
+      grid-template-columns: 72px 1fr 220px auto;
+    }
+
+    .mk-mod-thumb-wrap {
+      display: flex;
+      align-items: center;
+      padding: 20px 0 20px 24px;
+      overflow: hidden;
+    }
+
+    .mk-mod-thumb {
+      width: 220px;
+      height: 138px;
+      object-fit: cover;
+      opacity: .55;
+      display: block;
+      border: 1px solid var(--b1);
+      transition: opacity .35s var(--ease), transform .35s var(--ease);
+      flex-shrink: 0;
+    }
+
+    .mk-mod:hover .mk-mod-thumb {
+      opacity: .85;
+      transform: scale(1.03);
+    }
+
+    /* ── STATEMENT IMAGE ── */
+    .mk-stmt-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      opacity: .65;
+      display: block;
+      border: 1px solid var(--b1);
+    }
+
+    /* ── EJC ARMY — VERDE OSCURO ── */
+    .mk-force.army::before {
+      background: #2C4A1E !important;
+    }
+
+    .mk-force.army .mk-force-list li::before {
+      background: #2C4A1E !important;
+    }
+
+    /* ── FORCE CARD IMAGE ── */
+    .mk-force-img {
+      width: calc(100% + 88px);
+      margin: -52px -44px 32px;
+      height: 160px;
+      object-fit: cover;
+      opacity: .45;
+      display: block;
+      border-bottom: 1px solid var(--b1);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1100px) {
+      .mk-stmt-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .mk-cta-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .mk-cta-h2 {
+        font-size: clamp(36px, 6vw, 60px);
       }
     }
 
-    // ── Nodes ──
-    nodes.forEach(n => {
-      const pulse = (Math.sin(T * 1.4 + n.pulse) * .5 + .5);
-      // Outer glow ring
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, 18 * pulse, 0, Math.PI * 2);
-      ctx.fillStyle = rgb(n.col, .04 * pulse);
-      ctx.fill();
-      // Mid ring
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.type === 'hq' ? 7 : 4, 0, Math.PI * 2);
-      ctx.strokeStyle = rgb(n.col, .5);
-      ctx.lineWidth = .8;
-      ctx.stroke();
-      // Core dot
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.type === 'hq' ? 3.5 : 2, 0, Math.PI * 2);
-      ctx.fillStyle = rgb(n.col, .8);
-      ctx.fill();
-    });
-
-    // ── Data packets ──
-    packets = packets.filter(p => {
-      p.t = Math.min(1, p.t + p.speed);
-      const x = p.from.x + (p.to.x - p.from.x) * p.t;
-      const y = p.from.y + (p.to.y - p.from.y) * p.t;
-      // Trail
-      const trail = 8;
-      for (let k = 0; k < trail; k++) {
-        const kt = Math.max(0, p.t - k * .018);
-        const tx = p.from.x + (p.to.x - p.from.x) * kt;
-        const ty = p.from.y + (p.to.y - p.from.y) * kt;
-        ctx.beginPath();
-        ctx.arc(tx, ty, 1.5 - k * .15, 0, Math.PI * 2);
-        ctx.fillStyle = rgb(p.col, .5 - k * .06);
-        ctx.fill();
+    @media(max-width:960px) {
+      .mk-hero-body {
+        padding: 60px 24px 40px;
       }
-      // Head
-      ctx.beginPath();
-      ctx.arc(x, y, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = rgb(p.col, .9);
-      ctx.fill();
-      return p.t < 1;
+
+      .mk-hero-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mk-metric {
+        padding: 22px 24px;
+      }
+
+      .mk-mods-head {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 24px 44px;
+      }
+
+      .mk-mods-head-sub {
+        text-align: left;
+      }
+
+      .mk-mod {
+        padding: 0 24px;
+        grid-template-columns: 44px 1fr auto;
+        gap: 16px;
+      }
+
+      .mk-mod-thumb-wrap {
+        display: none;
+      }
+
+      .mk-mod-num {
+        font-size: 9px;
+        padding: 28px 14px 28px 0;
+      }
+
+      .mk-mod-content {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 28px 0;
+        margin-left: 0;
+      }
+
+      .mk-mod-cta {
+        font-size: 9px;
+        padding: 28px 0;
+      }
+
+      .mk-stmt-inner {
+        padding: 0 24px;
+      }
+
+      .mk-forces-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mk-force {
+        border-right: none;
+        border-bottom: 1px solid var(--b0);
+      }
+
+      .mk-force:last-child {
+        border-bottom: none;
+      }
+
+      .mk-proof-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mk-proof-it {
+        padding: 48px 24px;
+      }
+
+      .mk-sov-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mk-sov-it {
+        border-right: none;
+        border-bottom: 1px solid var(--b0);
+      }
+
+      .mk-sov-it:last-child {
+        border-bottom: none;
+      }
+
+      .mk-cta-inner {
+        padding: 0 24px;
+      }
+
+      .mk-form-panel {
+        padding: 32px 24px;
+      }
+
+      .mk-field-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .mk-force-img {
+        width: calc(100% + 48px);
+        margin: -52px -24px 28px;
+      }
+    }
+
+    @media(max-width:600px) {
+      .mk-hero-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mk-proof-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════ HEADER (shared) ═══════ -->
+  <header class="header" id="mainHeader">
+    <div class="header-l">
+      <a href="index.html" class="header-logo">HOLO</a>
+      <div class="header-status">
+        <div class="header-dot"></div>
+        <span class="mono">NEXXO C2 ACTIVO</span>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Navegación principal">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="radar.html">RADAR</a>
+      <a href="iris.html">IRIS</a>
+      <a href="chat.html">NEXXO Chat</a>
+      <a href="memora.html">Memora</a>
+      <a href="ai.html">HOLO AI</a>
+      <a href="readings.html">Lecturas</a>
+    </nav>
+    <div class="header-r">
+      <a href="#contacto" class="header-cta">Solicitar Demo</a>
+      <button class="hb" id="hb" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mm">
+    <a href="index.html"><span class="mm-i">/00</span>Inicio</a>
+    <a href="radar.html"><span class="mm-i">/01</span>RADAR Dashboard</a>
+    <a href="iris.html"><span class="mm-i">/02</span>IRIS + PRISMA EDGE</a>
+    <a href="chat.html"><span class="mm-i">/03</span>NEXXO Chat</a>
+    <a href="memora.html"><span class="mm-i">/04</span>Memora</a>
+    <a href="ai.html"><span class="mm-i">/05</span>HOLO AI</a>
+    <a href="readings.html"><span class="mm-i">/06</span>Lecturas</a>
+  </div>
+
+  <!-- ═══════ HERO — MONKS EDITORIAL ═══════ -->
+  <section class="mk-hero" id="inicio" aria-label="Presentación HOLO NEXXO C2">
+    <img src="assets/military-abstract.jpg" class="mk-hero-bg" alt="" aria-hidden="true" />
+    <div class="mk-hero-grid" aria-hidden="true"></div>
+    <div class="mk-hero-tricolor" aria-hidden="true"></div>
+    <div class="mk-hero-flag" aria-hidden="true" title="Colombia"></div>
+    <canvas id="mk-canvas" class="mk-canvas" aria-hidden="true"></canvas>
+    <div class="mk-noise" aria-hidden="true"></div>
+
+    <div class="mk-hero-body">
+      <div class="mk-eyebrow rv">
+        <div class="mk-eyebrow-line"></div>
+        <span class="mk-eyebrow-txt">HOLO / Sistemas NEXXO C2 — Colombia · 2026</span>
+      </div>
+      <h1 class="mk-h1 rv rd1">
+        Decisiones que<br>
+        <em>merecen datos</em><br>
+        reales.
+      </h1>
+      <p class="mk-hero-sub rv rd2">
+        NEXXO C2 acelera el ciclo OODA de las Fuerzas Militares de Colombia.
+        Imagen operacional común en tiempo real. Soberanía tecnológica total.
+      </p>
+      <div class="mk-hero-acts rv rd3">
+        <a href="#modulos" class="bp">Explorar Módulos →</a>
+        <a href="#contacto" class="bg">Solicitar Demo</a>
+      </div>
+    </div>
+
+    <!-- Bottom metrics strip -->
+    <div class="mk-hero-metrics" aria-label="Métricas clave">
+      <div class="mk-metric rv">
+        <span class="mk-metric-n">19<sup>+</sup></span>
+        <span class="mk-metric-l">Activos militares<br>en tiempo real</span>
+      </div>
+      <div class="mk-metric rv rd1">
+        <span class="mk-metric-n">360°</span>
+        <span class="mk-metric-l">Cobertura nacional<br>terrestre, naval, aérea</span>
+      </div>
+      <div class="mk-metric rv rd2">
+        <span class="mk-metric-n">5</span>
+        <span class="mk-metric-l">Módulos integrados<br>en ecosistema NEXXO</span>
+      </div>
+      <div class="mk-metric rv rd3">
+        <span class="mk-metric-n">100<sup>%</sup></span>
+        <span class="mk-metric-l">Datos bajo control<br>soberano colombiano</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ TICKER ═══════ -->
+  <div class="tk" aria-hidden="true">
+    <div class="tk-in">
+      <span class="tk-it"><span>●</span> Imagen Operacional Común (COP)</span>
+      <span class="tk-it"><span>●</span> Ciclo OODA Acelerado</span>
+      <span class="tk-it"><span>●</span> Soberanía Tecnológica</span>
+      <span class="tk-it"><span>●</span> IA Multiagente Operacional</span>
+      <span class="tk-it"><span>●</span> Cifrado End-to-End</span>
+      <span class="tk-it"><span>●</span> Operación DDIL (Denied/Degraded)</span>
+      <span class="tk-it"><span>●</span> Imagen Operacional Común (COP)</span>
+      <span class="tk-it"><span>●</span> Ciclo OODA Acelerado</span>
+      <span class="tk-it"><span>●</span> Soberanía Tecnológica</span>
+      <span class="tk-it"><span>●</span> IA Multiagente Operacional</span>
+      <span class="tk-it"><span>●</span> Cifrado End-to-End</span>
+      <span class="tk-it"><span>●</span> Operación DDIL (Denied/Degraded)</span>
+    </div>
+  </div>
+
+  <!-- ═══════ MODULES — MONKS NUMBERED LIST ═══════ -->
+  <section class="mk-mods" id="modulos" aria-label="Ecosistema NEXXO C2">
+    <div class="mk-mods-head">
+      <div>
+        <span class="si rv">/0.1 — Ecosistema NEXXO C2</span>
+        <h2 class="sh rv rd1" style="margin-top:12px;max-width:500px">
+          Seis módulos.<br>Una imagen operacional.
+        </h2>
+      </div>
+      <p class="mk-mods-head-sub rv rd2">
+        El sistema completo de Mando y Control diseñado para el teatro de operaciones colombiano.
+        Modular, resiliente, soberano.
+      </p>
+    </div>
+
+    <!-- /01 RADAR -->
+    <a href="radar.html" class="mk-mod rv">
+      <span class="mk-mod-num">/01</span>
+      <div class="mk-mod-content">
+        <div class="mk-mod-name">
+          RADAR
+          <span class="pill pill-active"><span class="pill-dot"></span>Activo</span>
+        </div>
+        <p class="mk-mod-desc">
+          Dashboard táctico web con mapa geoespacial de Colombia. COP con tracking de activos
+          terrestres, navales y aéreos en tiempo real. Visión 360° del teatro de operaciones
+          desde cualquier navegador.
+        </p>
+      </div>
+      <div class="mk-mod-thumb-wrap"><img src="assets/radar-dashboard.png" class="mk-mod-thumb" alt="RADAR Dashboard" />
+      </div>
+      <span class="mk-mod-cta">VER MÓDULO →</span>
+    </a>
+
+    <!-- /02 IRIS -->
+    <a href="iris.html" class="mk-mod rv rd1">
+      <span class="mk-mod-num">/02</span>
+      <div class="mk-mod-content">
+        <div class="mk-mod-name">
+          IRIS
+          <span class="pill pill-active"><span class="pill-dot"></span>Activo</span>
+        </div>
+        <p class="mk-mod-desc">
+          App móvil de campo. GPS en formato MGRS, telemetría de combustible y municiones,
+          reporte rápido de SITREPs y MEDEVAC. Opera en entornos DDIL sin conectividad constante.
+        </p>
+      </div>
+      <div class="mk-mod-thumb-wrap"><img src="assets/iris-mobile.png" class="mk-mod-thumb" alt="IRIS App móvil" />
+      </div>
+      <span class="mk-mod-cta">VER MÓDULO →</span>
+    </a>
+
+    <!-- /03 NEXXO Chat -->
+    <a href="chat.html" class="mk-mod rv rd2">
+      <span class="mk-mod-num">/03</span>
+      <div class="mk-mod-content">
+        <div class="mk-mod-name">
+          NEXXO Chat
+          <span class="pill pill-pilot"><span class="pill-dot"></span>Piloto</span>
+        </div>
+        <p class="mk-mod-desc">
+          Comunicaciones seguras con cifrado end-to-end y asistente de IA integrado para
+          coordinación operacional soberana. Sin dependencia de infraestructura o servidores extranjeros.
+        </p>
+      </div>
+      <div class="mk-mod-thumb-wrap"><img src="assets/nexxo-chat.png" class="mk-mod-thumb" alt="NEXXO Chat" /></div>
+      <span class="mk-mod-cta">VER MÓDULO →</span>
+    </a>
+
+    <!-- /04 Memora -->
+    <a href="memora.html" class="mk-mod rv">
+      <span class="mk-mod-num">/04</span>
+      <div class="mk-mod-content">
+        <div class="mk-mod-name">
+          Memora
+          <span class="pill pill-dev"><span class="pill-dot"></span>En Desarrollo</span>
+        </div>
+        <p class="mk-mod-desc">
+          Gestión documental clasificada con niveles de seguridad diferenciados. Auditoría completa
+          de acceso y búsqueda inteligente de documentos operacionales. Control granular por perfil.
+        </p>
+      </div>
+      <div class="mk-mod-thumb-wrap"><img src="assets/memora-docs.png" class="mk-mod-thumb" alt="Memora Docs" /></div>
+      <span class="mk-mod-cta">VER MÓDULO →</span>
+    </a>
+
+    <!-- /05 HOLO AI -->
+    <a href="ai.html" class="mk-mod rv rd1">
+      <span class="mk-mod-num">/05</span>
+      <div class="mk-mod-content">
+        <div class="mk-mod-name">
+          HOLO AI
+          <span class="pill pill-road"><span class="pill-dot"></span>Roadmap</span>
+        </div>
+        <p class="mk-mod-desc">
+          IA multiagente para defensa. Análisis predictivo de amenazas, generación de Cursos de
+          Acción (COA) y fusión de inteligencia HUMINT, SIGINT y GEOINT desde múltiples fuentes.
+        </p>
+      </div>
+      <div class="mk-mod-thumb-wrap"><img src="assets/holo-ai.png" class="mk-mod-thumb" alt="HOLO AI" /></div>
+      <span class="mk-mod-cta">VER MÓDULO →</span>
+    </a>
+
+    <!-- /06 PRISMA EDGE -->
+    <a href="iris.html#prisma" class="mk-mod rv rd2">
+      <span class="mk-mod-num">/06</span>
+      <div class="mk-mod-content">
+        <div class="mk-mod-name">
+          PRISMA EDGE
+          <span class="pill pill-active"><span class="pill-dot"></span>Hardware</span>
+        </div>
+        <p class="mk-mod-desc">
+          Dispositivo táctico ruggedizado. Microcontrolador ARM, GPS militar, pantalla OLED,
+          comunicación segura cifrada. Edge computing autónomo en campo de batalla.
+        </p>
+      </div>
+      <div class="mk-mod-thumb-wrap"><img src="assets/prisma-edge.png" class="mk-mod-thumb" alt="PRISMA EDGE" /></div>
+      <span class="mk-mod-cta">VER MÓDULO →</span>
+    </a>
+  </section>
+
+  <!-- ═══════ STATEMENT — EDITORIAL QUOTE (Monks asymmetric) ═══════ -->
+  <div class="mk-stmt" aria-label="Propuesta de valor">
+    <div class="mk-stmt-inner">
+      <h2 class="mk-stmt-quote rv">
+        El comandante decide.<br>
+        <em>NEXXO C2</em> asegura que decide<br>
+        con la mejor información disponible.
+      </h2>
+      <div class="mk-stmt-side">
+        <img src="assets/ChatGPT Image Apr 4, 2026, 06_44_27 PM.png" class="mk-stmt-img rv"
+          alt="Militar colombiano con apoyo a la población civil" />
+        <p class="mk-stmt-body rv rd1">
+          Las Fuerzas Militares operan con datos fragmentados, ciclos de decisión lentos
+          y dependencia de tecnología extranjera. NEXXO C2 resuelve los tres problemas
+          simultáneamente: soberanía, velocidad y precisión operacional.
+        </p>
+        <a href="#contacto" class="bp rv rd2" style="align-self:flex-start">
+          Iniciar Conversación →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ FORCES — MONKS CLIENT STORIES ═══════ -->
+  <section aria-label="Fuerzas Militares" id="fuerzas">
+    <div class="mk-forces" style="padding-bottom:0">
+      <div class="ct">
+        <span class="si rv">/0.2 — Fuerzas Militares de Colombia</span>
+        <h2 class="sh rv rd1" style="margin-top:12px">
+          Diseñado para<br>las Tres Fuerzas.
+        </h2>
+      </div>
+      <div class="mk-forces-grid">
+
+        <div class="mk-force army rv">
+          <img src="assets/ChatGPT Image Apr 4, 2026, 12_09_16 PM.png" class="mk-force-img"
+            alt="Ejército Nacional — Control Operacional Terrestre" />
+          <span class="mk-force-tag">/01 — Ejército Nacional</span>
+          <h3 class="mk-force-h">Control Operacional Terrestre</h3>
+          <p class="mk-force-p">
+            Tracking de infantería, blindados y artillería en 8 Divisiones.
+            Gestión de líneas de coordinación de fuego, rutas de abastecimiento
+            y zonas de operación en tiempo real.
+          </p>
+          <ul class="mk-force-list">
+            <li>FUDRA y COESE tracking</li>
+            <li>Zonas de operación remota</li>
+            <li>Gestión de helipuertos temporales</li>
+          </ul>
+        </div>
+
+        <div class="mk-force navy rv rd1">
+          <img src="assets/TUULAYLWIBA55CURD544CMZFF4.jpeg" class="mk-force-img"
+            alt="Armada Nacional de Colombia — Operaciones Navales y Fluviales" />
+          <span class="mk-force-tag">/02 — Armada Nacional</span>
+          <h3 class="mk-force-h">Operaciones Navales y Fluviales</h3>
+          <p class="mk-force-p">
+            Monitoreo de buques ARC, lanchas fluviales y operaciones de interdicción
+            en Pacífico, Caribe y ríos principales. Integración AIS y datos radar naval.
+          </p>
+          <ul class="mk-force-list">
+            <li>Integración datos AIS y radar</li>
+            <li>Tracking naval y fluvial diferenciado</li>
+            <li>Interdicción marítima en tiempo real</li>
+          </ul>
+        </div>
+
+        <div class="mk-force air rv rd2">
+          <img src="assets/air-mission-track.svg" class="mk-force-img"
+            alt="Fuerza Aeroespacial Colombiana — Seguimiento de misiones" />
+          <span class="mk-force-tag">/03 — Fuerza Aeroespacial (FACS)</span>
+          <h3 class="mk-force-h">Seguimiento de Misiones Aéreas</h3>
+          <p class="mk-force-p">
+            Control de aeronaves con telemetría de combustible y estado de misión.
+            Planes de vuelo activos, UAVs y coordinación de apoyo aéreo cercano (CAS).
+          </p>
+          <ul class="mk-force-list">
+            <li>Apoyo aéreo cercano (CAS)</li>
+            <li>Reconocimiento e inteligencia</li>
+            <li>Transporte estratégico</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SOCIAL PROOF — METRICS BAR ═══════ -->
+  <div class="mk-proof" aria-label="Métricas del sistema">
+    <div class="mk-proof-grid">
+      <div class="mk-proof-it rv">
+        <div class="mk-proof-n">5<sup>+</sup></div>
+        <p class="mk-proof-l">Años de I+D en tecnología<br>de defensa colombiana</p>
+      </div>
+      <div class="mk-proof-it rv rd1">
+        <div class="mk-proof-n">360°</div>
+        <p class="mk-proof-l">Cobertura de dominio<br>terrestre, naval y aéreo</p>
+      </div>
+      <div class="mk-proof-it rv rd2">
+        <div class="mk-proof-n">100<sup>%</sup></div>
+        <p class="mk-proof-l">Datos bajo soberanía<br>y jurisdicción colombiana</p>
+      </div>
+      <div class="mk-proof-it rv rd3">
+        <div class="mk-proof-n">DDIL</div>
+        <p class="mk-proof-l">Opera en ambientes Denied,<br>Degraded, Intermittent, Limited</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SOVEREIGNTY ═══════ -->
+  <section class="mk-sov" id="soberania" aria-label="Soberanía tecnológica">
+    <div class="ct">
+      <span class="si rv">/0.3 — Soberanía Tecnológica</span>
+      <h2 class="sh rv rd1" style="margin-top:12px">
+        Sin puertas traseras.<br>Sin dependencias.
+      </h2>
+      <p class="ss rv rd2">
+        La independencia tecnológica no es opcional. Es el fundamento de la seguridad nacional colombiana.
+      </p>
+    </div>
+    <div class="mk-sov-grid" style="max-width:1280px;margin-left:auto;margin-right:auto;padding:0 48px">
+      <div class="mk-sov-it rv">
+        <span class="mk-sov-num">/01 — Infraestructura</span>
+        <h4 class="mk-sov-h">On-Premise o Nube Soberana</h4>
+        <p class="mk-sov-b">
+          Despliegue en infraestructura del Ministerio de Defensa. Sin dependencia de
+          hyperscalers extranjeros. Control total sobre datos operacionales clasificados.
+          Nube táctica en servidores bajo custodia militar.
+        </p>
+      </div>
+      <div class="mk-sov-it rv rd1">
+        <span class="mk-sov-num">/02 — Normativa</span>
+        <h4 class="mk-sov-h">Auditoría y Cumplimiento</h4>
+        <p class="mk-sov-b">
+          Arquitectura diseñada según estándares de seguridad de la información militar colombiana.
+          Cifrado certificado, auditoría completa de acceso. 100% del código fuente disponible
+          para inspección del CCOC.
+        </p>
+      </div>
+      <div class="mk-sov-it rv rd2">
+        <span class="mk-sov-num">/03 — Transferencia</span>
+        <h4 class="mk-sov-h">Capacidades al Estado</h4>
+        <p class="mk-sov-b">
+          Programa de formación para ingenieros militares colombianos. El objetivo: que Colombia
+          opere, mantenga y evolucione NEXXO C2 de forma completamente autónoma en el largo plazo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CTA + FORM — MONKS MULTI-ZONE ═══════ -->
+  <section class="mk-cta" id="contacto" aria-label="Contacto y demostración">
+    <div class="mk-cta-inner">
+
+      <div>
+        <span class="si rv" style="display:block;margin-bottom:20px">/0.4 — Iniciar Conversación</span>
+        <h2 class="mk-cta-h2 rv rd1">
+          Hay mucho<br>
+          por <em>construir.</em>
+        </h2>
+        <p class="mk-cta-body rv rd2">
+          HOLO trabaja con las Fuerzas Militares de Colombia, entidades de defensa regional
+          y organismos de seguridad ambiental. Conectemos y exploremos cómo NEXXO C2 puede
+          fortalecer su capacidad operacional.
+        </p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap" class="rv rd3">
+          <a href="mailto:contacto@holo.com.co" class="bp">Escribir al Equipo →</a>
+          <a href="#modulos" class="bg">Ver Módulos</a>
+        </div>
+        <div class="mk-cta-alt rv rd4">
+          <div class="mk-cta-alt-line"></div>
+          <span class="mk-cta-alt-txt">O contacte directamente</span>
+          <a href="mailto:contacto@holo.com.co" class="mk-cta-alt-link">contacto@holo.com.co</a>
+        </div>
+      </div>
+
+      <div class="mk-form-panel rv rd2">
+        <h3 class="mk-form-title">Solicitar Demostración</h3>
+        <p class="mk-form-sub">Sesión técnica con el equipo HOLO</p>
+        <form action="mailto:contacto@holo.com.co" method="get" novalidate>
+          <div class="mk-field-2">
+            <input type="text" class="mk-field" placeholder="Nombre completo" required />
+            <input type="text" class="mk-field" placeholder="Cargo / Rango" required />
+          </div>
+          <input type="email" class="mk-field" placeholder="Correo institucional" required />
+          <select class="mk-field" required>
+            <option value="" disabled selected>Organización</option>
+            <option>Ejército Nacional</option>
+            <option>Armada Nacional de Colombia</option>
+            <option>Fuerza Aeroespacial Colombiana (FACS)</option>
+            <option>Ministerio de Defensa Nacional</option>
+            <option>Policía Nacional</option>
+            <option>Entidad de seguridad regional</option>
+            <option>Otro</option>
+          </select>
+          <select class="mk-field">
+            <option value="" disabled selected>Módulo de interés</option>
+            <option>RADAR — Dashboard táctico</option>
+            <option>IRIS — App móvil de campo</option>
+            <option>NEXXO Chat — Comunicaciones seguras</option>
+            <option>Memora — Gestión documental</option>
+            <option>HOLO AI — Inteligencia artificial</option>
+            <option>PRISMA EDGE — Hardware táctico</option>
+            <option>Ecosistema completo NEXXO C2</option>
+          </select>
+          <textarea class="mk-field" placeholder="Describe el requerimiento operacional..."></textarea>
+          <button type="submit" class="bp" style="width:100%;justify-content:center;margin-top:4px">
+            Enviar Solicitud →
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer>
+    <div class="ct">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <div class="ft-logo">HOLO</div>
+          <p>Empresa colombiana de tecnología de defensa y seguridad nacional. Desarrolladores del ecosistema NEXXO C2.
+          </p>
+        </div>
+        <div>
+          <div class="ft-ct">Módulos</div>
+          <ul class="ft-links">
+            <li><a href="radar.html">RADAR</a></li>
+            <li><a href="iris.html">IRIS</a></li>
+            <li><a href="chat.html">NEXXO Chat</a></li>
+            <li><a href="memora.html">Memora</a></li>
+            <li><a href="ai.html">HOLO AI</a></li>
+            <li><a href="iris.html#prisma">PRISMA EDGE</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="ft-ct">Compañía</div>
+          <ul class="ft-links">
+            <li><a href="#fuerzas">Fuerzas</a></li>
+            <li><a href="#soberania">Soberanía</a></li>
+            <li><a href="#">Carreras</a></li>
+            <li><a href="#">Prensa</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="ft-ct">Legal</div>
+          <ul class="ft-links">
+            <li><a href="#">Términos de Uso</a></li>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Seguridad</a></li>
+            <li><a href="#">Clasificación</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bot">
+        <p>© 2026 HOLO Technologies SAS — Colombia. Todos los derechos reservados.</p>
+        <p>NEXXO C2 v2.4 · SISTEMA: OPERATIVO · BUILD: 2026.04</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════ SCRIPTS ═══════ -->
+  <script>
+    // Header scroll
+    const h = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 40));
+
+    // Mobile menu
+    const hb = document.getElementById('hb'), mm = document.getElementById('mm');
+    hb.addEventListener('click', () => {
+      const o = mm.classList.toggle('open');
+      hb.classList.toggle('open', o);
+      hb.setAttribute('aria-expanded', o);
+      document.body.style.overflow = o ? 'hidden' : '';
     });
+    mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mm.classList.remove('open');
+      hb.classList.remove('open');
+      hb.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }));
 
-    raf = requestAnimationFrame(draw);
-  }
+    // Scroll reveal
+    const obs = new IntersectionObserver(
+      e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('iv'); obs.unobserve(x.target); } }),
+      { threshold: .08, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.rv').forEach(e => obs.observe(e));
 
-  resize();
-  window.addEventListener('resize', resize);
-  raf = requestAnimationFrame(draw);
-})();
-</script>
+    // Smooth anchor navigation
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+  </script>
+
+  <!-- ─── HERO CANVAS: Tactical C2 Network ─── -->
+  <script>
+    (function () {
+      'use strict';
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const canvas = document.getElementById('mk-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let W, H;
+      const GOLD = [200, 168, 75];
+      const CYAN = [6, 182, 212];
+      const GREEN = [34, 197, 94];
+
+      // Tactical nodes representing Colombian military locations
+      const BASE_NODES = [
+        { nx: .47, ny: .52, type: 'hq', col: GOLD },  // Bogotá
+        { nx: .42, ny: .10, type: 'naval', col: CYAN },  // Cartagena
+        { nx: .56, ny: .28, type: 'army', col: GREEN },  // Bucaramanga
+        { nx: .35, ny: .68, type: 'army', col: GREEN },  // Cali
+        { nx: .65, ny: .15, type: 'ops', col: GOLD },  // Catatumbo
+        { nx: .28, ny: .80, type: 'coast', col: CYAN },  // Tumaco
+        { nx: .58, ny: .88, type: 'river', col: CYAN },  // Leticia
+        { nx: .34, ny: .38, type: 'army', col: GREEN },  // Medellín
+        { nx: .72, ny: .38, type: 'ops', col: GOLD },  // Arauca
+        { nx: .50, ny: .70, type: 'army', col: GREEN },  // Neiva
+        { nx: .62, ny: .60, type: 'army', col: GREEN },  // Villavicencio
+      ];
+
+      let nodes = [];
+      let packets = [];
+      let raf;
+
+      function rgb(c, a) { return `rgba(${c[0]},${c[1]},${c[2]},${a})`; }
+
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+        nodes = BASE_NODES.map(n => ({
+          x: n.nx * W, y: n.ny * H,
+          col: n.col, type: n.type,
+          pulse: Math.random() * Math.PI * 2,
+        }));
+      }
+
+      // Spawn data packet along an edge
+      function spawnPacket() {
+        const i = Math.floor(Math.random() * nodes.length);
+        let j = Math.floor(Math.random() * nodes.length);
+        if (j === i) j = (j + 1) % nodes.length;
+        packets.push({ from: nodes[i], to: nodes[j], t: 0, speed: .004 + Math.random() * .004, col: nodes[i].col });
+      }
+      setInterval(spawnPacket, 600);
+
+      function draw(ts) {
+        ctx.clearRect(0, 0, W, H);
+        const T = ts * .001;
+
+        // ── Edges ──
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            const maxD = Math.min(W, H) * .42;
+            if (d < maxD) {
+              const a = (1 - d / maxD) * .18;
+              ctx.beginPath();
+              ctx.strokeStyle = rgb(GOLD, a);
+              ctx.lineWidth = .6;
+              ctx.setLineDash([4, 6]);
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.stroke();
+              ctx.setLineDash([]);
+            }
+          }
+        }
+
+        // ── Nodes ──
+        nodes.forEach(n => {
+          const pulse = (Math.sin(T * 1.4 + n.pulse) * .5 + .5);
+          // Outer glow ring
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, 18 * pulse, 0, Math.PI * 2);
+          ctx.fillStyle = rgb(n.col, .04 * pulse);
+          ctx.fill();
+          // Mid ring
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.type === 'hq' ? 7 : 4, 0, Math.PI * 2);
+          ctx.strokeStyle = rgb(n.col, .5);
+          ctx.lineWidth = .8;
+          ctx.stroke();
+          // Core dot
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.type === 'hq' ? 3.5 : 2, 0, Math.PI * 2);
+          ctx.fillStyle = rgb(n.col, .8);
+          ctx.fill();
+        });
+
+        // ── Data packets ──
+        packets = packets.filter(p => {
+          p.t = Math.min(1, p.t + p.speed);
+          const x = p.from.x + (p.to.x - p.from.x) * p.t;
+          const y = p.from.y + (p.to.y - p.from.y) * p.t;
+          // Trail
+          const trail = 8;
+          for (let k = 0; k < trail; k++) {
+            const kt = Math.max(0, p.t - k * .018);
+            const tx = p.from.x + (p.to.x - p.from.x) * kt;
+            const ty = p.from.y + (p.to.y - p.from.y) * kt;
+            ctx.beginPath();
+            ctx.arc(tx, ty, 1.5 - k * .15, 0, Math.PI * 2);
+            ctx.fillStyle = rgb(p.col, .5 - k * .06);
+            ctx.fill();
+          }
+          // Head
+          ctx.beginPath();
+          ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = rgb(p.col, .9);
+          ctx.fill();
+          return p.t < 1;
+        });
+
+        raf = requestAnimationFrame(draw);
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+      raf = requestAnimationFrame(draw);
+    })();
+  </script>
 </body>
+
 </html>
