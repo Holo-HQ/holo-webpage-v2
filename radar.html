@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TV4F61TBGF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4FJTCX9CJ3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-TV4F61TBGF');
-</script>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>RADAR — Dashboard Táctico | HOLO NEXXO C2</title>
+    gtag('config', 'G-4FJTCX9CJ3');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>RADAR — Dashboard Táctico | HOLO NEXXO C2</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
-<meta name="description" content="RADAR: el dashboard táctico de NEXXO C2. Imagen Operacional Común (COP) en tiempo real sobre el mapa de Colombia con tracking de activos terrestres, navales y aéreos."/>
-<meta property="og:title" content="RADAR — Dashboard Táctico | HOLO NEXXO C2" />
-<meta property="og:description" content="RADAR: el dashboard táctico de NEXXO C2. Imagen Operacional Común (COP) en tiempo real sobre el mapa de Colombia." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://holonexxo.com/radar.html" />
-<meta property="og:image" content="/assets/hero-bg.png" />
-<meta name="twitter:card" content="summary_large_image" />
+  <meta name="description"
+    content="RADAR: el dashboard táctico de NEXXO C2. Imagen Operacional Común (COP) en tiempo real sobre el mapa de Colombia con tracking de activos terrestres, navales y aéreos." />
+  <meta property="og:title" content="RADAR — Dashboard Táctico | HOLO NEXXO C2" />
+  <meta property="og:description"
+    content="RADAR: el dashboard táctico de NEXXO C2. Imagen Operacional Común (COP) en tiempo real sobre el mapa de Colombia." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://holonexxo.com/radar.html" />
+  <meta property="og:image" content="/assets/hero-bg.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -42,517 +45,616 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
-<!-- HEADER -->
-<header class="header" id="mainHeader">
-<div class="header-l">
-<a href="index.html" class="header-logo">HOLO</a>
-<div class="header-status"><div class="header-dot"></div><span class="mono">NEXXO C2 ACTIVO</span></div>
-</div>
-<nav class="header-nav" aria-label="Navegación principal">
-<a href="index.html">Inicio</a>
-<a href="radar.html" class="active">RADAR</a>
-<a href="iris.html">IRIS</a>
-<a href="chat.html">NEXXO Chat</a>
-<a href="memora.html">Memora</a>
-<a href="ai.html">HOLO AI</a>
-<a href="readings.html">Lecturas</a>
-</nav>
-<div class="header-r">
-<a href="mailto:contacto@holo.com.co" class="header-cta">Solicitar Demo</a>
-<button class="hb" id="hb" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
-</div>
-</header>
-<div class="mobile-menu" id="mm">
-<a href="index.html"><span class="mm-i">/00</span>Inicio</a>
-<a href="radar.html"><span class="mm-i">/01</span>RADAR Dashboard</a>
-<a href="iris.html"><span class="mm-i">/02</span>IRIS + PRISMA EDGE</a>
-<a href="chat.html"><span class="mm-i">/03</span>NEXXO Chat</a>
-<a href="memora.html"><span class="mm-i">/04</span>Memora</a>
-<a href="ai.html"><span class="mm-i">/05</span>HOLO AI</a>
-<a href="readings.html"><span class="mm-i">/06</span>Lecturas</a>
-</div>
-
-<!-- SUB-HERO -->
-<section class="sub-hero">
-<div class="sub-hero-bg" style="background-image:url(assets/radar-command-center.png)"></div>
-<div class="ct">
-<div class="breadcrumb rv">
-<a href="index.html">HOLO</a><span>/</span><a href="index.html#ecosistema">NEXXO C2</a><span>/</span><span style="color:#fff">RADAR</span>
-</div>
-<div style="margin-bottom:16px" class="rv rd1"><span class="pill pill-active"><span class="pill-dot"></span>Módulo Activo</span></div>
-<h1 class="rv rd2">RADAR<br>Tactical Dashboard</h1>
-<p class="sub-desc rv rd3">El centro de mando digital. Un panel único que integra todas las fuentes de inteligencia sobre el mapa geoespacial de Colombia para construir la Imagen Operacional Común (COP).</p>
-</div>
-<canvas id="radar-hero-canvas" aria-hidden="true"></canvas>
-</section>
-
-<!-- TACTICAL MAP DISPLAY -->
-<div class="tac-map-display">
-  <!-- Top bar -->
-  <div class="tac-top-bar">
-    <span class="tac-top-bar-title">NEXXO C2 — RADAR DASHBOARD</span>
-    <div class="tac-top-bar-pills">
-      <span class="tac-pill tac-pill-live"><span class="tac-pill-dot"></span>LIVE</span>
-      
-      <span class="tac-pill tac-pill-cop"><span class="tac-pill-dot"></span>COP ACTIVO</span>
-    </div>
-    <span class="tac-top-bar-clock" id="tacClock">00:00:00 UTC</span>
-  </div>
-
-  <!-- Main body: map + sidebar -->
-  <div class="tac-map-body">
-
-    <!-- Tactical Map Image -->
-    <div class="tac-map-svg-wrap">
-      <img src="assets/ChatGPT Image Apr 4, 2026, 12_00_31 PM.png" class="tac-map-img" alt="Operadores del NEXXO C2 analizando mapa táctico en tiempo real" loading="eager"/>
-      <div class="tac-map-overlay">
-        <span class="tac-map-ol-label">NEXXO C2 / RADAR v2.4</span>
-        <span class="tac-map-ol-class">CLASIFICADO</span>
+  <!-- HEADER -->
+  <header class="header" id="mainHeader">
+    <div class="header-l">
+      <a href="index.html" class="header-logo">HOLO</a>
+      <div class="header-status">
+        <div class="header-dot"></div><span class="mono">NEXXO C2 ACTIVO</span>
       </div>
     </div>
-  </div><!-- /tac-map-body -->
-
-  <!-- Alert ticker bottom bar -->
-  <div class="tac-bottom-bar">
-    <span style="color:rgba(239,68,68,0.7);flex-shrink:0">ALERTAS</span>
-    <div class="tac-ticker-wrap">
-      <span class="tac-ticker-in">
-        ● ALERTA IDEAM: Precipitaciones fuertes en Chocó — condiciones meteorológicas adversas &nbsp;·&nbsp; ● INTEL: Movimiento detectado sector Catatumbo NE &nbsp;·&nbsp; ● LOGÍSTICA: Solicitud de reabastecimiento en procesamiento &nbsp;·&nbsp; ● ARMADA: Embarcación no identificada sector Pacífico — monitoreo activo &nbsp;·&nbsp; ● SISTEMA: COP actualizado — latencia 1.8s &nbsp;·&nbsp;
-        ● ALERTA IDEAM: Precipitaciones fuertes en Chocó — condiciones meteorológicas adversas &nbsp;·&nbsp; ● INTEL: Movimiento detectado sector Catatumbo NE &nbsp;·&nbsp; ● LOGÍSTICA: Solicitud de reabastecimiento en procesamiento &nbsp;·&nbsp; ● ARMADA: Embarcación no identificada sector Pacífico — monitoreo activo &nbsp;·&nbsp; ● SISTEMA: COP actualizado — latencia 1.8s &nbsp;·&nbsp;
-      </span>
+    <nav class="header-nav" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="radar.html" class="active">RADAR</a>
+      <a href="iris.html">IRIS</a>
+      <a href="chat.html">NEXXO Chat</a>
+      <a href="memora.html">Memora</a>
+      <a href="ai.html">HOLO AI</a>
+      <a href="readings.html">Lecturas</a>
+    </nav>
+    <div class="header-r">
+      <a href="mailto:contacto@holo.com.co" class="header-cta">Solicitar Demo</a>
+      <button class="hb" id="hb" aria-label="Menú"
+        aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
+  </header>
+  <div class="mobile-menu" id="mm">
+    <a href="index.html"><span class="mm-i">/00</span>Inicio</a>
+    <a href="radar.html"><span class="mm-i">/01</span>RADAR Dashboard</a>
+    <a href="iris.html"><span class="mm-i">/02</span>IRIS + PRISMA EDGE</a>
+    <a href="chat.html"><span class="mm-i">/03</span>NEXXO Chat</a>
+    <a href="memora.html"><span class="mm-i">/04</span>Memora</a>
+    <a href="ai.html"><span class="mm-i">/05</span>HOLO AI</a>
+    <a href="readings.html"><span class="mm-i">/06</span>Lecturas</a>
   </div>
-</div><!-- /tac-map-display -->
 
-<!-- VISUAL SHOWCASE -->
-<section class="sec">
-<div class="ct">
-<span class="si rv">/00 — Vista Operacional</span>
-<h2 class="sh rv rd1">Dominando el<br>Teatro de Operaciones</h2>
-<p class="ss rv rd2">RADAR transforma datos crudos de múltiples sensores y fuentes de inteligencia en una imagen operacional clara, precisa y accionable para el comandante.</p>
-<div class="showcase-grid rv rd3">
-<div>
-<img src="assets/radar-tactical-display.png" alt="NEXXO C2 RADAR — Pantalla COP con unidades desplegadas y zonas de alerta" loading="lazy"/>
-<span class="prod-lbl">NEXXO C2 // RADAR — COMMON OPERATING PICTURE</span>
-</div>
-<div>
-<img src="assets/ChatGPT Image Apr 4, 2026, 12_00_31 PM.png" alt="Operadores tácticos planificando sobre mesa digital con mapa interactivo" loading="lazy"/>
-<span class="prod-lbl">NEXXO C2 // RADAR — TACTICAL PLANNING</span>
-</div>
-</div>
-</div>
-</section>
+  <!-- SUB-HERO -->
+  <section class="sub-hero">
+    <div class="sub-hero-bg" style="background-image:url(assets/radar-command-center.png)"></div>
+    <div class="ct">
+      <div class="breadcrumb rv">
+        <a href="index.html">HOLO</a><span>/</span><a href="index.html#ecosistema">NEXXO C2</a><span>/</span><span
+          style="color:#fff">RADAR</span>
+      </div>
+      <div style="margin-bottom:16px" class="rv rd1"><span class="pill pill-active"><span class="pill-dot"></span>Módulo
+          Activo</span></div>
+      <h1 class="rv rd2">RADAR<br>Tactical Dashboard</h1>
+      <p class="sub-desc rv rd3">El centro de mando digital. Un panel único que integra todas las fuentes de
+        inteligencia sobre el mapa geoespacial de Colombia para construir la Imagen Operacional Común (COP).</p>
+    </div>
+    <canvas id="radar-hero-canvas" aria-hidden="true"></canvas>
+  </section>
 
-<!-- CAPABILITIES -->
-<section class="sec">
-<div class="ct">
-<span class="si rv">/01 — Capacidades del Módulo</span>
-<h2 class="sh rv rd1">Todo lo que el<br>Comandante Necesita</h2>
-<p class="ss rv rd2">RADAR proporciona una visión 360° del teatro de operaciones colombiano en una sola interfaz.</p>
+  <!-- TACTICAL MAP DISPLAY -->
+  <div class="tac-map-display">
+    <!-- Top bar -->
+    <div class="tac-top-bar">
+      <span class="tac-top-bar-title">NEXXO C2 — RADAR DASHBOARD</span>
+      <div class="tac-top-bar-pills">
+        <span class="tac-pill tac-pill-live"><span class="tac-pill-dot"></span>LIVE</span>
 
-<div class="feat-grid" style="margin-top:64px">
-<div class="feat-card rv">
-<div class="feat-h">Mapa Geoespacial Interactivo</div>
-<p class="feat-b">Mapa de Colombia con capas topográficas, hidrográficas y de infraestructura crítica. Zoom desde nivel nacional hasta nivel táctico de unidad. Integración con Mapbox GL JS para renderizado vectorial de alto rendimiento.</p>
-</div>
-<div class="feat-card rv rd1">
-<div class="feat-h">Tracking de Activos Multi-Dominio</div>
-<p class="feat-b">Seguimiento simultáneo de activos terrestres (blindados, infantería), navales (fragatas, lanchas fluviales) y aéreos (Black Hawk, OV-10, UAVs). Cada activo reporta posición GPS, velocidad y rumbo.</p>
-</div>
-<div class="feat-card rv">
-<div class="feat-h">Telemetría en Tiempo Real</div>
-<p class="feat-b">Panel lateral con telemetría de cada unidad: nivel de combustible, municiones disponibles, estado operacional, último reporte. Actualización en tiempo real vía WebSockets con latencia inferior a 2 segundos.</p>
-</div>
-<div class="feat-card rv rd1">
-<div class="feat-h">Sistema de Alertas Integrado</div>
-<p class="feat-b">Alertas automáticas desde fuentes institucionales: IDEAM (eventos climáticos), MinDefensa, ARMADA_COL e INTEL_DIV. Clasificación por prioridad y zona geográfica de impacto.</p>
-</div>
-<div class="feat-card rv">
-<div class="feat-h">Sesión Autenticada y Auditoría</div>
-<p class="feat-b">Autenticación JWT con control de acceso por rol y nivel de clasificación. Cada acción del operador queda registrada: consultas, zoom, selección de unidades, exportación de datos.</p>
-</div>
-<div class="feat-card rv rd1">
-<div class="feat-h">Zonas de Operación Prioritarias</div>
-<p class="feat-b">Representación detallada de los teatros de operaciones clave: Catatumbo, Bajo Cauca, Pacífico Nariñense, Frontera con Ecuador. Cada zona con nivel de riesgo y densidad de unidades desplegadas.</p>
-</div>
-</div>
-</div>
-</section>
+        <span class="tac-pill tac-pill-cop"><span class="tac-pill-dot"></span>COP ACTIVO</span>
+      </div>
+      <span class="tac-top-bar-clock" id="tacClock">00:00:00 UTC</span>
+    </div>
+
+    <!-- Main body: map + sidebar -->
+    <div class="tac-map-body">
+
+      <!-- Tactical Map Image -->
+      <div class="tac-map-svg-wrap">
+        <img src="assets/ChatGPT Image Apr 4, 2026, 12_00_31 PM.png" class="tac-map-img"
+          alt="Operadores del NEXXO C2 analizando mapa táctico en tiempo real" loading="eager" />
+        <div class="tac-map-overlay">
+          <span class="tac-map-ol-label">NEXXO C2 / RADAR v2.4</span>
+          <span class="tac-map-ol-class">CLASIFICADO</span>
+        </div>
+      </div>
+    </div><!-- /tac-map-body -->
+
+    <!-- Alert ticker bottom bar -->
+    <div class="tac-bottom-bar">
+      <span style="color:rgba(239,68,68,0.7);flex-shrink:0">ALERTAS</span>
+      <div class="tac-ticker-wrap">
+        <span class="tac-ticker-in">
+          ● ALERTA IDEAM: Precipitaciones fuertes en Chocó — condiciones meteorológicas adversas &nbsp;·&nbsp; ● INTEL:
+          Movimiento detectado sector Catatumbo NE &nbsp;·&nbsp; ● LOGÍSTICA: Solicitud de reabastecimiento en
+          procesamiento &nbsp;·&nbsp; ● ARMADA: Embarcación no identificada sector Pacífico — monitoreo activo
+          &nbsp;·&nbsp; ● SISTEMA: COP actualizado — latencia 1.8s &nbsp;·&nbsp;
+          ● ALERTA IDEAM: Precipitaciones fuertes en Chocó — condiciones meteorológicas adversas &nbsp;·&nbsp; ● INTEL:
+          Movimiento detectado sector Catatumbo NE &nbsp;·&nbsp; ● LOGÍSTICA: Solicitud de reabastecimiento en
+          procesamiento &nbsp;·&nbsp; ● ARMADA: Embarcación no identificada sector Pacífico — monitoreo activo
+          &nbsp;·&nbsp; ● SISTEMA: COP actualizado — latencia 1.8s &nbsp;·&nbsp;
+        </span>
+      </div>
+    </div>
+  </div><!-- /tac-map-display -->
+
+  <!-- VISUAL SHOWCASE -->
+  <section class="sec">
+    <div class="ct">
+      <span class="si rv">/00 — Vista Operacional</span>
+      <h2 class="sh rv rd1">Dominando el<br>Teatro de Operaciones</h2>
+      <p class="ss rv rd2">RADAR transforma datos crudos de múltiples sensores y fuentes de inteligencia en una imagen
+        operacional clara, precisa y accionable para el comandante.</p>
+      <div class="showcase-grid rv rd3">
+        <div>
+          <img src="assets/radar-tactical-display.png"
+            alt="NEXXO C2 RADAR — Pantalla COP con unidades desplegadas y zonas de alerta" loading="lazy" />
+          <span class="prod-lbl">NEXXO C2 // RADAR — COMMON OPERATING PICTURE</span>
+        </div>
+        <div>
+          <img src="assets/ChatGPT Image Apr 4, 2026, 12_00_31 PM.png"
+            alt="Operadores tácticos planificando sobre mesa digital con mapa interactivo" loading="lazy" />
+          <span class="prod-lbl">NEXXO C2 // RADAR — TACTICAL PLANNING</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="sec">
+    <div class="ct">
+      <span class="si rv">/01 — Capacidades del Módulo</span>
+      <h2 class="sh rv rd1">Todo lo que el<br>Comandante Necesita</h2>
+      <p class="ss rv rd2">RADAR proporciona una visión 360° del teatro de operaciones colombiano en una sola interfaz.
+      </p>
+
+      <div class="feat-grid" style="margin-top:64px">
+        <div class="feat-card rv">
+          <div class="feat-h">Mapa Geoespacial Interactivo</div>
+          <p class="feat-b">Mapa de Colombia con capas topográficas, hidrográficas y de infraestructura crítica. Zoom
+            desde nivel nacional hasta nivel táctico de unidad. Integración con Mapbox GL JS para renderizado vectorial
+            de alto rendimiento.</p>
+        </div>
+        <div class="feat-card rv rd1">
+          <div class="feat-h">Tracking de Activos Multi-Dominio</div>
+          <p class="feat-b">Seguimiento simultáneo de activos terrestres (blindados, infantería), navales (fragatas,
+            lanchas fluviales) y aéreos (Black Hawk, OV-10, UAVs). Cada activo reporta posición GPS, velocidad y rumbo.
+          </p>
+        </div>
+        <div class="feat-card rv">
+          <div class="feat-h">Telemetría en Tiempo Real</div>
+          <p class="feat-b">Panel lateral con telemetría de cada unidad: nivel de combustible, municiones disponibles,
+            estado operacional, último reporte. Actualización en tiempo real vía WebSockets con latencia inferior a 2
+            segundos.</p>
+        </div>
+        <div class="feat-card rv rd1">
+          <div class="feat-h">Sistema de Alertas Integrado</div>
+          <p class="feat-b">Alertas automáticas desde fuentes institucionales: IDEAM (eventos climáticos), MinDefensa,
+            ARMADA_COL e INTEL_DIV. Clasificación por prioridad y zona geográfica de impacto.</p>
+        </div>
+        <div class="feat-card rv">
+          <div class="feat-h">Sesión Autenticada y Auditoría</div>
+          <p class="feat-b">Autenticación JWT con control de acceso por rol y nivel de clasificación. Cada acción del
+            operador queda registrada: consultas, zoom, selección de unidades, exportación de datos.</p>
+        </div>
+        <div class="feat-card rv rd1">
+          <div class="feat-h">Zonas de Operación Prioritarias</div>
+          <p class="feat-b">Representación detallada de los teatros de operaciones clave: Catatumbo, Bajo Cauca,
+            Pacífico Nariñense, Frontera con Ecuador. Cada zona con nivel de riesgo y densidad de unidades desplegadas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
-<!-- SPECS -->
-<section class="sec">
-<div class="ct">
-<span class="si rv">/02 — Especificaciones Técnicas</span>
-<h2 class="sh rv rd1">Stack Tecnológico</h2>
+  <!-- SPECS -->
+  <section class="sec">
+    <div class="ct">
+      <span class="si rv">/02 — Especificaciones Técnicas</span>
+      <h2 class="sh rv rd1">Stack Tecnológico</h2>
 
-<div class="arch-flow rv rd2">
-<svg viewBox="0 0 820 580" preserveAspectRatio="xMidYMid meet"
-     aria-label="Arquitectura del sistema RADAR NEXXO C2"
-     xmlns="http://www.w3.org/2000/svg">
-<defs>
-  <pattern id="archDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-    <circle cx="0" cy="0" r="0.7" fill="rgba(6,182,212,0.07)"/>
-  </pattern>
-  <marker id="mC" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-    <path d="M0,0 L7,3.5 L0,7 Z" fill="rgba(6,182,212,0.5)"/>
-  </marker>
-  <marker id="mG" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-    <path d="M0,0 L7,3.5 L0,7 Z" fill="rgba(200,168,75,0.5)"/>
-  </marker>
-</defs>
+      <div class="arch-flow rv rd2">
+        <svg viewBox="0 0 820 580" preserveAspectRatio="xMidYMid meet"
+          aria-label="Arquitectura del sistema RADAR NEXXO C2" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="archDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="0" cy="0" r="0.7" fill="rgba(6,182,212,0.07)" />
+            </pattern>
+            <marker id="mC" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+              <path d="M0,0 L7,3.5 L0,7 Z" fill="rgba(6,182,212,0.5)" />
+            </marker>
+            <marker id="mG" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+              <path d="M0,0 L7,3.5 L0,7 Z" fill="rgba(200,168,75,0.5)" />
+            </marker>
+          </defs>
 
-<!-- Background -->
-<rect width="820" height="580" fill="#02040a"/>
-<rect width="820" height="580" fill="url(#archDots)"/>
+          <!-- Background -->
+          <rect width="820" height="580" fill="#02040a" />
+          <rect width="820" height="580" fill="url(#archDots)" />
 
-<!-- HUD corners -->
-<path d="M0,20 L0,0 L20,0" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none"/>
-<path d="M800,0 L820,0 L820,20" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none"/>
-<path d="M0,560 L0,580 L20,580" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none"/>
-<path d="M800,580 L820,580 L820,560" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none"/>
-<text x="10" y="14" fill="rgba(6,182,212,0.3)" font-family="JetBrains Mono,monospace" font-size="7.5" letter-spacing=".1em">NEXXO C2 / ARQUITECTURA DEL SISTEMA</text>
-<text x="670" y="14" fill="rgba(200,168,75,0.3)" font-family="JetBrains Mono,monospace" font-size="7.5" letter-spacing=".1em">PROPIETARIO</text>
+          <!-- HUD corners -->
+          <path d="M0,20 L0,0 L20,0" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none" />
+          <path d="M800,0 L820,0 L820,20" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none" />
+          <path d="M0,560 L0,580 L20,580" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none" />
+          <path d="M800,580 L820,580 L820,560" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none" />
+          <text x="10" y="14" fill="rgba(6,182,212,0.3)" font-family="JetBrains Mono,monospace" font-size="7.5"
+            letter-spacing=".1em">NEXXO C2 / ARQUITECTURA DEL SISTEMA</text>
+          <text x="670" y="14" fill="rgba(200,168,75,0.3)" font-family="JetBrains Mono,monospace" font-size="7.5"
+            letter-spacing=".1em">PROPIETARIO</text>
 
-<!-- ===== ARROWS ===== -->
-<!-- N1 → N3 -->
-<path d="M 170,92 C 170,132 340,132 340,164" stroke="rgba(200,168,75,0.3)" stroke-width="1" stroke-dasharray="5,4" fill="none" marker-end="url(#mG)"/>
-<!-- N2 → N3 -->
-<path d="M 650,92 C 650,132 480,132 480,164" stroke="rgba(200,168,75,0.3)" stroke-width="1" stroke-dasharray="5,4" fill="none" marker-end="url(#mG)"/>
-<!-- N3 → N4 -->
-<path d="M 340,228 C 340,274 170,274 170,320" stroke="rgba(6,182,212,0.3)" stroke-width="1" stroke-dasharray="5,4" fill="none" marker-end="url(#mC)"/>
-<!-- N3 → N5 -->
-<path d="M 480,228 C 480,274 650,274 650,320" stroke="rgba(6,182,212,0.3)" stroke-width="1" stroke-dasharray="5,4" fill="none" marker-end="url(#mC)"/>
-<!-- N4 → N6 -->
-<path d="M 170,384 C 170,424 325,424 325,456" stroke="rgba(6,182,212,0.3)" stroke-width="1" stroke-dasharray="5,4" fill="none" marker-end="url(#mC)"/>
-<!-- N5 → N6 -->
-<path d="M 650,384 C 650,424 495,424 495,456" stroke="rgba(6,182,212,0.3)" stroke-width="1" stroke-dasharray="5,4" fill="none" marker-end="url(#mC)"/>
+          <!-- ===== ARROWS ===== -->
+          <!-- N1 → N3 -->
+          <path d="M 170,92 C 170,132 340,132 340,164" stroke="rgba(200,168,75,0.3)" stroke-width="1"
+            stroke-dasharray="5,4" fill="none" marker-end="url(#mG)" />
+          <!-- N2 → N3 -->
+          <path d="M 650,92 C 650,132 480,132 480,164" stroke="rgba(200,168,75,0.3)" stroke-width="1"
+            stroke-dasharray="5,4" fill="none" marker-end="url(#mG)" />
+          <!-- N3 → N4 -->
+          <path d="M 340,228 C 340,274 170,274 170,320" stroke="rgba(6,182,212,0.3)" stroke-width="1"
+            stroke-dasharray="5,4" fill="none" marker-end="url(#mC)" />
+          <!-- N3 → N5 -->
+          <path d="M 480,228 C 480,274 650,274 650,320" stroke="rgba(6,182,212,0.3)" stroke-width="1"
+            stroke-dasharray="5,4" fill="none" marker-end="url(#mC)" />
+          <!-- N4 → N6 -->
+          <path d="M 170,384 C 170,424 325,424 325,456" stroke="rgba(6,182,212,0.3)" stroke-width="1"
+            stroke-dasharray="5,4" fill="none" marker-end="url(#mC)" />
+          <!-- N5 → N6 -->
+          <path d="M 650,384 C 650,424 495,424 495,456" stroke="rgba(6,182,212,0.3)" stroke-width="1"
+            stroke-dasharray="5,4" fill="none" marker-end="url(#mC)" />
 
-<!-- ===== NODE 1: HARDWARE TÁCTICO ===== -->
-<rect x="60" y="28" width="220" height="64" rx="2" fill="rgba(200,168,75,0.07)" stroke="rgba(200,168,75,0.45)" stroke-width="1"/>
-<text x="72" y="43" fill="rgba(200,168,75,0.3)" font-family="JetBrains Mono,monospace" font-size="7">/01</text>
-<text x="170" y="57" text-anchor="middle" fill="rgba(200,168,75,0.95)" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500" letter-spacing=".05em">HARDWARE TÁCTICO</text>
-<text x="170" y="74" text-anchor="middle" fill="rgba(200,168,75,0.45)" font-family="JetBrains Mono,monospace" font-size="7.5">Ruggedizado · Edge Computing · GNSS</text>
+          <!-- ===== NODE 1: HARDWARE TÁCTICO ===== -->
+          <rect x="60" y="28" width="220" height="64" rx="2" fill="rgba(200,168,75,0.07)" stroke="rgba(200,168,75,0.45)"
+            stroke-width="1" />
+          <text x="72" y="43" fill="rgba(200,168,75,0.3)" font-family="JetBrains Mono,monospace"
+            font-size="7">/01</text>
+          <text x="170" y="57" text-anchor="middle" fill="rgba(200,168,75,0.95)" font-family="JetBrains Mono,monospace"
+            font-size="10" font-weight="500" letter-spacing=".05em">HARDWARE TÁCTICO</text>
+          <text x="170" y="74" text-anchor="middle" fill="rgba(200,168,75,0.45)" font-family="JetBrains Mono,monospace"
+            font-size="7.5">Ruggedizado · Edge Computing · GNSS</text>
 
-<!-- ===== NODE 2: APP MÓVIL ===== -->
-<rect x="540" y="28" width="220" height="64" rx="2" fill="rgba(200,168,75,0.07)" stroke="rgba(200,168,75,0.45)" stroke-width="1"/>
-<text x="552" y="43" fill="rgba(200,168,75,0.3)" font-family="JetBrains Mono,monospace" font-size="7">/02</text>
-<text x="650" y="57" text-anchor="middle" fill="rgba(200,168,75,0.95)" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500" letter-spacing=".05em">APP MÓVIL DE CAMPO</text>
-<text x="650" y="74" text-anchor="middle" fill="rgba(200,168,75,0.45)" font-family="JetBrains Mono,monospace" font-size="7.5">Offline-First · GPS · MGRS · SITREPs</text>
+          <!-- ===== NODE 2: APP MÓVIL ===== -->
+          <rect x="540" y="28" width="220" height="64" rx="2" fill="rgba(200,168,75,0.07)"
+            stroke="rgba(200,168,75,0.45)" stroke-width="1" />
+          <text x="552" y="43" fill="rgba(200,168,75,0.3)" font-family="JetBrains Mono,monospace"
+            font-size="7">/02</text>
+          <text x="650" y="57" text-anchor="middle" fill="rgba(200,168,75,0.95)" font-family="JetBrains Mono,monospace"
+            font-size="10" font-weight="500" letter-spacing=".05em">APP MÓVIL DE CAMPO</text>
+          <text x="650" y="74" text-anchor="middle" fill="rgba(200,168,75,0.45)" font-family="JetBrains Mono,monospace"
+            font-size="7.5">Offline-First · GPS · MGRS · SITREPs</text>
 
-<!-- ===== NODE 3: COMUNICACIÓN & API ===== -->
-<rect x="260" y="164" width="300" height="64" rx="2" fill="rgba(239,68,68,0.07)" stroke="rgba(239,68,68,0.4)" stroke-width="1"/>
-<text x="272" y="179" fill="rgba(239,68,68,0.3)" font-family="JetBrains Mono,monospace" font-size="7">/03</text>
-<text x="410" y="193" text-anchor="middle" fill="rgba(239,68,68,0.9)" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500" letter-spacing=".05em">COMUNICACIÓN SEGURA &amp; API</text>
-<text x="410" y="210" text-anchor="middle" fill="rgba(239,68,68,0.45)" font-family="JetBrains Mono,monospace" font-size="7.5">Canal Cifrado · Autenticación · WebSocket · Tiempo Real</text>
+          <!-- ===== NODE 3: COMUNICACIÓN & API ===== -->
+          <rect x="260" y="164" width="300" height="64" rx="2" fill="rgba(239,68,68,0.07)" stroke="rgba(239,68,68,0.4)"
+            stroke-width="1" />
+          <text x="272" y="179" fill="rgba(239,68,68,0.3)" font-family="JetBrains Mono,monospace"
+            font-size="7">/03</text>
+          <text x="410" y="193" text-anchor="middle" fill="rgba(239,68,68,0.9)" font-family="JetBrains Mono,monospace"
+            font-size="10" font-weight="500" letter-spacing=".05em">COMUNICACIÓN SEGURA &amp; API</text>
+          <text x="410" y="210" text-anchor="middle" fill="rgba(239,68,68,0.45)" font-family="JetBrains Mono,monospace"
+            font-size="7.5">Canal Cifrado · Autenticación · WebSocket · Tiempo Real</text>
 
-<!-- ===== NODE 4: MOTOR GEOESPACIAL ===== -->
-<rect x="60" y="320" width="220" height="64" rx="2" fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.4)" stroke-width="1"/>
-<text x="72" y="335" fill="rgba(6,182,212,0.3)" font-family="JetBrains Mono,monospace" font-size="7">/04</text>
-<text x="170" y="350" text-anchor="middle" fill="rgba(6,182,212,0.9)" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500" letter-spacing=".05em">MOTOR GEOESPACIAL</text>
-<text x="170" y="367" text-anchor="middle" fill="rgba(6,182,212,0.45)" font-family="JetBrains Mono,monospace" font-size="7.5">Vectorial · Capas Tácticas · Tiles Offline</text>
+          <!-- ===== NODE 4: MOTOR GEOESPACIAL ===== -->
+          <rect x="60" y="320" width="220" height="64" rx="2" fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.4)"
+            stroke-width="1" />
+          <text x="72" y="335" fill="rgba(6,182,212,0.3)" font-family="JetBrains Mono,monospace"
+            font-size="7">/04</text>
+          <text x="170" y="350" text-anchor="middle" fill="rgba(6,182,212,0.9)" font-family="JetBrains Mono,monospace"
+            font-size="10" font-weight="500" letter-spacing=".05em">MOTOR GEOESPACIAL</text>
+          <text x="170" y="367" text-anchor="middle" fill="rgba(6,182,212,0.45)" font-family="JetBrains Mono,monospace"
+            font-size="7.5">Vectorial · Capas Tácticas · Tiles Offline</text>
 
-<!-- ===== NODE 5: MOTOR DE DATOS ===== -->
-<rect x="540" y="320" width="220" height="64" rx="2" fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.4)" stroke-width="1"/>
-<text x="552" y="335" fill="rgba(6,182,212,0.3)" font-family="JetBrains Mono,monospace" font-size="7">/05</text>
-<text x="650" y="350" text-anchor="middle" fill="rgba(6,182,212,0.9)" font-family="JetBrains Mono,monospace" font-size="10" font-weight="500" letter-spacing=".05em">MOTOR DE DATOS</text>
-<text x="650" y="367" text-anchor="middle" fill="rgba(6,182,212,0.45)" font-family="JetBrains Mono,monospace" font-size="7.5">Geoespacial · Telemetría · Caché en Tiempo Real</text>
+          <!-- ===== NODE 5: MOTOR DE DATOS ===== -->
+          <rect x="540" y="320" width="220" height="64" rx="2" fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.4)"
+            stroke-width="1" />
+          <text x="552" y="335" fill="rgba(6,182,212,0.3)" font-family="JetBrains Mono,monospace"
+            font-size="7">/05</text>
+          <text x="650" y="350" text-anchor="middle" fill="rgba(6,182,212,0.9)" font-family="JetBrains Mono,monospace"
+            font-size="10" font-weight="500" letter-spacing=".05em">MOTOR DE DATOS</text>
+          <text x="650" y="367" text-anchor="middle" fill="rgba(6,182,212,0.45)" font-family="JetBrains Mono,monospace"
+            font-size="7.5">Geoespacial · Telemetría · Caché en Tiempo Real</text>
 
-<!-- ===== NODE 6: COP DASHBOARD ===== -->
-<rect x="240" y="456" width="340" height="64" rx="2" fill="rgba(200,168,75,0.1)" stroke="rgba(200,168,75,0.6)" stroke-width="1.5"/>
-<text x="252" y="471" fill="rgba(200,168,75,0.35)" font-family="JetBrains Mono,monospace" font-size="7">/06</text>
-<text x="410" y="488" text-anchor="middle" fill="rgba(200,168,75,1)" font-family="JetBrains Mono,monospace" font-size="11" font-weight="500" letter-spacing=".06em">COP — INTERFAZ DE COMANDO</text>
-<text x="410" y="505" text-anchor="middle" fill="rgba(200,168,75,0.5)" font-family="JetBrains Mono,monospace" font-size="7.5">Dashboard Táctico · Alertas · &lt; 2s · Heartbeat</text>
+          <!-- ===== NODE 6: COP DASHBOARD ===== -->
+          <rect x="240" y="456" width="340" height="64" rx="2" fill="rgba(200,168,75,0.1)" stroke="rgba(200,168,75,0.6)"
+            stroke-width="1.5" />
+          <text x="252" y="471" fill="rgba(200,168,75,0.35)" font-family="JetBrains Mono,monospace"
+            font-size="7">/06</text>
+          <text x="410" y="488" text-anchor="middle" fill="rgba(200,168,75,1)" font-family="JetBrains Mono,monospace"
+            font-size="11" font-weight="500" letter-spacing=".06em">COP — INTERFAZ DE COMANDO</text>
+          <text x="410" y="505" text-anchor="middle" fill="rgba(200,168,75,0.5)" font-family="JetBrains Mono,monospace"
+            font-size="7.5">Dashboard Táctico · Alertas · &lt; 2s · Heartbeat</text>
 
-<!-- ===== INFRA BAR ===== -->
-<rect x="40" y="546" width="740" height="22" rx="2" fill="rgba(34,197,94,0.05)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
-<text x="410" y="561" text-anchor="middle" fill="rgba(34,197,94,0.65)" font-family="JetBrains Mono,monospace" font-size="7.5" letter-spacing=".09em">INFRAESTRUCTURA SOBERANA — On-Premise · Nube Nacional · Sin Dependencia Extranjera</text>
-</svg>
-</div>
-</div>
-</section>
+          <!-- ===== INFRA BAR ===== -->
+          <rect x="40" y="546" width="740" height="22" rx="2" fill="rgba(34,197,94,0.05)" stroke="rgba(34,197,94,0.3)"
+            stroke-width="1" />
+          <text x="410" y="561" text-anchor="middle" fill="rgba(34,197,94,0.65)" font-family="JetBrains Mono,monospace"
+            font-size="7.5" letter-spacing=".09em">INFRAESTRUCTURA SOBERANA — On-Premise · Nube Nacional · Sin
+            Dependencia Extranjera</text>
+        </svg>
+      </div>
+    </div>
+  </section>
 
-<!-- CTA -->
-<section class="cta-s">
-<div class="ct">
-<h2 class="rv">¿Listo para ver<br>RADAR en acción?</h2>
-<p class="rv rd1">Agenda una demostración del dashboard táctico con datos simulados del teatro de operaciones colombiano.</p>
-<div class="cta-acts rv rd2">
-<a href="mailto:contacto@holo.com.co" class="bp">Solicitar Demo de RADAR</a>
-<a href="index.html#ecosistema" class="bg">Ver Otros Módulos</a>
-</div>
-</div>
-</section>
+  <!-- CTA -->
+  <section class="cta-s">
+    <div class="ct">
+      <h2 class="rv">¿Listo para ver<br>RADAR en acción?</h2>
+      <p class="rv rd1">Agenda una demostración del dashboard táctico con datos simulados del teatro de operaciones
+        colombiano.</p>
+      <div class="cta-acts rv rd2">
+        <a href="mailto:contacto@holo.com.co" class="bp">Solicitar Demo de RADAR</a>
+        <a href="index.html#ecosistema" class="bg">Ver Otros Módulos</a>
+      </div>
+    </div>
+  </section>
 
-<!-- NEXT MODULE -->
-<a href="iris.html" class="next-mod" style="display:flex;padding:80px 48px;border-top:1px solid var(--b0);text-decoration:none;color:var(--t0)">
-<div><span class="mono" style="display:block;margin-bottom:8px">Siguiente Módulo</span><h3>IRIS + PRISMA EDGE →</h3></div>
-<span class="next-arr">→</span>
-</a>
+  <!-- NEXT MODULE -->
+  <a href="iris.html" class="next-mod"
+    style="display:flex;padding:80px 48px;border-top:1px solid var(--b0);text-decoration:none;color:var(--t0)">
+    <div><span class="mono" style="display:block;margin-bottom:8px">Siguiente Módulo</span>
+      <h3>IRIS + PRISMA EDGE →</h3>
+    </div>
+    <span class="next-arr">→</span>
+  </a>
 
-<!-- FOOTER -->
-<footer><div class="ct">
-<div class="ft-grid">
-<div class="ft-brand"><div class="ft-logo">HOLO</div><p>Empresa colombiana de tecnología de defensa y seguridad nacional. Desarrolladores del ecosistema NEXXO C2.</p></div>
-<div><div class="ft-ct">Módulos</div><ul class="ft-links"><li><a href="radar.html">RADAR</a></li><li><a href="iris.html">IRIS</a></li><li><a href="chat.html">NEXXO Chat</a></li><li><a href="memora.html">Memora</a></li><li><a href="ai.html">HOLO AI</a></li></ul></div>
-<div><div class="ft-ct">Compañía</div><ul class="ft-links"><li><a href="index.html#fuerzas">Fuerzas</a></li><li><a href="index.html#soberania">Soberanía</a></li><li><a href="#">Carreras</a></li></ul></div>
-<div><div class="ft-ct">Legal</div><ul class="ft-links"><li><a href="nexxo/eula.html">EULA</a></li><li><a href="privacy-policy.html">Privacidad</a></li><li><a href="nexxo/privacy-policy.html">Privacidad Nexxo</a></li></ul></div>
-</div>
-<div class="ft-bot">
-<p>© 2026 HOLO Technologies SAS — Colombia. <span style="opacity:0.6;margin-left:8px;">Última actualización: 05 Abr 2026</span></p>
-<p>NEXXO C2 v2.4 · SISTEMA: OPERATIVO</p>
-</div>
-</div></footer>
+  <!-- FOOTER -->
+  <footer>
+    <div class="ct">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <div class="ft-logo">HOLO</div>
+          <p>Empresa colombiana de tecnología de defensa y seguridad nacional. Desarrolladores del ecosistema NEXXO C2.
+          </p>
+        </div>
+        <div>
+          <div class="ft-ct">Módulos</div>
+          <ul class="ft-links">
+            <li><a href="radar.html">RADAR</a></li>
+            <li><a href="iris.html">IRIS</a></li>
+            <li><a href="chat.html">NEXXO Chat</a></li>
+            <li><a href="memora.html">Memora</a></li>
+            <li><a href="ai.html">HOLO AI</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="ft-ct">Compañía</div>
+          <ul class="ft-links">
+            <li><a href="index.html#fuerzas">Fuerzas</a></li>
+            <li><a href="index.html#soberania">Soberanía</a></li>
+            <li><a href="#">Carreras</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="ft-ct">Legal</div>
+          <ul class="ft-links">
+            <li><a href="nexxo/eula.html">EULA</a></li>
+            <li><a href="privacy-policy.html">Privacidad</a></li>
+            <li><a href="nexxo/privacy-policy.html">Privacidad Nexxo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bot">
+        <p>© 2026 HOLO Technologies SAS — Colombia. <span style="opacity:0.6;margin-left:8px;">Última actualización: 05
+            Abr 2026</span></p>
+        <p>NEXXO C2 v2.4 · SISTEMA: OPERATIVO</p>
+      </div>
+    </div>
+  </footer>
 
-<script>
-const h=document.getElementById('mainHeader');window.addEventListener('scroll',()=>h.classList.toggle('scrolled',window.scrollY>40));
-const hb=document.getElementById('hb'),mm=document.getElementById('mm');
-hb.addEventListener('click',()=>{const o=mm.classList.toggle('open');hb.classList.toggle('open',o);hb.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''});
-mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mm.classList.remove('open');hb.classList.remove('open');document.body.style.overflow=''}));
-const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('iv');obs.unobserve(x.target)}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.rv').forEach(e=>obs.observe(e));
-</script>
+  <script>
+    const h = document.getElementById('mainHeader'); window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 40));
+    const hb = document.getElementById('hb'), mm = document.getElementById('mm');
+    hb.addEventListener('click', () => { const o = mm.classList.toggle('open'); hb.classList.toggle('open', o); hb.setAttribute('aria-expanded', o); document.body.style.overflow = o ? 'hidden' : '' });
+    mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mm.classList.remove('open'); hb.classList.remove('open'); document.body.style.overflow = '' }));
+    const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('iv'); obs.unobserve(x.target) } }), { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rv').forEach(e => obs.observe(e));
+  </script>
 
-<!-- RADAR CANVAS ANIMATION + CLOCK -->
-<script>
-(function(){
-  'use strict';
+  <!-- RADAR CANVAS ANIMATION + CLOCK -->
+  <script>
+    (function () {
+      'use strict';
 
-  // TAC DASHBOARD CLOCK
-  function updateTacClock(){
-    const el=document.getElementById('tacClock');
-    if(!el)return;
-    const n=new Date;
-    el.textContent=n.toUTCString().slice(17,25)+' UTC';
-  }
-  setInterval(updateTacClock,1000);
-  updateTacClock();
-
-  // Respect reduced-motion
-  const rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(rm)return;
-
-  // ─────────────────────────────────────────
-  // RADAR SUB-HERO CANVAS ANIMATION
-  // ─────────────────────────────────────────
-  const canvas=document.getElementById('radar-hero-canvas');
-  if(!canvas)return;
-  const ctx=canvas.getContext('2d');
-
-  let W,H,animId;
-  let sweepAngle=-Math.PI/2;
-  const SWEEP_SPEED=0.018;
-  let bootProgress=0; // 0→1 over 2s
-  let lastTime=0;
-  const BOOT_DURATION=2000;
-
-  // Blip positions (normalized 0-1)
-  const blips=[
-    {nx:0.18,ny:0.25,color:[200,168,75],phase:0,size:3},
-    {nx:0.35,ny:0.15,color:[6,182,212],phase:0.8,size:2.5},
-    {nx:0.62,ny:0.32,color:[6,182,212],phase:1.6,size:3},
-    {nx:0.78,ny:0.55,color:[200,168,75],phase:2.4,size:2.5},
-    {nx:0.45,ny:0.68,color:[34,197,94],phase:0.4,size:3},
-    {nx:0.22,ny:0.72,color:[6,182,212],phase:1.2,size:2.5},
-    {nx:0.55,ny:0.82,color:[200,168,75],phase:2.0,size:2},
-    {nx:0.88,ny:0.22,color:[34,197,94],phase:0.6,size:3},
-    {nx:0.12,ny:0.48,color:[6,182,212],phase:1.8,size:2},
-    {nx:0.70,ny:0.75,color:[200,168,75],phase:3.0,size:2.5},
-  ];
-
-  // Scan line state
-  let scanY=0;
-
-  function resize(){
-    const parent=canvas.parentElement;
-    W=canvas.width=parent.offsetWidth;
-    H=canvas.height=parent.offsetHeight;
-  }
-
-  function drawFrame(ts){
-    animId=requestAnimationFrame(drawFrame);
-    const dt=ts-lastTime;
-    lastTime=ts;
-
-    // Boot progress
-    if(bootProgress<1) bootProgress=Math.min(1,bootProgress+dt/BOOT_DURATION);
-    const bp=bootProgress;
-
-    ctx.clearRect(0,0,W,H);
-    ctx.globalAlpha=bp;
-
-    // ── Coordinate grid lines ──────────────
-    ctx.save();
-    ctx.globalAlpha=bp*0.06;
-    ctx.strokeStyle='rgba(6,182,212,1)';
-    ctx.lineWidth=0.5;
-    // Horizontal
-    const gridStep=Math.round(H/5);
-    const coordsY=['08°N','06°N','04°N','02°N'];
-    for(let i=1;i<5;i++){
-      const y=i*gridStep;
-      ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
-    }
-    // Vertical
-    const gridStepX=Math.round(W/5);
-    const coordsX=['78°W','76°W','74°W','72°W'];
-    for(let i=1;i<5;i++){
-      const x=i*gridStepX;
-      ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();
-    }
-    ctx.restore();
-
-    // Coordinate labels
-    ctx.save();
-    ctx.globalAlpha=bp*0.3;
-    ctx.fillStyle='rgba(6,182,212,0.8)';
-    ctx.font='9px JetBrains Mono, monospace';
-    for(let i=0;i<4;i++){
-      ctx.fillText(coordsY[i],6,(i+1)*gridStep-3);
-      ctx.fillText(coordsX[i],(i+1)*gridStepX+4,H-6);
-    }
-    ctx.restore();
-
-    // ── Radar sweep ────────────────────────
-    const cx=W*0.5,cy=H*0.5;
-    const rMax=Math.min(W,H)*0.48;
-
-    // Sweep trail (gradient arc)
-    const trailLen=Math.PI*0.72;
-    const grad=ctx.createConicalGradient?null:null; // fallback: use multiple arcs
-    for(let i=0;i<32;i++){
-      const t=i/32;
-      const a=sweepAngle-trailLen*t;
-      ctx.save();
-      ctx.globalAlpha=bp*(1-t)*0.22;
-      ctx.beginPath();
-      ctx.moveTo(cx,cy);
-      ctx.arc(cx,cy,rMax,a-trailLen/32,a);
-      ctx.closePath();
-      ctx.fillStyle='rgba(6,182,212,1)';
-      ctx.fill();
-      ctx.restore();
-    }
-
-    // Sweep line
-    ctx.save();
-    ctx.globalAlpha=bp*0.7;
-    ctx.strokeStyle='rgba(6,182,212,0.9)';
-    ctx.lineWidth=1.2;
-    ctx.shadowBlur=8;
-    ctx.shadowColor='rgba(6,182,212,0.6)';
-    ctx.beginPath();
-    ctx.moveTo(cx,cy);
-    ctx.lineTo(cx+Math.cos(sweepAngle)*rMax, cy+Math.sin(sweepAngle)*rMax);
-    ctx.stroke();
-    ctx.restore();
-
-    // Radar rings
-    [0.25,0.5,0.75,1.0].forEach((f,i)=>{
-      ctx.save();
-      ctx.globalAlpha=bp*0.12;
-      ctx.strokeStyle='rgba(6,182,212,1)';
-      ctx.lineWidth=0.6;
-      ctx.beginPath();
-      ctx.arc(cx,cy,rMax*f,0,Math.PI*2);
-      ctx.stroke();
-      ctx.restore();
-    });
-
-    // Advance sweep
-    sweepAngle+=SWEEP_SPEED;
-    if(sweepAngle>Math.PI*2-Math.PI/2) sweepAngle-=Math.PI*2;
-
-    // ── Scan line ──────────────────────────
-    scanY=(scanY+0.8)%H;
-    ctx.save();
-    ctx.globalAlpha=bp*0.12;
-    const scanGrad=ctx.createLinearGradient(0,scanY-3,0,scanY+3);
-    scanGrad.addColorStop(0,'rgba(6,182,212,0)');
-    scanGrad.addColorStop(0.5,'rgba(6,182,212,0.9)');
-    scanGrad.addColorStop(1,'rgba(6,182,212,0)');
-    ctx.strokeStyle=scanGrad;
-    ctx.lineWidth=2;
-    ctx.beginPath();ctx.moveTo(0,scanY);ctx.lineTo(W,scanY);ctx.stroke();
-    ctx.restore();
-
-    // ── Unit blips ─────────────────────────
-    const t=ts*0.001;
-    blips.forEach(b=>{
-      const bx=b.nx*W, by=b.ny*H;
-      const pulse=Math.sin(t*2+b.phase)*0.5+0.5;
-      const [r,g,bl]=b.color;
-
-      // Pulsing ring
-      ctx.save();
-      ctx.globalAlpha=bp*(0.6-pulse*0.5);
-      ctx.strokeStyle=`rgba(${r},${g},${bl},0.7)`;
-      ctx.lineWidth=0.8;
-      ctx.beginPath();
-      ctx.arc(bx,by,b.size+6+pulse*10,0,Math.PI*2);
-      ctx.stroke();
-      ctx.restore();
-
-      // Inner dot
-      ctx.save();
-      ctx.globalAlpha=bp*0.9;
-      ctx.fillStyle=`rgba(${r},${g},${bl},0.95)`;
-      ctx.shadowBlur=6;
-      ctx.shadowColor=`rgba(${r},${g},${bl},0.8)`;
-      ctx.beginPath();
-      ctx.arc(bx,by,b.size,0,Math.PI*2);
-      ctx.fill();
-      ctx.restore();
-    });
-
-    // ── Corner HUD brackets ────────────────
-    const bSize=24;
-    ctx.save();
-    ctx.globalAlpha=bp*0.55;
-    ctx.strokeStyle='rgba(200,168,75,0.8)';
-    ctx.lineWidth=1.2;
-    // TL
-    ctx.beginPath();ctx.moveTo(0,bSize);ctx.lineTo(0,0);ctx.lineTo(bSize,0);ctx.stroke();
-    // TR
-    ctx.beginPath();ctx.moveTo(W-bSize,0);ctx.lineTo(W,0);ctx.lineTo(W,bSize);ctx.stroke();
-    // BL
-    ctx.beginPath();ctx.moveTo(0,H-bSize);ctx.lineTo(0,H);ctx.lineTo(bSize,H);ctx.stroke();
-    // BR
-    ctx.beginPath();ctx.moveTo(W-bSize,H);ctx.lineTo(W,H);ctx.lineTo(W,H-bSize);ctx.stroke();
-    ctx.restore();
-
-    ctx.globalAlpha=1;
-  }
-
-  function init(){
-    resize();
-    window.addEventListener('resize',resize);
-    lastTime=performance.now();
-    animId=requestAnimationFrame(drawFrame);
-  }
-
-  // Start when section is visible
-  const section=document.querySelector('.sub-hero');
-  if(section){
-    const sObs=new IntersectionObserver(entries=>{
-      if(entries[0].isIntersecting){
-        if(!animId)init();
-      } else {
-        if(animId){cancelAnimationFrame(animId);animId=null;}
+      // TAC DASHBOARD CLOCK
+      function updateTacClock() {
+        const el = document.getElementById('tacClock');
+        if (!el) return;
+        const n = new Date;
+        el.textContent = n.toUTCString().slice(17, 25) + ' UTC';
       }
-    },{threshold:0});
-    sObs.observe(section);
-    // Also start immediately if already visible
-    init();
-  }
-})();
-</script>
+      setInterval(updateTacClock, 1000);
+      updateTacClock();
+
+      // Respect reduced-motion
+      const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (rm) return;
+
+      // ─────────────────────────────────────────
+      // RADAR SUB-HERO CANVAS ANIMATION
+      // ─────────────────────────────────────────
+      const canvas = document.getElementById('radar-hero-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let W, H, animId;
+      let sweepAngle = -Math.PI / 2;
+      const SWEEP_SPEED = 0.018;
+      let bootProgress = 0; // 0→1 over 2s
+      let lastTime = 0;
+      const BOOT_DURATION = 2000;
+
+      // Blip positions (normalized 0-1)
+      const blips = [
+        { nx: 0.18, ny: 0.25, color: [200, 168, 75], phase: 0, size: 3 },
+        { nx: 0.35, ny: 0.15, color: [6, 182, 212], phase: 0.8, size: 2.5 },
+        { nx: 0.62, ny: 0.32, color: [6, 182, 212], phase: 1.6, size: 3 },
+        { nx: 0.78, ny: 0.55, color: [200, 168, 75], phase: 2.4, size: 2.5 },
+        { nx: 0.45, ny: 0.68, color: [34, 197, 94], phase: 0.4, size: 3 },
+        { nx: 0.22, ny: 0.72, color: [6, 182, 212], phase: 1.2, size: 2.5 },
+        { nx: 0.55, ny: 0.82, color: [200, 168, 75], phase: 2.0, size: 2 },
+        { nx: 0.88, ny: 0.22, color: [34, 197, 94], phase: 0.6, size: 3 },
+        { nx: 0.12, ny: 0.48, color: [6, 182, 212], phase: 1.8, size: 2 },
+        { nx: 0.70, ny: 0.75, color: [200, 168, 75], phase: 3.0, size: 2.5 },
+      ];
+
+      // Scan line state
+      let scanY = 0;
+
+      function resize() {
+        const parent = canvas.parentElement;
+        W = canvas.width = parent.offsetWidth;
+        H = canvas.height = parent.offsetHeight;
+      }
+
+      function drawFrame(ts) {
+        animId = requestAnimationFrame(drawFrame);
+        const dt = ts - lastTime;
+        lastTime = ts;
+
+        // Boot progress
+        if (bootProgress < 1) bootProgress = Math.min(1, bootProgress + dt / BOOT_DURATION);
+        const bp = bootProgress;
+
+        ctx.clearRect(0, 0, W, H);
+        ctx.globalAlpha = bp;
+
+        // ── Coordinate grid lines ──────────────
+        ctx.save();
+        ctx.globalAlpha = bp * 0.06;
+        ctx.strokeStyle = 'rgba(6,182,212,1)';
+        ctx.lineWidth = 0.5;
+        // Horizontal
+        const gridStep = Math.round(H / 5);
+        const coordsY = ['08°N', '06°N', '04°N', '02°N'];
+        for (let i = 1; i < 5; i++) {
+          const y = i * gridStep;
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+        }
+        // Vertical
+        const gridStepX = Math.round(W / 5);
+        const coordsX = ['78°W', '76°W', '74°W', '72°W'];
+        for (let i = 1; i < 5; i++) {
+          const x = i * gridStepX;
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+        }
+        ctx.restore();
+
+        // Coordinate labels
+        ctx.save();
+        ctx.globalAlpha = bp * 0.3;
+        ctx.fillStyle = 'rgba(6,182,212,0.8)';
+        ctx.font = '9px JetBrains Mono, monospace';
+        for (let i = 0; i < 4; i++) {
+          ctx.fillText(coordsY[i], 6, (i + 1) * gridStep - 3);
+          ctx.fillText(coordsX[i], (i + 1) * gridStepX + 4, H - 6);
+        }
+        ctx.restore();
+
+        // ── Radar sweep ────────────────────────
+        const cx = W * 0.5, cy = H * 0.5;
+        const rMax = Math.min(W, H) * 0.48;
+
+        // Sweep trail (gradient arc)
+        const trailLen = Math.PI * 0.72;
+        const grad = ctx.createConicalGradient ? null : null; // fallback: use multiple arcs
+        for (let i = 0; i < 32; i++) {
+          const t = i / 32;
+          const a = sweepAngle - trailLen * t;
+          ctx.save();
+          ctx.globalAlpha = bp * (1 - t) * 0.22;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.arc(cx, cy, rMax, a - trailLen / 32, a);
+          ctx.closePath();
+          ctx.fillStyle = 'rgba(6,182,212,1)';
+          ctx.fill();
+          ctx.restore();
+        }
+
+        // Sweep line
+        ctx.save();
+        ctx.globalAlpha = bp * 0.7;
+        ctx.strokeStyle = 'rgba(6,182,212,0.9)';
+        ctx.lineWidth = 1.2;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = 'rgba(6,182,212,0.6)';
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(sweepAngle) * rMax, cy + Math.sin(sweepAngle) * rMax);
+        ctx.stroke();
+        ctx.restore();
+
+        // Radar rings
+        [0.25, 0.5, 0.75, 1.0].forEach((f, i) => {
+          ctx.save();
+          ctx.globalAlpha = bp * 0.12;
+          ctx.strokeStyle = 'rgba(6,182,212,1)';
+          ctx.lineWidth = 0.6;
+          ctx.beginPath();
+          ctx.arc(cx, cy, rMax * f, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+        });
+
+        // Advance sweep
+        sweepAngle += SWEEP_SPEED;
+        if (sweepAngle > Math.PI * 2 - Math.PI / 2) sweepAngle -= Math.PI * 2;
+
+        // ── Scan line ──────────────────────────
+        scanY = (scanY + 0.8) % H;
+        ctx.save();
+        ctx.globalAlpha = bp * 0.12;
+        const scanGrad = ctx.createLinearGradient(0, scanY - 3, 0, scanY + 3);
+        scanGrad.addColorStop(0, 'rgba(6,182,212,0)');
+        scanGrad.addColorStop(0.5, 'rgba(6,182,212,0.9)');
+        scanGrad.addColorStop(1, 'rgba(6,182,212,0)');
+        ctx.strokeStyle = scanGrad;
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(0, scanY); ctx.lineTo(W, scanY); ctx.stroke();
+        ctx.restore();
+
+        // ── Unit blips ─────────────────────────
+        const t = ts * 0.001;
+        blips.forEach(b => {
+          const bx = b.nx * W, by = b.ny * H;
+          const pulse = Math.sin(t * 2 + b.phase) * 0.5 + 0.5;
+          const [r, g, bl] = b.color;
+
+          // Pulsing ring
+          ctx.save();
+          ctx.globalAlpha = bp * (0.6 - pulse * 0.5);
+          ctx.strokeStyle = `rgba(${r},${g},${bl},0.7)`;
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.arc(bx, by, b.size + 6 + pulse * 10, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+
+          // Inner dot
+          ctx.save();
+          ctx.globalAlpha = bp * 0.9;
+          ctx.fillStyle = `rgba(${r},${g},${bl},0.95)`;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = `rgba(${r},${g},${bl},0.8)`;
+          ctx.beginPath();
+          ctx.arc(bx, by, b.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        });
+
+        // ── Corner HUD brackets ────────────────
+        const bSize = 24;
+        ctx.save();
+        ctx.globalAlpha = bp * 0.55;
+        ctx.strokeStyle = 'rgba(200,168,75,0.8)';
+        ctx.lineWidth = 1.2;
+        // TL
+        ctx.beginPath(); ctx.moveTo(0, bSize); ctx.lineTo(0, 0); ctx.lineTo(bSize, 0); ctx.stroke();
+        // TR
+        ctx.beginPath(); ctx.moveTo(W - bSize, 0); ctx.lineTo(W, 0); ctx.lineTo(W, bSize); ctx.stroke();
+        // BL
+        ctx.beginPath(); ctx.moveTo(0, H - bSize); ctx.lineTo(0, H); ctx.lineTo(bSize, H); ctx.stroke();
+        // BR
+        ctx.beginPath(); ctx.moveTo(W - bSize, H); ctx.lineTo(W, H); ctx.lineTo(W, H - bSize); ctx.stroke();
+        ctx.restore();
+
+        ctx.globalAlpha = 1;
+      }
+
+      function init() {
+        resize();
+        window.addEventListener('resize', resize);
+        lastTime = performance.now();
+        animId = requestAnimationFrame(drawFrame);
+      }
+
+      // Start when section is visible
+      const section = document.querySelector('.sub-hero');
+      if (section) {
+        const sObs = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            if (!animId) init();
+          } else {
+            if (animId) { cancelAnimationFrame(animId); animId = null; }
+          }
+        }, { threshold: 0 });
+        sObs.observe(section);
+        // Also start immediately if already visible
+        init();
+      }
+    })();
+  </script>
 </body>
+
 </html>
