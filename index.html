@@ -1363,37 +1363,57 @@
       <div class="mk-form-panel rv rd2">
         <h3 class="mk-form-title">Solicitar Demostración</h3>
         <p class="mk-form-sub">Sesión técnica con el equipo HOLO</p>
-        <form action="mailto:contacto@holo.com.co" method="get" novalidate>
-          <div class="mk-field-2">
-            <input type="text" class="mk-field" placeholder="Nombre completo" required />
-            <input type="text" class="mk-field" placeholder="Cargo / Rango" required />
+        <div id="form-container">
+          <form name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="demo-form">
+            <input type="hidden" name="form-name" value="demo-request" />
+            <p class="hidden" style="display:none">
+              <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+            </p>
+            <div class="mk-field-2">
+              <input type="text" name="nombre" class="mk-field" placeholder="Nombre completo" required />
+              <input type="text" name="cargo" class="mk-field" placeholder="Cargo / Rango" required />
+            </div>
+            <input type="email" name="email" class="mk-field" placeholder="Correo institucional" required />
+            <select name="organizacion" class="mk-field" required>
+              <option value="" disabled selected>Organización</option>
+              <option value="Ejército Nacional">Ejército Nacional</option>
+              <option value="Armada Nacional de Colombia">Armada Nacional de Colombia</option>
+              <option value="Fuerza Aeroespacial Colombiana (FACS)">Fuerza Aeroespacial Colombiana (FACS)</option>
+              <option value="Ministerio de Defensa Nacional">Ministerio de Defensa Nacional</option>
+              <option value="Policía Nacional">Policía Nacional</option>
+              <option value="Entidad de seguridad regional">Entidad de seguridad regional</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <select name="modulo" class="mk-field">
+              <option value="" disabled selected>Módulo de interés</option>
+              <option value="RADAR — Dashboard táctico">RADAR — Dashboard táctico</option>
+              <option value="IRIS — App móvil de campo">IRIS — App móvil de campo</option>
+              <option value="NEXXO Chat — Comunicaciones seguras">NEXXO Chat — Comunicaciones seguras</option>
+              <option value="Memora — Gestión documental">Memora — Gestión documental</option>
+              <option value="HOLO AI — Inteligencia artificial">HOLO AI — Inteligencia artificial</option>
+              <option value="PRISMA EDGE — Hardware táctico">PRISMA EDGE — Hardware táctico</option>
+              <option value="Ecosistema completo NEXXO C2">Ecosistema completo NEXXO C2</option>
+            </select>
+            <textarea name="mensaje" class="mk-field" placeholder="Describe el requerimiento operacional..."></textarea>
+            <button type="submit" id="submit-btn" class="bp" style="width:100%;justify-content:center;margin-top:4px">
+              Enviar Solicitud →
+            </button>
+          </form>
+        </div>
+        <div id="success-msg" style="display:none; text-align:center; padding: 40px 20px;">
+          <div class="mk-eyebrow" style="justify-content:center; margin-bottom: 20px;">
+            <div class="mk-eyebrow-line"></div>
+            <span class="mk-eyebrow-txt">SOLICITUD RECIBIDA</span>
+            <div class="mk-eyebrow-line"></div>
           </div>
-          <input type="email" class="mk-field" placeholder="Correo institucional" required />
-          <select class="mk-field" required>
-            <option value="" disabled selected>Organización</option>
-            <option>Ejército Nacional</option>
-            <option>Armada Nacional de Colombia</option>
-            <option>Fuerza Aeroespacial Colombiana (FACS)</option>
-            <option>Ministerio de Defensa Nacional</option>
-            <option>Policía Nacional</option>
-            <option>Entidad de seguridad regional</option>
-            <option>Otro</option>
-          </select>
-          <select class="mk-field">
-            <option value="" disabled selected>Módulo de interés</option>
-            <option>RADAR — Dashboard táctico</option>
-            <option>IRIS — App móvil de campo</option>
-            <option>NEXXO Chat — Comunicaciones seguras</option>
-            <option>Memora — Gestión documental</option>
-            <option>HOLO AI — Inteligencia artificial</option>
-            <option>PRISMA EDGE — Hardware táctico</option>
-            <option>Ecosistema completo NEXXO C2</option>
-          </select>
-          <textarea class="mk-field" placeholder="Describe el requerimiento operacional..."></textarea>
-          <button type="submit" class="bp" style="width:100%;justify-content:center;margin-top:4px">
-            Enviar Solicitud →
-          </button>
-        </form>
+          <h3 class="mk-form-title" style="font-size:24px; margin-bottom:15px;">¡Gracias por tu interés!</h3>
+          <p class="mk-form-sub" style="text-transform:none; font-family:var(--sans); font-size:14px; line-height:1.6; color:var(--t1);">
+            Hemos registrado tu solicitud correctamente. Un oficial de enlace de nuestro equipo técnico se pondrá en contacto contigo a la brevedad para coordinar la sesión de demostración.
+          </p>
+          <div style="margin-top:30px;">
+            <button onclick="location.reload()" class="bg" style="font-size:11px; padding: 10px 20px;">Enviar otra solicitud</button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -1480,6 +1500,36 @@
         if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
     });
+
+    // Form submission handling for Netlify
+    const demoForm = document.getElementById('demo-form');
+    if (demoForm) {
+      demoForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData(demoForm);
+        const submitBtn = document.getElementById('submit-btn');
+        const formContainer = document.getElementById('form-container');
+        const successMsg = document.getElementById('success-msg');
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="pill-dot" style="animation: pulse 1s infinite"></span> Enviando...';
+
+        fetch('/', {
+          method: 'POST',
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString()
+        }).then(() => {
+          formContainer.style.display = 'none';
+          successMsg.style.display = 'block';
+          successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }).catch(error => {
+          console.error('Form error:', error);
+          alert('Error al enviar el formulario. Por favor intenta de nuevo.');
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Enviar Solicitud →';
+        });
+      });
+    }
   </script>
 
   <!-- ─── HERO CANVAS: Tactical C2 Network ─── -->
