@@ -110,6 +110,41 @@ a { text-decoration: none; color: inherit; }
   .hb { display: flex; }
 }
 
+@media(max-width:768px) {
+  .header {
+    padding: 0 16px;
+  }
+
+  .header-l {
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .header-logo img {
+    height: 24px;
+    max-width: min(140px, 44vw);
+  }
+
+  .header-status {
+    display: none;
+  }
+
+  .header-r {
+    gap: 8px;
+  }
+
+  .header-cta {
+    display: none;
+  }
+}
+
+@media(max-width:480px) {
+  .header-logo img {
+    height: 22px;
+    max-width: min(124px, 42vw);
+  }
+}
+
 /* ═══════════════════════════════════════════
    HERO
    ═══════════════════════════════════════════ */
