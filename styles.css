@@ -211,7 +211,49 @@ a { text-decoration: none; color: inherit; }
 .prod-img { position: relative; overflow: hidden; border: 1px solid var(--b0); }
 .prod-img img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.72) contrast(1.1); transition: transform .6s var(--ease), filter .4s; }
 .prod-img:hover img { transform: scale(1.03); filter: brightness(.82) contrast(1.1); }
-.prod-lbl { position: absolute; bottom: 16px; left: 16px; font-family: var(--mono); font-size: 9px; color: rgba(255,255,255,.7); letter-spacing: .1em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.2); padding: 4px 8px; background: rgba(0,0,0,.65); }
+.prod-lbl { position: absolute; z-index: 2; bottom: 16px; left: 16px; font-family: var(--mono); font-size: 9px; color: rgba(255,255,255,.7); letter-spacing: .1em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.2); padding: 4px 8px; background: rgba(0,0,0,.65); }
+.img-ref-note {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45em;
+  text-align: center;
+  margin: 0;
+  padding: clamp(14px, 3vw, 28px) clamp(20px, 5vw, 48px);
+  font-family: var(--mono);
+  font-size: clamp(11px, 2.4vw, 18px);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.95);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-top: 1px solid rgba(255,255,255,.12);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+.sub-hero > .img-ref-note {
+  top: auto;
+  bottom: 0;
+  transform: none;
+  padding: clamp(18px, 4vw, 36px) 48px;
+  font-size: clamp(12px, 2.8vw, 22px);
+  letter-spacing: .12em;
+  background: rgba(0, 0, 0, 0.48);
+}
+@media(max-width:900px) {
+  .sub-hero > .img-ref-note { padding-left: 24px; padding-right: 24px; }
+}
 .prod-ct { padding: 56px 48px; border: 1px solid var(--b0); display: flex; flex-direction: column; justify-content: center; }
 @media(max-width:900px) { .prod-ct { padding: 40px 24px; } }
 .prod-ct .si { margin-bottom: 12px; }
