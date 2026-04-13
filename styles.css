@@ -16,8 +16,8 @@
   /* Dark palette for tactical elements */
   --dark-bg: #000; --dark-bg1: #0a0a0a; --dark-bg2: #111;
   --dark-t0: #fff; --dark-t1: #a0a0a0; --dark-t2: #555;
-  --dark-b0: rgba(255,255,255,.06); --dark-b1: rgba(255,255,255,.12); --dark-b2: rgba(255,255,255,.28);
-  --dark-acc: #C8A84B; --dark-green: #22c55e; --dark-amber: #f59e0b; --dark-red: #ef4444; --dark-cyan: #06b6d4;
+  --dark-b0: #001f3f; --dark-b1: rgba(255,255,255,.12); --dark-b2: rgba(255,255,255,.28);
+  --dark-acc: #d4af37; --dark-green: #22c55e; --dark-amber: #f59e0b; --dark-red: #ef4444; --dark-cyan: #06b6d4;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
