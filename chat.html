@@ -224,6 +224,219 @@
       border: 1px solid var(--b0);
     }
 
+    /* ── APP SCREENSHOTS CAROUSEL ── */
+    .ch-screenshots {
+      background: var(--bg);
+      padding: 80px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ch-screenshots::before,
+    .ch-screenshots::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .ch-screenshots::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg), transparent);
+    }
+
+    .ch-screenshots::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg), transparent);
+    }
+
+    .ch-screenshots-header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 0 24px;
+    }
+
+    .ch-screenshots-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent, #00c896);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .ch-screenshots-title {
+      font-family: var(--sans, 'Space Grotesk', sans-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--t0);
+      margin: 0;
+      letter-spacing: -.02em;
+    }
+
+    .ch-carousel-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      animation: marquee 40s linear infinite;
+    }
+
+    .ch-carousel-track:hover {
+      animation-play-state: paused;
+    }
+
+    .ch-carousel-track.paused {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .ch-carousel-card {
+      flex: 0 0 auto;
+      width: 240px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg1);
+      border: 1px solid var(--b0);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .06), 0 1px 3px rgba(0,0,0,.04);
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .ch-carousel-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .12), 0 4px 12px rgba(0,0,0,.06);
+    }
+
+    .ch-carousel-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .ch-carousel-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.06);
+      pointer-events: none;
+    }
+
+    /* ── LIGHTBOX ── */
+    .ch-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, .94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .ch-lightbox.active {
+      display: flex;
+      animation: lbOverlayIn .3s ease;
+    }
+
+    @keyframes lbOverlayIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .ch-lightbox-img {
+      max-height: 85vh;
+      max-width: 90vw;
+      border-radius: 20px;
+      box-shadow: 0 16px 64px rgba(0,0,0,.6);
+      object-fit: contain;
+      animation: lbFadeIn .3s ease;
+    }
+
+    @keyframes lbFadeIn {
+      from { opacity: 0; transform: scale(.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .ch-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      opacity: .7;
+      transition: opacity .2s, background .2s;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ch-lightbox-close:hover { opacity: 1; background: rgba(255,255,255,.15); }
+
+    .ch-lightbox-prev,
+    .ch-lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s, transform .2s;
+      z-index: 2;
+    }
+
+    .ch-lightbox-prev { left: 20px; }
+    .ch-lightbox-next { right: 20px; }
+
+    .ch-lightbox-prev:hover,
+    .ch-lightbox-next:hover {
+      background: rgba(255,255,255,.18);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .ch-lightbox-caption {
+      margin-top: 20px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+    }
+
+    .ch-lightbox-counter {
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.3);
+    }
+
     /* ── RESPONSIVE ── */
     @media(max-width:960px) {
       .ch-split {
@@ -243,6 +456,37 @@
         gap: 40px;
         padding: 0 24px;
       }
+
+      .ch-carousel-card {
+        width: 200px;
+      }
+
+      .ch-carousel-track {
+        gap: 16px;
+      }
+
+      .ch-screenshots {
+        padding: 56px 0;
+      }
+
+      .ch-screenshots-title {
+        font-size: 22px;
+      }
+
+      .ch-screenshots::before,
+      .ch-screenshots::after {
+        width: 60px;
+      }
+
+      .ch-lightbox-prev,
+      .ch-lightbox-next {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+      }
+
+      .ch-lightbox-prev { left: 8px; }
+      .ch-lightbox-next { right: 8px; }
     }
   </style>
 </head>
@@ -299,10 +543,66 @@
     </div>
   </section>
 
-  <!-- FULL IMAGE -->
-  <div class="full-img">
-    <img src="assets/nexxo-chat.png" alt="NEXXO Chat — Interfaz de comunicaciones seguras" loading="lazy" />
-    <span class="full-img-lbl">NEXXO C2 // NEXXO CHAT — E2E ENCRYPTED</span>
+  <!-- APP DOWNLOAD BANNER -->
+  <div class="app-download">
+    <div class="app-download-inner">
+      <span class="mono">NEXXO C2 // NEXXO CHAT — E2E ENCRYPTED</span>
+      <h2 class="app-download-title">Disponible en iOS y Android</h2>
+      <p class="app-download-sub">Descarga NEXXO Chat desde las tiendas oficiales y lleva las comunicaciones seguras a cualquier lugar de operación.</p>
+      <div class="app-download-badges">
+        <a href="https://play.google.com/store/apps/details?id=co.com.holo.nexxo" target="_blank" rel="noopener noreferrer" class="app-badge">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a2.372 2.372 0 0 1-.86-1.81V3.624c0-.702.322-1.37.859-1.81zm.76-.69L15.244 6.97l-2.852 2.853L4.369 1.124zM16.6 7.73l3.06 1.763c.87.5 1.34 1.266 1.34 2.157 0 .893-.503 1.69-1.34 2.157L16.6 15.57l-3.208-3.22L16.6 7.73zm-1.756 8.6l-10.476 5.696 8.023-8.023 2.453 2.327z"/></svg>
+          <div>
+            <small>Disponible en</small>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+        <a href="https://apps.apple.com/co/app/nexxo-chat/id6754418750" target="_blank" rel="noopener noreferrer" class="app-badge">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div>
+            <small>Descargar en el</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- APP SCREENSHOTS CAROUSEL -->
+  <section class="ch-screenshots">
+    <div class="ch-screenshots-header">
+      <span class="ch-screenshots-label">Capturas de pantalla</span>
+      <h2 class="ch-screenshots-title">Explora NEXXO Chat</h2>
+    </div>
+    <div class="ch-carousel-track" id="chCarousel">
+      <div class="ch-carousel-card" data-idx="0"><img src="assets/nexxo-chat-screen-5.webp" alt="NEXXO Chat — Pantalla de login" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="1"><img src="assets/nexxo-chat-screen-3.webp" alt="NEXXO Chat — Lista de chats" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="2"><img src="assets/nexxo-chat-screen-4.webp" alt="NEXXO Chat — Grupos" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="3"><img src="assets/nexxo-chat-screen-8.webp" alt="NEXXO Chat — Perfil de contacto" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="4"><img src="assets/nexxo-chat-screen-1.webp" alt="NEXXO Chat — Conversación con multimedia" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="5"><img src="assets/nexxo-chat-screen-7.webp" alt="NEXXO Chat — Modo oscuro conversación" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="6"><img src="assets/nexxo-chat-screen-2.webp" alt="NEXXO Chat — Configuración" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="7"><img src="assets/nexxo-chat-screen-6.webp" alt="NEXXO Chat — Personalización de temas" loading="lazy" /></div>
+      <!-- Duplicated set for seamless infinite loop -->
+      <div class="ch-carousel-card" data-idx="0"><img src="assets/nexxo-chat-screen-5.webp" alt="NEXXO Chat — Pantalla de login" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="1"><img src="assets/nexxo-chat-screen-3.webp" alt="NEXXO Chat — Lista de chats" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="2"><img src="assets/nexxo-chat-screen-4.webp" alt="NEXXO Chat — Grupos" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="3"><img src="assets/nexxo-chat-screen-8.webp" alt="NEXXO Chat — Perfil de contacto" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="4"><img src="assets/nexxo-chat-screen-1.webp" alt="NEXXO Chat — Conversación con multimedia" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="5"><img src="assets/nexxo-chat-screen-7.webp" alt="NEXXO Chat — Modo oscuro conversación" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="6"><img src="assets/nexxo-chat-screen-2.webp" alt="NEXXO Chat — Configuración" loading="lazy" /></div>
+      <div class="ch-carousel-card" data-idx="7"><img src="assets/nexxo-chat-screen-6.webp" alt="NEXXO Chat — Personalización de temas" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="ch-lightbox" id="chLightbox">
+    <button class="ch-lightbox-close" aria-label="Cerrar">&times;</button>
+    <button class="ch-lightbox-prev" aria-label="Anterior">&#8249;</button>
+    <button class="ch-lightbox-next" aria-label="Siguiente">&#8250;</button>
+    <img class="ch-lightbox-img" id="chLightboxImg" src="" alt="" />
+    <span class="ch-lightbox-caption" id="chLightboxCap"></span>
+    <span class="ch-lightbox-counter" id="chLightboxCounter"></span>
   </div>
 
   <!-- WHY NEXXO CHAT -->
@@ -481,6 +781,88 @@
     mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mm.classList.remove('open'); hb.classList.remove('open'); document.body.style.overflow = '' }));
     const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('iv'); obs.unobserve(x.target) } }), { threshold: .1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.rv').forEach(e => obs.observe(e));
+
+    /* ── CAROUSEL + LIGHTBOX ── */
+    (function() {
+      var track = document.getElementById('chCarousel');
+      var cards = track.querySelectorAll('.ch-carousel-card');
+      var totalImages = 8; // original image count (before duplication)
+      var imgSrcs = [];
+      var imgAlts = [];
+      // Collect unique image sources
+      for (var i = 0; i < totalImages; i++) {
+        var img = cards[i].querySelector('img');
+        imgSrcs.push(img.src);
+        imgAlts.push(img.alt);
+      }
+
+      // Pause marquee on hover (handled by CSS), pause on click for lightbox
+      var lb = document.getElementById('chLightbox');
+      var lbImg = document.getElementById('chLightboxImg');
+      var lbCap = document.getElementById('chLightboxCap');
+      var lbCounter = document.getElementById('chLightboxCounter');
+      var currentIdx = 0;
+
+      function openLightbox(idx) {
+        currentIdx = idx;
+        lbImg.src = imgSrcs[idx];
+        lbCap.textContent = imgAlts[idx];
+        lbCounter.textContent = (idx + 1) + ' / ' + totalImages;
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        track.classList.add('paused');
+      }
+
+      function closeLightbox() {
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+        track.classList.remove('paused');
+      }
+
+      function navLightbox(dir) {
+        currentIdx = (currentIdx + dir + totalImages) % totalImages;
+        lbImg.src = imgSrcs[currentIdx];
+        lbCap.textContent = imgAlts[currentIdx];
+        lbCounter.textContent = (currentIdx + 1) + ' / ' + totalImages;
+        lbImg.style.animation = 'none';
+        lbImg.offsetHeight;
+        lbImg.style.animation = '';
+      }
+
+      cards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          var idx = parseInt(card.getAttribute('data-idx'));
+          openLightbox(idx);
+        });
+      });
+
+      lb.querySelector('.ch-lightbox-close').addEventListener('click', closeLightbox);
+      lb.querySelector('.ch-lightbox-prev').addEventListener('click', function() { navLightbox(-1); });
+      lb.querySelector('.ch-lightbox-next').addEventListener('click', function() { navLightbox(1); });
+
+      lb.addEventListener('click', function(e) {
+        if (e.target === lb) closeLightbox();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (!lb.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navLightbox(-1);
+        if (e.key === 'ArrowRight') navLightbox(1);
+      });
+
+      // Touch swipe support for lightbox
+      var touchStartX = 0;
+      lbImg.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      lbImg.addEventListener('touchend', function(e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          navLightbox(diff > 0 ? 1 : -1);
+        }
+      }, { passive: true });
+    })();
   </script>
 </body>
 
