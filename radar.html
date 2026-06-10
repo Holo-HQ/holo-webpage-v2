@@ -157,20 +157,14 @@
   </div><!-- /tac-map-display -->
 
   <!-- VISUAL SHOWCASE -->
-  <section class="sec sec--shader">
-    <canvas class="rad-shader" aria-hidden="true"></canvas>
+    <section class="sec sec--shader sec--core">
+    <canvas class="core-bg" role="img"
+      aria-label="Núcleo agéntico de NEXXO C2 — visualización 3D del motor de razonamiento de HOLO"></canvas>
     <div class="ct">
       <span class="si rv">/00 — Vista Operacional</span>
       <h2 class="sh rv rd1">Dominando el<br>Teatro de Operaciones</h2>
       <p class="ss rv rd2">RADAR transforma datos crudos de múltiples sensores y fuentes de inteligencia en una imagen
         operacional clara, precisa y accionable para el comandante.</p>
-      <div class="showcase-grid rv rd3">
-        <div>
-          <img src="assets/radar-tactical-map-operations.png"
-            alt="Operadores tácticos planificando sobre mesa digital con mapa interactivo" loading="lazy" />
-          <span class="prod-lbl">NEXXO C2 // RADAR — TACTICAL PLANNING</span>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -182,171 +176,41 @@
       <p class="ss rv rd2">RADAR proporciona una visión 360° del teatro de operaciones colombiano en una sola interfaz.
       </p>
 
-      <div class="feat-grid" style="margin-top:64px">
-        <div class="feat-card rv">
-          <div class="feat-h">Mapa Geoespacial Interactivo</div>
-          <p class="feat-b">Mapa de Colombia con capas topográficas, hidrográficas y de infraestructura crítica. Zoom
-            desde nivel nacional hasta nivel táctico de unidad. Integración con Mapbox GL JS para renderizado vectorial
-            de alto rendimiento.</p>
-        </div>
-        <div class="feat-card rv rd1">
-          <div class="feat-h">Tracking de Activos Multi-Dominio</div>
-          <p class="feat-b">Seguimiento simultáneo de activos terrestres (blindados, infantería), navales (fragatas,
-            lanchas fluviales) y aéreos (Black Hawk, OV-10, UAVs). Cada activo reporta posición GPS, velocidad y rumbo.
-          </p>
-        </div>
-        <div class="feat-card rv">
-          <div class="feat-h">Telemetría en Tiempo Real</div>
-          <p class="feat-b">Panel lateral con telemetría de cada unidad: nivel de combustible, municiones disponibles,
-            estado operacional, último reporte. Actualización en tiempo real vía WebSockets con latencia inferior a 2
-            segundos.</p>
-        </div>
-        <div class="feat-card rv rd1">
-          <div class="feat-h">Sistema de Alertas Integrado</div>
-          <p class="feat-b">Alertas automáticas desde fuentes institucionales: IDEAM (eventos climáticos), MinDefensa,
-            ARMADA_COL e INTEL_DIV. Clasificación por prioridad y zona geográfica de impacto.</p>
-        </div>
-        <div class="feat-card rv">
-          <div class="feat-h">Sesión Autenticada y Auditoría</div>
-          <p class="feat-b">Autenticación JWT con control de acceso por rol y nivel de clasificación. Cada acción del
-            operador queda registrada: consultas, zoom, selección de unidades, exportación de datos.</p>
-        </div>
-        <div class="feat-card rv rd1">
-          <div class="feat-h">Zonas de Operación Prioritarias</div>
-          <p class="feat-b">Representación detallada de los teatros de operaciones clave: Catatumbo, Bajo Cauca,
-            Pacífico Nariñense, Frontera con Ecuador. Cada zona con nivel de riesgo y densidad de unidades desplegadas.
-          </p>
-        </div>
+      <div class="deck" role="list">
+        <article class="deck-card" style="--i:0" tabindex="0" role="listitem">
+          <div class="deck-top"><span class="deck-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" /><path d="M9 4v14M15 6v14" /></svg></span><span class="deck-n">01</span></div>
+          <h3 class="deck-t">Mapa Geoespacial Interactivo</h3>
+          <p class="deck-d">Mapa de Colombia con capas topográficas e infraestructura crítica; del nivel nacional al táctico de unidad.</p>
+        </article>
+        <article class="deck-card" style="--i:1" tabindex="0" role="listitem">
+          <div class="deck-top"><span class="deck-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></svg></span><span class="deck-n">02</span></div>
+          <h3 class="deck-t">Tracking de Activos Multi-Dominio</h3>
+          <p class="deck-d">Seguimiento simultáneo de activos terrestres, navales y aéreos, con posición, velocidad y rumbo.</p>
+        </article>
+        <article class="deck-card" style="--i:2" tabindex="0" role="listitem">
+          <div class="deck-top"><span class="deck-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12a9 9 0 0 1 18 0" /><path d="M12 12l4-2" /><circle cx="12" cy="12" r="1.4" /></svg></span><span class="deck-n">03</span></div>
+          <h3 class="deck-t">Telemetría en Tiempo Real</h3>
+          <p class="deck-d">Combustible, munición y estado operacional de cada unidad vía WebSockets, con menos de 2 s de latencia.</p>
+        </article>
+        <article class="deck-card" style="--i:3" tabindex="0" role="listitem">
+          <div class="deck-top"><span class="deck-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6" /><path d="M10 20a2 2 0 0 0 4 0" /></svg></span><span class="deck-n">04</span></div>
+          <h3 class="deck-t">Sistema de Alertas Integrado</h3>
+          <p class="deck-d">Alertas de IDEAM, MinDefensa, ARMADA e INTEL, clasificadas por prioridad y zona de impacto.</p>
+        </article>
+        <article class="deck-card" style="--i:4" tabindex="0" role="listitem">
+          <div class="deck-top"><span class="deck-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" /><rect x="9.5" y="11" width="5" height="4" rx="1" /><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11" /></svg></span><span class="deck-n">05</span></div>
+          <h3 class="deck-t">Sesión Autenticada y Auditoría</h3>
+          <p class="deck-d">Acceso por rol y clasificación (JWT); cada acción del operador queda registrada y auditable.</p>
+        </article>
+        <article class="deck-card" style="--i:5" tabindex="0" role="listitem">
+          <div class="deck-top"><span class="deck-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3 21 8 12 13 3 8z" /><path d="M3 12l9 5 9-5M3 16l9 5 9-5" /></svg></span><span class="deck-n">06</span></div>
+          <h3 class="deck-t">Zonas de Operación Prioritarias</h3>
+          <p class="deck-d">Catatumbo, Bajo Cauca, Pacífico Nariñense y frontera, cada zona con su nivel de riesgo.</p>
+        </article>
       </div>
     </div>
   </section>
 
-
-  <!-- SPECS -->
-  <section class="sec">
-    <div class="ct">
-      <span class="si rv">/02 — Especificaciones Técnicas</span>
-      <h2 class="sh rv rd1">Stack Tecnológico</h2>
-
-      <div class="arch-flow rv rd2">
-        <svg viewBox="0 0 820 580" preserveAspectRatio="xMidYMid meet"
-          aria-label="Arquitectura del sistema RADAR NEXXO C2" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="archDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="0" cy="0" r="0.7" fill="rgba(6,182,212,0.07)" />
-            </pattern>
-            <marker id="mC" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-              <path d="M0,0 L7,3.5 L0,7 Z" fill="rgba(6,182,212,0.5)" />
-            </marker>
-            <marker id="mG" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-              <path d="M0,0 L7,3.5 L0,7 Z" fill="rgba(200,168,75,0.5)" />
-            </marker>
-          </defs>
-
-          <!-- Background -->
-          <rect width="820" height="580" fill="#02040a" />
-          <rect width="820" height="580" fill="url(#archDots)" />
-
-          <!-- HUD corners -->
-          <path d="M0,20 L0,0 L20,0" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none" />
-          <path d="M800,0 L820,0 L820,20" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none" />
-          <path d="M0,560 L0,580 L20,580" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none" />
-          <path d="M800,580 L820,580 L820,560" stroke="rgba(200,168,75,0.3)" stroke-width="1" fill="none" />
-          <text x="10" y="14" fill="rgba(6,182,212,0.3)" font-family="JetBrains Mono,monospace" font-size="7.5"
-            letter-spacing=".1em">NEXXO C2 / ARQUITECTURA DEL SISTEMA</text>
-          <text x="670" y="14" fill="rgba(200,168,75,0.3)" font-family="JetBrains Mono,monospace" font-size="7.5"
-            letter-spacing=".1em">PROPIETARIO</text>
-
-          <!-- ===== ARROWS ===== -->
-          <!-- N1 → N3 -->
-          <path d="M 170,92 C 170,132 340,132 340,164" stroke="rgba(200,168,75,0.3)" stroke-width="1"
-            stroke-dasharray="5,4" fill="none" marker-end="url(#mG)" />
-          <!-- N2 → N3 -->
-          <path d="M 650,92 C 650,132 480,132 480,164" stroke="rgba(200,168,75,0.3)" stroke-width="1"
-            stroke-dasharray="5,4" fill="none" marker-end="url(#mG)" />
-          <!-- N3 → N4 -->
-          <path d="M 340,228 C 340,274 170,274 170,320" stroke="rgba(6,182,212,0.3)" stroke-width="1"
-            stroke-dasharray="5,4" fill="none" marker-end="url(#mC)" />
-          <!-- N3 → N5 -->
-          <path d="M 480,228 C 480,274 650,274 650,320" stroke="rgba(6,182,212,0.3)" stroke-width="1"
-            stroke-dasharray="5,4" fill="none" marker-end="url(#mC)" />
-          <!-- N4 → N6 -->
-          <path d="M 170,384 C 170,424 325,424 325,456" stroke="rgba(6,182,212,0.3)" stroke-width="1"
-            stroke-dasharray="5,4" fill="none" marker-end="url(#mC)" />
-          <!-- N5 → N6 -->
-          <path d="M 650,384 C 650,424 495,424 495,456" stroke="rgba(6,182,212,0.3)" stroke-width="1"
-            stroke-dasharray="5,4" fill="none" marker-end="url(#mC)" />
-
-          <!-- ===== NODE 1: HARDWARE TÁCTICO ===== -->
-          <rect x="60" y="28" width="220" height="64" rx="2" fill="rgba(200,168,75,0.07)" stroke="rgba(200,168,75,0.45)"
-            stroke-width="1" />
-          <text x="72" y="43" fill="rgba(200,168,75,0.3)" font-family="JetBrains Mono,monospace"
-            font-size="7">/01</text>
-          <text x="170" y="57" text-anchor="middle" fill="rgba(200,168,75,0.95)" font-family="JetBrains Mono,monospace"
-            font-size="10" font-weight="500" letter-spacing=".05em">HARDWARE TÁCTICO</text>
-          <text x="170" y="74" text-anchor="middle" fill="rgba(200,168,75,0.45)" font-family="JetBrains Mono,monospace"
-            font-size="7.5">Ruggedizado · Edge Computing · GNSS</text>
-
-          <!-- ===== NODE 2: APP MÓVIL ===== -->
-          <rect x="540" y="28" width="220" height="64" rx="2" fill="rgba(200,168,75,0.07)"
-            stroke="rgba(200,168,75,0.45)" stroke-width="1" />
-          <text x="552" y="43" fill="rgba(200,168,75,0.3)" font-family="JetBrains Mono,monospace"
-            font-size="7">/02</text>
-          <text x="650" y="57" text-anchor="middle" fill="rgba(200,168,75,0.95)" font-family="JetBrains Mono,monospace"
-            font-size="10" font-weight="500" letter-spacing=".05em">APP MÓVIL DE CAMPO</text>
-          <text x="650" y="74" text-anchor="middle" fill="rgba(200,168,75,0.45)" font-family="JetBrains Mono,monospace"
-            font-size="7.5">Offline-First · GPS · MGRS · SITREPs</text>
-
-          <!-- ===== NODE 3: COMUNICACIÓN & API ===== -->
-          <rect x="260" y="164" width="300" height="64" rx="2" fill="rgba(239,68,68,0.07)" stroke="rgba(239,68,68,0.4)"
-            stroke-width="1" />
-          <text x="272" y="179" fill="rgba(239,68,68,0.3)" font-family="JetBrains Mono,monospace"
-            font-size="7">/03</text>
-          <text x="410" y="193" text-anchor="middle" fill="rgba(239,68,68,0.9)" font-family="JetBrains Mono,monospace"
-            font-size="10" font-weight="500" letter-spacing=".05em">COMUNICACIÓN SEGURA &amp; API</text>
-          <text x="410" y="210" text-anchor="middle" fill="rgba(239,68,68,0.45)" font-family="JetBrains Mono,monospace"
-            font-size="7.5">Canal Cifrado · Autenticación · WebSocket · Tiempo Real</text>
-
-          <!-- ===== NODE 4: MOTOR GEOESPACIAL ===== -->
-          <rect x="60" y="320" width="220" height="64" rx="2" fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.4)"
-            stroke-width="1" />
-          <text x="72" y="335" fill="rgba(6,182,212,0.3)" font-family="JetBrains Mono,monospace"
-            font-size="7">/04</text>
-          <text x="170" y="350" text-anchor="middle" fill="rgba(6,182,212,0.9)" font-family="JetBrains Mono,monospace"
-            font-size="10" font-weight="500" letter-spacing=".05em">MOTOR GEOESPACIAL</text>
-          <text x="170" y="367" text-anchor="middle" fill="rgba(6,182,212,0.45)" font-family="JetBrains Mono,monospace"
-            font-size="7.5">Vectorial · Capas Tácticas · Tiles Offline</text>
-
-          <!-- ===== NODE 5: MOTOR DE DATOS ===== -->
-          <rect x="540" y="320" width="220" height="64" rx="2" fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.4)"
-            stroke-width="1" />
-          <text x="552" y="335" fill="rgba(6,182,212,0.3)" font-family="JetBrains Mono,monospace"
-            font-size="7">/05</text>
-          <text x="650" y="350" text-anchor="middle" fill="rgba(6,182,212,0.9)" font-family="JetBrains Mono,monospace"
-            font-size="10" font-weight="500" letter-spacing=".05em">MOTOR DE DATOS</text>
-          <text x="650" y="367" text-anchor="middle" fill="rgba(6,182,212,0.45)" font-family="JetBrains Mono,monospace"
-            font-size="7.5">Geoespacial · Telemetría · Caché en Tiempo Real</text>
-
-          <!-- ===== NODE 6: COP DASHBOARD ===== -->
-          <rect x="240" y="456" width="340" height="64" rx="2" fill="rgba(200,168,75,0.1)" stroke="rgba(200,168,75,0.6)"
-            stroke-width="1.5" />
-          <text x="252" y="471" fill="rgba(200,168,75,0.35)" font-family="JetBrains Mono,monospace"
-            font-size="7">/06</text>
-          <text x="410" y="488" text-anchor="middle" fill="rgba(200,168,75,1)" font-family="JetBrains Mono,monospace"
-            font-size="11" font-weight="500" letter-spacing=".06em">COP — INTERFAZ DE COMANDO</text>
-          <text x="410" y="505" text-anchor="middle" fill="rgba(200,168,75,0.5)" font-family="JetBrains Mono,monospace"
-            font-size="7.5">Dashboard Táctico · Alertas · &lt; 2s · Heartbeat</text>
-
-          <!-- ===== INFRA BAR ===== -->
-          <rect x="40" y="546" width="740" height="22" rx="2" fill="rgba(34,197,94,0.05)" stroke="rgba(34,197,94,0.3)"
-            stroke-width="1" />
-          <text x="410" y="561" text-anchor="middle" fill="rgba(34,197,94,0.65)" font-family="JetBrains Mono,monospace"
-            font-size="7.5" letter-spacing=".09em">INFRAESTRUCTURA SOBERANA — On-Premise · Nube Nacional · Sin
-            Dependencia Extranjera</text>
-        </svg>
-      </div>
-    </div>
-  </section>
 
   <!-- PROCESO DE PLANEAMIENTO (órbita) -->
   <section class="orbit-sec" aria-label="Fases del proceso de planeamiento">
@@ -834,6 +698,118 @@
         new IntersectionObserver((e) => { inView = e[0].isIntersecting; (inView && !document.hidden) ? start() : stop(); }, { threshold: 0 }).observe(orbit);
       } else { start(); }
       document.addEventListener('visibilitychange', () => { (inView && !document.hidden) ? start() : stop(); });
+    })();
+  </script>
+
+  <!-- NÚCLEO AGÉNTICO 3D — fondo de la sección (canvas vanilla) -->
+  <script>
+    (function () {
+      const canvas = document.querySelector('.core-bg');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const DPR = Math.min(window.devicePixelRatio || 1, 2);
+      const GOLD = [232, 200, 121], DEEP = [202, 164, 90], CREAM = [255, 243, 214];
+      const t = (1 + Math.sqrt(5)) / 2;
+      const verts = [
+        [-1, t, 0], [1, t, 0], [-1, -t, 0], [1, -t, 0],
+        [0, -1, t], [0, 1, t], [0, -1, -t], [0, 1, -t],
+        [t, 0, -1], [t, 0, 1], [-t, 0, -1], [-t, 0, 1]
+      ].map(function (p) { const l = Math.hypot(p[0], p[1], p[2]); return [p[0] / l, p[1] / l, p[2] / l]; });
+      const edges = [];
+      let min2 = Infinity;
+      for (let i = 0; i < verts.length; i++) for (let j = i + 1; j < verts.length; j++) {
+        const dx = verts[i][0]-verts[j][0], dy = verts[i][1]-verts[j][1], dz = verts[i][2]-verts[j][2];
+        const d2 = dx*dx+dy*dy+dz*dz; if (d2 < min2) min2 = d2;
+      }
+      for (let i = 0; i < verts.length; i++) for (let j = i + 1; j < verts.length; j++) {
+        const dx = verts[i][0]-verts[j][0], dy = verts[i][1]-verts[j][1], dz = verts[i][2]-verts[j][2];
+        if (Math.abs(dx*dx+dy*dy+dz*dz - min2) < 0.05) edges.push([i, j]);
+      }
+      const PARTS = [];
+      for (let i = 0; i < 130; i++) {
+        const r = 1.7 + Math.random()*1.5, th = Math.random()*Math.PI*2, ph = Math.acos(2*Math.random()-1);
+        PARTS.push([r*Math.sin(ph)*Math.cos(th), r*Math.sin(ph)*Math.sin(th), r*Math.cos(ph)]);
+      }
+      let W, H, cx, cy, R;
+      function resize() {
+        const b = canvas.getBoundingClientRect();
+        W = canvas.width = Math.max(2, Math.round(b.width*DPR));
+        H = canvas.height = Math.max(2, Math.round(b.height*DPR));
+        cx = W*0.62; cy = H/2; R = Math.min(W*0.36, H*0.62);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      let px = 0, py = 0, tiltX = 0, tiltY = 0;
+      const host = canvas.closest('.sec') || window;
+      host.addEventListener('pointermove', function (e) {
+        const b = canvas.getBoundingClientRect();
+        px = ((e.clientX-b.left)/b.width-0.5)*2;
+        py = ((e.clientY-b.top)/b.height-0.5)*2;
+      });
+      const CAM = 3.6, FOC = 2.7;
+      function rotate(p, ay, ax) {
+        const x = p[0], y = p[1], z = p[2];
+        const cyA = Math.cos(ay), syA = Math.sin(ay);
+        const x1 = x*cyA+z*syA, z1 = -x*syA+z*cyA;
+        const cxA = Math.cos(ax), sxA = Math.sin(ax);
+        return [x1, y*cxA-z1*sxA, y*sxA+z1*cxA];
+      }
+      function project(p, scale) { const s = R*scale*FOC/(CAM-p[2]); return [cx+p[0]*s, cy+p[1]*s, p[2]]; }
+      function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+      function shell(scale, color, ay, ax, baseA) {
+        const pr = verts.map(function (v) { return project(rotate(v, ay, ax), scale); });
+        ctx.lineWidth = DPR;
+        for (let e = 0; e < edges.length; e++) {
+          const a = pr[edges[e][0]], b = pr[edges[e][1]];
+          const da = baseA*(0.4+0.6*((a[2]+b[2])*0.5+1)/2);
+          ctx.strokeStyle = rgba(color, da);
+          ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+        }
+        return pr;
+      }
+      let ry = 0, rx = 0, rpart = 0;
+      function frame() {
+        ctx.clearRect(0, 0, W, H);
+        ctx.globalCompositeOperation = 'lighter';
+        if (!reduce) { ry += 0.0028; rx += 0.0010; rpart -= 0.0007; }
+        tiltX += (py*0.22-tiltX)*0.05; tiltY += (px*0.30-tiltY)*0.05;
+        const ay = ry+tiltY, ax = rx+tiltX;
+        for (let i = 0; i < PARTS.length; i++) {
+          const rp = rotate(PARTS[i], ay+rpart, ax*0.6);
+          if (CAM-rp[2] < 0.8) continue;
+          const p = project(rp, 1);
+          const d = Math.max(0, Math.min(1, (rp[2]+2)/4));
+          ctx.fillStyle = rgba(GOLD, 0.16+0.4*d);
+          ctx.beginPath(); ctx.arc(p[0], p[1], DPR*(0.8+d*0.8), 0, Math.PI*2); ctx.fill();
+        }
+        const c0 = project([0, 0, 0], 1);
+        const g = ctx.createRadialGradient(c0[0], c0[1], 0, c0[0], c0[1], R*0.55);
+        g.addColorStop(0, rgba(CREAM, 0.4)); g.addColorStop(1, rgba(CREAM, 0));
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(c0[0], c0[1], R*0.55, 0, Math.PI*2); ctx.fill();
+        const pr = shell(1.0, GOLD, ay, ax, 0.6);
+        shell(0.6, CREAM, ay*1.15, ax*1.15, 0.3);
+        shell(1.04, DEEP, ay, ax, 0.16);
+        for (let i = 0; i < pr.length; i++) {
+          const d = (pr[i][2]+1)/2;
+          ctx.fillStyle = rgba(CREAM, 0.85*(0.5+0.5*d));
+          ctx.beginPath(); ctx.arc(pr[i][0], pr[i][1], DPR*(1.3+d), 0, Math.PI*2); ctx.fill();
+        }
+        ctx.globalCompositeOperation = 'source-over';
+      }
+      let raf = null, running = false, inView = true;
+      function loop() { frame(); raf = requestAnimationFrame(loop); }
+      function start() { if (running || reduce) return; running = true; raf = requestAnimationFrame(loop); }
+      function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+      function update() { (inView && !document.hidden) ? start() : stop(); }
+      if (reduce) { frame(); }
+      else if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (e) { inView = e[0].isIntersecting; update(); }, { threshold: 0 }).observe(canvas);
+        document.addEventListener('visibilitychange', update);
+        update();
+      } else { start(); }
     })();
   </script>
 </body>
