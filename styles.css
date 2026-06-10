@@ -429,6 +429,17 @@ footer { border-top: 1px solid var(--b0); padding: 64px 0 40px; background: #0a0
 .full-img img { width: 100%; max-height: 560px; object-fit: cover; filter: brightness(.65) contrast(1.1); }
 .full-img-lbl { position: absolute; z-index: 2; bottom: 20px; left: 20px; font-family: var(--mono); font-size: 9px; color: rgba(255,255,255,.7); letter-spacing: .1em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.2); padding: 4px 8px; background: rgba(0,0,0,.65); }
 
+/* PLACEHOLDER DE IMAGEN (reemplazar por <img> cuando exista el asset) */
+.img-slot { position: relative; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 300px; padding: 40px 32px; color: rgba(231,231,229,.7);
+  background: repeating-linear-gradient(45deg, transparent, transparent 14px, rgba(212,175,55,.04) 14px, rgba(212,175,55,.04) 15px), #00152b;
+  border: 1px dashed rgba(212,175,55,.4); }
+.img-slot--wide { width: 100%; aspect-ratio: 16 / 9; min-height: 0; max-height: 560px; }
+.img-slot-inner { max-width: 540px; }
+.img-slot-icon { width: 32px; height: 32px; color: #D4AF37; display: block; margin: 0 auto 16px; }
+.img-slot-file { font-family: var(--mono); font-size: 13px; letter-spacing: .05em; color: #D4AF37; }
+.img-slot-spec { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(231,231,229,.45); margin-top: 7px; }
+.img-slot-desc { font-size: 13px; line-height: 1.6; color: rgba(231,231,229,.62); margin: 14px 0 0; }
+
 /* APP DOWNLOAD BANNER */
 .app-download { border-top: 1px solid var(--b0); background: var(--bg1); padding: 80px 0; text-align: center; }
 .app-download-inner { max-width: 640px; margin: 0 auto; padding: 0 24px; }
