@@ -1148,32 +1148,32 @@
       .arch-panel { min-height: 0; }
     }
 
-    /* ── Carrusel escalonado — Tres Fuerzas ── */
-    .stagger { position: relative; width: 100%; height: 660px; margin-top: clamp(40px, 5vw, 64px); overflow: hidden; }
-    .stg-card { --stg-size: 440px; position: absolute; left: 50%; top: 50%; width: var(--stg-size); height: var(--stg-size); cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; transition: transform .5s var(--ease), box-shadow .5s var(--ease), background .4s, border-color .4s; clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px)); }
-    .stg-card.is-center { background: #001F3F; color: #fff; border-color: var(--dark-acc); box-shadow: 0 16px 0 -2px rgba(212, 175, 55, .22); }
-    .stg-card-img { width: 100%; height: 46%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.25) brightness(.95); border-bottom: 1px solid var(--b0); transition: filter .4s; }
-    .stg-card.is-center .stg-card-img { filter: none; border-bottom-color: rgba(212, 175, 55, .4); }
-    .stg-card-body { padding: 16px 22px 0; display: flex; flex-direction: column; gap: 7px; }
+    /* ── Carrusel escalonado — Fuerzas (tarjeta central expandida) ── */
+    .stagger { position: relative; width: 100%; height: 680px; margin-top: clamp(40px, 5vw, 64px); overflow: hidden; }
+    .stg-card { position: absolute; left: 50%; top: 50%; width: 272px; height: 366px; cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; transition: transform .55s var(--ease), box-shadow .5s var(--ease), background .4s, border-color .4s; clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 26px 100%, 0 calc(100% - 26px)); }
+    .stg-card-img { width: 100%; height: 56%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.3) brightness(.92); border-bottom: 1px solid var(--b0); transition: filter .4s; }
+    .stg-card-body { padding: 14px 18px 0; display: flex; flex-direction: column; gap: 6px; }
     .stg-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); }
+    .stg-h { font-size: 17px; font-weight: 700; line-height: 1.12; letter-spacing: -.01em; margin: 0; }
+    .stg-p { font-size: 12px; line-height: 1.45; margin: 2px 0 0; opacity: .8; }
+    /* tarjeta central expandida — todo el texto */
+    .stg-card.is-center { width: min(620px, 92vw); height: 560px; background: #001F3F; color: #fff; border-color: var(--dark-acc); box-shadow: 0 16px 0 -2px rgba(212, 175, 55, .22); clip-path: polygon(0 0, calc(100% - 34px) 0, 100% 34px, 100% 100%, 34px 100%, 0 calc(100% - 34px)); }
+    .stg-card.is-center .stg-card-img { height: 19%; filter: none; border-bottom-color: rgba(212, 175, 55, .4); }
     .stg-card.is-center .stg-tag { color: var(--dark-acc); }
-    .stg-h { font-size: clamp(17px, 1.5vw, 21px); font-weight: 700; line-height: 1.12; letter-spacing: -.01em; margin: 0; }
-    .stg-p { font-size: 13px; line-height: 1.5; margin: 2px 0 0; opacity: .82; }
-    .stg-nav { position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); display: flex; gap: 10px; z-index: 20; }
+    .stg-full { padding: 16px clamp(20px, 3vw, 30px) 18px; display: flex; flex-direction: column; gap: 9px; overflow: hidden; }
+    .stg-fh { font-size: clamp(20px, 2vw, 26px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; margin: 0; color: #fff; }
+    .stg-fintro { font-size: 13.5px; line-height: 1.5; color: rgba(231, 231, 229, .86); margin: 0; }
+    .stg-flist { list-style: none; margin: 1px 0 0; padding: 0; display: grid; gap: 7px; }
+    .stg-flist li { position: relative; padding-left: 18px; font-size: 12.5px; line-height: 1.45; color: rgba(231, 231, 229, .82); }
+    .stg-flist li::before { content: ''; position: absolute; left: 0; top: 6px; width: 7px; height: 7px; background: var(--dark-acc); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+    .stg-flist b { color: #fff; font-weight: 600; }
+    .stg-fclose { font-size: 12.5px; line-height: 1.45; color: #fff; font-weight: 500; margin: 3px 0 0; padding-left: 14px; border-left: 2px solid var(--dark-acc); }
+    .stg-nav { position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); display: flex; gap: 10px; z-index: 30; }
     .stg-btn { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: var(--bg); border: 1px solid var(--b2); color: var(--t0); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
     .stg-btn:hover { background: #001F3F; color: #fff; border-color: #001F3F; }
     .stg-btn svg { width: 20px; height: 20px; }
-    /* Panel de detalle de la fuerza centrada */
-    .stg-detail { max-width: 760px; margin: clamp(14px, 2.5vw, 30px) auto 0; border-top: 1px solid var(--b1); padding-top: 28px; }
-    .stg-detail-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
-    .stg-detail-h { font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; letter-spacing: -.02em; color: var(--t0); margin: 8px 0 16px; }
-    .stg-detail-intro { font-size: clamp(15px, 1.5vw, 17px); line-height: 1.6; color: var(--t1); margin: 0 0 22px; }
-    .stg-detail-list { list-style: none; display: grid; gap: 13px; margin: 0 0 22px; padding: 0; }
-    .stg-detail-list li { position: relative; padding-left: 22px; font-size: 14.5px; line-height: 1.55; color: var(--t1); }
-    .stg-detail-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; background: var(--acc); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
-    .stg-detail-list b { color: var(--t0); font-weight: 600; }
-    .stg-detail-close { font-size: 15px; line-height: 1.6; color: var(--t0); font-weight: 500; margin: 0; padding-left: 16px; border-left: 2px solid var(--acc); }
-    @media (max-width: 640px) { .stagger { height: 540px; } }
+    @media (max-width: 760px) { .stagger { height: 620px; } .stg-card { width: 208px; height: 298px; } .stg-card.is-center { width: 92vw; height: 540px; } .stg-card.is-center .stg-card-img { height: 16%; } }
+    @media (prefers-reduced-motion: reduce) { .stg-card { transition: background .4s, border-color .4s; } }
     @media (prefers-reduced-motion: reduce) { .stg-card { transition: background .4s, border-color .4s; } }
   </style>
 </head>
@@ -1486,9 +1486,6 @@
           <button class="stg-btn" type="button" data-stg-prev aria-label="Fuerza anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg></button>
           <button class="stg-btn" type="button" data-stg-next aria-label="Fuerza siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg></button>
         </div>
-      </div>
-      <div class="ct">
-        <div class="stg-detail" data-stg-detail aria-live="polite"></div>
       </div>
     </div>
   </section>
@@ -2286,47 +2283,57 @@
             { lead: 'Del nivel táctico al estratégico:', rest: 'cada escalón ve el detalle que le corresponde — el detalle táctico se agrega hacia arriba hasta la vista con la que decide el comandante de las Fuerzas Militares.' }
           ],
           close: 'Una sola imagen. Una decisión más rápida que la del adversario.'
+        },
+        {
+          tag: '/05 — Policía Nacional', h: 'Conciencia Situacional para la Seguridad Pública', tagline: 'Despliegue, jurisdicciones y respuesta de la Policía sobre el mismo mapa.', img: 'assets/Colombia-Fuerzas-Militares.webp',
+          intro: 'El componente de seguridad pública de NEXXO C2 lleva la imagen operacional común al servicio de policía: unidades, jurisdicciones y capacidades especiales sobre el mismo mapa que las Fuerzas Militares, para articular la acción del Estado en el territorio.',
+          bullets: [
+            { lead: 'Despliegue territorial:', rest: 'estaciones, distritos y unidades móviles georreferenciados, con disponibilidad y tiempos de respuesta por jurisdicción.' },
+            { lead: 'Acción unificada con las Fuerzas:', rest: 'coordinación entre Policía y Fuerzas Militares en zonas de seguridad, con medidas de control y enlace en tiempo real, sin sistemas separados.' },
+            { lead: 'Capacidades especiales:', rest: 'unidades de intervención, antiexplosivos y aviación policial integradas en la misma imagen operacional.' }
+          ],
+          close: 'La seguridad del ciudadano y la defensa de la Nación, leídas en un solo plano.'
         }
       ];
-      let list = [FORCES[2], FORCES[3], FORCES[0], FORCES[1]]; // centra Ejército al inicio
-      let size = 360;
+      let list = [FORCES[3], FORCES[4], FORCES[0], FORCES[1], FORCES[2]]; // centra Ejército al inicio
 
-      const els = FORCES.map((f) => {
-        const el = document.createElement('article');
-        el.className = 'stg-card';
-        el.innerHTML = '<div class="stg-card-img" style="background-image:url(' + f.img + ')"></div>'
+      function coverHTML(f) {
+        return '<div class="stg-card-img" style="background-image:url(' + f.img + ')"></div>'
           + '<div class="stg-card-body"><span class="stg-tag">' + f.tag + '</span><h3 class="stg-h">' + f.h + '</h3>'
           + (f.tagline ? '<p class="stg-p">' + f.tagline + '</p>' : '') + '</div>';
-        el.addEventListener('click', () => move(list.indexOf(f) - Math.floor(list.length / 2)));
+      }
+      function fullHTML(f) {
+        return '<div class="stg-card-img" style="background-image:url(' + f.img + ')"></div>'
+          + '<div class="stg-full"><span class="stg-tag">' + f.tag + '</span><h3 class="stg-fh">' + f.h + '</h3>'
+          + '<p class="stg-fintro">' + f.intro + '</p>'
+          + '<ul class="stg-flist">' + f.bullets.map(function (b) { return '<li><b>' + b.lead + '</b> ' + b.rest + '</li>'; }).join('') + '</ul>'
+          + (f.close ? '<p class="stg-fclose">' + f.close + '</p>' : '') + '</div>';
+      }
+
+      const els = FORCES.map(function (f) {
+        const el = document.createElement('article');
+        el.className = 'stg-card';
+        el.addEventListener('click', function () { move(list.indexOf(f) - Math.floor(list.length / 2)); });
         stage.insertBefore(el, stage.firstChild);
         return el;
       });
 
-      function detailHTML(f) {
-        return '<span class="stg-detail-tag">' + f.tag + '</span>'
-          + '<h3 class="stg-detail-h">' + f.h + '</h3>'
-          + '<p class="stg-detail-intro">' + f.intro + '</p>'
-          + '<ul class="stg-detail-list">' + f.bullets.map(function (b) { return '<li><b>' + b.lead + '</b> ' + b.rest + '</li>'; }).join('') + '</ul>'
-          + (f.close ? '<p class="stg-detail-close">' + f.close + '</p>' : '');
-      }
       function render() {
         const mid = Math.floor(list.length / 2);
-        const spread = list.length >= 4 ? 0.5 : 0.62;
-        FORCES.forEach((f, i) => {
+        const step = window.matchMedia('(min-width: 760px)').matches ? 286 : 184;
+        FORCES.forEach(function (f, i) {
           const el = els[i];
           const position = list.indexOf(f) - mid;
           const center = position === 0;
           el.classList.toggle('is-center', center);
           el.setAttribute('aria-hidden', center ? 'false' : 'true');
-          el.style.setProperty('--stg-size', size + 'px');
-          el.style.zIndex = center ? 10 : (5 - Math.abs(position));
+          el.innerHTML = center ? fullHTML(f) : coverHTML(f);
+          el.style.zIndex = center ? 20 : (10 - Math.abs(position));
           el.style.transform = 'translate(-50%,-50%)'
-            + ' translateX(' + (position * size * spread).toFixed(0) + 'px)'
-            + ' translateY(' + (center ? -24 : 16) + 'px)'
-            + ' rotate(' + (center ? 0 : (position > 0 ? 3.5 : -3.5)) + 'deg)'
-            + ' scale(' + (center ? 1 : 0.94) + ')';
+            + ' translateX(' + (position * step).toFixed(0) + 'px)'
+            + ' translateY(' + (center ? 0 : 26) + 'px)'
+            + ' rotate(' + (center ? 0 : (position > 0 ? 2 : -2)) + 'deg)';
         });
-        if (detail) detail.innerHTML = detailHTML(list[Math.floor(list.length / 2)]);
       }
       function move(steps) {
         if (!steps) return;
@@ -2334,11 +2341,10 @@
         else { for (let i = 0; i < -steps; i++) list.unshift(list.pop()); }
         render();
       }
-      stage.querySelector('[data-stg-prev]').addEventListener('click', () => move(-1));
-      stage.querySelector('[data-stg-next]').addEventListener('click', () => move(1));
-      function resize() { size = window.matchMedia('(min-width: 640px)').matches ? 440 : 300; render(); }
-      resize();
-      window.addEventListener('resize', resize, { passive: true });
+      stage.querySelector('[data-stg-prev]').addEventListener('click', function () { move(-1); });
+      stage.querySelector('[data-stg-next]').addEventListener('click', function () { move(1); });
+      render();
+      window.addEventListener('resize', render, { passive: true });
     })();
   </script>
 </body>
