@@ -459,25 +459,42 @@ footer { border-top: 1px solid var(--b0); padding: 64px 0 40px; background: #0a0
 .orbit-sec .si { color: var(--dark-acc); }
 .orbit-sec .sh { color: #fff; }
 .orbit-sec .ss { color: rgba(231,231,229,.8); max-width: 54ch; }
-.orbit-wrap { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,360px); gap: clamp(24px,4vw,56px); align-items: center; max-width: 1280px; margin: clamp(28px,4vw,48px) auto 0; padding: 0 clamp(20px,4vw,48px); }
-.orbit { position: relative; width: 100%; max-width: 520px; aspect-ratio: 1; margin: 0 auto; }
-.orbit-ring { position: absolute; inset: 13%; border: 1px solid rgba(212,175,55,.18); border-radius: 50% !important; }
-.orbit-core { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 98px; height: 98px; border-radius: 50% !important; background: #001F3F; border: 1px solid var(--dark-acc); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; z-index: 3; transition: box-shadow .3s; }
-.orbit-core:hover { box-shadow: 0 0 26px rgba(212,175,55,.35); }
-.orbit-core-k { font-family: var(--sans); font-weight: 700; font-size: 18px; letter-spacing: .02em; }
-.orbit-core-v { font-family: var(--mono); font-size: 8px; letter-spacing: .14em; color: var(--dark-acc); }
-.orbit-node { position: absolute; left: 50%; top: 50%; }
-.orbit-node-btn { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 46px; height: 46px; border-radius: 50% !important; background: rgba(231,231,229,.08); border: 1px solid rgba(255,255,255,.25); color: #E7E7E5; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .25s, border-color .25s, color .25s, transform .25s; }
-.orbit-node-btn svg { width: 20px; height: 20px; }
-.orbit-node-btn:hover, .orbit-node.is-active .orbit-node-btn { background: var(--dark-acc); border-color: var(--dark-acc); color: #001F3F; transform: translate(-50%,-50%) scale(1.14); }
-.orbit-node-lbl { position: absolute; left: 50%; top: calc(50% + 34px); transform: translateX(-50%); white-space: nowrap; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: rgba(231,231,229,.58); transition: color .25s; pointer-events: none; }
+.orbit-wrap { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,400px); gap: clamp(28px,4vw,64px); align-items: center; max-width: 1320px; margin: clamp(32px,4vw,56px) auto 0; padding: 0 clamp(20px,4vw,48px); }
+.orbit { position: relative; width: 100%; max-width: 620px; aspect-ratio: 1; margin: 0 auto; }
+.orbit-ring { position: absolute; inset: 13%; border: 1px solid rgba(212,175,55,.16); border-radius: 50% !important; }
+.orbit-links { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.orbit-link-base { stroke: rgba(212,175,55,.22); stroke-width: .45; stroke-linejoin: round; }
+.orbit-link-prog { stroke: var(--dark-acc); stroke-width: .8; stroke-linejoin: round; stroke-linecap: round; filter: drop-shadow(0 0 1.4px rgba(212,175,55,.6)); transition: stroke-width .3s; }
+.orbit-core { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 118px; height: 118px; border-radius: 50% !important; background: #001F3F; border: 1px solid var(--dark-acc); color: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; z-index: 4; transition: box-shadow .3s; }
+.orbit-core:hover { box-shadow: 0 0 28px rgba(212,175,55,.38); }
+.orbit-core.is-paused { animation: orbitPulse 1.9s ease infinite; }
+@keyframes orbitPulse { 0%,100% { box-shadow: 0 0 0 1px var(--dark-acc), 0 0 16px rgba(212,175,55,.3); } 50% { box-shadow: 0 0 0 1px var(--dark-acc), 0 0 32px rgba(212,175,55,.6); } }
+.orbit-core-k { font-family: var(--sans); font-weight: 700; font-size: 22px; letter-spacing: .02em; }
+.orbit-core-v { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: var(--dark-acc); }
+.orbit-node { position: absolute; left: 50%; top: 50%; z-index: 2; }
+.orbit-node-btn { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 56px; height: 56px; border-radius: 50% !important; background: rgba(0,21,43,.85); border: 1px solid rgba(255,255,255,.25); color: #E7E7E5; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .25s, border-color .25s, color .25s, transform .25s; }
+.orbit-node-btn svg { width: 24px; height: 24px; }
+.orbit-node-btn:hover, .orbit-node.is-active .orbit-node-btn { background: var(--dark-acc); border-color: var(--dark-acc); color: #001F3F; transform: translate(-50%,-50%) scale(1.16); }
+.orbit-node.is-active .orbit-node-btn { box-shadow: 0 0 22px rgba(212,175,55,.5); }
+.orbit-node-lbl { position: absolute; left: 50%; top: calc(50% + 40px); transform: translateX(-50%); white-space: nowrap; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: rgba(231,231,229,.58); transition: color .25s; pointer-events: none; }
 .orbit-node.is-active .orbit-node-lbl { color: #fff; }
-.orbit-detail { border: 1px solid rgba(255,255,255,.12); background: rgba(0,31,63,.4); padding: clamp(22px,3vw,30px); min-height: 210px; display: flex; flex-direction: column; justify-content: center; }
-.orbit-detail-hint { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: rgba(231,231,229,.45); }
-.orbit-detail-n { font-family: var(--sans); font-weight: 700; font-size: clamp(30px,4vw,44px); color: var(--dark-acc); line-height: 1; font-variant-numeric: tabular-nums; }
+.orbit-side { display: flex; flex-direction: column; gap: 18px; }
+.orbit-detail { border: 1px solid rgba(255,255,255,.12); background: rgba(0,31,63,.4); padding: clamp(24px,3vw,32px); min-height: 220px; display: flex; flex-direction: column; justify-content: center; }
+.orbit-detail-n { font-family: var(--sans); font-weight: 700; font-size: clamp(32px,4vw,48px); color: var(--dark-acc); line-height: 1; font-variant-numeric: tabular-nums; }
 .orbit-detail-ref { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: rgba(231,231,229,.5); margin-left: 12px; }
-.orbit-detail-title { font-size: clamp(18px,2vw,24px); font-weight: 700; color: #fff; margin: 12px 0 10px; letter-spacing: -.01em; }
-.orbit-detail-body { font-size: 14px; line-height: 1.6; color: rgba(231,231,229,.82); margin: 0; }
+.orbit-detail-title { font-size: clamp(19px,2vw,25px); font-weight: 700; color: #fff; margin: 12px 0 10px; letter-spacing: -.01em; }
+.orbit-detail-body { font-size: 14px; line-height: 1.62; color: rgba(231,231,229,.82); margin: 0; }
+.orbit-progress { display: flex; gap: 6px; }
+.orbit-prog { flex: 1; background: 0; border: 0; padding: 0; cursor: pointer; text-align: left; }
+.orbit-prog::before { content: ''; display: block; height: 2px; background: rgba(255,255,255,.14); transition: background .35s; }
+.orbit-prog.is-on::before { background: var(--dark-acc); }
+.orbit-prog-n { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: rgba(231,231,229,.42); margin-top: 8px; transition: color .35s; }
+.orbit-prog.is-on .orbit-prog-n { color: var(--dark-acc); }
+.orbit-prog-l { display: block; font-size: 10px; color: rgba(231,231,229,.38); margin-top: 2px; transition: color .35s; }
+.orbit-prog.is-current .orbit-prog-l { color: #fff; }
+.orbit-prog:focus-visible { outline: 2px solid var(--dark-acc); outline-offset: 3px; }
+.orbit-hint { font-family: var(--mono); font-size: 10px; line-height: 1.6; letter-spacing: .04em; color: rgba(231,231,229,.45); margin: 0; }
+.orbit-hint b { color: var(--dark-acc); font-weight: 500; }
 @media (max-width: 880px) { .orbit-wrap { grid-template-columns: 1fr; } }
 
 /* RADAR — deck de capacidades (baraja interactiva) */
