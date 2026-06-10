@@ -1027,6 +1027,29 @@
       .bento-card--feature, .bento-card--wide { grid-column: span 1; grid-row: auto; }
     }
     @media (prefers-reduced-motion: reduce) { .bento-card, .bento-media img, .bento-cta { transition: none; } }
+
+    /* ===== Stat cards (Tres Fuerzas) ===== */
+    .stat-cards { max-width: 1280px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .stat-card { padding: 28px 24px; border: 1px solid var(--b0); background: var(--bg1); transition: border-color .3s var(--ease), transform .3s var(--ease); }
+    .stat-card:hover { border-color: var(--acc); transform: translateY(-3px); }
+    .stat-icon { width: 26px; height: 26px; color: var(--acc); display: block; margin-bottom: 18px; }
+    .stat-num { font-family: var(--sans); font-size: clamp(32px, 4vw, 52px); font-weight: 700; letter-spacing: -.035em; color: var(--t0); line-height: 1; font-variant-numeric: tabular-nums; }
+    .stat-num sup { font-size: .45em; vertical-align: super; }
+    .stat-label { margin-top: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--t2); line-height: 1.6; }
+    @media (max-width: 860px) { .stat-cards { grid-template-columns: repeat(2, 1fr); padding: 0 24px; } }
+    @media (max-width: 480px) { .stat-cards { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) { .stat-card { transition: none; } }
+
+    /* ===== Feature grid (Soberanía) ===== */
+    .feature-grid { max-width: 1280px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .feature-card { padding: 32px 28px; border: 1px solid var(--b0); background: var(--bg1); transition: border-color .3s var(--ease), transform .3s var(--ease); }
+    .feature-card:hover { border-color: var(--acc); transform: translateY(-3px); }
+    .feature-icon { width: 28px; height: 28px; color: var(--acc); display: block; margin-bottom: 20px; }
+    .feature-num { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); }
+    .feature-h { margin: 12px 0 10px; font-size: clamp(18px, 1.6vw, 22px); font-weight: 700; letter-spacing: -.02em; color: var(--t0); }
+    .feature-b { font-size: 14px; line-height: 1.6; color: var(--t1); }
+    @media (max-width: 860px) { .feature-grid { grid-template-columns: 1fr; padding: 0 24px; } }
+    @media (prefers-reduced-motion: reduce) { .feature-card { transition: none; } }
   </style>
 </head>
 
@@ -1340,22 +1363,26 @@
 
   <!-- ═══════ SOCIAL PROOF — METRICS BAR ═══════ -->
   <div class="mk-proof" aria-label="Métricas del sistema">
-    <div class="mk-proof-grid">
-      <div class="mk-proof-it rv">
-        <div class="mk-proof-n">5<sup>+</sup></div>
-        <p class="mk-proof-l">Años de I+D en tecnología<br>de defensa colombiana</p>
+    <div class="stat-cards">
+      <div class="stat-card rv">
+        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+        <div class="stat-num">5<sup>+</sup></div>
+        <p class="stat-label">Años de I+D en tecnología de defensa colombiana</p>
       </div>
-      <div class="mk-proof-it rv rd1">
-        <div class="mk-proof-n">360°</div>
-        <p class="mk-proof-l">Cobertura de dominio<br>terrestre, naval y aéreo</p>
+      <div class="stat-card rv rd1">
+        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9" /><ellipse cx="12" cy="12" rx="4" ry="9" /><line x1="3" y1="12" x2="21" y2="12" /></svg>
+        <div class="stat-num">360°</div>
+        <p class="stat-label">Cobertura de dominio terrestre, naval y aéreo</p>
       </div>
-      <div class="mk-proof-it rv rd2">
-        <div class="mk-proof-n">100<sup>%</sup></div>
-        <p class="mk-proof-l">Datos bajo soberanía<br>y jurisdicción colombiana</p>
+      <div class="stat-card rv rd2">
+        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" /></svg>
+        <div class="stat-num">100<sup>%</sup></div>
+        <p class="stat-label">Datos bajo soberanía y jurisdicción colombiana</p>
       </div>
-      <div class="mk-proof-it rv rd3">
-        <div class="mk-proof-n">DDIL</div>
-        <p class="mk-proof-l">Opera en ambientes Denied,<br>Degraded, Intermittent, Limited</p>
+      <div class="stat-card rv rd3">
+        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 13a7 7 0 0 1 14 0" /><path d="M8.5 15.5a3.5 3.5 0 0 1 7 0" /><line x1="4" y1="4" x2="20" y2="20" /></svg>
+        <div class="stat-num">DDIL</div>
+        <p class="stat-label">Opera en ambientes Denied, Degraded, Intermittent, Limited</p>
       </div>
     </div>
   </div>
@@ -1371,29 +1398,32 @@
         La independencia tecnológica no es opcional. Es el fundamento de la seguridad nacional colombiana.
       </p>
     </div>
-    <div class="mk-sov-grid" style="max-width:1280px;margin-left:auto;margin-right:auto;padding:0 48px">
-      <div class="mk-sov-it rv">
-        <span class="mk-sov-num">/01 — Infraestructura</span>
-        <h3 class="mk-sov-h">On-Premise o Nube Soberana</h3>
-        <p class="mk-sov-b">
+    <div class="feature-grid">
+      <div class="feature-card rv">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3.5" y="4" width="17" height="6" rx="1" /><rect x="3.5" y="14" width="17" height="6" rx="1" /><line x1="7" y1="7" x2="7.01" y2="7" /><line x1="7" y1="17" x2="7.01" y2="17" /></svg>
+        <span class="feature-num">/01 — Infraestructura</span>
+        <h3 class="feature-h">On-Premise o Nube Soberana</h3>
+        <p class="feature-b">
           Despliegue en infraestructura del Ministerio de Defensa. Sin dependencia de
           hyperscalers extranjeros. Control total sobre datos operacionales clasificados.
           Nube táctica en servidores bajo custodia militar.
         </p>
       </div>
-      <div class="mk-sov-it rv rd1">
-        <span class="mk-sov-num">/02 — Normativa</span>
-        <h3 class="mk-sov-h">Auditoría y Cumplimiento</h3>
-        <p class="mk-sov-b">
+      <div class="feature-card rv rd1">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" /><path d="M9 12l2 2 4-4" /></svg>
+        <span class="feature-num">/02 — Normativa</span>
+        <h3 class="feature-h">Auditoría y Cumplimiento</h3>
+        <p class="feature-b">
           Arquitectura diseñada según estándares de seguridad de la información militar colombiana.
           Cifrado certificado, auditoría completa de acceso. 100% del código fuente disponible
           para inspección del CCOC.
         </p>
       </div>
-      <div class="mk-sov-it rv rd2">
-        <span class="mk-sov-num">/03 — Transferencia</span>
-        <h3 class="mk-sov-h">Capacidades al Estado</h3>
-        <p class="mk-sov-b">
+      <div class="feature-card rv rd2">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8h11" /><path d="M12 5l3 3-3 3" /><path d="M20 16H9" /><path d="M12 13l-3 3 3 3" /></svg>
+        <span class="feature-num">/03 — Transferencia</span>
+        <h3 class="feature-h">Capacidades al Estado</h3>
+        <p class="feature-b">
           Programa de formación para ingenieros militares colombianos. El objetivo: que Colombia
           opere, mantenga y evolucione NEXXO C2 de forma completamente autónoma en el largo plazo.
         </p>
@@ -1781,7 +1811,7 @@
       'use strict';
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (!('IntersectionObserver' in window)) return;
-      const els = document.querySelectorAll('.mk-metric-n, .mk-proof-n');
+      const els = document.querySelectorAll('.mk-metric-n, .mk-proof-n, .stat-num');
       const DURATION = 850;
       const MAX_BLUR = 7;
       const easeOut = (t) => 1 - Math.pow(1 - t, 3);
