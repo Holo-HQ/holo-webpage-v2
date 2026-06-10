@@ -498,18 +498,18 @@ footer { border-top: 1px solid var(--b0); padding: 64px 0 40px; background: #0a0
 @media (max-width: 880px) { .orbit-wrap { grid-template-columns: 1fr; } }
 
 /* RADAR — deck de capacidades (baraja interactiva) */
-.deck { position: relative; margin: 64px auto 0; height: 430px; max-width: 680px; }
-.deck-card { position: absolute; top: 0; left: 0; width: min(330px, 84vw); min-height: 168px; background: #001F3F; border: 1px solid rgba(212,175,55,.25); padding: 18px 20px; color: #E7E7E5; display: flex; flex-direction: column; gap: 9px; transform: translate(calc(var(--i) * 26px), calc(var(--i) * 22px)) skewY(-6deg); filter: grayscale(.92) brightness(.74); transition: transform .55s var(--ease), filter .55s var(--ease), box-shadow .4s, border-color .4s; }
+.deck { position: relative; margin: 64px auto 0; height: 520px; max-width: 820px; }
+.deck-card { position: absolute; top: 0; left: 0; width: min(420px, 88vw); min-height: 214px; background: #001F3F; border: 1px solid rgba(212,175,55,.25); border-radius: 16px !important; padding: 24px 28px; color: #E7E7E5; display: flex; flex-direction: column; gap: 12px; transform: translate(calc(var(--i) * 30px), calc(var(--i) * 24px)) skewY(-6deg); filter: grayscale(.92) brightness(.74); transition: transform .55s var(--ease), filter .55s var(--ease), box-shadow .4s, border-color .4s; }
 /* el deck se despliega al pasar el cursor / al recibir foco */
-.deck:hover .deck-card, .deck:focus-within .deck-card { transform: translate(calc(var(--i) * 64px), calc(var(--i) * 46px)) skewY(-3deg); filter: grayscale(.55) brightness(.88); }
+.deck:hover .deck-card, .deck:focus-within .deck-card { transform: translate(calc(var(--i) * 74px), calc(var(--i) * 52px)) skewY(-3deg); filter: grayscale(.55) brightness(.88); }
 /* la tarjeta concreta bajo el cursor/foco se eleva a color pleno */
-.deck:hover .deck-card:hover, .deck:focus-within .deck-card:focus-visible { transform: translate(calc(var(--i) * 64px), calc(var(--i) * 46px - 28px)) skewY(0deg) scale(1.04); filter: none; z-index: 30; border-color: var(--dark-acc); box-shadow: 0 26px 54px -22px rgba(0,0,0,.75); outline: none; }
+.deck:hover .deck-card:hover, .deck:focus-within .deck-card:focus-visible { transform: translate(calc(var(--i) * 74px), calc(var(--i) * 52px - 30px)) skewY(0deg) scale(1.04); filter: none; z-index: 30; border-color: var(--dark-acc); box-shadow: 0 28px 60px -22px rgba(0,0,0,.7); outline: none; }
 .deck-top { display: flex; align-items: center; justify-content: space-between; }
-.deck-ic { display: inline-flex; width: 32px; height: 32px; align-items: center; justify-content: center; border: 1px solid rgba(212,175,55,.4); color: var(--dark-acc); flex-shrink: 0; }
-.deck-ic svg { width: 17px; height: 17px; }
+.deck-ic { display: inline-flex; width: 38px; height: 38px; align-items: center; justify-content: center; border: 1px solid rgba(212,175,55,.4); border-radius: 10px !important; color: var(--dark-acc); flex-shrink: 0; }
+.deck-ic svg { width: 20px; height: 20px; }
 .deck-n { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: rgba(231,231,229,.5); }
-.deck-t { font-size: 16px; font-weight: 700; color: #fff; letter-spacing: -.01em; line-height: 1.15; }
-.deck-d { font-size: 12.5px; line-height: 1.5; color: rgba(231,231,229,.78); margin: 0; }
+.deck-t { font-size: 19px; font-weight: 700; color: #fff; letter-spacing: -.01em; line-height: 1.15; }
+.deck-d { font-size: 13.5px; line-height: 1.55; color: rgba(231,231,229,.78); margin: 0; }
 @media (max-width: 760px) {
   .deck { height: auto; max-width: 100%; display: flex; flex-direction: column; gap: 12px; }
   .deck-card { position: relative; width: 100%; transform: none !important; filter: none; }
