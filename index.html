@@ -967,6 +967,9 @@
       .mk-hero-metrics { grid-template-columns: 1fr; }
       .mk-metric { padding: 18px 22px; }
     }
+
+    /* Stable digit width so the count-up animation doesn't jitter */
+    .mk-metric-n, .mk-proof-n { font-variant-numeric: tabular-nums; }
   </style>
 </head>
 
@@ -1721,6 +1724,40 @@
       }
       document.addEventListener('visibilitychange', update);
       update();
+    })();
+  </script>
+
+  <!-- ─── COUNT-UP: métricas animadas al entrar en vista ─── -->
+  <script>
+    (function () {
+      'use strict';
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!('IntersectionObserver' in window)) return;
+      const els = document.querySelectorAll('.mk-metric-n, .mk-proof-n');
+      const DURATION = 1400;
+      const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+      function run(el) {
+        const m = el.innerHTML.match(/^(\d+)([\s\S]*)$/);
+        if (!m) return;                         // p.ej. "DDIL": sin dígitos, se deja igual
+        const target = parseInt(m[1], 10), suffix = m[2];
+        let startTs = null;
+        function tick(now) {
+          if (startTs === null) startTs = now;
+          const p = Math.min(1, (now - startTs) / DURATION);
+          el.innerHTML = Math.round(easeOut(p) * target) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+          else el.innerHTML = target + suffix;  // valor exacto al final
+        }
+        requestAnimationFrame(tick);
+      }
+
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { run(e.target); o.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      els.forEach((el) => obs.observe(el));
     })();
   </script>
 </body>
