@@ -57,6 +57,21 @@
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Mapa 3D de Colombia (three.js) */
+    .col3d-sec { position: relative; overflow: hidden; background: #00101e; padding: clamp(60px, 7vw, 100px) 0 clamp(40px, 5vw, 64px); }
+    .col3d-sec .si { color: var(--dark-acc); }
+    .col3d-sec .sh { color: #fff; }
+    .col3d-sec .ss { color: rgba(231, 231, 229, .82); max-width: 54ch; }
+    .col3d { position: relative; width: 100%; height: clamp(440px, 64vh, 660px); margin-top: clamp(26px, 4vw, 44px); touch-action: pan-y; }
+    .col3d-canvas { display: block; width: 100%; height: 100%; cursor: grab; outline: none; }
+    .col3d-canvas.is-grabbing { cursor: grabbing; }
+    .col3d-label { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; transform: translate(-50%, -135%); background: rgba(0, 21, 43, .94); border: 1px solid var(--dark-acc); color: #fff; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .01em; padding: 7px 13px; white-space: nowrap; box-shadow: 0 8px 24px -8px rgba(0, 0, 0, .6); }
+    .col3d-label small { display: block; font-family: var(--mono); font-size: 9px; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; color: var(--dark-acc); margin-bottom: 1px; }
+    .col3d-hint { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; color: rgba(231, 231, 229, .5); pointer-events: none; }
+    .col3d-foot { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: rgba(231, 231, 229, .45); text-align: center; margin-top: 16px; }
+    .col3d-foot b { color: var(--dark-acc); font-weight: 500; }
+  </style>
 </head>
 
 <body>
@@ -112,6 +127,25 @@
       <p class="sub-desc rv rd3">Sistema de inteligencia artificial multiagente diseñado para operaciones de defensa.
         Análisis predictivo de amenazas, generación automática de cursos de acción (COA) y fusión de inteligencia desde
         múltiples fuentes.</p>
+    </div>
+  </section>
+
+  <!-- MAPA 3D DE COLOMBIA (three.js, carga diferida) -->
+  <section class="col3d-sec" aria-label="Mapa 3D de Colombia">
+    <div class="ct">
+      <span class="si rv">/00 — Cobertura Nacional</span>
+      <h2 class="sh rv rd1">Inteligencia sobre<br>el territorio colombiano</h2>
+      <p class="ss rv rd2">HOLO AI razona sobre la geografía del país — los 32 departamentos y el Distrito Capital en
+        relieve. Pasa el cursor por cada uno; arrastra para girar el mapa.</p>
+    </div>
+    <div class="ct">
+      <div class="col3d" data-col3d>
+        <canvas class="col3d-canvas" tabindex="0"
+          aria-label="Mapa tridimensional interactivo de los departamentos de Colombia"></canvas>
+        <div class="col3d-label" data-col3d-label hidden></div>
+        <div class="col3d-hint" data-col3d-hint>▸ Cargando mapa 3D…</div>
+      </div>
+      <p class="col3d-foot">▸ <b>NEXXO C2</b> · territorio nacional · 33 entidades territoriales · WebGL</p>
     </div>
   </section>
 
@@ -603,6 +637,146 @@
 
       resize();
       animId = requestAnimationFrame(drawFrame);
+    })();
+  </script>
+
+  <!-- ─── Mapa 3D de Colombia (three.js, carga diferida) ─── -->
+  <script type="module">
+    (function () {
+      'use strict';
+      const wrap = document.querySelector('[data-col3d]');
+      if (!wrap) return;
+      const canvas = wrap.querySelector('.col3d-canvas');
+      const hint = wrap.querySelector('[data-col3d-hint]');
+      const labelEl = wrap.querySelector('[data-col3d-label]');
+
+      const NAMES = {
+        'ANTIOQUIA': 'Antioquia', 'ATLANTICO': 'Atlántico', 'SANTAFE DE BOGOTA D.C': 'Bogotá D.C.',
+        'BOLIVAR': 'Bolívar', 'BOYACA': 'Boyacá', 'CALDAS': 'Caldas', 'CAQUETA': 'Caquetá', 'CAUCA': 'Cauca',
+        'CESAR': 'Cesar', 'CORDOBA': 'Córdoba', 'CUNDINAMARCA': 'Cundinamarca', 'CHOCO': 'Chocó', 'HUILA': 'Huila',
+        'LA GUAJIRA': 'La Guajira', 'MAGDALENA': 'Magdalena', 'META': 'Meta', 'NARIÑO': 'Nariño',
+        'NORTE DE SANTANDER': 'Norte de Santander', 'QUINDIO': 'Quindío', 'RISARALDA': 'Risaralda',
+        'SANTANDER': 'Santander', 'SUCRE': 'Sucre', 'TOLIMA': 'Tolima', 'VALLE DEL CAUCA': 'Valle del Cauca',
+        'ARAUCA': 'Arauca', 'CASANARE': 'Casanare', 'PUTUMAYO': 'Putumayo', 'AMAZONAS': 'Amazonas',
+        'GUAINIA': 'Guainía', 'GUAVIARE': 'Guaviare', 'VAUPES': 'Vaupés', 'VICHADA': 'Vichada',
+        'ARCHIPIELAGO DE SAN ANDRES PROVIDENCIA Y SANTA CATALINA': 'San Andrés y Providencia'
+      };
+
+      let started = false;
+      const io = new IntersectionObserver(function (e) {
+        if (e[0].isIntersecting && !started) { started = true; io.disconnect(); init(); }
+      }, { threshold: 0.1 });
+      io.observe(wrap);
+
+      async function init() {
+        let THREE, geo;
+        try {
+          const r = await Promise.all([
+            import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js'),
+            fetch('assets/colombia-departments.geo.json').then(function (x) { return x.json(); })
+          ]);
+          THREE = r[0]; geo = r[1];
+        } catch (err) { if (hint) hint.textContent = '▸ Mapa 3D no disponible'; return; }
+        if (hint) hint.hidden = true;
+        try { build(THREE, geo); } catch (err) { if (hint) { hint.hidden = false; hint.textContent = '▸ Error al construir el mapa'; } }
+      }
+
+      function build(THREE, geo) {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+        renderer.setClearColor(0x00101e, 1);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(44, 1, 1, 3000);
+        camera.position.set(0, 98, 88);
+        camera.lookAt(0, 1, 0);
+
+        scene.add(new THREE.HemisphereLight(0x9fc2e8, 0x00101e, 0.55));
+        const key = new THREE.DirectionalLight(0xffe7be, 1.05); key.position.set(-45, 95, 60); scene.add(key);
+        const rim = new THREE.DirectionalLight(0xffcf73, 0.5); rim.position.set(65, 45, -75); scene.add(rim);
+
+        const pivot = new THREE.Group(); scene.add(pivot);
+        const map = new THREE.Group(); map.rotation.x = -Math.PI / 2; pivot.add(map);
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        forEachRing(geo, function (r) {
+          for (let k = 0; k < r.length; k++) { const a = r[k][0], b = r[k][1]; if (a < minX) minX = a; if (a > maxX) maxX = a; if (b < minY) minY = b; if (b > maxY) maxY = b; }
+        });
+        const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2, cosLat = Math.cos(cy * Math.PI / 180);
+        const S = 92 / Math.max((maxX - minX) * cosLat, (maxY - minY));
+        const px = function (lng) { return (lng - cx) * cosLat * S; };
+        const py = function (lat) { return (lat - cy) * S; };
+
+        const DEPTH = 2.6;
+        const meshes = [];
+        const edgeMat = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.5 });
+        geo.features.forEach(function (f) {
+          const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
+          const shapes = [];
+          polys.forEach(function (rings) {
+            const shape = new THREE.Shape(rings[0].map(function (c) { return new THREE.Vector2(px(c[0]), py(c[1])); }));
+            for (let h = 1; h < rings.length; h++) shape.holes.push(new THREE.Path(rings[h].map(function (c) { return new THREE.Vector2(px(c[0]), py(c[1])); })));
+            shapes.push(shape);
+          });
+          const g = new THREE.ExtrudeGeometry(shapes, { depth: DEPTH, bevelEnabled: false });
+          const top = new THREE.MeshStandardMaterial({ color: 0x083353, roughness: 0.85, metalness: 0.12, emissive: 0x000000 });
+          const side = new THREE.MeshStandardMaterial({ color: 0xb98e3e, roughness: 0.5, metalness: 0.35, emissive: 0x2a1d06, emissiveIntensity: 0.55 });
+          const mesh = new THREE.Mesh(g, [top, side]);
+          mesh.userData = { name: NAMES[f.properties.dpt] || f.properties.dpt, top: top, lift: 0 };
+          mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(g, 24), edgeMat));
+          map.add(mesh); meshes.push(mesh);
+        });
+
+        const ray = new THREE.Raycaster();
+        const ptr = new THREE.Vector2();
+        let hovered = null;
+        function setHover(mesh) {
+          if (hovered === mesh) return;
+          if (hovered) hovered.userData.top.emissive.setHex(0x000000);
+          hovered = mesh;
+          if (mesh) { mesh.userData.top.emissive.setHex(0x3c2e0c); if (labelEl) { labelEl.hidden = false; labelEl.innerHTML = '<small>Departamento</small>' + mesh.userData.name; } }
+          else if (labelEl) labelEl.hidden = true;
+        }
+
+        let dragging = false, lastX = 0;
+        canvas.addEventListener('pointerdown', function (e) { dragging = true; lastX = e.clientX; canvas.classList.add('is-grabbing'); canvas.setPointerCapture(e.pointerId); });
+        canvas.addEventListener('pointerup', function () { dragging = false; canvas.classList.remove('is-grabbing'); });
+        canvas.addEventListener('pointerleave', function () { setHover(null); });
+        canvas.addEventListener('pointermove', function (e) {
+          const rect = canvas.getBoundingClientRect();
+          if (dragging) { pivot.rotation.y += (e.clientX - lastX) * 0.006; lastX = e.clientX; }
+          ptr.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          ptr.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+          ray.setFromCamera(ptr, camera);
+          const hits = ray.intersectObjects(meshes, false);
+          setHover(hits.length ? hits[0].object : null);
+          if (labelEl) { labelEl.style.left = (e.clientX - rect.left) + 'px'; labelEl.style.top = (e.clientY - rect.top) + 'px'; }
+        });
+
+        let raf = null, inView = true;
+        function loop() {
+          if (!reduce && !dragging && !hovered) pivot.rotation.y += 0.0016;
+          for (let i = 0; i < meshes.length; i++) { const m = meshes[i]; const t = (m === hovered) ? 4 : 0; m.userData.lift += (t - m.userData.lift) * 0.2; m.position.z = m.userData.lift; }
+          renderer.render(scene, camera);
+          raf = requestAnimationFrame(loop);
+        }
+        function start() { if (!raf) raf = requestAnimationFrame(loop); }
+        function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+        function resize() { const w = wrap.clientWidth, h = wrap.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
+        resize();
+        if (window.ResizeObserver) new ResizeObserver(resize).observe(wrap); else window.addEventListener('resize', resize, { passive: true });
+        new IntersectionObserver(function (e) { inView = e[0].isIntersecting; (inView && !document.hidden) ? start() : stop(); }, { threshold: 0 }).observe(wrap);
+        document.addEventListener('visibilitychange', function () { (inView && !document.hidden) ? start() : stop(); });
+        start();
+      }
+
+      function forEachRing(geo, cb) {
+        geo.features.forEach(function (f) {
+          const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
+          polys.forEach(function (rings) { rings.forEach(cb); });
+        });
+      }
     })();
   </script>
 </body>
