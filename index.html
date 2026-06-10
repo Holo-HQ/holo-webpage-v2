@@ -1109,6 +1109,8 @@
     .arch-explorer .arch-diagram { width: 100%; margin: 0; }
     .arch-panel { align-self: stretch; display: flex; flex-direction: column; justify-content: center; min-height: 248px; padding: clamp(24px, 3vw, 36px); border: 1px solid var(--b0); background: var(--bg1); transition: border-color .3s var(--ease); }
     .arch-panel.is-active { border-color: var(--acc); }
+    .arch-panel-icon { width: 30px; height: 30px; color: var(--acc); display: block; margin-bottom: 18px; }
+    .arch-panel:not(.is-active) .arch-panel-n { display: none; }
     .arch-panel-top { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; }
     .arch-panel-n { font-family: var(--sans); font-size: clamp(34px, 4vw, 50px); font-weight: 700; letter-spacing: -.04em; color: var(--acc); line-height: 1; font-variant-numeric: tabular-nums; }
     .arch-panel-layer { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--t2); }
@@ -1379,12 +1381,13 @@
       </div>
       </div>
       <aside class="arch-panel" data-arch-panel aria-live="polite">
+        <svg class="arch-panel-icon" data-p-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1" /><rect x="13" y="3" width="8" height="8" rx="1" /><rect x="3" y="13" width="8" height="8" rx="1" /><rect x="13" y="13" width="8" height="8" rx="1" /></svg>
         <div class="arch-panel-top">
           <span class="arch-panel-n" data-p-n>—</span>
-          <span class="arch-panel-layer" data-p-layer>Arquitectura Agéntica</span>
+          <span class="arch-panel-layer" data-p-layer>NEXXO C2 · 4 capas · 12 componentes</span>
         </div>
-        <h3 class="arch-panel-name" data-p-name>Doce componentes, un propósito</h3>
-        <p class="arch-panel-desc" data-p-desc>Pasa el cursor sobre cualquier componente del diagrama para ver qué hace dentro de NEXXO C2 y qué busca.</p>
+        <h3 class="arch-panel-name" data-p-name>Una arquitectura con propósito</h3>
+        <p class="arch-panel-desc" data-p-desc>Doce componentes en cuatro capas forman un solo sistema de mando y control: soberano, auditable y diseñado para el teatro de operaciones colombiano. Recorre cada uno para conocer su misión.</p>
         <p class="arch-panel-goal" data-p-goal></p>
       </aside>
     </div>
@@ -2088,6 +2091,8 @@
       const panel = document.querySelector('[data-arch-panel]');
       const pN = panel.querySelector('[data-p-n]'), pLayer = panel.querySelector('[data-p-layer]');
       const pName = panel.querySelector('[data-p-name]'), pDesc = panel.querySelector('[data-p-desc]'), pGoal = panel.querySelector('[data-p-goal]');
+      const pIcon = panel.querySelector('[data-p-icon]');
+      const ICON_DEFAULT = pIcon.innerHTML;
       const cx = 210, cy = 210;
 
       const LAYERS = [
@@ -2096,19 +2101,33 @@
         { key: 'apps', short: 'APPS', name: 'Aplicación y Usuario', op: .58 },
         { key: 'trans', short: 'TRANSVERSAL', name: 'Seguridad y Desarrollo', op: .42 },
       ];
+      const IC = {
+        cpu: '<rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 7V4M14 7V4M10 20v-3M14 20v-3M7 10H4M7 14H4M20 10h-3M20 14h-3"/>',
+        graph: '<circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M6.7 7.4 10.5 16.2M17.3 7.4 13.5 16.2M7 6h10"/>',
+        layers: '<path d="M12 3 21 8 12 13 3 8z"/><path d="M3 12l9 5 9-5M3 16l9 5 9-5"/>',
+        eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>',
+        target: '<circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/>',
+        cycle: '<path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 4v5h-5"/>',
+        zap: '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+        monitor: '<rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/>',
+        building: '<path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-5h6v5"/><path d="M9 11h.01M15 11h.01"/>',
+        shield: '<path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><rect x="9.5" y="11" width="5" height="4" rx="1"/><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11"/>',
+        code: '<rect x="3" y="4" width="18" height="16" rx="1"/><path d="M8 10l-2 2 2 2M16 10l2 2-2 2M13 9l-2 6"/>',
+        deploy: '<path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>',
+      };
       const COMPS = [
-        { n: '01', name: 'Integración Soberana de Modelos IA', layer: 'core', desc: 'Incorpora y orquesta modelos de IA de frontera dentro de la jurisdicción colombiana, sin exponer datos sensibles a terceros.', goal: 'capacidad de IA de punta sin ceder soberanía sobre la información.' },
-        { n: '04', name: 'Ontología de Defensa Colombiana', layer: 'core', desc: 'Modela en un lenguaje común el dominio de defensa: unidades, doctrina, geografía y amenazas del país.', goal: 'que los agentes razonen con el contexto real de Colombia, no con uno genérico.' },
-        { n: '05', name: 'Cómputo, Vectores y Multimedia', layer: 'core', desc: 'Provee el cómputo, las bases vectoriales y el procesamiento de imagen y video que sostienen todo el análisis.', goal: 'una base técnica resiliente bajo custodia militar.' },
-        { n: '02', name: 'Observabilidad y Auditoría', layer: 'serv', desc: 'Registra de forma trazable cada consulta, decisión y acción de los agentes del sistema.', goal: 'confianza verificable — saber por qué se decidió, no solo qué.' },
-        { n: '03', name: 'Ingeniería de Contexto Operacional', layer: 'serv', desc: 'Ensambla el contexto correcto —datos, doctrina y situación— para cada consulta del agente.', goal: 'respuestas ancladas a la operación real, no improvisadas.' },
-        { n: '07', name: 'Ciclo de Vida de Agentes HOLO AI', layer: 'serv', desc: 'Crea, versiona, evalúa y despliega los agentes de razonamiento de forma controlada.', goal: 'agentes auditables que mejoran sin perder gobernanza.' },
-        { n: '08', name: 'Automatización Operacional', layer: 'serv', desc: 'Encadena tareas y flujos de trabajo entre los módulos y agentes del ecosistema.', goal: 'acelerar el ciclo OODA automatizando lo repetitivo.' },
-        { n: '10', name: 'Aplicaciones Humano + IA', layer: 'apps', desc: 'Las interfaces donde el comandante y la tropa operan el sistema: RADAR, IRIS, NEXXO Chat.', goal: 'poner la IA al servicio del operador, no al revés.' },
-        { n: '12', name: 'Automatización Institucional Militar', layer: 'apps', desc: 'Lleva la automatización a los procesos administrativos y de gestión de la Fuerza.', goal: 'liberar tiempo del personal para concentrarlo en la misión.' },
-        { n: '06', name: 'Seguridad, Gobernanza y Soberanía', layer: 'trans', desc: 'Cifrado, control de acceso, clasificación y jurisdicción de datos que atraviesan toda la plataforma.', goal: 'que la seguridad sea estructural, no un añadido.' },
-        { n: '09', name: 'Entornos de Desarrollo Soberanos', layer: 'trans', desc: 'Las herramientas para que ingenieros militares colombianos construyan y mantengan el sistema.', goal: 'autonomía técnica nacional de largo plazo.' },
-        { n: '11', name: 'Despliegue', layer: 'trans', desc: 'Instalación y operación on-premise o en nube soberana, en cualquier ambiente del teatro.', goal: 'operar incluso en DDIL, sin depender de infraestructura extranjera.' },
+        { n: '01', name: 'Integración Soberana de Modelos IA', layer: 'core', icon: IC.cpu, desc: 'Aloja y orquesta modelos de IA de última generación con inferencia en cómputo propio, dentro de la jurisdicción colombiana. Ningún dato operacional clasificado abandona el perímetro nacional para alcanzar capacidad de frontera.', goal: 'ejercer IA de vanguardia sin transferir soberanía sobre la información a potencias extranjeras.' },
+        { n: '04', name: 'Ontología de Defensa Colombiana', layer: 'core', icon: IC.graph, desc: 'Codifica en un modelo formal el universo de la defensa nacional: orden de batalla, doctrina conjunta, geografía del teatro y catálogo de amenazas. Es la base semántica sobre la que cada agente interpreta la realidad.', goal: 'que el razonamiento de la máquina hable el idioma de las Fuerzas Militares de Colombia.' },
+        { n: '05', name: 'Cómputo, Vectores y Multimedia', layer: 'core', icon: IC.layers, desc: 'Sostiene el sistema con cómputo de alto rendimiento, bases vectoriales para búsqueda semántica y procesamiento de imagen, video y señal. Infraestructura dimensionada para el tempo operacional, bajo custodia militar.', goal: 'una columna técnica resiliente que no dependa de nubes ni proveedores foráneos.' },
+        { n: '02', name: 'Observabilidad y Auditoría', layer: 'serv', icon: IC.eye, desc: 'Instrumenta cada consulta, inferencia y acción de los agentes con trazabilidad de extremo a extremo. Toda decisión asistida queda registrada, reproducible y sujeta a auditoría de mando.', goal: 'confianza verificable — saber por qué se concluyó, no solo qué se concluyó.' },
+        { n: '03', name: 'Ingeniería de Contexto Operacional', layer: 'serv', icon: IC.target, desc: 'Ensambla, para cada consulta, el contexto exacto que necesita el agente: datos vigentes, doctrina aplicable y situación táctica del momento. Convierte información dispersa en contexto accionable.', goal: 'respuestas ancladas a la operación real y a la doctrina, nunca improvisadas.' },
+        { n: '07', name: 'Ciclo de Vida de Agentes HOLO AI', layer: 'serv', icon: IC.cycle, desc: 'Gobierna la creación, el versionado, la evaluación y el despliegue de los agentes de razonamiento bajo control humano. Cada agente se prueba contra escenarios antes de entrar en operación y mejora sin perder trazabilidad.', goal: 'una fuerza de agentes que evoluciona con disciplina y rendición de cuentas.' },
+        { n: '08', name: 'Automatización Operacional', layer: 'serv', icon: IC.zap, desc: 'Encadena tareas, módulos y agentes en flujos de trabajo que ejecutan lo rutinario a velocidad de máquina, liberando al analista para el juicio que solo un humano debe emitir.', goal: 'comprimir el ciclo OODA y decidir más rápido que el adversario.' },
+        { n: '10', name: 'Aplicaciones Humano + IA', layer: 'apps', icon: IC.monitor, desc: 'Las interfaces donde el comandante y la tropa operan el ecosistema —RADAR, IRIS, NEXXO Chat— diseñadas para la carga cognitiva del combate. La IA asiste; el humano decide y comanda.', goal: 'potenciar al operador en el punto de decisión, manteniéndolo siempre al mando.' },
+        { n: '12', name: 'Automatización Institucional Militar', layer: 'apps', icon: IC.building, desc: 'Extiende la automatización a la administración, la logística y la gestión institucional de la Fuerza, reduciendo la fricción burocrática que distrae del esfuerzo principal.', goal: 'devolver tiempo y personal a la misión, no a los trámites.' },
+        { n: '06', name: 'Seguridad, Gobernanza y Soberanía', layer: 'trans', icon: IC.shield, desc: 'Cifrado, control de acceso por perfil, clasificación de la información y jurisdicción de los datos atraviesan cada capa del sistema. La seguridad no se añade al final: es la estructura misma.', goal: 'que la protección y la soberanía del dato sean condición de diseño, no un parche.' },
+        { n: '09', name: 'Entornos de Desarrollo Soberanos', layer: 'trans', icon: IC.code, desc: 'El instrumental con el que ingenieros militares colombianos construyen, prueban y mantienen la plataforma en territorio nacional. Transfiere capacidad, no solo tecnología.', goal: 'autonomía técnica para que Colombia opere y evolucione NEXXO C2 por sí misma.' },
+        { n: '11', name: 'Despliegue', layer: 'trans', icon: IC.deploy, desc: 'Lleva el sistema a donde la operación lo exige: on-premise, en nube soberana o en el borde táctico, resistente a entornos DDIL. Del centro de mando a la unidad en terreno.', goal: 'operar con o sin conectividad, sin atarse a infraestructura extranjera.' },
       ];
       const layerName = {}; LAYERS.forEach(l => layerName[l.key] = l.short);
 
@@ -2149,6 +2168,7 @@
           pName.textContent = c.name;
           pDesc.textContent = c.desc;
           pGoal.innerHTML = '<span class="arch-panel-goal-k">Busca:</span> ' + c.goal;
+          pIcon.innerHTML = c.icon;
           panel.classList.add('is-active');
         };
         g.addEventListener('mouseenter', on);
@@ -2157,10 +2177,11 @@
       wrap.querySelector('.arch-stage').addEventListener('mouseleave', () => {
         compsG.querySelectorAll('.arch-node').forEach(x => x.classList.remove('is-active'));
         pN.textContent = '—';
-        pLayer.textContent = 'Arquitectura Agéntica';
-        pName.textContent = 'Doce componentes, un propósito';
-        pDesc.textContent = 'Pasa el cursor sobre cualquier componente del diagrama para ver qué hace dentro de NEXXO C2 y qué busca.';
+        pLayer.textContent = 'NEXXO C2 · 4 capas · 12 componentes';
+        pName.textContent = 'Una arquitectura con propósito';
+        pDesc.textContent = 'Doce componentes en cuatro capas forman un solo sistema de mando y control: soberano, auditable y diseñado para el teatro de operaciones colombiano. Recorre cada uno para conocer su misión.';
         pGoal.textContent = '';
+        pIcon.innerHTML = ICON_DEFAULT;
         panel.classList.remove('is-active');
       });
 
