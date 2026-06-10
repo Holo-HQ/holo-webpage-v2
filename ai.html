@@ -59,11 +59,13 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* Mapa 3D de Colombia (three.js) */
-    .col3d-sec { position: relative; overflow: hidden; background: #00101e; padding: clamp(60px, 7vw, 100px) 0 clamp(40px, 5vw, 64px); }
+    .col3d-sec { position: relative; overflow: hidden; background: #00101e; padding: clamp(54px, 6vw, 88px) 0; }
     .col3d-sec .si { color: var(--dark-acc); }
     .col3d-sec .sh { color: #fff; }
-    .col3d-sec .ss { color: rgba(231, 231, 229, .82); max-width: 54ch; }
-    .col3d { position: relative; width: 100%; height: clamp(520px, 74vh, 800px); margin-top: clamp(26px, 4vw, 44px); touch-action: pan-y; }
+    .col3d-sec .ss { color: rgba(231, 231, 229, .82); }
+    .col3d-wrap { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+    @media (max-width: 900px) { .col3d-wrap { grid-template-columns: 1fr; gap: 18px; } }
+    .col3d { position: relative; width: 100%; height: clamp(420px, 62vh, 640px); touch-action: pan-y; }
     .col3d-canvas { display: block; width: 100%; height: 100%; cursor: grab; outline: none; }
     .col3d-canvas.is-grabbing { cursor: grabbing; }
     .col3d-label { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; width: 234px; background: rgba(0, 16, 32, .96); border: 1px solid var(--dark-acc); color: #fff; padding: 12px 14px; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .7); }
@@ -78,7 +80,7 @@
     .col3d-bar .bt { grid-column: 1 / -1; height: 4px; background: rgba(255, 255, 255, .12); }
     .col3d-bar .bt i { display: block; height: 100%; background: var(--dark-acc); }
     .col3d-hint { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; color: rgba(231, 231, 229, .5); pointer-events: none; }
-    .col3d-foot { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: rgba(231, 231, 229, .45); text-align: center; margin-top: 16px; }
+    .col3d-foot { font-family: var(--mono); font-size: 10px; line-height: 1.6; letter-spacing: .06em; color: rgba(231, 231, 229, .45); text-align: left; margin-top: 22px; }
     .col3d-foot b { color: var(--dark-acc); font-weight: 500; }
   </style>
 </head>
@@ -141,20 +143,21 @@
 
   <!-- MAPA 3D DE COLOMBIA (three.js, carga diferida) -->
   <section class="col3d-sec" aria-label="Mapa 3D de Colombia">
-    <div class="ct">
-      <span class="si rv">/00 — Cobertura Nacional</span>
-      <h2 class="sh rv rd1">Inteligencia sobre<br>el territorio colombiano</h2>
-      <p class="ss rv rd2">HOLO AI razona sobre la geografía del país — los 32 departamentos y el Distrito Capital en
-        relieve. Pasa el cursor por cada uno; arrastra para girar el mapa.</p>
-    </div>
-    <div class="ct">
+    <div class="ct col3d-wrap">
+      <div class="col3d-intro">
+        <span class="si rv">/00 — Cobertura Nacional</span>
+        <h2 class="sh rv rd1">Inteligencia sobre<br>el territorio colombiano</h2>
+        <p class="ss rv rd2">HOLO AI razona sobre la geografía del país — los 32 departamentos y el Distrito Capital
+          en relieve. Pasa el cursor por cada uno; arrastra para girar el mapa.</p>
+        <p class="col3d-foot">▸ <b>NEXXO C2</b> · 33 entidades territoriales · indicadores de seguridad
+          <b>ilustrativos y estimados</b> (no son cifras oficiales)</p>
+      </div>
       <div class="col3d" data-col3d>
         <canvas class="col3d-canvas" tabindex="0"
           aria-label="Mapa tridimensional interactivo de los departamentos de Colombia"></canvas>
         <div class="col3d-label" data-col3d-label hidden></div>
         <div class="col3d-hint" data-col3d-hint>▸ Cargando mapa 3D…</div>
       </div>
-      <p class="col3d-foot">▸ <b>NEXXO C2</b> · 33 entidades territoriales · indicadores de seguridad <b>ilustrativos y estimados</b> (no son cifras oficiales)</p>
     </div>
   </section>
 
