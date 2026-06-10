@@ -1573,7 +1573,11 @@
   <script>
     (function () {
       'use strict';
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const v = document.querySelector('.mk-hero-bg');
+        if (v) { v.removeAttribute('autoplay'); v.pause(); }
+        return;
+      }
 
       const canvas = document.getElementById('mk-canvas');
       if (!canvas) return;
@@ -1605,9 +1609,13 @@
 
       function rgb(c, a) { return `rgba(${c[0]},${c[1]},${c[2]},${a})`; }
 
+      const DPR = Math.min(window.devicePixelRatio || 1, 2);
       function resize() {
-        W = canvas.width = canvas.offsetWidth;
-        H = canvas.height = canvas.offsetHeight;
+        W = canvas.offsetWidth;
+        H = canvas.offsetHeight;
+        canvas.width = W * DPR;
+        canvas.height = H * DPR;
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
         nodes = BASE_NODES.map(n => ({
           x: n.nx * W, y: n.ny * H,
           col: n.col, type: n.type,
@@ -1616,7 +1624,9 @@
       }
 
       // Spawn data packet along an edge
+      let running = false;
       function spawnPacket() {
+        if (!running) return;
         const i = Math.floor(Math.random() * nodes.length);
         let j = Math.floor(Math.random() * nodes.length);
         if (j === i) j = (j + 1) % nodes.length;
@@ -1697,9 +1707,20 @@
         raf = requestAnimationFrame(draw);
       }
 
+      let inView = true;
+      function start() { if (running) return; running = true; raf = requestAnimationFrame(draw); }
+      function stop() { running = false; if (raf) { cancelAnimationFrame(raf); raf = null; } }
+      function update() { (inView && !document.hidden) ? start() : stop(); }
+
       resize();
       window.addEventListener('resize', resize);
-      raf = requestAnimationFrame(draw);
+
+      // Pause the loop when the hero is off-screen or the tab is hidden
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((e) => { inView = e[0].isIntersecting; update(); }, { threshold: 0 }).observe(canvas);
+      }
+      document.addEventListener('visibilitychange', update);
+      update();
     })();
   </script>
 </body>
