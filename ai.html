@@ -63,11 +63,20 @@
     .col3d-sec .si { color: var(--dark-acc); }
     .col3d-sec .sh { color: #fff; }
     .col3d-sec .ss { color: rgba(231, 231, 229, .82); max-width: 54ch; }
-    .col3d { position: relative; width: 100%; height: clamp(440px, 64vh, 660px); margin-top: clamp(26px, 4vw, 44px); touch-action: pan-y; }
+    .col3d { position: relative; width: 100%; height: clamp(520px, 74vh, 800px); margin-top: clamp(26px, 4vw, 44px); touch-action: pan-y; }
     .col3d-canvas { display: block; width: 100%; height: 100%; cursor: grab; outline: none; }
     .col3d-canvas.is-grabbing { cursor: grabbing; }
-    .col3d-label { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; transform: translate(-50%, -135%); background: rgba(0, 21, 43, .94); border: 1px solid var(--dark-acc); color: #fff; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .01em; padding: 7px 13px; white-space: nowrap; box-shadow: 0 8px 24px -8px rgba(0, 0, 0, .6); }
-    .col3d-label small { display: block; font-family: var(--mono); font-size: 9px; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; color: var(--dark-acc); margin-bottom: 1px; }
+    .col3d-label { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; width: 234px; background: rgba(0, 16, 32, .96); border: 1px solid var(--dark-acc); color: #fff; padding: 12px 14px; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .7); }
+    .col3d-pop-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 8px; }
+    .col3d-pop-head small { width: 100%; font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--dark-acc); }
+    .col3d-pop-head b { font-family: var(--sans); font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+    .col3d-pop-tag { font-family: var(--mono); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: #c0392b; padding: 2px 6px; }
+    .col3d-bars { display: grid; gap: 7px; margin-top: 11px; }
+    .col3d-bar { display: grid; grid-template-columns: 1fr 26px; align-items: center; gap: 2px 8px; }
+    .col3d-bar .bl { font-family: var(--mono); font-size: 8.5px; letter-spacing: .03em; text-transform: uppercase; color: rgba(231, 231, 229, .72); }
+    .col3d-bar .bv { font-family: var(--mono); font-size: 11px; color: #fff; text-align: right; }
+    .col3d-bar .bt { grid-column: 1 / -1; height: 4px; background: rgba(255, 255, 255, .12); }
+    .col3d-bar .bt i { display: block; height: 100%; background: var(--dark-acc); }
     .col3d-hint { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; color: rgba(231, 231, 229, .5); pointer-events: none; }
     .col3d-foot { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: rgba(231, 231, 229, .45); text-align: center; margin-top: 16px; }
     .col3d-foot b { color: var(--dark-acc); font-weight: 500; }
@@ -145,7 +154,7 @@
         <div class="col3d-label" data-col3d-label hidden></div>
         <div class="col3d-hint" data-col3d-hint>▸ Cargando mapa 3D…</div>
       </div>
-      <p class="col3d-foot">▸ <b>NEXXO C2</b> · territorio nacional · 33 entidades territoriales · WebGL</p>
+      <p class="col3d-foot">▸ <b>NEXXO C2</b> · 33 entidades territoriales · indicadores de seguridad <b>ilustrativos y estimados</b> (no son cifras oficiales)</p>
     </div>
   </section>
 
@@ -662,6 +671,36 @@
         'ARCHIPIELAGO DE SAN ANDRES PROVIDENCIA Y SANTA CATALINA': 'San Andrés y Providencia'
       };
 
+      // Indicadores 0–100 ILUSTRATIVOS y estimados (no son cifras oficiales).
+      // { v: violencia urbana, f: favorabilidad opinión, d: desmovilización rural, m: presencia militar, e: presencia estatal }
+      const DATA = {
+        'ANTIOQUIA': { v: 72, f: 55, d: 48, m: 85, e: 70 }, 'ATLANTICO': { v: 60, f: 58, d: 52, m: 62, e: 68 },
+        'SANTAFE DE BOGOTA D.C': { v: 55, f: 56, d: 66, m: 90, e: 90 }, 'BOLIVAR': { v: 64, f: 50, d: 47, m: 68, e: 56 },
+        'BOYACA': { v: 28, f: 68, d: 70, m: 58, e: 80 }, 'CALDAS': { v: 42, f: 61, d: 63, m: 58, e: 74 },
+        'CAQUETA': { v: 68, f: 45, d: 55, m: 74, e: 44 }, 'CAUCA': { v: 80, f: 34, d: 40, m: 82, e: 44 },
+        'CESAR': { v: 63, f: 48, d: 46, m: 66, e: 55 }, 'CORDOBA': { v: 62, f: 49, d: 48, m: 66, e: 53 },
+        'CUNDINAMARCA': { v: 40, f: 60, d: 63, m: 70, e: 78 }, 'CHOCO': { v: 74, f: 35, d: 42, m: 64, e: 34 },
+        'HUILA': { v: 46, f: 57, d: 60, m: 62, e: 65 }, 'LA GUAJIRA': { v: 57, f: 44, d: 50, m: 58, e: 40 },
+        'MAGDALENA': { v: 59, f: 50, d: 49, m: 62, e: 56 }, 'META': { v: 62, f: 50, d: 51, m: 78, e: 58 },
+        'NARIÑO': { v: 76, f: 39, d: 44, m: 78, e: 47 }, 'NORTE DE SANTANDER': { v: 82, f: 37, d: 34, m: 86, e: 50 },
+        'QUINDIO': { v: 40, f: 62, d: 64, m: 56, e: 75 }, 'RISARALDA': { v: 45, f: 60, d: 61, m: 58, e: 72 },
+        'SANTANDER': { v: 48, f: 60, d: 56, m: 68, e: 72 }, 'SUCRE': { v: 54, f: 52, d: 50, m: 60, e: 55 },
+        'TOLIMA': { v: 50, f: 56, d: 59, m: 64, e: 64 }, 'VALLE DEL CAUCA': { v: 78, f: 50, d: 44, m: 84, e: 66 },
+        'ARAUCA': { v: 73, f: 42, d: 38, m: 84, e: 46 }, 'CASANARE': { v: 44, f: 56, d: 56, m: 66, e: 60 },
+        'PUTUMAYO': { v: 70, f: 44, d: 50, m: 74, e: 44 }, 'AMAZONAS': { v: 40, f: 53, d: 55, m: 52, e: 42 },
+        'GUAINIA': { v: 46, f: 49, d: 50, m: 50, e: 34 }, 'GUAVIARE': { v: 66, f: 44, d: 52, m: 70, e: 40 },
+        'VAUPES': { v: 44, f: 48, d: 52, m: 48, e: 33 }, 'VICHADA': { v: 52, f: 47, d: 48, m: 56, e: 36 },
+        'ARCHIPIELAGO DE SAN ANDRES PROVIDENCIA Y SANTA CATALINA': { v: 48, f: 59, d: 60, m: 56, e: 64 }
+      };
+      const VIOLENT = 68; // umbral de violencia urbana → color rojo
+      function popHTML(m) {
+        const d = m.userData.data;
+        const rows = [['Violencia urbana', d.v, m.userData.violent], ['Favorabilidad opinión', d.f, false], ['Desmovilización rural', d.d, false], ['Presencia militar', d.m, false], ['Presencia estatal', d.e, false]];
+        let s = '<div class="col3d-pop-head"><small>Departamento</small><b>' + m.userData.name + '</b>' + (m.userData.violent ? '<span class="col3d-pop-tag">Alta violencia</span>' : '') + '</div><div class="col3d-bars">';
+        for (let i = 0; i < rows.length; i++) { const r = rows[i]; s += '<div class="col3d-bar"><span class="bl">' + r[0] + '</span><span class="bv">' + r[1] + '</span><span class="bt"><i style="width:' + r[1] + '%' + (r[2] ? ';background:#e0483a' : '') + '"></i></span></div>'; }
+        return s + '</div>';
+      }
+
       let started = false;
       const io = new IntersectionObserver(function (e) {
         if (e[0].isIntersecting && !started) { started = true; io.disconnect(); init(); }
@@ -689,7 +728,7 @@
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(44, 1, 1, 3000);
-        camera.position.set(0, 98, 88);
+        camera.position.set(0, 110, 98);
         camera.lookAt(0, 1, 0);
 
         scene.add(new THREE.HemisphereLight(0x9fc2e8, 0x00101e, 0.55));
@@ -700,11 +739,14 @@
         const map = new THREE.Group(); map.rotation.x = -Math.PI / 2; pivot.add(map);
 
         let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-        forEachRing(geo, function (r) {
-          for (let k = 0; k < r.length; k++) { const a = r[k][0], b = r[k][1]; if (a < minX) minX = a; if (a > maxX) maxX = a; if (b < minY) minY = b; if (b > maxY) maxY = b; }
+        const ISLAND = 'ARCHIPIELAGO DE SAN ANDRES PROVIDENCIA Y SANTA CATALINA';
+        geo.features.forEach(function (f) {
+          if (f.properties.dpt === ISLAND) return; // centrar/escalar sobre el continente
+          const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
+          polys.forEach(function (rings) { rings.forEach(function (r) { for (let k = 0; k < r.length; k++) { const a = r[k][0], b = r[k][1]; if (a < minX) minX = a; if (a > maxX) maxX = a; if (b < minY) minY = b; if (b > maxY) maxY = b; } }); });
         });
         const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2, cosLat = Math.cos(cy * Math.PI / 180);
-        const S = 92 / Math.max((maxX - minX) * cosLat, (maxY - minY));
+        const S = 108 / Math.max((maxX - minX) * cosLat, (maxY - minY));
         const px = function (lng) { return (lng - cx) * cosLat * S; };
         const py = function (lat) { return (lat - cy) * S; };
 
@@ -720,10 +762,12 @@
             shapes.push(shape);
           });
           const g = new THREE.ExtrudeGeometry(shapes, { depth: DEPTH, bevelEnabled: false });
-          const top = new THREE.MeshStandardMaterial({ color: 0x083353, roughness: 0.85, metalness: 0.12, emissive: 0x000000 });
-          const side = new THREE.MeshStandardMaterial({ color: 0xb98e3e, roughness: 0.5, metalness: 0.35, emissive: 0x2a1d06, emissiveIntensity: 0.55 });
+          const data = DATA[f.properties.dpt] || { v: 0, f: 0, d: 0, m: 0, e: 0 };
+          const violent = data.v >= VIOLENT;
+          const top = new THREE.MeshStandardMaterial({ color: violent ? 0x611c1c : 0x083353, roughness: 0.85, metalness: 0.12, emissive: 0x000000 });
+          const side = new THREE.MeshStandardMaterial({ color: violent ? 0xc05a3a : 0xb98e3e, roughness: 0.5, metalness: 0.35, emissive: violent ? 0x3a1208 : 0x2a1d06, emissiveIntensity: 0.55 });
           const mesh = new THREE.Mesh(g, [top, side]);
-          mesh.userData = { name: NAMES[f.properties.dpt] || f.properties.dpt, top: top, lift: 0 };
+          mesh.userData = { name: NAMES[f.properties.dpt] || f.properties.dpt, top: top, lift: 0, data: data, violent: violent, hoverEm: violent ? 0x5a1810 : 0x3c2e0c };
           mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(g, 24), edgeMat));
           map.add(mesh); meshes.push(mesh);
         });
@@ -735,7 +779,7 @@
           if (hovered === mesh) return;
           if (hovered) hovered.userData.top.emissive.setHex(0x000000);
           hovered = mesh;
-          if (mesh) { mesh.userData.top.emissive.setHex(0x3c2e0c); if (labelEl) { labelEl.hidden = false; labelEl.innerHTML = '<small>Departamento</small>' + mesh.userData.name; } }
+          if (mesh) { mesh.userData.top.emissive.setHex(mesh.userData.hoverEm); if (labelEl) { labelEl.hidden = false; labelEl.innerHTML = popHTML(mesh); } }
           else if (labelEl) labelEl.hidden = true;
         }
 
@@ -751,7 +795,14 @@
           ray.setFromCamera(ptr, camera);
           const hits = ray.intersectObjects(meshes, false);
           setHover(hits.length ? hits[0].object : null);
-          if (labelEl) { labelEl.style.left = (e.clientX - rect.left) + 'px'; labelEl.style.top = (e.clientY - rect.top) + 'px'; }
+          if (labelEl && !labelEl.hidden) {
+            const pw = labelEl.offsetWidth, ph = labelEl.offsetHeight;
+            let lx = (e.clientX - rect.left) + 18, ly = (e.clientY - rect.top) + 18;
+            if (lx + pw > rect.width - 6) lx = (e.clientX - rect.left) - pw - 18;
+            if (ly + ph > rect.height - 6) ly = rect.height - ph - 6;
+            if (lx < 6) lx = 6; if (ly < 6) ly = 6;
+            labelEl.style.left = lx + 'px'; labelEl.style.top = ly + 'px';
+          }
         });
 
         let raf = null, inView = true;
