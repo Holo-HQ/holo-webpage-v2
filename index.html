@@ -1148,8 +1148,8 @@
     }
 
     /* ── Carrusel escalonado — Tres Fuerzas ── */
-    .stagger { position: relative; width: 100%; height: 560px; margin-top: clamp(40px, 5vw, 64px); overflow: hidden; }
-    .stg-card { --stg-size: 360px; position: absolute; left: 50%; top: 50%; width: var(--stg-size); height: var(--stg-size); cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; transition: transform .5s var(--ease), box-shadow .5s var(--ease), background .4s, border-color .4s; clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px)); }
+    .stagger { position: relative; width: 100%; height: 660px; margin-top: clamp(40px, 5vw, 64px); overflow: hidden; }
+    .stg-card { --stg-size: 440px; position: absolute; left: 50%; top: 50%; width: var(--stg-size); height: var(--stg-size); cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; transition: transform .5s var(--ease), box-shadow .5s var(--ease), background .4s, border-color .4s; clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px)); }
     .stg-card.is-center { background: #001F3F; color: #fff; border-color: var(--dark-acc); box-shadow: 0 16px 0 -2px rgba(212, 175, 55, .22); }
     .stg-card-img { width: 100%; height: 44%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.25) brightness(.95); border-bottom: 1px solid var(--b0); transition: filter .4s; }
     .stg-card.is-center .stg-card-img { filter: none; border-bottom-color: rgba(212, 175, 55, .4); }
@@ -1162,7 +1162,7 @@
     .stg-btn { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: var(--bg); border: 1px solid var(--b2); color: var(--t0); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
     .stg-btn:hover { background: #001F3F; color: #fff; border-color: #001F3F; }
     .stg-btn svg { width: 20px; height: 20px; }
-    @media (max-width: 640px) { .stagger { height: 460px; } }
+    @media (max-width: 640px) { .stagger { height: 540px; } }
     @media (prefers-reduced-motion: reduce) { .stg-card { transition: background .4s, border-color .4s; } }
   </style>
 </head>
@@ -2273,7 +2273,7 @@
       }
       stage.querySelector('[data-stg-prev]').addEventListener('click', () => move(-1));
       stage.querySelector('[data-stg-next]').addEventListener('click', () => move(1));
-      function resize() { size = window.matchMedia('(min-width: 640px)').matches ? 360 : 264; render(); }
+      function resize() { size = window.matchMedia('(min-width: 640px)').matches ? 440 : 300; render(); }
       resize();
       window.addEventListener('resize', resize, { passive: true });
     })();
