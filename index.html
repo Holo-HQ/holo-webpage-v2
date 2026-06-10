@@ -318,25 +318,10 @@
 
     /* ── STATEMENT — editorial quote (Monks asymmetric block) ── */
     .mk-stmt {
-      position: relative;
-      overflow: hidden;
       padding: 140px 0;
       background: var(--bg1);
       border-top: 1px solid var(--b0);
       border-bottom: 1px solid var(--b0);
-    }
-
-    /* Fondo de líneas curvas animadas (background-paths) */
-    .mk-stmt-paths { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; color: #001F3F; pointer-events: none; }
-    .mk-stmt-inner { position: relative; z-index: 1; }
-    .mk-stmt-path { fill: none; stroke: currentColor; stroke-dasharray: 0.4 0.6; }
-    @media (prefers-reduced-motion: no-preference) {
-      .mk-stmt-path { animation-name: stmtFlow; animation-timing-function: linear; animation-iteration-count: infinite; will-change: stroke-dashoffset, opacity; }
-    }
-    @keyframes stmtFlow {
-      0% { stroke-dashoffset: 0; opacity: .35; }
-      50% { opacity: .7; }
-      100% { stroke-dashoffset: 1; opacity: .35; }
     }
 
     .mk-stmt-inner {
@@ -1165,18 +1150,21 @@
 
     /* ── Carrusel escalonado — Fuerzas (tarjeta central expandida) ── */
     .stagger { position: relative; width: 100%; height: 720px; margin-top: clamp(40px, 5vw, 64px); overflow: hidden; }
-    .stg-card { position: absolute; left: 50%; top: 50%; width: 288px; height: 392px; cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; transition: transform .55s var(--ease), box-shadow .5s var(--ease), background .4s, border-color .4s; clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 26px 100%, 0 calc(100% - 26px)); }
-    .stg-card-img { width: 100%; height: 66%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.3) brightness(.92); border-bottom: 1px solid var(--b0); transition: filter .4s; }
-    .stg-card-body { padding: 14px 18px 0; display: flex; flex-direction: column; gap: 6px; }
-    .stg-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); }
-    .stg-h { font-size: 17px; font-weight: 700; line-height: 1.12; letter-spacing: -.01em; margin: 0; }
+    .stg-card { position: absolute; left: 50%; top: 50%; width: 288px; height: 392px; cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; will-change: transform; transition: transform .55s var(--ease), width .55s var(--ease), height .55s var(--ease), box-shadow .5s var(--ease), background .45s var(--ease), border-color .45s; clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 26px 100%, 0 calc(100% - 26px)); }
+    .stg-card-img { width: 100%; height: 66%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.3) brightness(.92); border-bottom: 1px solid var(--b0); transition: height .55s var(--ease), filter .45s; }
+    .stg-card-body { padding: 14px 18px 0; display: flex; flex-direction: column; gap: 6px; min-height: 0; }
+    .stg-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); transition: color .4s; }
+    .stg-h { font-size: 17px; font-weight: 700; line-height: 1.12; letter-spacing: -.01em; margin: 0; transition: font-size .4s var(--ease); }
     .stg-p { font-size: 12px; line-height: 1.45; margin: 2px 0 0; opacity: .8; }
+    .stg-extra { display: none; }
     /* tarjeta central expandida — todo el texto */
-    .stg-card.is-center { width: min(640px, 92vw); height: 600px; background: #001F3F; color: #fff; border-color: var(--dark-acc); box-shadow: 0 16px 0 -2px rgba(212, 175, 55, .22); clip-path: polygon(0 0, calc(100% - 34px) 0, 100% 34px, 100% 100%, 34px 100%, 0 calc(100% - 34px)); }
+    .stg-card.is-center { width: min(640px, 92vw); height: 600px; background: #001F3F; color: #fff; border-color: var(--dark-acc); box-shadow: 0 16px 0 -2px rgba(212, 175, 55, .22); }
     .stg-card.is-center .stg-card-img { height: 24%; filter: none; border-bottom-color: rgba(212, 175, 55, .4); }
     .stg-card.is-center .stg-tag { color: var(--dark-acc); }
-    .stg-full { padding: 16px clamp(20px, 3vw, 30px) 18px; display: flex; flex-direction: column; gap: 9px; overflow: hidden; }
-    .stg-fh { font-size: clamp(20px, 2vw, 26px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; margin: 0; color: #fff; }
+    .stg-card.is-center .stg-card-body { padding: 16px clamp(20px, 3vw, 30px) 18px; gap: 9px; }
+    .stg-card.is-center .stg-h { font-size: clamp(20px, 2vw, 26px); line-height: 1.1; color: #fff; }
+    .stg-card.is-center .stg-p { display: none; }
+    .stg-card.is-center .stg-extra { display: flex; flex-direction: column; gap: 9px; margin-top: 2px; }
     .stg-fintro { font-size: 13.5px; line-height: 1.5; color: rgba(231, 231, 229, .86); margin: 0; }
     .stg-flist { list-style: none; margin: 1px 0 0; padding: 0; display: grid; gap: 7px; }
     .stg-flist li { position: relative; padding-left: 18px; font-size: 12.5px; line-height: 1.45; color: rgba(231, 231, 229, .82); }
@@ -1188,8 +1176,7 @@
     .stg-btn:hover { background: #001F3F; color: #fff; border-color: #001F3F; }
     .stg-btn svg { width: 20px; height: 20px; }
     @media (max-width: 760px) { .stagger { height: 680px; } .stg-card { width: 216px; height: 330px; } .stg-card.is-center { width: 92vw; height: 580px; } .stg-card.is-center .stg-card-img { height: 20%; } }
-    @media (prefers-reduced-motion: reduce) { .stg-card { transition: background .4s, border-color .4s; } }
-    @media (prefers-reduced-motion: reduce) { .stg-card { transition: background .4s, border-color .4s; } }
+    @media (prefers-reduced-motion: reduce) { .stg-card, .stg-card-img, .stg-h { transition: background .4s, border-color .4s; } }
   </style>
 </head>
 
@@ -1466,7 +1453,6 @@
 
   <!-- ═══════ STATEMENT — EDITORIAL QUOTE (Monks asymmetric) ═══════ -->
   <div class="mk-stmt" aria-label="Propuesta de valor">
-    <svg class="mk-stmt-paths" viewBox="0 0 696 316" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-stmt-paths></svg>
     <div class="mk-stmt-inner">
       <h2 class="mk-stmt-quote rv">
         El comandante decide.<br>
@@ -2313,22 +2299,22 @@
       ];
       let list = [FORCES[3], FORCES[4], FORCES[0], FORCES[1], FORCES[2]]; // centra Ejército al inicio
 
-      function coverHTML(f) {
+      function buildHTML(f) {
         return '<div class="stg-card-img" style="background-image:url(' + f.img + ')"></div>'
-          + '<div class="stg-card-body"><span class="stg-tag">' + f.tag + '</span><h3 class="stg-h">' + f.h + '</h3>'
-          + (f.tagline ? '<p class="stg-p">' + f.tagline + '</p>' : '') + '</div>';
-      }
-      function fullHTML(f) {
-        return '<div class="stg-card-img" style="background-image:url(' + f.img + ')"></div>'
-          + '<div class="stg-full"><span class="stg-tag">' + f.tag + '</span><h3 class="stg-fh">' + f.h + '</h3>'
-          + '<p class="stg-fintro">' + f.intro + '</p>'
+          + '<div class="stg-card-body">'
+          + '<span class="stg-tag">' + f.tag + '</span>'
+          + '<h3 class="stg-h">' + f.h + '</h3>'
+          + (f.tagline ? '<p class="stg-p">' + f.tagline + '</p>' : '')
+          + '<div class="stg-extra"><p class="stg-fintro">' + f.intro + '</p>'
           + '<ul class="stg-flist">' + f.bullets.map(function (b) { return '<li><b>' + b.lead + '</b> ' + b.rest + '</li>'; }).join('') + '</ul>'
-          + (f.close ? '<p class="stg-fclose">' + f.close + '</p>' : '') + '</div>';
+          + (f.close ? '<p class="stg-fclose">' + f.close + '</p>' : '')
+          + '</div></div>';
       }
 
       const els = FORCES.map(function (f) {
         const el = document.createElement('article');
         el.className = 'stg-card';
+        el.innerHTML = buildHTML(f);
         el.addEventListener('click', function () { move(list.indexOf(f) - Math.floor(list.length / 2)); });
         stage.insertBefore(el, stage.firstChild);
         return el;
@@ -2343,7 +2329,6 @@
           const center = position === 0;
           el.classList.toggle('is-center', center);
           el.setAttribute('aria-hidden', center ? 'false' : 'true');
-          el.innerHTML = center ? fullHTML(f) : coverHTML(f);
           el.style.zIndex = center ? 20 : (10 - Math.abs(position));
           el.style.transform = 'translate(-50%,-50%)'
             + ' translateX(' + (position * step).toFixed(0) + 'px)'
@@ -2364,34 +2349,6 @@
     })();
   </script>
 
-  <!-- ─── Fondo de líneas curvas animadas — sección 'El comandante decide' ─── -->
-  <script>
-    (function () {
-      'use strict';
-      const svg = document.querySelector('[data-stmt-paths]');
-      if (!svg) return;
-      const NS = 'http://www.w3.org/2000/svg';
-      const N = 30; // líneas por lado
-      [1, -1].forEach(function (pos) {
-        for (let i = 0; i < N; i++) {
-          const A = 380 - i * 5 * pos, B = 189 + i * 6, C = 312 - i * 5 * pos, D = 216 - i * 6,
-            E = 152 - i * 5 * pos, F = 343 - i * 6, G = 616 - i * 5 * pos, H = 470 - i * 6,
-            I = 684 - i * 5 * pos, J = 875 - i * 6;
-          const d = 'M-' + A + ' -' + B + 'C-' + A + ' -' + B + ' -' + C + ' ' + D + ' ' + E + ' ' + F
-            + 'C' + G + ' ' + H + ' ' + I + ' ' + J + ' ' + I + ' ' + J;
-          const p = document.createElementNS(NS, 'path');
-          p.setAttribute('d', d);
-          p.setAttribute('class', 'mk-stmt-path');
-          p.setAttribute('pathLength', '1');
-          p.setAttribute('stroke-width', (0.5 + i * 0.03).toFixed(2));
-          p.setAttribute('stroke-opacity', Math.min(0.5, 0.06 + i * 0.013).toFixed(3));
-          p.style.animationDuration = (20 + (i % 11)) + 's';
-          p.style.animationDelay = '-' + (i * 0.7).toFixed(1) + 's';
-          svg.appendChild(p);
-        }
-      });
-    })();
-  </script>
 </body>
 
 </html>
