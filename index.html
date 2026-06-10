@@ -1059,15 +1059,7 @@
     .form-optional { color: var(--t2); opacity: .65; text-transform: none; letter-spacing: 0; }
 
     /* ===== Arquitectura agéntica (capas + componentes) ===== */
-    .arch { position: relative; overflow: hidden; padding: clamp(80px, 8vw, 120px) 0; }
-    /* Diagrama como marca de agua de fondo (grande, centrado, detrás de las filas) */
-    .arch .ct, .arch-stack { position: relative; z-index: 1; }
-    .arch-diagram--bg { position: absolute; left: 50%; top: 56%; transform: translate(-50%, -50%); width: min(840px, 96vw); margin: 0; z-index: 0; opacity: .55; pointer-events: none; }
-    .arch-diagram--bg .arch-core-label { font-size: 26px; }
-    .arch-diagram--bg .arch-core-c2 { font-size: 17px; }
-    /* filas semi-translúcidas para que el diagrama se aprecie detrás */
-    .arch-stack .arch-layer { background: rgba(245,245,240,.74); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
-    .arch-stack .arch-comp { background: rgba(255,255,255,.55); }
+    .arch { padding: clamp(80px, 8vw, 120px) 0; }
     .arch .ct { margin-bottom: clamp(2.5rem, 4vw, 3.5rem); }
     .arch-stack { max-width: 1280px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 12px; }
     .arch-layer { display: grid; grid-template-columns: 300px 1fr; gap: 28px; align-items: center; padding: 26px 28px; border: 1px solid var(--b0); background: var(--bg1); transition: border-color .3s var(--ease); }
@@ -1370,7 +1362,8 @@
       </p>
     </div>
 
-    <div class="arch-diagram arch-diagram--bg" data-arch-diagram aria-hidden="true">
+    <div class="arch-explorer">
+      <div class="arch-diagram" data-arch-diagram>
       <div class="arch-stage">
         <svg class="arch-svg" viewBox="0 0 420 420" aria-hidden="true">
           <defs>
@@ -1388,6 +1381,17 @@
         <div class="arch-core-label" aria-hidden="true">NEXXO<span class="arch-core-c2">C2</span></div>
       </div>
       </div>
+      <aside class="arch-panel" data-arch-panel aria-live="polite">
+        <svg class="arch-panel-icon" data-p-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1" /><rect x="13" y="3" width="8" height="8" rx="1" /><rect x="3" y="13" width="8" height="8" rx="1" /><rect x="13" y="13" width="8" height="8" rx="1" /></svg>
+        <div class="arch-panel-top">
+          <span class="arch-panel-n" data-p-n>—</span>
+          <span class="arch-panel-layer" data-p-layer>NEXXO C2 · 4 capas · 12 componentes</span>
+        </div>
+        <h3 class="arch-panel-name" data-p-name>Una arquitectura con propósito</h3>
+        <p class="arch-panel-desc" data-p-desc>Doce componentes en cuatro capas forman un solo sistema de mando y control: soberano, auditable y diseñado para el teatro de operaciones colombiano. Recorre cada uno para conocer su misión.</p>
+        <p class="arch-panel-goal" data-p-goal></p>
+      </aside>
+    </div>
 
     <div class="arch-stack">
       <article class="arch-layer rv">
@@ -2086,11 +2090,10 @@
       const layersG = wrap.querySelector('[data-arch-layers]');
       const compsG = wrap.querySelector('[data-arch-comps]');
       const panel = document.querySelector('[data-arch-panel]');
-      const q = (s) => (panel ? panel.querySelector(s) : null);
-      const pN = q('[data-p-n]'), pLayer = q('[data-p-layer]');
-      const pName = q('[data-p-name]'), pDesc = q('[data-p-desc]'), pGoal = q('[data-p-goal]');
-      const pIcon = q('[data-p-icon]');
-      const ICON_DEFAULT = pIcon ? pIcon.innerHTML : '';
+      const pN = panel.querySelector('[data-p-n]'), pLayer = panel.querySelector('[data-p-layer]');
+      const pName = panel.querySelector('[data-p-name]'), pDesc = panel.querySelector('[data-p-desc]'), pGoal = panel.querySelector('[data-p-goal]');
+      const pIcon = panel.querySelector('[data-p-icon]');
+      const ICON_DEFAULT = pIcon.innerHTML;
       const cx = 210, cy = 210;
 
       const LAYERS = [
@@ -2162,7 +2165,6 @@
         const t = mk('text', { x: nx, y: ny, class: 'arch-comp-lbl', 'text-anchor': 'middle', 'dominant-baseline': 'central' });
         t.textContent = c.n; g.appendChild(t);
         const on = () => {
-          if (!panel) return;
           compsG.querySelectorAll('.arch-node').forEach(x => x.classList.remove('is-active'));
           g.classList.add('is-active');
           pN.textContent = c.n;
@@ -2177,7 +2179,6 @@
         compsG.appendChild(g);
       });
       wrap.querySelector('.arch-stage').addEventListener('mouseleave', () => {
-        if (!panel) return;
         compsG.querySelectorAll('.arch-node').forEach(x => x.classList.remove('is-active'));
         pN.textContent = '—';
         pLayer.textContent = 'NEXXO C2 · 4 capas · 12 componentes';
