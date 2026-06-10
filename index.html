@@ -1050,6 +1050,13 @@
     .feature-b { font-size: 14px; line-height: 1.6; color: var(--t1); }
     @media (max-width: 860px) { .feature-grid { grid-template-columns: 1fr; padding: 0 24px; } }
     @media (prefers-reduced-motion: reduce) { .feature-card { transition: none; } }
+
+    /* ===== Form fields con label visible (patrón shadcn form) ===== */
+    .form-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+    .mk-field-2 .form-field { margin-bottom: 0; }
+    .form-field .mk-field { margin-bottom: 0; }
+    .form-label { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--t2); }
+    .form-optional { color: var(--t2); opacity: .65; text-transform: none; letter-spacing: 0; }
   </style>
 </head>
 
@@ -1467,31 +1474,49 @@
               <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
             </p>
             <div class="mk-field-2">
-              <input type="text" name="nombre" class="mk-field" aria-label="Nombre completo" placeholder="Nombre completo" required />
-              <input type="text" name="cargo" class="mk-field" aria-label="Cargo o rango" placeholder="Cargo / Rango" required />
+              <div class="form-field">
+                <label class="form-label" for="f-nombre">Nombre completo</label>
+                <input id="f-nombre" type="text" name="nombre" class="mk-field" placeholder="Nombre y apellido" required />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="f-cargo">Cargo / Rango</label>
+                <input id="f-cargo" type="text" name="cargo" class="mk-field" placeholder="Ej. Coronel" required />
+              </div>
             </div>
-            <input type="email" name="email" class="mk-field" aria-label="Correo institucional" placeholder="Correo institucional" required />
-            <select name="organizacion" class="mk-field" aria-label="Organización" required>
-              <option value="" disabled selected>Organización</option>
-              <option value="Ejército Nacional">Ejército Nacional</option>
-              <option value="Armada Nacional de Colombia">Armada Nacional de Colombia</option>
-              <option value="Fuerza Aeroespacial Colombiana (FACS)">Fuerza Aeroespacial Colombiana (FACS)</option>
-              <option value="Ministerio de Defensa Nacional">Ministerio de Defensa Nacional</option>
-              <option value="Policía Nacional">Policía Nacional</option>
-              <option value="Entidad de seguridad regional">Entidad de seguridad regional</option>
-              <option value="Otro">Otro</option>
-            </select>
-            <select name="modulo" class="mk-field" aria-label="Módulo de interés">
-              <option value="" disabled selected>Módulo de interés</option>
-              <option value="RADAR — Dashboard táctico">RADAR — Dashboard táctico</option>
-              <option value="IRIS — App móvil de campo">IRIS — App móvil de campo</option>
-              <option value="NEXXO Chat — Comunicaciones seguras">NEXXO Chat — Comunicaciones seguras</option>
-              <option value="Memora — Gestión documental">Memora — Gestión documental</option>
-              <option value="HOLO AI — Inteligencia artificial">HOLO AI — Inteligencia artificial</option>
-              <option value="PRISMA EDGE — Hardware táctico">PRISMA EDGE — Hardware táctico</option>
-              <option value="Ecosistema completo NEXXO C2">Ecosistema completo NEXXO C2</option>
-            </select>
-            <textarea name="mensaje" class="mk-field" aria-label="Requerimiento operacional" placeholder="Describe el requerimiento operacional..."></textarea>
+            <div class="form-field">
+              <label class="form-label" for="f-email">Correo institucional</label>
+              <input id="f-email" type="email" name="email" class="mk-field" placeholder="nombre@ejemplo.mil.co" required />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="f-org">Organización</label>
+              <select id="f-org" name="organizacion" class="mk-field" required>
+                <option value="" disabled selected>Selecciona una organización</option>
+                <option value="Ejército Nacional">Ejército Nacional</option>
+                <option value="Armada Nacional de Colombia">Armada Nacional de Colombia</option>
+                <option value="Fuerza Aeroespacial Colombiana (FACS)">Fuerza Aeroespacial Colombiana (FACS)</option>
+                <option value="Ministerio de Defensa Nacional">Ministerio de Defensa Nacional</option>
+                <option value="Policía Nacional">Policía Nacional</option>
+                <option value="Entidad de seguridad regional">Entidad de seguridad regional</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="f-modulo">Módulo de interés <span class="form-optional">(opcional)</span></label>
+              <select id="f-modulo" name="modulo" class="mk-field">
+                <option value="" disabled selected>Selecciona un módulo</option>
+                <option value="RADAR — Dashboard táctico">RADAR — Dashboard táctico</option>
+                <option value="IRIS — App móvil de campo">IRIS — App móvil de campo</option>
+                <option value="NEXXO Chat — Comunicaciones seguras">NEXXO Chat — Comunicaciones seguras</option>
+                <option value="Memora — Gestión documental">Memora — Gestión documental</option>
+                <option value="HOLO AI — Inteligencia artificial">HOLO AI — Inteligencia artificial</option>
+                <option value="PRISMA EDGE — Hardware táctico">PRISMA EDGE — Hardware táctico</option>
+                <option value="Ecosistema completo NEXXO C2">Ecosistema completo NEXXO C2</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="f-mensaje">Requerimiento operacional <span class="form-optional">(opcional)</span></label>
+              <textarea id="f-mensaje" name="mensaje" class="mk-field" placeholder="Describe brevemente el contexto y la necesidad operacional..."></textarea>
+            </div>
             <button type="submit" id="submit-btn" class="bp" style="width:100%;justify-content:center;margin-top:4px">
               Enviar Solicitud →
             </button>
