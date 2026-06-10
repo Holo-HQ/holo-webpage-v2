@@ -961,6 +961,12 @@
         grid-template-columns: 1fr 1fr;
       }
     }
+
+    /* Very small screens: stack hero metrics so 2-line labels don't break */
+    @media (max-width: 420px) {
+      .mk-hero-metrics { grid-template-columns: 1fr; }
+      .mk-metric { padding: 18px 22px; }
+    }
   </style>
 </head>
 
@@ -989,13 +995,13 @@
     </nav>
     <div class="header-r">
       <a href="#contacto" class="header-cta">Solicitar Demo</a>
-      <button class="hb" id="hb" aria-label="Menú" aria-expanded="false">
+      <button class="hb" id="hb" aria-label="Menú" aria-expanded="false" aria-controls="mm">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <div class="mobile-menu" id="mm">
+  <div class="mobile-menu" id="mm" role="navigation" aria-label="Menú móvil">
     <a href="index.html"><span class="mm-i">/00</span>Inicio</a>
     <a href="radar.html"><span class="mm-i">/01</span>RADAR Dashboard</a>
     <a href="iris.html"><span class="mm-i">/02</span>IRIS + PRISMA EDGE</a>
@@ -1317,7 +1323,7 @@
     <div class="mk-sov-grid" style="max-width:1280px;margin-left:auto;margin-right:auto;padding:0 48px">
       <div class="mk-sov-it rv">
         <span class="mk-sov-num">/01 — Infraestructura</span>
-        <h4 class="mk-sov-h">On-Premise o Nube Soberana</h4>
+        <h3 class="mk-sov-h">On-Premise o Nube Soberana</h3>
         <p class="mk-sov-b">
           Despliegue en infraestructura del Ministerio de Defensa. Sin dependencia de
           hyperscalers extranjeros. Control total sobre datos operacionales clasificados.
@@ -1326,7 +1332,7 @@
       </div>
       <div class="mk-sov-it rv rd1">
         <span class="mk-sov-num">/02 — Normativa</span>
-        <h4 class="mk-sov-h">Auditoría y Cumplimiento</h4>
+        <h3 class="mk-sov-h">Auditoría y Cumplimiento</h3>
         <p class="mk-sov-b">
           Arquitectura diseñada según estándares de seguridad de la información militar colombiana.
           Cifrado certificado, auditoría completa de acceso. 100% del código fuente disponible
@@ -1335,7 +1341,7 @@
       </div>
       <div class="mk-sov-it rv rd2">
         <span class="mk-sov-num">/03 — Transferencia</span>
-        <h4 class="mk-sov-h">Capacidades al Estado</h4>
+        <h3 class="mk-sov-h">Capacidades al Estado</h3>
         <p class="mk-sov-b">
           Programa de formación para ingenieros militares colombianos. El objetivo: que Colombia
           opere, mantenga y evolucione NEXXO C2 de forma completamente autónoma en el largo plazo.
@@ -1380,11 +1386,11 @@
               <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
             </p>
             <div class="mk-field-2">
-              <input type="text" name="nombre" class="mk-field" placeholder="Nombre completo" required />
-              <input type="text" name="cargo" class="mk-field" placeholder="Cargo / Rango" required />
+              <input type="text" name="nombre" class="mk-field" aria-label="Nombre completo" placeholder="Nombre completo" required />
+              <input type="text" name="cargo" class="mk-field" aria-label="Cargo o rango" placeholder="Cargo / Rango" required />
             </div>
-            <input type="email" name="email" class="mk-field" placeholder="Correo institucional" required />
-            <select name="organizacion" class="mk-field" required>
+            <input type="email" name="email" class="mk-field" aria-label="Correo institucional" placeholder="Correo institucional" required />
+            <select name="organizacion" class="mk-field" aria-label="Organización" required>
               <option value="" disabled selected>Organización</option>
               <option value="Ejército Nacional">Ejército Nacional</option>
               <option value="Armada Nacional de Colombia">Armada Nacional de Colombia</option>
@@ -1394,7 +1400,7 @@
               <option value="Entidad de seguridad regional">Entidad de seguridad regional</option>
               <option value="Otro">Otro</option>
             </select>
-            <select name="modulo" class="mk-field">
+            <select name="modulo" class="mk-field" aria-label="Módulo de interés">
               <option value="" disabled selected>Módulo de interés</option>
               <option value="RADAR — Dashboard táctico">RADAR — Dashboard táctico</option>
               <option value="IRIS — App móvil de campo">IRIS — App móvil de campo</option>
@@ -1404,13 +1410,13 @@
               <option value="PRISMA EDGE — Hardware táctico">PRISMA EDGE — Hardware táctico</option>
               <option value="Ecosistema completo NEXXO C2">Ecosistema completo NEXXO C2</option>
             </select>
-            <textarea name="mensaje" class="mk-field" placeholder="Describe el requerimiento operacional..."></textarea>
+            <textarea name="mensaje" class="mk-field" aria-label="Requerimiento operacional" placeholder="Describe el requerimiento operacional..."></textarea>
             <button type="submit" id="submit-btn" class="bp" style="width:100%;justify-content:center;margin-top:4px">
               Enviar Solicitud →
             </button>
           </form>
         </div>
-        <div id="success-msg" style="display:none; text-align:center; padding: 40px 20px;">
+        <div id="success-msg" role="status" aria-live="polite" style="display:none; text-align:center; padding: 40px 20px;">
           <div class="mk-eyebrow" style="justify-content:center; margin-bottom: 20px;">
             <div class="mk-eyebrow-line"></div>
             <span class="mk-eyebrow-txt">SOLICITUD RECIBIDA</span>
@@ -1484,7 +1490,12 @@
   <script>
     // Header scroll
     const h = document.getElementById('mainHeader');
-    window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 40));
+    let scrollTick = false;
+    window.addEventListener('scroll', () => {
+      if (scrollTick) return;
+      scrollTick = true;
+      requestAnimationFrame(() => { h.classList.toggle('scrolled', window.scrollY > 40); scrollTick = false; });
+    }, { passive: true });
 
     // Mobile menu
     const hb = document.getElementById('hb'), mm = document.getElementById('mm');
@@ -1500,6 +1511,16 @@
       hb.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }));
+    // Close mobile menu with Escape, return focus to the toggle
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mm.classList.contains('open')) {
+        mm.classList.remove('open');
+        hb.classList.remove('open');
+        hb.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        hb.focus();
+      }
+    });
 
     // Scroll reveal
     const obs = new IntersectionObserver(
