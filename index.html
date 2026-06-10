@@ -1151,7 +1151,7 @@
     .stagger { position: relative; width: 100%; height: 660px; margin-top: clamp(40px, 5vw, 64px); overflow: hidden; }
     .stg-card { --stg-size: 440px; position: absolute; left: 50%; top: 50%; width: var(--stg-size); height: var(--stg-size); cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; transition: transform .5s var(--ease), box-shadow .5s var(--ease), background .4s, border-color .4s; clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px)); }
     .stg-card.is-center { background: #001F3F; color: #fff; border-color: var(--dark-acc); box-shadow: 0 16px 0 -2px rgba(212, 175, 55, .22); }
-    .stg-card-img { width: 100%; height: 44%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.25) brightness(.95); border-bottom: 1px solid var(--b0); transition: filter .4s; }
+    .stg-card-img { width: 100%; height: 56%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.25) brightness(.95); border-bottom: 1px solid var(--b0); transition: filter .4s; }
     .stg-card.is-center .stg-card-img { filter: none; border-bottom-color: rgba(212, 175, 55, .4); }
     .stg-card-body { padding: 16px 22px 0; display: flex; flex-direction: column; gap: 7px; }
     .stg-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); }
@@ -1162,6 +1162,16 @@
     .stg-btn { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: var(--bg); border: 1px solid var(--b2); color: var(--t0); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
     .stg-btn:hover { background: #001F3F; color: #fff; border-color: #001F3F; }
     .stg-btn svg { width: 20px; height: 20px; }
+    /* Panel de detalle de la fuerza centrada */
+    .stg-detail { max-width: 760px; margin: clamp(14px, 2.5vw, 30px) auto 0; border-top: 1px solid var(--b1); padding-top: 28px; }
+    .stg-detail-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
+    .stg-detail-h { font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; letter-spacing: -.02em; color: var(--t0); margin: 8px 0 16px; }
+    .stg-detail-intro { font-size: clamp(15px, 1.5vw, 17px); line-height: 1.6; color: var(--t1); margin: 0 0 22px; }
+    .stg-detail-list { list-style: none; display: grid; gap: 13px; margin: 0 0 22px; padding: 0; }
+    .stg-detail-list li { position: relative; padding-left: 22px; font-size: 14.5px; line-height: 1.55; color: var(--t1); }
+    .stg-detail-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; background: var(--acc); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+    .stg-detail-list b { color: var(--t0); font-weight: 600; }
+    .stg-detail-close { font-size: 15px; line-height: 1.6; color: var(--t0); font-weight: 500; margin: 0; padding-left: 16px; border-left: 2px solid var(--acc); }
     @media (max-width: 640px) { .stagger { height: 540px; } }
     @media (prefers-reduced-motion: reduce) { .stg-card { transition: background .4s, border-color .4s; } }
   </style>
@@ -1474,6 +1484,9 @@
           <button class="stg-btn" type="button" data-stg-prev aria-label="Fuerza anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg></button>
           <button class="stg-btn" type="button" data-stg-next aria-label="Fuerza siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg></button>
         </div>
+      </div>
+      <div class="ct">
+        <div class="stg-detail" data-stg-detail aria-live="polite"></div>
       </div>
     </div>
   </section>
@@ -2230,10 +2243,38 @@
       'use strict';
       const stage = document.querySelector('[data-stagger]');
       if (!stage) return;
+      const detail = document.querySelector('[data-stg-detail]');
       const FORCES = [
-        { tag: '/01 — Ejército Nacional', h: 'Control Operacional Terrestre', p: 'Tracking de infantería, blindados y artillería en 8 Divisiones, con líneas de fuego y zonas de operación en tiempo real.', img: 'assets/forces-army-terrestrial.webp' },
-        { tag: '/02 — Armada Nacional', h: 'Operaciones Navales y Fluviales', p: 'Buques ARC, lanchas fluviales e interdicción en Pacífico, Caribe y ríos, con integración AIS y radar naval.', img: 'assets/navy-force.jpeg' },
-        { tag: '/03 — Fuerza Aeroespacial (FAC)', h: 'Seguimiento de Misiones Aéreas', p: 'Aeronaves con telemetría y estado de misión, planes de vuelo activos, UAVs y apoyo aéreo cercano (CAS).', img: 'assets/air-mission-track.svg' }
+        {
+          tag: '/01 — Ejército Nacional', h: 'Conciencia Situacional Terrestre', img: 'assets/forces-army-terrestrial.webp',
+          intro: 'El componente terrestre de NEXXO C2 consolida la posición, el estado y la organización para el combate de las unidades del Ejército Nacional en sus ocho divisiones — de la división al pelotón — en una sola imagen operacional.',
+          bullets: [
+            { lead: 'ORBAT dinámico:', rest: 'orden de batalla vivo, con simbología militar estándar y estado de personal y material por unidad.' },
+            { lead: 'Gráficos de control en tiempo real:', rest: 'áreas de operaciones, límites entre unidades, líneas de fase y ejes de avance sincronizados entre todos los escalones.' },
+            { lead: 'Maniobra y fuegos integrados:', rest: 'posiciones de artillería, sectores de fuego y medidas de coordinación de apoyo de fuegos sobre el mismo mapa que la infantería y los blindados.' }
+          ],
+          close: 'Lo que antes exigía consolidar reportes por radio y calcos en acetato, hoy es una sola vista compartida del teatro terrestre.'
+        },
+        {
+          tag: '/02 — Armada Nacional', h: 'Conciencia Situacional Naval y Fluvial', img: 'assets/navy-force.jpeg',
+          intro: 'El componente naval de NEXXO C2 unifica los dos mares y los ríos de Colombia en una sola imagen marítima: cada unidad de la Armada, cada contacto detectado y cada área de operaciones, en tiempo real.',
+          bullets: [
+            { lead: 'Imagen marítima integrada:', rest: 'correlación automática de unidades propias, tráfico AIS y contactos de radar naval, para separar el tráfico legítimo de las embarcaciones de interés.' },
+            { lead: 'Dominio fluvial:', rest: 'seguimiento de los elementos de combate fluvial en miles de kilómetros de ríos navegables, donde la presencia naval es la presencia del Estado.' },
+            { lead: 'Apoyo a la interdicción:', rest: 'trazas, rumbos y velocidades compartidos al instante entre unidades de superficie, guardacostas y aeronaves navales para cerrar el cerco sobre el objetivo.' }
+          ],
+          close: ''
+        },
+        {
+          tag: '/03 — Fuerza Aeroespacial Colombiana', h: 'Conciencia Situacional Aeroespacial', img: 'assets/air-mission-track.svg',
+          intro: 'El componente aéreo de NEXXO C2 construye el panorama aeroespacial en tiempo real: posición, telemetría y estado de misión de cada plataforma de la FAC, del transporte estratégico a la aeronave remotamente tripulada.',
+          bullets: [
+            { lead: 'Traza viva por aeronave:', rest: 'telemetría, plan de vuelo activo y progreso de la misión en una sola vista — lo planeado y lo ejecutado, lado a lado.' },
+            { lead: 'Tripuladas y ART en un solo panorama:', rest: 'las aeronaves remotamente tripuladas operan en la misma imagen que el resto de la flota, sin sistemas paralelos ni pantallas separadas.' },
+            { lead: 'Apoyo aéreo cercano (CAS) integrado:', rest: 'la coordinación aire-tierra ocurre sobre la imagen operacional común — el piloto, el controlador y la unidad apoyada ven el mismo terreno y las mismas posiciones amigas.' }
+          ],
+          close: ''
+        }
       ];
       let list = [FORCES[2], FORCES[0], FORCES[1]]; // centra Ejército al inicio
       let size = 360;
@@ -2242,12 +2283,19 @@
         const el = document.createElement('article');
         el.className = 'stg-card';
         el.innerHTML = '<div class="stg-card-img" style="background-image:url(' + f.img + ')"></div>'
-          + '<div class="stg-card-body"><span class="stg-tag">' + f.tag + '</span><h3 class="stg-h">' + f.h + '</h3><p class="stg-p">' + f.p + '</p></div>';
+          + '<div class="stg-card-body"><span class="stg-tag">' + f.tag + '</span><h3 class="stg-h">' + f.h + '</h3></div>';
         el.addEventListener('click', () => move(list.indexOf(f) - Math.floor(list.length / 2)));
         stage.insertBefore(el, stage.firstChild);
         return el;
       });
 
+      function detailHTML(f) {
+        return '<span class="stg-detail-tag">' + f.tag + '</span>'
+          + '<h3 class="stg-detail-h">' + f.h + '</h3>'
+          + '<p class="stg-detail-intro">' + f.intro + '</p>'
+          + '<ul class="stg-detail-list">' + f.bullets.map(function (b) { return '<li><b>' + b.lead + '</b> ' + b.rest + '</li>'; }).join('') + '</ul>'
+          + (f.close ? '<p class="stg-detail-close">' + f.close + '</p>' : '');
+      }
       function render() {
         const mid = Math.floor(list.length / 2);
         FORCES.forEach((f, i) => {
@@ -2264,6 +2312,7 @@
             + ' rotate(' + (center ? 0 : (position > 0 ? 3.5 : -3.5)) + 'deg)'
             + ' scale(' + (center ? 1 : 0.94) + ')';
         });
+        if (detail) detail.innerHTML = detailHTML(list[Math.floor(list.length / 2)]);
       }
       function move(steps) {
         if (!steps) return;
