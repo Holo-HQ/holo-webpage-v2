@@ -1146,6 +1146,24 @@
       .arch-explorer .arch-diagram { max-width: 380px; margin: 0 auto; }
       .arch-panel { min-height: 0; }
     }
+
+    /* ── Carrusel escalonado — Tres Fuerzas ── */
+    .stagger { position: relative; width: 100%; height: 560px; margin-top: clamp(40px, 5vw, 64px); overflow: hidden; }
+    .stg-card { --stg-size: 360px; position: absolute; left: 50%; top: 50%; width: var(--stg-size); height: var(--stg-size); cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; transition: transform .5s var(--ease), box-shadow .5s var(--ease), background .4s, border-color .4s; clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px)); }
+    .stg-card.is-center { background: #001F3F; color: #fff; border-color: var(--dark-acc); box-shadow: 0 16px 0 -2px rgba(212, 175, 55, .22); }
+    .stg-card-img { width: 100%; height: 44%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.25) brightness(.95); border-bottom: 1px solid var(--b0); transition: filter .4s; }
+    .stg-card.is-center .stg-card-img { filter: none; border-bottom-color: rgba(212, 175, 55, .4); }
+    .stg-card-body { padding: 16px 22px 0; display: flex; flex-direction: column; gap: 7px; }
+    .stg-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); }
+    .stg-card.is-center .stg-tag { color: var(--dark-acc); }
+    .stg-h { font-size: clamp(17px, 1.5vw, 21px); font-weight: 700; line-height: 1.12; letter-spacing: -.01em; margin: 0; }
+    .stg-p { font-size: 13px; line-height: 1.5; margin: 2px 0 0; opacity: .82; }
+    .stg-nav { position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); display: flex; gap: 10px; z-index: 20; }
+    .stg-btn { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: var(--bg); border: 1px solid var(--b2); color: var(--t0); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+    .stg-btn:hover { background: #001F3F; color: #fff; border-color: #001F3F; }
+    .stg-btn svg { width: 20px; height: 20px; }
+    @media (max-width: 640px) { .stagger { height: 460px; } }
+    @media (prefers-reduced-motion: reduce) { .stg-card { transition: background .4s, border-color .4s; } }
   </style>
 </head>
 
@@ -1451,57 +1469,11 @@
           Diseñado para<br>las Tres Fuerzas.
         </h2>
       </div>
-      <div class="mk-forces-grid">
-
-        <div class="mk-force army rv">
-          <img src="assets/forces-army-terrestrial.webp" class="mk-force-img" loading="lazy" decoding="async"
-            alt="Ejército Nacional — Control Operacional Terrestre" />
-          <span class="mk-force-tag">/01 — Ejército Nacional</span>
-          <h3 class="mk-force-h">Control Operacional Terrestre</h3>
-          <p class="mk-force-p">
-            Tracking de infantería, blindados y artillería en 8 Divisiones.
-            Gestión de líneas de coordinación de fuego, rutas de abastecimiento
-            y zonas de operación en tiempo real.
-          </p>
-          <ul class="mk-force-list">
-            <li>FUDRA y COESE tracking</li>
-            <li>Zonas de operación remota</li>
-            <li>Gestión de helipuertos temporales</li>
-          </ul>
+      <div class="stagger" data-stagger aria-label="Las tres Fuerzas Militares de Colombia">
+        <div class="stg-nav">
+          <button class="stg-btn" type="button" data-stg-prev aria-label="Fuerza anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg></button>
+          <button class="stg-btn" type="button" data-stg-next aria-label="Fuerza siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg></button>
         </div>
-
-        <div class="mk-force navy rv rd1">
-          <img src="assets/navy-force.jpeg" class="mk-force-img" loading="lazy" decoding="async"
-            alt="Armada Nacional de Colombia — Operaciones Navales y Fluviales" />
-          <span class="mk-force-tag">/02 — Armada Nacional</span>
-          <h3 class="mk-force-h">Operaciones Navales y Fluviales</h3>
-          <p class="mk-force-p">
-            Monitoreo de buques ARC, lanchas fluviales y operaciones de interdicción
-            en Pacífico, Caribe y ríos principales. Integración AIS y datos radar naval.
-          </p>
-          <ul class="mk-force-list">
-            <li>Integración datos AIS y radar</li>
-            <li>Tracking naval y fluvial diferenciado</li>
-            <li>Interdicción marítima en tiempo real</li>
-          </ul>
-        </div>
-
-        <div class="mk-force air rv rd2">
-          <img src="assets/air-mission-track.svg" class="mk-force-img" loading="lazy" decoding="async"
-            alt="Fuerza Aeroespacial Colombiana — Seguimiento de misiones" />
-          <span class="mk-force-tag">/03 — Fuerza Aeroespacial (FACS)</span>
-          <h3 class="mk-force-h">Seguimiento de Misiones Aéreas</h3>
-          <p class="mk-force-p">
-            Control de aeronaves con telemetría de combustible y estado de misión.
-            Planes de vuelo activos, UAVs y coordinación de apoyo aéreo cercano (CAS).
-          </p>
-          <ul class="mk-force-list">
-            <li>Apoyo aéreo cercano (CAS)</li>
-            <li>Reconocimiento e inteligencia</li>
-            <li>Transporte estratégico</li>
-          </ul>
-        </div>
-
       </div>
     </div>
   </section>
@@ -2249,6 +2221,61 @@
       }
       document.addEventListener('visibilitychange', upd);
       upd();
+    })();
+  </script>
+
+  <!-- ─── Carrusel escalonado — Tres Fuerzas ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const stage = document.querySelector('[data-stagger]');
+      if (!stage) return;
+      const FORCES = [
+        { tag: '/01 — Ejército Nacional', h: 'Control Operacional Terrestre', p: 'Tracking de infantería, blindados y artillería en 8 Divisiones, con líneas de fuego y zonas de operación en tiempo real.', img: 'assets/forces-army-terrestrial.webp' },
+        { tag: '/02 — Armada Nacional', h: 'Operaciones Navales y Fluviales', p: 'Buques ARC, lanchas fluviales e interdicción en Pacífico, Caribe y ríos, con integración AIS y radar naval.', img: 'assets/navy-force.jpeg' },
+        { tag: '/03 — Fuerza Aeroespacial (FAC)', h: 'Seguimiento de Misiones Aéreas', p: 'Aeronaves con telemetría y estado de misión, planes de vuelo activos, UAVs y apoyo aéreo cercano (CAS).', img: 'assets/air-mission-track.svg' }
+      ];
+      let list = [FORCES[2], FORCES[0], FORCES[1]]; // centra Ejército al inicio
+      let size = 360;
+
+      const els = FORCES.map((f) => {
+        const el = document.createElement('article');
+        el.className = 'stg-card';
+        el.innerHTML = '<div class="stg-card-img" style="background-image:url(' + f.img + ')"></div>'
+          + '<div class="stg-card-body"><span class="stg-tag">' + f.tag + '</span><h3 class="stg-h">' + f.h + '</h3><p class="stg-p">' + f.p + '</p></div>';
+        el.addEventListener('click', () => move(list.indexOf(f) - Math.floor(list.length / 2)));
+        stage.insertBefore(el, stage.firstChild);
+        return el;
+      });
+
+      function render() {
+        const mid = Math.floor(list.length / 2);
+        FORCES.forEach((f, i) => {
+          const el = els[i];
+          const position = list.indexOf(f) - mid;
+          const center = position === 0;
+          el.classList.toggle('is-center', center);
+          el.setAttribute('aria-hidden', center ? 'false' : 'true');
+          el.style.setProperty('--stg-size', size + 'px');
+          el.style.zIndex = center ? 10 : (5 - Math.abs(position));
+          el.style.transform = 'translate(-50%,-50%)'
+            + ' translateX(' + (position * size * 0.62).toFixed(0) + 'px)'
+            + ' translateY(' + (center ? -24 : 16) + 'px)'
+            + ' rotate(' + (center ? 0 : (position > 0 ? 3.5 : -3.5)) + 'deg)'
+            + ' scale(' + (center ? 1 : 0.94) + ')';
+        });
+      }
+      function move(steps) {
+        if (!steps) return;
+        if (steps > 0) { for (let i = 0; i < steps; i++) list.push(list.shift()); }
+        else { for (let i = 0; i < -steps; i++) list.unshift(list.pop()); }
+        render();
+      }
+      stage.querySelector('[data-stg-prev]').addEventListener('click', () => move(-1));
+      stage.querySelector('[data-stg-next]').addEventListener('click', () => move(1));
+      function resize() { size = window.matchMedia('(min-width: 640px)').matches ? 360 : 264; render(); }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
     })();
   </script>
 </body>
