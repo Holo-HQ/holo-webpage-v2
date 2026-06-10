@@ -212,13 +212,14 @@
     }
 
     .mk-mods-head-sub {
-      font-size: 14px;
+      font-size: clamp(15px, 1.25vw, 18px);
       color: var(--t1);
-      max-width: 360px;
+      max-width: 440px;
       text-align: right;
-      line-height: 1.7;
+      line-height: 1.65;
       flex-shrink: 0;
     }
+    .mk-mods-head-sub b { color: var(--t0); font-weight: 600; }
 
     /* Each module = full-width clickable row */
     .mk-mod {
@@ -1151,7 +1152,7 @@
     .stagger { position: relative; width: 100%; height: 660px; margin-top: clamp(40px, 5vw, 64px); overflow: hidden; }
     .stg-card { --stg-size: 440px; position: absolute; left: 50%; top: 50%; width: var(--stg-size); height: var(--stg-size); cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; transition: transform .5s var(--ease), box-shadow .5s var(--ease), background .4s, border-color .4s; clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px)); }
     .stg-card.is-center { background: #001F3F; color: #fff; border-color: var(--dark-acc); box-shadow: 0 16px 0 -2px rgba(212, 175, 55, .22); }
-    .stg-card-img { width: 100%; height: 56%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.25) brightness(.95); border-bottom: 1px solid var(--b0); transition: filter .4s; }
+    .stg-card-img { width: 100%; height: 46%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.25) brightness(.95); border-bottom: 1px solid var(--b0); transition: filter .4s; }
     .stg-card.is-center .stg-card-img { filter: none; border-bottom-color: rgba(212, 175, 55, .4); }
     .stg-card-body { padding: 16px 22px 0; display: flex; flex-direction: column; gap: 7px; }
     .stg-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); }
@@ -1315,8 +1316,9 @@
         </h2>
       </div>
       <p class="mk-mods-head-sub rv rd2">
-        El sistema completo de Mando y Control diseñado para el teatro de operaciones colombiano.
-        Modular, resiliente, soberano.
+        Mando y Control de extremo a extremo, diseñado para el teatro de operaciones colombiano — no adaptado a él.
+        <b>Modular:</b> cada fuerza integra sus medios sin rehacer el sistema. <b>Resiliente:</b> sigue operando cuando
+        el enlace se cae. <b>Soberano:</b> el código, los datos y la doctrina permanecen bajo control nacional.
       </p>
     </div>
 
@@ -2246,7 +2248,7 @@
       const detail = document.querySelector('[data-stg-detail]');
       const FORCES = [
         {
-          tag: '/01 — Ejército Nacional', h: 'Conciencia Situacional Terrestre', img: 'assets/forces-army-terrestrial.webp',
+          tag: '/01 — Ejército Nacional', h: 'Conciencia Situacional Terrestre', tagline: 'Posición, estado y ORBAT del Ejército — de la división al pelotón.', img: 'assets/forces-army-terrestrial.webp',
           intro: 'El componente terrestre de NEXXO C2 consolida la posición, el estado y la organización para el combate de las unidades del Ejército Nacional en sus ocho divisiones — de la división al pelotón — en una sola imagen operacional.',
           bullets: [
             { lead: 'ORBAT dinámico:', rest: 'orden de batalla vivo, con simbología militar estándar y estado de personal y material por unidad.' },
@@ -2256,7 +2258,7 @@
           close: 'Lo que antes exigía consolidar reportes por radio y calcos en acetato, hoy es una sola vista compartida del teatro terrestre.'
         },
         {
-          tag: '/02 — Armada Nacional', h: 'Conciencia Situacional Naval y Fluvial', img: 'assets/navy-force.jpeg',
+          tag: '/02 — Armada Nacional', h: 'Conciencia Situacional Naval y Fluvial', tagline: 'Los dos mares y los ríos de Colombia en una sola imagen marítima.', img: 'assets/navy-force.jpeg',
           intro: 'El componente naval de NEXXO C2 unifica los dos mares y los ríos de Colombia en una sola imagen marítima: cada unidad de la Armada, cada contacto detectado y cada área de operaciones, en tiempo real.',
           bullets: [
             { lead: 'Imagen marítima integrada:', rest: 'correlación automática de unidades propias, tráfico AIS y contactos de radar naval, para separar el tráfico legítimo de las embarcaciones de interés.' },
@@ -2266,7 +2268,7 @@
           close: ''
         },
         {
-          tag: '/03 — Fuerza Aeroespacial Colombiana', h: 'Conciencia Situacional Aeroespacial', img: 'assets/air-mission-track.svg',
+          tag: '/03 — Fuerza Aeroespacial Colombiana', h: 'Conciencia Situacional Aeroespacial', tagline: 'Posición, telemetría y estado de misión de cada plataforma de la FAC.', img: 'assets/air-mission-track.svg',
           intro: 'El componente aéreo de NEXXO C2 construye el panorama aeroespacial en tiempo real: posición, telemetría y estado de misión de cada plataforma de la FAC, del transporte estratégico a la aeronave remotamente tripulada.',
           bullets: [
             { lead: 'Traza viva por aeronave:', rest: 'telemetría, plan de vuelo activo y progreso de la misión en una sola vista — lo planeado y lo ejecutado, lado a lado.' },
@@ -2274,16 +2276,27 @@
             { lead: 'Apoyo aéreo cercano (CAS) integrado:', rest: 'la coordinación aire-tierra ocurre sobre la imagen operacional común — el piloto, el controlador y la unidad apoyada ven el mismo terreno y las mismas posiciones amigas.' }
           ],
           close: ''
+        },
+        {
+          tag: '/04 — Comando General de las Fuerzas Militares', h: 'La Imagen Operacional Común', tagline: 'Los tres dominios en una sola imagen operacional común.', img: 'assets/forces-joint-command.webp',
+          intro: 'El nivel conjunto de NEXXO C2 integra los tres dominios en una sola imagen operacional común: cada unidad, cada traza y cada medida de control de las fuerzas anteriores, en la pantalla donde se conducen las operaciones de las Fuerzas Militares.',
+          bullets: [
+            { lead: 'Tres dominios, una imagen:', rest: 'los panoramas terrestre, naval y aeroespacial se correlacionan en tiempo real — la lancha que persigue la Armada, la aeronave que la sobrevuela y la tropa que espera en la ribera, en el mismo plano.' },
+            { lead: 'Mando y control conjunto:', rest: 'organización para el combate, medidas de coordinación entre fuerzas y seguimiento de operaciones conjuntas desde un solo puesto de mando, sin consolidar reportes a mano.' },
+            { lead: 'Del nivel táctico al estratégico:', rest: 'cada escalón ve el detalle que le corresponde — el detalle táctico se agrega hacia arriba hasta la vista con la que decide el comandante de las Fuerzas Militares.' }
+          ],
+          close: 'Una sola imagen. Una decisión más rápida que la del adversario.'
         }
       ];
-      let list = [FORCES[2], FORCES[0], FORCES[1]]; // centra Ejército al inicio
+      let list = [FORCES[2], FORCES[3], FORCES[0], FORCES[1]]; // centra Ejército al inicio
       let size = 360;
 
       const els = FORCES.map((f) => {
         const el = document.createElement('article');
         el.className = 'stg-card';
         el.innerHTML = '<div class="stg-card-img" style="background-image:url(' + f.img + ')"></div>'
-          + '<div class="stg-card-body"><span class="stg-tag">' + f.tag + '</span><h3 class="stg-h">' + f.h + '</h3></div>';
+          + '<div class="stg-card-body"><span class="stg-tag">' + f.tag + '</span><h3 class="stg-h">' + f.h + '</h3>'
+          + (f.tagline ? '<p class="stg-p">' + f.tagline + '</p>' : '') + '</div>';
         el.addEventListener('click', () => move(list.indexOf(f) - Math.floor(list.length / 2)));
         stage.insertBefore(el, stage.firstChild);
         return el;
@@ -2298,6 +2311,7 @@
       }
       function render() {
         const mid = Math.floor(list.length / 2);
+        const spread = list.length >= 4 ? 0.5 : 0.62;
         FORCES.forEach((f, i) => {
           const el = els[i];
           const position = list.indexOf(f) - mid;
@@ -2307,7 +2321,7 @@
           el.style.setProperty('--stg-size', size + 'px');
           el.style.zIndex = center ? 10 : (5 - Math.abs(position));
           el.style.transform = 'translate(-50%,-50%)'
-            + ' translateX(' + (position * size * 0.62).toFixed(0) + 'px)'
+            + ' translateX(' + (position * size * spread).toFixed(0) + 'px)'
             + ' translateY(' + (center ? -24 : 16) + 'px)'
             + ' rotate(' + (center ? 0 : (position > 0 ? 3.5 : -3.5)) + 'deg)'
             + ' scale(' + (center ? 1 : 0.94) + ')';
