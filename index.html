@@ -318,10 +318,25 @@
 
     /* ── STATEMENT — editorial quote (Monks asymmetric block) ── */
     .mk-stmt {
+      position: relative;
+      overflow: hidden;
       padding: 140px 0;
       background: var(--bg1);
       border-top: 1px solid var(--b0);
       border-bottom: 1px solid var(--b0);
+    }
+
+    /* Fondo de líneas curvas animadas (background-paths) */
+    .mk-stmt-paths { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; color: #001F3F; pointer-events: none; }
+    .mk-stmt-inner { position: relative; z-index: 1; }
+    .mk-stmt-path { fill: none; stroke: currentColor; stroke-dasharray: 0.4 0.6; }
+    @media (prefers-reduced-motion: no-preference) {
+      .mk-stmt-path { animation-name: stmtFlow; animation-timing-function: linear; animation-iteration-count: infinite; will-change: stroke-dashoffset, opacity; }
+    }
+    @keyframes stmtFlow {
+      0% { stroke-dashoffset: 0; opacity: .35; }
+      50% { opacity: .7; }
+      100% { stroke-dashoffset: 1; opacity: .35; }
     }
 
     .mk-stmt-inner {
@@ -1451,11 +1466,12 @@
 
   <!-- ═══════ STATEMENT — EDITORIAL QUOTE (Monks asymmetric) ═══════ -->
   <div class="mk-stmt" aria-label="Propuesta de valor">
+    <svg class="mk-stmt-paths" viewBox="0 0 696 316" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-stmt-paths></svg>
     <div class="mk-stmt-inner">
       <h2 class="mk-stmt-quote rv">
         El comandante decide.<br>
-        <em>NEXXO C2</em> asegura que decide<br>
-        con la mejor información disponible.
+        <em>NEXXO C2</em> se asegura de que el adversario<br>
+        nunca decida con mejor información.
       </h2>
       <div class="mk-stmt-side">
         <img src="assets/statement-command.webp" class="mk-stmt-img rv" loading="lazy" decoding="async"
@@ -2345,6 +2361,35 @@
       stage.querySelector('[data-stg-next]').addEventListener('click', function () { move(1); });
       render();
       window.addEventListener('resize', render, { passive: true });
+    })();
+  </script>
+
+  <!-- ─── Fondo de líneas curvas animadas — sección 'El comandante decide' ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const svg = document.querySelector('[data-stmt-paths]');
+      if (!svg) return;
+      const NS = 'http://www.w3.org/2000/svg';
+      const N = 30; // líneas por lado
+      [1, -1].forEach(function (pos) {
+        for (let i = 0; i < N; i++) {
+          const A = 380 - i * 5 * pos, B = 189 + i * 6, C = 312 - i * 5 * pos, D = 216 - i * 6,
+            E = 152 - i * 5 * pos, F = 343 - i * 6, G = 616 - i * 5 * pos, H = 470 - i * 6,
+            I = 684 - i * 5 * pos, J = 875 - i * 6;
+          const d = 'M-' + A + ' -' + B + 'C-' + A + ' -' + B + ' -' + C + ' ' + D + ' ' + E + ' ' + F
+            + 'C' + G + ' ' + H + ' ' + I + ' ' + J + ' ' + I + ' ' + J;
+          const p = document.createElementNS(NS, 'path');
+          p.setAttribute('d', d);
+          p.setAttribute('class', 'mk-stmt-path');
+          p.setAttribute('pathLength', '1');
+          p.setAttribute('stroke-width', (0.5 + i * 0.03).toFixed(2));
+          p.setAttribute('stroke-opacity', Math.min(0.5, 0.06 + i * 0.013).toFixed(3));
+          p.style.animationDuration = (20 + (i % 11)) + 's';
+          p.style.animationDelay = '-' + (i * 0.7).toFixed(1) + 's';
+          svg.appendChild(p);
+        }
+      });
     })();
   </script>
 </body>
