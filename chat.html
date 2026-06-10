@@ -491,9 +491,9 @@
 
     /* ── Bento Pan — muro de indicadores que se desplaza (riesgos de comunicación) ── */
     .bento-pan { position: relative; width: 100%; height: clamp(460px, 60vh, 640px); overflow: hidden; background: #04101e; border: 1px solid var(--b0); isolation: isolate; }
-    .bento-pan-grid { position: absolute; left: 0; top: 0; width: 2600px; height: 1720px; will-change: transform; transform: translate3d(0, 0, 0); animation: bentoPan 64s linear infinite alternate; }
+    .bento-pan-grid { position: absolute; left: 0; top: 0; width: 2600px; height: 1720px; overflow: hidden; transform: translate3d(0, 0, 0); animation: bentoPan 64s linear infinite alternate; }
     @keyframes bentoPan { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-1180px, -980px, 0); } }
-    .bento-card { position: absolute; border-radius: 14px !important; background: linear-gradient(180deg, #0b1c30 0%, #061421 100%); border: 1px solid rgba(212, 175, 55, .10); overflow: hidden; padding: 16px 18px; display: flex; flex-direction: column; color: #fff; }
+    .bento-card { position: absolute; border-radius: 14px !important; background: linear-gradient(180deg, #0b1c30 0%, #061421 100%); border: 1px solid rgba(212, 175, 55, .10); overflow: hidden; contain: paint; padding: 16px 18px; display: flex; flex-direction: column; color: #fff; }
     .bento-lbl { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: rgba(231, 231, 229, .5); margin-bottom: 8px; }
     .bento-num { font-family: var(--sans); font-weight: 700; letter-spacing: -.035em; color: #fff; line-height: 1; display: flex; align-items: baseline; }
     .bento-num small { font-size: .42em; color: rgba(231, 231, 229, .5); margin-left: 4px; font-weight: 600; }
@@ -509,11 +509,11 @@
     .bento-logo span { width: 64px; height: 64px; border-radius: 16px !important; background: linear-gradient(135deg, var(--dark-acc), #6e5417); box-shadow: 0 10px 30px rgba(212, 175, 55, .25); }
     .bento-grad { position: absolute; inset: 0; }
     .bento-vig { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 60% 65% at center, transparent 18%, rgba(2, 10, 20, .55) 56%, #020a13 100%); }
-    .bento-cap { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; pointer-events: none; }
+    .bento-cap { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; pointer-events: none; background: radial-gradient(ellipse 52% 48% at center, rgba(2, 10, 20, .5), transparent 72%); }
     .bento-cap .si { color: var(--dark-acc); margin: 0; }
     .bento-cap h3 { font-size: clamp(26px, 4.4vw, 50px); font-weight: 700; line-height: 1.06; letter-spacing: -.025em; color: #fff; margin: 14px 0 0; max-width: 16ch; text-shadow: 0 2px 36px rgba(0, 0, 0, .7); }
     .bento-cap p { font-size: clamp(13px, 1.4vw, 15.5px); line-height: 1.55; color: rgba(231, 231, 229, .76); margin: 16px 0 0; max-width: 44ch; }
-    .bento-foot { position: absolute; z-index: 3; bottom: 12px; left: 16px; font-family: var(--mono); font-size: 9px; letter-spacing: .07em; color: rgba(231, 231, 229, .42); pointer-events: none; }
+    .bento-foot { position: absolute; z-index: 3; bottom: 12px; left: 16px; right: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: .05em; color: rgba(231, 231, 229, .72); pointer-events: none; }
     @media (prefers-reduced-motion: reduce) { .bento-pan-grid { animation: none; } }
   </style>
 </head>
@@ -668,7 +668,7 @@
   <!-- CAPABILITIES -->
   <section class="sec">
     <div class="ct">
-      <div class="bento-pan rv" data-bento aria-label="Riesgos de comunicación no soberana — indicadores ilustrativos">
+      <div class="bento-pan rv" data-bento aria-label="Indicadores ilustrativos (no son cifras oficiales): el riesgo de comunicar sin soberanía frente a lo que asegura NEXXO C2.">
         <div class="bento-pan-grid" data-bento-grid aria-hidden="true"></div>
         <div class="bento-vig"></div>
         <div class="bento-cap">
@@ -677,7 +677,7 @@
           <p>Cada mensaje protegido. Cada canal controlado. Cada conversación soberana. Detrás, lo que está en
             juego cuando no lo están.</p>
         </div>
-        <div class="bento-foot">▸ Indicadores ilustrativos — riesgos de la comunicación no soberana</div>
+        <div class="bento-foot">▸ Cifras ilustrativas, no datos oficiales — el riesgo sin soberanía (rojo) frente a lo que NEXXO asegura (oro).</div>
       </div>
 
       <div class="feat-grid" style="margin-top:64px">
@@ -921,36 +921,36 @@
       const W = 2600, H = 1720, GAP = 16;
       // Indicadores ILUSTRATIVOS · dir 'up' = riesgo en aumento (rojo) · 'down' = mitigado por NEXXO (oro)
       const DATA = [
-        { kind: 'counter', label: 'Interceptaciones', value: '1 284', delta: '+18% año', dir: 'up' },
-        { kind: 'stat', label: 'Canales expuestos', value: '63', unit: '%', dir: 'up' },
-        { kind: 'counter', label: 'Costo de inacción', value: '$42', unit: 'mil M COP', dir: 'up' },
+        { kind: 'counter', label: 'Interceptaciones', value: '~1.3 K', delta: '+18% año', dir: 'up' },
+        { kind: 'stat', label: 'Canales expuestos', value: '~60', unit: '%', dir: 'up' },
+        { kind: 'counter', label: 'Costo de inacción', value: 'Alto', dir: 'up' },
         { kind: 'chart', label: 'Geolocalización filtrada', dir: 'up' },
-        { kind: 'counter', label: 'Metadata filtrada', value: '9 730', delta: '+27%', dir: 'up' },
-        { kind: 'stat', label: 'Disciplina OPSEC', value: '48', unit: '%', dir: 'up' },
+        { kind: 'counter', label: 'Metadata filtrada', value: '~9.7 K', delta: '+27%', dir: 'up' },
+        { kind: 'stat', label: 'Disciplina OPSEC', value: '~50', unit: '%', dir: 'up' },
         { kind: 'bars', label: 'Patrones expuestos', dir: 'up' },
         { kind: 'grad' },
-        { kind: 'counter', label: 'GPS en imágenes', value: '2 156', delta: '+11%', dir: 'up' },
-        { kind: 'stat', label: 'Apps extranjeras', value: '71', unit: '%', dir: 'up' },
+        { kind: 'counter', label: 'GPS en imágenes', value: '~2.2 K', delta: '+11%', dir: 'up' },
+        { kind: 'stat', label: 'Apps extranjeras', value: '~70', unit: '%', dir: 'up' },
         { kind: 'code', label: 'metadata.log' },
         { kind: 'logo' },
-        { kind: 'counter', label: 'Brechas / año', value: '37', delta: '+9', dir: 'up' },
+        { kind: 'counter', label: 'Brechas / año', value: '~35', delta: '+9', dir: 'up' },
         { kind: 'chart', label: 'Exposición de red', dir: 'up' },
-        { kind: 'stat', label: 'Cultura militar', value: '54', unit: '% OPSEC', dir: 'up' },
-        { kind: 'counter', label: 'Misiones en riesgo', value: '214', delta: '+6%', dir: 'up' },
+        { kind: 'stat', label: 'Cultura militar', value: '~55', unit: '% OPSEC', dir: 'up' },
+        { kind: 'counter', label: 'Misiones en riesgo', value: '~210', delta: '+6%', dir: 'up' },
         { kind: 'stat', label: 'Cifrado E2E', value: '100', unit: '%', dir: 'down' },
-        { kind: 'counter', label: 'Mensajes cifrados', value: '1.2', unit: 'M / día', dir: 'down' },
+        { kind: 'counter', label: 'Mensajes cifrados', value: '~1.2', unit: 'M / día', dir: 'down' },
         { kind: 'bars', label: 'Adopción segura', dir: 'down' },
         { kind: 'stat', label: 'Dependencia ext.', value: '0', unit: '%', dir: 'down' },
         { kind: 'grad' },
-        { kind: 'stat', label: 'Huella digital', value: '58', unit: '%', dir: 'up' },
+        { kind: 'stat', label: 'Huella digital', value: '~60', unit: '%', dir: 'up' },
         { kind: 'code', label: 'leak.json' },
-        { kind: 'counter', label: 'Vulnerabilidades', value: '412', delta: '+22%', dir: 'up' },
+        { kind: 'counter', label: 'Vulnerabilidades', value: '~410', delta: '+22%', dir: 'up' },
         { kind: 'logo' },
         { kind: 'chart', label: 'Tráfico no cifrado', dir: 'up' },
         { kind: 'stat', label: 'Canales soberanos', value: '12', unit: '/ 12', dir: 'down' },
-        { kind: 'counter', label: 'Identidades expuestas', value: '5 048', delta: '+14%', dir: 'up' },
+        { kind: 'counter', label: 'Identidades expuestas', value: '~5 K', delta: '+14%', dir: 'up' },
         { kind: 'bars', label: 'Confianza en canal', dir: 'down' },
-        { kind: 'stat', label: 'T. de detección', value: '11', unit: 'días', dir: 'up' }
+        { kind: 'stat', label: 'T. de detección', value: '~10', unit: 'días', dir: 'up' }
       ];
       const WIDTHS = [300, 360, 440, 280], HEIGHTS = [200, 240, 260];
 
@@ -982,7 +982,7 @@
           for (let i = 0; i < 10; i++) b += '<span style="height:' + (26 + (i * 37 % 70)) + '%"></span>';
           s += '<div class="bento-bars">' + b + '</div>';
         } else if (d.kind === 'code') {
-          const lines = [['#7dd3fc', 60], ['rgba(255,255,255,.7)', 82], ['#e0483a', 46], ['rgba(255,255,255,.7)', 70], ['var(--dark-acc)', 38], ['rgba(255,255,255,.5)', 26]];
+          const lines = [['rgba(255,255,255,.55)', 60], ['rgba(255,255,255,.7)', 82], ['#e0483a', 46], ['rgba(255,255,255,.7)', 70], ['var(--dark-acc)', 38], ['rgba(255,255,255,.5)', 26]];
           s += '<div class="bento-code">' + lines.map(function (l) { return '<i style="width:' + l[1] + '%;background:' + l[0] + '"></i>'; }).join('') + '</div>';
         }
         return s;
@@ -991,12 +991,11 @@
       // layout: filas que se llenan de izquierda a derecha
       const frag = document.createDocumentFragment();
       let y = GAP, di = 0, ri = 0;
-      while (y < H - 140) {
+      while (y < H - 120) {
         const rowH = HEIGHTS[ri % HEIGHTS.length];
         let x = GAP;
-        while (x < W - 220) {
+        while (x < W - GAP) {
           const w = WIDTHS[(di + ri * 2) % WIDTHS.length];
-          if (x + w > W - GAP) break;
           const el = document.createElement('div');
           el.className = 'bento-card';
           el.style.cssText = 'left:' + x + 'px;top:' + y + 'px;width:' + w + 'px;height:' + rowH + 'px';
