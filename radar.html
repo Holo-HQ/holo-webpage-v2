@@ -64,6 +64,18 @@
     .persp-card { max-width: 660px; will-change: transform; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
     .persp .hl { display: inline-block; border-radius: 4px !important; padding: 1px 7px; margin: 0 1px; color: #00131f; background: var(--dark-acc); font-weight: 600; will-change: transform, box-shadow; transform: translate(calc(-7px * var(--lift, 0)), calc(-5px * var(--lift, 0))); box-shadow: rgba(212, 175, 55, calc(.7 * var(--lift, 0))) 2px 1.5px 0 .75px, rgba(212, 175, 55, calc(.3 * var(--lift, 0))) 9px 5px 5px 0; }
     @media (prefers-reduced-motion: reduce) { .persp-card { transform: none !important; } }
+
+    /* Capacidades: deck (izquierda) + texto alineado a la derecha — sin tocar el tamaño de las tarjetas */
+    .cap-split { display: grid; gap: clamp(36px, 4vw, 64px); align-items: center; }
+    .cap-split .deck { margin: 0 auto; }
+    @media (min-width: 1160px) {
+      .cap-split { grid-template-columns: minmax(740px, 1fr) minmax(300px, 380px); }
+      .cap-split .deck { order: -1; margin: 0; }
+      .cap-text { text-align: right; }
+      .cap-text .sh { font-size: clamp(28px, 3vw, 42px); }
+      .cap-text .ss { max-width: none; margin-left: auto; }
+    }
+    @media (max-width: 1159px) { .cap-text { order: -1; } }
   </style>
 </head>
 
@@ -188,12 +200,15 @@
   <!-- CAPABILITIES -->
   <section class="sec">
     <div class="ct">
-      <span class="si rv">/01 — Capacidades del Módulo</span>
-      <h2 class="sh rv rd1">Todo lo que el<br>Comandante Necesita</h2>
-      <p class="ss rv rd2">RADAR proporciona una visión 360° del teatro de operaciones colombiano en una sola interfaz.
-      </p>
+      <div class="cap-split">
+        <div class="cap-text">
+          <span class="si rv">/01 — Capacidades del Módulo</span>
+          <h2 class="sh rv rd1">Todo lo que el<br>Comandante Necesita</h2>
+          <p class="ss rv rd2">RADAR proporciona una visión 360° del teatro de operaciones colombiano en una sola
+            interfaz.</p>
+        </div>
 
-      <div class="deck" role="list">
+        <div class="deck" role="list">
         <article class="deck-card" style="--i:0" tabindex="0" role="listitem">
           <div class="deck-top"><span class="deck-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" /><path d="M9 4v14M15 6v14" /></svg></span><span class="deck-n">01</span></div>
           <h3 class="deck-t">Mapa Geoespacial Interactivo</h3>
@@ -224,6 +239,7 @@
           <h3 class="deck-t">Zonas de Operación Prioritarias</h3>
           <p class="deck-d">Catatumbo, Bajo Cauca, Pacífico Nariñense y frontera, cada zona con su nivel de riesgo.</p>
         </article>
+        </div>
       </div>
     </div>
   </section>
