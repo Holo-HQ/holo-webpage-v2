@@ -1242,11 +1242,6 @@
         <line x1="14.5" y1="19" x2="23.5" y2="19" stroke="currentColor" stroke-width="1" opacity=".55" />
         <circle cx="19" cy="19" r="1.6" fill="currentColor" />
       </svg>
-      <div class="mk-fix-read">
-        <div class="mk-fix-coord" data-fix-lat>04°00′00″N</div>
-        <div class="mk-fix-coord" data-fix-lon>074°00′00″W</div>
-        <div class="mk-fix-status"><span class="mk-fix-dot"></span><span data-fix-status>Adquiriendo posición</span></div>
-      </div>
     </div>
 
     <div class="mk-hero-body">
@@ -1990,40 +1985,9 @@
       'use strict';
       const fix = document.querySelector('[data-fix]');
       if (!fix) return;
-      const latEl = fix.querySelector('[data-fix-lat]');
-      const lonEl = fix.querySelector('[data-fix-lon]');
-      const statusEl = fix.querySelector('[data-fix-status]');
-      const LAT = '04°42′13″N';     // Bogotá HQ
-      const LON = '074°04′33″W';
-
-      function lock() {
-        latEl.textContent = LAT;
-        lonEl.textContent = LON;
-        statusEl.textContent = 'FIX — Bogotá HQ';
-        fix.classList.add('is-locked');
-      }
+      function lock() { fix.classList.add('is-locked'); }
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { lock(); return; }
-
-      const DUR = 1200;
-      let start = null;
-      function scramble(el, target, p) {
-        const lockUpto = Math.floor(p * target.length);
-        let out = '';
-        for (let i = 0; i < target.length; i++) {
-          const c = target[i];
-          out += (i < lockUpto || !/[0-9]/.test(c)) ? c : (Math.random() * 10 | 0);
-        }
-        el.textContent = out;
-      }
-      function frame(now) {
-        if (start === null) start = now;
-        const p = Math.min(1, (now - start) / DUR);
-        scramble(latEl, LAT, p);
-        scramble(lonEl, LON, p);
-        if (p < 1) requestAnimationFrame(frame);
-        else lock();
-      }
-      requestAnimationFrame(frame);
+      setTimeout(lock, 1400);
     })();
   </script>
 
