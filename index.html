@@ -1078,6 +1078,31 @@
       .arch-comps { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) { .arch-layer, .arch-comp { transition: none; } }
+
+    /* ===== Diagrama de arquitectura (sunburst radial) ===== */
+    .arch-diagram { width: min(440px, 86vw); margin: 0 auto clamp(32px, 4vw, 52px); }
+    .arch-stage { position: relative; width: 100%; aspect-ratio: 1; }
+    .arch-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .arch-layer-seg { stroke: var(--bg); stroke-width: 1.5; }
+    .arch-layer-lbl { font-family: var(--mono); font-size: 6.5px; letter-spacing: .1em; fill: rgba(255,255,255,.9); pointer-events: none; }
+    .arch-node { cursor: pointer; opacity: 0; transition: opacity .5s var(--ease); }
+    .arch-diagram.is-revealed .arch-node { opacity: 1; }
+    .arch-comp-seg { fill: var(--bg2); stroke: var(--bg); stroke-width: 1.5; transition: fill .25s var(--ease); }
+    .arch-comp-lbl { font-family: var(--mono); font-size: 8px; letter-spacing: .03em; fill: var(--t1); pointer-events: none; transition: fill .25s var(--ease); }
+    .arch-node:hover .arch-comp-seg, .arch-node.is-active .arch-comp-seg { fill: var(--dark-acc); }
+    .arch-node:hover .arch-comp-lbl, .arch-node.is-active .arch-comp-lbl { fill: #001F3F; }
+    .arch-core-ring { animation: arch-pulse 2.6s ease-in-out infinite; }
+    @keyframes arch-pulse { 0%, 100% { opacity: .7; } 50% { opacity: .22; } }
+    [data-arch-sweep] { transform-box: view-box; transform-origin: 210px 210px; animation: arch-rotate 9s linear infinite; }
+    @keyframes arch-rotate { to { transform: rotate(360deg); } }
+    .arch-core-label { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; font-family: var(--sans); font-weight: 700; font-size: 15px; line-height: 1; color: #fff; letter-spacing: .02em; pointer-events: none; }
+    .arch-core-c2 { display: block; color: var(--dark-acc); font-family: var(--mono); font-size: 11px; letter-spacing: .14em; margin-top: 4px; }
+    .arch-caption { text-align: center; max-width: 760px; margin: clamp(14px, 2vw, 20px) auto 0; padding: 0 24px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; color: var(--t2); line-height: 1.5; min-height: 2.4em; }
+    .arch-caption b { color: var(--t0); font-weight: 600; letter-spacing: 0; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-arch-sweep], .arch-core-ring { animation: none; }
+      .arch-node { opacity: 1; }
+    }
   </style>
 </head>
 
@@ -1314,6 +1339,27 @@
         cuatro capas soberanas — del cómputo a la decisión de mando.
       </p>
     </div>
+
+    <div class="arch-diagram" data-arch-diagram>
+      <div class="arch-stage">
+        <svg class="arch-svg" viewBox="0 0 420 420" aria-hidden="true">
+          <defs>
+            <radialGradient id="archSweep" cx="50%" cy="50%" r="50%">
+              <stop offset="35%" stop-color="#D4AF37" stop-opacity="0" />
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.18" />
+            </radialGradient>
+          </defs>
+          <g data-arch-layers></g>
+          <g data-arch-comps></g>
+          <circle cx="210" cy="210" r="54" fill="#001F3F" />
+          <circle class="arch-core-ring" cx="210" cy="210" r="54" fill="none" stroke="#D4AF37" stroke-width="1" />
+          <g data-arch-sweep style="pointer-events:none"><path d="M210 210 L210 16 A194 194 0 0 1 312 44 Z" fill="url(#archSweep)" /></g>
+        </svg>
+        <div class="arch-core-label" aria-hidden="true">NEXXO<span class="arch-core-c2">C2</span></div>
+      </div>
+      <p class="arch-caption" data-arch-caption>Pasa el cursor sobre un componente para ver su rol</p>
+    </div>
+
     <div class="arch-stack">
       <article class="arch-layer rv">
         <div class="arch-layer-head">
@@ -1998,6 +2044,90 @@
         else lock();
       }
       requestAnimationFrame(frame);
+    })();
+  </script>
+
+  <!-- ─── DIAGRAMA DE ARQUITECTURA (sunburst radial) ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const wrap = document.querySelector('[data-arch-diagram]');
+      if (!wrap) return;
+      const NS = 'http://www.w3.org/2000/svg';
+      const layersG = wrap.querySelector('[data-arch-layers]');
+      const compsG = wrap.querySelector('[data-arch-comps]');
+      const caption = wrap.querySelector('[data-arch-caption]');
+      const cx = 210, cy = 210;
+
+      const LAYERS = [
+        { key: 'core', short: 'CORE', name: 'Datos e Infraestructura', op: .92 },
+        { key: 'serv', short: 'SERVICIOS', name: 'Servicios Agénticos', op: .74 },
+        { key: 'apps', short: 'APPS', name: 'Aplicación y Usuario', op: .58 },
+        { key: 'trans', short: 'TRANSVERSAL', name: 'Seguridad y Desarrollo', op: .42 },
+      ];
+      const COMPS = [
+        { n: '01', name: 'Integración Soberana de Modelos IA', layer: 'core' },
+        { n: '04', name: 'Ontología de Defensa Colombiana', layer: 'core' },
+        { n: '05', name: 'Cómputo, Vectores y Multimedia', layer: 'core' },
+        { n: '02', name: 'Observabilidad y Auditoría', layer: 'serv' },
+        { n: '03', name: 'Ingeniería de Contexto Operacional', layer: 'serv' },
+        { n: '07', name: 'Ciclo de Vida de Agentes HOLO AI', layer: 'serv' },
+        { n: '08', name: 'Automatización Operacional', layer: 'serv' },
+        { n: '10', name: 'Aplicaciones Humano + IA', layer: 'apps' },
+        { n: '12', name: 'Automatización Institucional Militar', layer: 'apps' },
+        { n: '06', name: 'Seguridad, Gobernanza y Soberanía', layer: 'trans' },
+        { n: '09', name: 'Entornos de Desarrollo Soberanos', layer: 'trans' },
+        { n: '11', name: 'Despliegue', layer: 'trans' },
+      ];
+      const layerName = {}; LAYERS.forEach(l => layerName[l.key] = l.short);
+
+      const polar = (r, deg) => { const a = (deg - 90) * Math.PI / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
+      function seg(ri, ro, a0, a1) {
+        const [x0o, y0o] = polar(ro, a0), [x1o, y1o] = polar(ro, a1), [x1i, y1i] = polar(ri, a1), [x0i, y0i] = polar(ri, a0);
+        const large = (a1 - a0) > 180 ? 1 : 0;
+        return `M${x0o} ${y0o}A${ro} ${ro} 0 ${large} 1 ${x1o} ${y1o}L${x1i} ${y1i}A${ri} ${ri} 0 ${large} 0 ${x0i} ${y0i}Z`;
+      }
+      const mk = (name, attrs) => { const e = document.createElementNS(NS, name); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+
+      // Anillo interior: capas
+      let start = 0;
+      LAYERS.forEach((l) => {
+        const count = COMPS.filter(c => c.layer === l.key).length;
+        const span = count * 30, a0 = start + 1, a1 = start + span - 1, mid = (a0 + a1) / 2;
+        layersG.appendChild(mk('path', { d: seg(58, 118, a0, a1), fill: `rgba(0,31,63,${l.op})`, class: 'arch-layer-seg', 'data-layer': l.key }));
+        const [lx, ly] = polar(88, mid);
+        const t = mk('text', { x: lx, y: ly, class: 'arch-layer-lbl', 'text-anchor': 'middle', 'dominant-baseline': 'central' });
+        t.textContent = l.short; layersG.appendChild(t);
+        start += span;
+      });
+
+      // Anillo exterior: componentes
+      COMPS.forEach((c, i) => {
+        const a0 = i * 30 + 1.2, a1 = (i + 1) * 30 - 1.2, mid = (a0 + a1) / 2;
+        const g = mk('g', { class: 'arch-node', 'data-i': i });
+        g.style.transitionDelay = (i * 45) + 'ms';
+        g.appendChild(mk('path', { d: seg(122, 188, a0, a1), class: 'arch-comp-seg' }));
+        const [nx, ny] = polar(155, mid);
+        const t = mk('text', { x: nx, y: ny, class: 'arch-comp-lbl', 'text-anchor': 'middle', 'dominant-baseline': 'central' });
+        t.textContent = c.n; g.appendChild(t);
+        const on = () => {
+          compsG.querySelectorAll('.arch-node').forEach(x => x.classList.remove('is-active'));
+          g.classList.add('is-active');
+          caption.innerHTML = `<b>${c.n} — ${c.name}</b> · Capa ${layerName[c.layer]}`;
+        };
+        g.addEventListener('mouseenter', on);
+        compsG.appendChild(g);
+      });
+      wrap.querySelector('.arch-stage').addEventListener('mouseleave', () => {
+        compsG.querySelectorAll('.arch-node').forEach(x => x.classList.remove('is-active'));
+        caption.textContent = 'Pasa el cursor sobre un componente para ver su rol';
+      });
+
+      // Revelado al entrar en vista
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((es, o) => { es.forEach(e => { if (e.isIntersecting) { wrap.classList.add('is-revealed'); o.disconnect(); } }); }, { threshold: .25 });
+        io.observe(wrap);
+      } else { wrap.classList.add('is-revealed'); }
     })();
   </script>
 </body>
