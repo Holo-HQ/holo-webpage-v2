@@ -995,6 +995,38 @@
     .mk-fix.is-locked .mk-fix-dot { opacity: 1; }
     @media (prefers-reduced-motion: reduce) { .mk-fix-spin { animation: none; } }
     @media (max-width: 860px) { .mk-fix { display: none; } }
+
+    /* ===== Bento de módulos (patrón Bento Grid Showcase, vanilla) ===== */
+    .bento { max-width: 1280px; margin: 48px auto 0; padding: 0 48px; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 12px; }
+    .bento-card { position: relative; overflow: hidden; text-decoration: none; color: #fff; border: 1px solid var(--b0); background: #00152b; display: block; transition: border-color .3s var(--ease); }
+    .bento-card--feature { grid-column: span 2; grid-row: span 2; }
+    .bento-card--wide { grid-column: span 2; }
+    .bento-media { position: absolute; inset: 0; display: block; }
+    .bento-media img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.6) contrast(1.05); transition: transform .6s var(--ease), filter .4s; }
+    .bento-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,16,33,.08) 0%, rgba(0,16,33,.5) 52%, rgba(0,16,33,.94) 100%); }
+    .bento-num { position: absolute; top: 18px; left: 20px; z-index: 2; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: rgba(255,255,255,.6); }
+    .bento-pill { position: absolute; top: 15px; right: 16px; z-index: 2; }
+    .bento-card .pill { color: #fff; background: rgba(0,12,28,.5); border: 1px solid rgba(255,255,255,.2); backdrop-filter: blur(4px); }
+    .bento-body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 22px; display: block; }
+    .bento-name { display: block; font-family: var(--sans); font-size: clamp(18px, 1.6vw, 24px); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; margin-bottom: 8px; }
+    .bento-card--feature .bento-name { font-size: clamp(28px, 3vw, 42px); }
+    .bento-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,.78); max-width: 48ch; }
+    .bento-card--feature .bento-desc { -webkit-line-clamp: 4; font-size: 14px; }
+    .bento-cta { display: inline-block; margin-top: 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--dark-acc); opacity: 0; transform: translateY(6px); transition: opacity .3s var(--ease), transform .3s var(--ease); }
+    .bento-card:hover { border-color: var(--dark-acc); }
+    .bento-card:hover .bento-media img { transform: scale(1.05); filter: brightness(.72) contrast(1.05); }
+    .bento-card:hover .bento-cta, .bento-card:focus-visible .bento-cta { opacity: 1; transform: none; }
+    .bento-card:focus-visible { outline: 2px solid var(--dark-acc); outline-offset: 2px; }
+    @media (max-width: 900px) {
+      .bento { grid-template-columns: repeat(2, 1fr); padding: 0 24px; }
+      .bento-card--feature { grid-column: span 2; grid-row: auto; }
+      .bento-card--feature .bento-desc { -webkit-line-clamp: 3; }
+    }
+    @media (max-width: 560px) {
+      .bento { grid-template-columns: 1fr; grid-auto-rows: 210px; }
+      .bento-card--feature, .bento-card--wide { grid-column: span 1; grid-row: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) { .bento-card, .bento-media img, .bento-cta { transition: none; } }
   </style>
 </head>
 
@@ -1138,110 +1170,85 @@
       </p>
     </div>
 
-    <!-- /01 RADAR -->
-    <a href="radar.html" class="mk-mod rv">
-      <span class="mk-mod-num">/01</span>
-      <div class="mk-mod-content">
-        <div class="mk-mod-name">
-          RADAR
-          <span class="pill pill-active"><span class="pill-dot"></span>Activo</span>
-        </div>
-        <p class="mk-mod-desc">
-          Dashboard táctico web con mapa geoespacial de Colombia. COP con tracking de activos
-          terrestres, navales y aéreos en tiempo real. Visión 360° del teatro de operaciones
-          desde cualquier navegador.
-        </p>
-      </div>
-      <div class="mk-mod-thumb-wrap"><img src="assets/radar-dashboard.webp" class="mk-mod-thumb" alt="RADAR Dashboard" loading="lazy" decoding="async" />
-      </div>
-      <span class="mk-mod-cta">VER MÓDULO →</span>
-    </a>
+    <div class="bento">
+      <!-- /01 RADAR -->
+      <a href="radar.html" class="bento-card bento-card--feature rv">
+        <span class="bento-media" aria-hidden="true"><img src="assets/radar-dashboard.webp" alt="" loading="lazy" decoding="async" /></span>
+        <span class="bento-scrim" aria-hidden="true"></span>
+        <span class="bento-num">/01</span>
+        <span class="bento-pill"><span class="pill pill-active"><span class="pill-dot"></span>Activo</span></span>
+        <span class="bento-body">
+          <span class="bento-name">RADAR</span>
+          <span class="bento-desc">Dashboard táctico web con mapa geoespacial de Colombia. COP con tracking de activos terrestres, navales y aéreos en tiempo real. Visión 360° del teatro de operaciones desde cualquier navegador.</span>
+          <span class="bento-cta">Ver módulo →</span>
+        </span>
+      </a>
 
-    <!-- /02 IRIS -->
-    <a href="iris.html" class="mk-mod rv rd1">
-      <span class="mk-mod-num">/02</span>
-      <div class="mk-mod-content">
-        <div class="mk-mod-name">
-          IRIS
-          <span class="pill pill-active"><span class="pill-dot"></span>Activo</span>
-        </div>
-        <p class="mk-mod-desc">
-          App móvil de campo. GPS en formato MGRS, telemetría de combustible y municiones,
-          reporte rápido de SITREPs y MEDEVAC. Opera en entornos DDIL sin conectividad constante.
-        </p>
-      </div>
-      <div class="mk-mod-thumb-wrap"><img src="assets/iris-mobile.webp" class="mk-mod-thumb" alt="IRIS App móvil" loading="lazy" decoding="async" />
-      </div>
-      <span class="mk-mod-cta">VER MÓDULO →</span>
-    </a>
+      <!-- /02 IRIS -->
+      <a href="iris.html" class="bento-card bento-card--wide rv rd1">
+        <span class="bento-media" aria-hidden="true"><img src="assets/iris-mobile.webp" alt="" loading="lazy" decoding="async" /></span>
+        <span class="bento-scrim" aria-hidden="true"></span>
+        <span class="bento-num">/02</span>
+        <span class="bento-pill"><span class="pill pill-active"><span class="pill-dot"></span>Activo</span></span>
+        <span class="bento-body">
+          <span class="bento-name">IRIS</span>
+          <span class="bento-desc">App móvil de campo. GPS en formato MGRS, telemetría de combustible y municiones, reporte rápido de SITREPs y MEDEVAC. Opera en entornos DDIL.</span>
+          <span class="bento-cta">Ver módulo →</span>
+        </span>
+      </a>
 
-    <!-- /03 NEXXO Chat -->
-    <a href="chat.html" class="mk-mod rv rd2">
-      <span class="mk-mod-num">/03</span>
-      <div class="mk-mod-content">
-        <div class="mk-mod-name">
-          NEXXO Chat
-          <span class="pill pill-pilot"><span class="pill-dot"></span>Piloto</span>
-        </div>
-        <p class="mk-mod-desc">
-          Comunicaciones seguras con cifrado end-to-end y asistente de IA integrado para
-          coordinación operacional soberana. Sin dependencia de infraestructura o servidores extranjeros.
-        </p>
-      </div>
-      <div class="mk-mod-thumb-wrap"><img src="assets/nexxo-chat.webp" class="mk-mod-thumb" alt="NEXXO Chat" loading="lazy" decoding="async" /></div>
-      <span class="mk-mod-cta">VER MÓDULO →</span>
-    </a>
+      <!-- /03 NEXXO Chat -->
+      <a href="chat.html" class="bento-card rv rd2">
+        <span class="bento-media" aria-hidden="true"><img src="assets/nexxo-chat.webp" alt="" loading="lazy" decoding="async" /></span>
+        <span class="bento-scrim" aria-hidden="true"></span>
+        <span class="bento-num">/03</span>
+        <span class="bento-pill"><span class="pill pill-pilot"><span class="pill-dot"></span>Piloto</span></span>
+        <span class="bento-body">
+          <span class="bento-name">NEXXO Chat</span>
+          <span class="bento-desc">Comunicaciones seguras con cifrado end-to-end y asistente de IA integrado para coordinación operacional soberana.</span>
+          <span class="bento-cta">Ver módulo →</span>
+        </span>
+      </a>
 
-    <!-- /04 Memora -->
-    <a href="memora.html" class="mk-mod rv">
-      <span class="mk-mod-num">/04</span>
-      <div class="mk-mod-content">
-        <div class="mk-mod-name">
-          Memora
-          <span class="pill pill-dev"><span class="pill-dot"></span>En Desarrollo</span>
-        </div>
-        <p class="mk-mod-desc">
-          Gestión documental clasificada con niveles de seguridad diferenciados. Auditoría completa
-          de acceso y búsqueda inteligente de documentos operacionales. Control granular por perfil.
-        </p>
-      </div>
-      <div class="mk-mod-thumb-wrap"><img src="assets/memora-docs.webp" class="mk-mod-thumb" alt="Memora Docs" loading="lazy" decoding="async" /></div>
-      <span class="mk-mod-cta">VER MÓDULO →</span>
-    </a>
+      <!-- /04 Memora -->
+      <a href="memora.html" class="bento-card rv">
+        <span class="bento-media" aria-hidden="true"><img src="assets/memora-docs.webp" alt="" loading="lazy" decoding="async" /></span>
+        <span class="bento-scrim" aria-hidden="true"></span>
+        <span class="bento-num">/04</span>
+        <span class="bento-pill"><span class="pill pill-dev"><span class="pill-dot"></span>En Desarrollo</span></span>
+        <span class="bento-body">
+          <span class="bento-name">Memora</span>
+          <span class="bento-desc">Gestión documental clasificada con niveles de seguridad diferenciados y auditoría completa de acceso.</span>
+          <span class="bento-cta">Ver módulo →</span>
+        </span>
+      </a>
 
-    <!-- /05 HOLO AI -->
-    <a href="ai.html" class="mk-mod rv rd1">
-      <span class="mk-mod-num">/05</span>
-      <div class="mk-mod-content">
-        <div class="mk-mod-name">
-          HOLO AI
-          <span class="pill pill-road"><span class="pill-dot"></span>Roadmap</span>
-        </div>
-        <p class="mk-mod-desc">
-          IA multiagente para defensa. Análisis predictivo de amenazas, generación de Cursos de
-          Acción (COA) y fusión de inteligencia HUMINT, SIGINT y GEOINT desde múltiples fuentes.
-        </p>
-      </div>
-      <div class="mk-mod-thumb-wrap"><img src="assets/holo-ai.webp" class="mk-mod-thumb" alt="HOLO AI" loading="lazy" decoding="async" /></div>
-      <span class="mk-mod-cta">VER MÓDULO →</span>
-    </a>
+      <!-- /05 HOLO AI -->
+      <a href="ai.html" class="bento-card bento-card--wide rv rd1">
+        <span class="bento-media" aria-hidden="true"><img src="assets/holo-ai.webp" alt="" loading="lazy" decoding="async" /></span>
+        <span class="bento-scrim" aria-hidden="true"></span>
+        <span class="bento-num">/05</span>
+        <span class="bento-pill"><span class="pill pill-road"><span class="pill-dot"></span>Roadmap</span></span>
+        <span class="bento-body">
+          <span class="bento-name">HOLO AI</span>
+          <span class="bento-desc">IA multiagente para defensa. Análisis predictivo de amenazas, generación de Cursos de Acción (COA) y fusión de inteligencia HUMINT, SIGINT y GEOINT.</span>
+          <span class="bento-cta">Ver módulo →</span>
+        </span>
+      </a>
 
-    <!-- /06 PRISMA EDGE -->
-    <a href="iris.html#prisma" class="mk-mod rv rd2">
-      <span class="mk-mod-num">/06</span>
-      <div class="mk-mod-content">
-        <div class="mk-mod-name">
-          PRISMA EDGE
-          <span class="pill pill-active"><span class="pill-dot"></span>Hardware</span>
-        </div>
-        <p class="mk-mod-desc">
-          Dispositivo táctico ruggedizado. Microcontrolador ARM, GPS militar, pantalla OLED,
-          comunicación segura cifrada. Edge computing autónomo en campo de batalla.
-        </p>
-      </div>
-      <div class="mk-mod-thumb-wrap"><img src="assets/prisma-edge.webp" class="mk-mod-thumb" alt="PRISMA EDGE" loading="lazy" decoding="async" /></div>
-      <span class="mk-mod-cta">VER MÓDULO →</span>
-    </a>
+      <!-- /06 PRISMA EDGE -->
+      <a href="iris.html#prisma" class="bento-card bento-card--wide rv rd2">
+        <span class="bento-media" aria-hidden="true"><img src="assets/prisma-edge.webp" alt="" loading="lazy" decoding="async" /></span>
+        <span class="bento-scrim" aria-hidden="true"></span>
+        <span class="bento-num">/06</span>
+        <span class="bento-pill"><span class="pill pill-active"><span class="pill-dot"></span>Hardware</span></span>
+        <span class="bento-body">
+          <span class="bento-name">PRISMA EDGE</span>
+          <span class="bento-desc">Dispositivo táctico ruggedizado. Microcontrolador ARM, GPS militar, pantalla OLED, comunicación segura cifrada. Edge computing autónomo en campo.</span>
+          <span class="bento-cta">Ver módulo →</span>
+        </span>
+      </a>
+    </div>
   </section>
 
   <!-- ═══════ STATEMENT — EDITORIAL QUOTE (Monks asymmetric) ═══════ -->
