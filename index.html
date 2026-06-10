@@ -1057,6 +1057,27 @@
     .form-field .mk-field { margin-bottom: 0; }
     .form-label { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--t2); }
     .form-optional { color: var(--t2); opacity: .65; text-transform: none; letter-spacing: 0; }
+
+    /* ===== Arquitectura agéntica (capas + componentes) ===== */
+    .arch { padding: clamp(80px, 8vw, 120px) 0; }
+    .arch .ct { margin-bottom: clamp(2.5rem, 4vw, 3.5rem); }
+    .arch-stack { max-width: 1280px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 12px; }
+    .arch-layer { display: grid; grid-template-columns: 300px 1fr; gap: 28px; align-items: center; padding: 26px 28px; border: 1px solid var(--b0); background: var(--bg1); transition: border-color .3s var(--ease); }
+    .arch-layer:hover { border-color: var(--acc); }
+    .arch-layer-head { align-self: start; }
+    .arch-layer-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
+    .arch-layer-name { margin: 8px 0; font-size: clamp(18px, 1.6vw, 22px); font-weight: 700; letter-spacing: -.02em; color: var(--t0); }
+    .arch-layer-purpose { margin: 0; font-size: 13px; line-height: 1.55; color: var(--t1); max-width: 34ch; }
+    .arch-comps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .arch-comp { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--b0); background: var(--bg); font-size: 13px; color: var(--t0); transition: border-color .2s, background .2s; }
+    .arch-comp:hover { border-color: var(--b2); background: var(--bg2); }
+    .arch-comp-n { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--acc); flex-shrink: 0; }
+    @media (max-width: 860px) {
+      .arch-stack { padding: 0 24px; }
+      .arch-layer { grid-template-columns: 1fr; gap: 18px; }
+      .arch-comps { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { .arch-layer, .arch-comp { transition: none; } }
   </style>
 </head>
 
@@ -1281,6 +1302,70 @@
     </div>
   </section>
 
+  <!-- ═══════ ARQUITECTURA AGÉNTICA ═══════ -->
+  <section class="arch" id="arquitectura" aria-label="Arquitectura agéntica con propósito">
+    <div class="ct">
+      <span class="si rv">/0.2 — Arquitectura Agéntica</span>
+      <h2 class="sh rv rd1" style="margin-top:12px">
+        Doce componentes.<br>Un solo propósito.
+      </h2>
+      <p class="ss rv rd2">
+        Cada agente existe por una razón operacional. NEXXO C2 organiza doce componentes en
+        cuatro capas soberanas — del cómputo a la decisión de mando.
+      </p>
+    </div>
+    <div class="arch-stack">
+      <article class="arch-layer rv">
+        <div class="arch-layer-head">
+          <span class="arch-layer-tag">Capa Core</span>
+          <h3 class="arch-layer-name">Datos e Infraestructura</h3>
+          <p class="arch-layer-purpose">El fundamento soberano: modelos, ontología y cómputo bajo jurisdicción colombiana.</p>
+        </div>
+        <ul class="arch-comps">
+          <li class="arch-comp"><span class="arch-comp-n">01</span> Integración Soberana de Modelos IA</li>
+          <li class="arch-comp"><span class="arch-comp-n">04</span> Ontología de Defensa Colombiana</li>
+          <li class="arch-comp"><span class="arch-comp-n">05</span> Cómputo, Vectores y Multimedia</li>
+        </ul>
+      </article>
+      <article class="arch-layer rv rd1">
+        <div class="arch-layer-head">
+          <span class="arch-layer-tag">Capa Servicios</span>
+          <h3 class="arch-layer-name">Servicios Agénticos</h3>
+          <p class="arch-layer-purpose">Donde los agentes razonan: contexto, ciclo de vida y automatización del análisis.</p>
+        </div>
+        <ul class="arch-comps">
+          <li class="arch-comp"><span class="arch-comp-n">02</span> Observabilidad y Auditoría</li>
+          <li class="arch-comp"><span class="arch-comp-n">03</span> Ingeniería de Contexto Operacional</li>
+          <li class="arch-comp"><span class="arch-comp-n">07</span> Ciclo de Vida de Agentes HOLO AI</li>
+          <li class="arch-comp"><span class="arch-comp-n">08</span> Automatización Operacional</li>
+        </ul>
+      </article>
+      <article class="arch-layer rv rd2">
+        <div class="arch-layer-head">
+          <span class="arch-layer-tag">Capa Apps</span>
+          <h3 class="arch-layer-name">Aplicación y Usuario</h3>
+          <p class="arch-layer-purpose">El punto de encuentro humano + IA: interfaces y automatización institucional.</p>
+        </div>
+        <ul class="arch-comps">
+          <li class="arch-comp"><span class="arch-comp-n">10</span> Aplicaciones Humano + IA</li>
+          <li class="arch-comp"><span class="arch-comp-n">12</span> Automatización Institucional Militar</li>
+        </ul>
+      </article>
+      <article class="arch-layer rv rd3">
+        <div class="arch-layer-head">
+          <span class="arch-layer-tag">Capa Transversal</span>
+          <h3 class="arch-layer-name">Seguridad y Desarrollo</h3>
+          <p class="arch-layer-purpose">Lo que atraviesa todo: seguridad, gobernanza, desarrollo y despliegue soberanos.</p>
+        </div>
+        <ul class="arch-comps">
+          <li class="arch-comp"><span class="arch-comp-n">06</span> Seguridad, Gobernanza y Soberanía</li>
+          <li class="arch-comp"><span class="arch-comp-n">09</span> Entornos de Desarrollo Soberanos</li>
+          <li class="arch-comp"><span class="arch-comp-n">11</span> Despliegue</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
   <!-- ═══════ STATEMENT — EDITORIAL QUOTE (Monks asymmetric) ═══════ -->
   <div class="mk-stmt" aria-label="Propuesta de valor">
     <div class="mk-stmt-inner">
@@ -1308,7 +1393,7 @@
   <section aria-label="Fuerzas Militares" id="fuerzas">
     <div class="mk-forces" style="padding-bottom:0">
       <div class="ct">
-        <span class="si rv">/0.2 — Fuerzas Militares de Colombia</span>
+        <span class="si rv">/0.3 — Fuerzas Militares de Colombia</span>
         <h2 class="sh rv rd1" style="margin-top:12px">
           Diseñado para<br>las Tres Fuerzas.
         </h2>
@@ -1397,7 +1482,7 @@
   <!-- ═══════ SOVEREIGNTY ═══════ -->
   <section class="mk-sov" id="soberania" aria-label="Soberanía tecnológica">
     <div class="ct">
-      <span class="si rv">/0.3 — Soberanía Tecnológica</span>
+      <span class="si rv">/0.4 — Soberanía Tecnológica</span>
       <h2 class="sh rv rd1" style="margin-top:12px">
         Sin puertas traseras.<br>Sin dependencias.
       </h2>
