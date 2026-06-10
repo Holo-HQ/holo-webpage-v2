@@ -57,6 +57,14 @@
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Texto en perspectiva 3D que se inclina al cursor — Teatro de Operaciones */
+    .persp { perspective: 1100px; }
+    .persp-mid { transform-style: preserve-3d; }
+    .persp-card { max-width: 660px; will-change: transform; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+    .persp .hl { display: inline-block; border-radius: 4px !important; padding: 1px 7px; margin: 0 1px; color: #00131f; background: var(--dark-acc); font-weight: 600; will-change: transform, box-shadow; transform: translate(calc(-7px * var(--lift, 0)), calc(-5px * var(--lift, 0))); box-shadow: rgba(212, 175, 55, calc(.7 * var(--lift, 0))) 2px 1.5px 0 .75px, rgba(212, 175, 55, calc(.3 * var(--lift, 0))) 9px 5px 5px 0; }
+    @media (prefers-reduced-motion: reduce) { .persp-card { transform: none !important; } }
+  </style>
 </head>
 
 <body>
@@ -163,10 +171,16 @@
     <canvas class="core-bg" role="img"
       aria-label="Núcleo agéntico de NEXXO C2 — visualización 3D del motor de razonamiento de HOLO"></canvas>
     <div class="ct">
-      <span class="si rv">/00 — Vista Operacional</span>
-      <h2 class="sh rv rd1">Dominando el<br>Teatro de Operaciones</h2>
-      <p class="ss rv rd2">RADAR transforma datos crudos de múltiples sensores y fuentes de inteligencia en una imagen
-        operacional clara, precisa y accionable para el comandante.</p>
+      <div class="persp" data-persp>
+        <div class="persp-mid">
+          <div class="persp-card">
+            <span class="si rv">/00 — Vista Operacional</span>
+            <h2 class="sh rv rd1">El teatro completo,<br>en una imagen.</h2>
+            <p class="ss rv rd2">RADAR fusiona sensores y fuentes de inteligencia en una <mark class="hl">imagen
+                operacional única</mark>, depurada y <mark class="hl">lista para la decisión</mark>.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -775,6 +789,47 @@
         document.addEventListener('visibilitychange', update);
         update();
       } else { start(); }
+    })();
+  </script>
+
+  <!-- ─── Texto en perspectiva 3D (se inclina al cursor) ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const persp = document.querySelector('[data-persp]');
+      if (!persp) return;
+      const card = persp.querySelector('.persp-card');
+      if (!card || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const MAXX = 11, MAXY = 17, SM = 0.12;
+      let tX = 0, tY = 0, rX = 0, rY = 0, raf = 0, inView = true;
+      function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
+      function onMove(e) {
+        const r = card.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+        const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+        const dist = Math.hypot(dx, dy);
+        const falloff = dist <= 1 ? 1 : Math.max(0, 1 - (dist - 1) / 2);
+        tX = clamp(dy, -1, 1) * MAXX * falloff;
+        tY = -clamp(dx, -1, 1) * MAXY * falloff;
+      }
+      function onLeave() { tX = 0; tY = 0; }
+      function tick() {
+        rX += (tX - rX) * SM; rY += (tY - rY) * SM;
+        const lift = Math.min(1, Math.hypot(rX / MAXX, rY / MAXY));
+        persp.style.setProperty('--rx', rX.toFixed(2) + 'deg');
+        persp.style.setProperty('--ry', rY.toFixed(2) + 'deg');
+        persp.style.setProperty('--lift', lift.toFixed(3));
+        raf = requestAnimationFrame(tick);
+      }
+      window.addEventListener('mousemove', onMove, { passive: true });
+      document.addEventListener('mouseleave', onLeave);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (e) {
+          inView = e[0].isIntersecting;
+          if (inView && !raf) tick();
+          else if (!inView && raf) { cancelAnimationFrame(raf); raf = 0; }
+        }, { threshold: 0 }).observe(persp);
+      } else { tick(); }
     })();
   </script>
 </body>
