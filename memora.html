@@ -57,6 +57,31 @@
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Índice de capacidades — contenido (izq) + TOC con trail (der) */
+    .toc-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 264px; gap: clamp(32px, 4vw, 64px); margin-top: clamp(40px, 5vw, 64px); align-items: start; }
+    .toc-content { display: flex; flex-direction: column; gap: 14px; }
+    .toc-sec { scroll-margin-top: calc(var(--header) + 22px); border: 1px solid var(--b0); background: var(--bg); padding: 24px 26px; opacity: .5; transition: opacity .4s var(--ease), border-color .4s var(--ease), background .4s, transform .4s var(--ease), box-shadow .4s var(--ease); }
+    .toc-sec.is-active { opacity: 1; border-color: var(--b2); background: var(--bg1); transform: translateX(3px); box-shadow: -3px 0 0 0 var(--acc); }
+    .toc-sec-h { font-size: clamp(18px, 2vw, 22px); font-weight: 700; color: var(--t0); letter-spacing: -.01em; margin: 0 0 8px; }
+    .toc-sec-b { font-size: 14px; line-height: 1.6; color: var(--t1); margin: 0; }
+    .toc-nav { position: sticky; top: calc(var(--header) + 24px); }
+    .toc-panel { border: 1px solid var(--b0); background: var(--bg1); padding: 22px 20px; }
+    .toc-head { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--t2); margin-bottom: 18px; }
+    .toc-head svg { width: 14px; height: 14px; }
+    .toc-list { position: relative; }
+    .toc-track { position: absolute; left: 5px; width: 2px; background: var(--b1); }
+    .toc-fill { position: absolute; left: 5px; width: 2px; height: 0; background: var(--acc); transition: height .35s var(--ease); }
+    .toc-item { position: relative; display: block; padding: 9px 0 9px 22px; font-size: 13px; line-height: 1.3; color: var(--t2); cursor: pointer; transition: color .25s; }
+    .toc-item:hover { color: var(--t1); }
+    .toc-item.is-trail { color: var(--t1); }
+    .toc-item.is-active { color: var(--t0); font-weight: 600; }
+    .toc-dot { position: absolute; left: 2px; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; border-radius: 50% !important; background: var(--bg1); border: 1.5px solid var(--b2); transition: background .25s, border-color .25s, width .25s, height .25s, box-shadow .25s; }
+    .toc-item.is-trail .toc-dot { background: var(--acc); border-color: var(--acc); }
+    .toc-item.is-active .toc-dot { width: 11px; height: 11px; background: var(--acc); border-color: var(--acc); box-shadow: 0 0 0 3px rgba(154, 123, 47, .18); }
+    @media (max-width: 860px) { .toc-wrap { grid-template-columns: 1fr; } .toc-nav { position: static; } }
+    @media (prefers-reduced-motion: reduce) { .toc-sec, .toc-fill, .toc-dot { transition: none; } }
+  </style>
 </head>
 
 <body>
@@ -187,37 +212,48 @@
       <span class="si rv">/02 — Capacidades del Módulo</span>
       <h2 class="sh rv rd1">Gestión Documental<br>de Grado Militar</h2>
 
-      <div class="feat-grid" style="margin-top:64px">
-        <div class="feat-card rv">
-          <div class="feat-h">Navegador de Documentos</div>
-          <p class="feat-b">Interfaz tipo explorador de archivos con estructura jerárquica de carpetas. Organización por
-            unidad, operación, tipo de documento y nivel de clasificación. Vista previa de documentos sin descarga.</p>
+      <div class="toc-wrap rv rd2">
+        <div class="toc-content" data-toc-content>
+          <article class="toc-sec" id="md-navegador" data-toc-sec>
+            <h3 class="toc-sec-h">Navegador de Documentos</h3>
+            <p class="toc-sec-b">Interfaz tipo explorador de archivos con estructura jerárquica de carpetas. Organización por unidad, operación, tipo de documento y nivel de clasificación. Vista previa de documentos sin descarga.</p>
+          </article>
+          <article class="toc-sec" id="md-busqueda" data-toc-sec>
+            <h3 class="toc-sec-h">Búsqueda Inteligente</h3>
+            <p class="toc-sec-b">Motor de búsqueda semántica que entiende el contexto del contenido. Búsqueda por texto completo, metadatos, etiquetas y contenido de documentos escaneados (OCR).</p>
+          </article>
+          <article class="toc-sec" id="md-auditoria" data-toc-sec>
+            <h3 class="toc-sec-h">Auditoría Completa</h3>
+            <p class="toc-sec-b">Registro inmutable de cada acción: quién accedió, cuándo, desde dónde, qué hizo. Audit trail completo para cumplimiento normativo y seguridad. Alertas automáticas ante accesos inusuales.</p>
+          </article>
+          <article class="toc-sec" id="md-versiones" data-toc-sec>
+            <h3 class="toc-sec-h">Control de Versiones</h3>
+            <p class="toc-sec-b">Versionado automático de documentos. Historial completo de cambios con diff visual. Rollback a cualquier versión anterior. Bloqueo de edición simultánea.</p>
+          </article>
+          <article class="toc-sec" id="md-firma" data-toc-sec>
+            <h3 class="toc-sec-h">Firma Digital</h3>
+            <p class="toc-sec-b">Integración con infraestructura PKI para firma digital de documentos oficiales. Verificación de autenticidad e integridad. Cadena de custodia digital desde la creación hasta el archivo.</p>
+          </article>
+          <article class="toc-sec" id="md-firma-retencion" data-toc-sec>
+            <h3 class="toc-sec-h">Retención y Destrucción</h3>
+            <p class="toc-sec-b">Políticas automáticas de retención documental según normativa militar. Destrucción segura programada con certificado digital. Eliminación irrecuperable conforme a estándares DOD 5220.22-M.</p>
+          </article>
         </div>
-        <div class="feat-card rv rd1">
-          <div class="feat-h">Búsqueda Inteligente</div>
-          <p class="feat-b">Motor de búsqueda semántica que entiende el contexto del contenido. Búsqueda por texto
-            completo, metadatos, etiquetas y contenido de documentos escaneados (OCR).</p>
-        </div>
-        <div class="feat-card rv">
-          <div class="feat-h">Auditoría Completa</div>
-          <p class="feat-b">Registro inmutable de cada acción: quién accedió, cuándo, desde dónde, qué hizo. Audit trail
-            completo para cumplimiento normativo y seguridad. Alertas automáticas ante accesos inusuales.</p>
-        </div>
-        <div class="feat-card rv rd1">
-          <div class="feat-h">Control de Versiones</div>
-          <p class="feat-b">Versionado automático de documentos. Historial completo de cambios con diff visual. Rollback
-            a cualquier versión anterior. Bloqueo de edición simultánea.</p>
-        </div>
-        <div class="feat-card rv">
-          <div class="feat-h">Firma Digital</div>
-          <p class="feat-b">Integración con infraestructura PKI para firma digital de documentos oficiales. Verificación
-            de autenticidad e integridad. Cadena de custodia digital desde la creación hasta el archivo.</p>
-        </div>
-        <div class="feat-card rv rd1">
-          <div class="feat-h">Retención y Destrucción</div>
-          <p class="feat-b">Políticas automáticas de retención documental según normativa militar. Destrucción segura
-            programada con certificado digital. Eliminación irrecuperable conforme a estándares DOD 5220.22-M.</p>
-        </div>
+        <aside class="toc-nav">
+          <div class="toc-panel">
+            <div class="toc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 12h-8M21 6H8M21 18h-8M3 6v4c0 1.1.9 2 2 2h3M3 10v6c0 1.1.9 2 2 2h3" /></svg>En esta sección</div>
+            <nav class="toc-list" data-toc-list aria-label="Índice de capacidades">
+              <span class="toc-track" data-toc-track aria-hidden="true"></span>
+              <span class="toc-fill" data-toc-fill aria-hidden="true"></span>
+              <a href="#md-navegador" class="toc-item" data-toc-item><span class="toc-dot"></span>Navegador de Documentos</a>
+              <a href="#md-busqueda" class="toc-item" data-toc-item><span class="toc-dot"></span>Búsqueda Inteligente</a>
+              <a href="#md-auditoria" class="toc-item" data-toc-item><span class="toc-dot"></span>Auditoría Completa</a>
+              <a href="#md-versiones" class="toc-item" data-toc-item><span class="toc-dot"></span>Control de Versiones</a>
+              <a href="#md-firma" class="toc-item" data-toc-item><span class="toc-dot"></span>Firma Digital</a>
+              <a href="#md-firma-retencion" class="toc-item" data-toc-item><span class="toc-dot"></span>Retención y Destrucción</a>
+            </nav>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
@@ -308,6 +344,58 @@
     mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mm.classList.remove('open'); hb.classList.remove('open'); document.body.style.overflow = '' }));
     const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('iv'); obs.unobserve(x.target) } }), { threshold: .1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.rv').forEach(e => obs.observe(e));
+  </script>
+
+  <!-- ─── Índice de capacidades (TOC con trail + scroll-spy) ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const content = document.querySelector('[data-toc-content]');
+      const list = document.querySelector('[data-toc-list]');
+      if (!content || !list) return;
+      const secs = Array.prototype.slice.call(content.querySelectorAll('[data-toc-sec]'));
+      const items = Array.prototype.slice.call(list.querySelectorAll('[data-toc-item]'));
+      const track = list.querySelector('[data-toc-track]');
+      const fill = list.querySelector('[data-toc-fill]');
+      if (!secs.length || items.length !== secs.length) return;
+      let active = -1;
+      const center = function (el) { return el.offsetTop + el.offsetHeight / 2; };
+      function layoutTrack() {
+        const c0 = center(items[0]), cN = center(items[items.length - 1]);
+        track.style.top = c0 + 'px'; track.style.height = (cN - c0) + 'px';
+        fill.style.top = c0 + 'px';
+        fill.style.height = (active >= 0 ? center(items[active]) - c0 : 0) + 'px';
+      }
+      function setActive(i) {
+        if (i === active) return;
+        active = i;
+        secs.forEach(function (s, j) { s.classList.toggle('is-active', j === i); });
+        items.forEach(function (it, j) {
+          it.classList.toggle('is-trail', j <= i);
+          it.classList.toggle('is-active', j === i);
+          if (j === i) it.setAttribute('aria-current', 'true'); else it.removeAttribute('aria-current');
+        });
+        layoutTrack();
+      }
+      items.forEach(function (it, i) {
+        it.addEventListener('click', function (e) { e.preventDefault(); setActive(i); secs[i].scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      });
+      // scroll-spy: la sección dentro de la banda superior queda activa
+      function spy() {
+        const mid = 130;
+        let best = 0;
+        for (let i = 0; i < secs.length; i++) {
+          if (secs[i].getBoundingClientRect().top - mid <= 0) best = i; else break;
+        }
+        setActive(best);
+      }
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(spy, { rootMargin: '-20% 0px -60% 0px', threshold: [0, 1] });
+        secs.forEach(function (s) { io.observe(s); });
+      }
+      window.addEventListener('resize', function () { layoutTrack(); }, { passive: true });
+      setActive(0);
+    })();
   </script>
 </body>
 
