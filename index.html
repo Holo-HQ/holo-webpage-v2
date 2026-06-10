@@ -1149,16 +1149,16 @@
     }
 
     /* ── Carrusel escalonado — Fuerzas (tarjeta central expandida) ── */
-    .stagger { position: relative; width: 100%; height: 680px; margin-top: clamp(40px, 5vw, 64px); overflow: hidden; }
-    .stg-card { position: absolute; left: 50%; top: 50%; width: 272px; height: 366px; cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; transition: transform .55s var(--ease), box-shadow .5s var(--ease), background .4s, border-color .4s; clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 26px 100%, 0 calc(100% - 26px)); }
-    .stg-card-img { width: 100%; height: 56%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.3) brightness(.92); border-bottom: 1px solid var(--b0); transition: filter .4s; }
+    .stagger { position: relative; width: 100%; height: 720px; margin-top: clamp(40px, 5vw, 64px); overflow: hidden; }
+    .stg-card { position: absolute; left: 50%; top: 50%; width: 288px; height: 392px; cursor: pointer; border: 1px solid var(--b1); background: var(--bg1); color: var(--t0); overflow: hidden; display: flex; flex-direction: column; transition: transform .55s var(--ease), box-shadow .5s var(--ease), background .4s, border-color .4s; clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 26px 100%, 0 calc(100% - 26px)); }
+    .stg-card-img { width: 100%; height: 66%; flex-shrink: 0; background-size: cover; background-position: center; filter: grayscale(.3) brightness(.92); border-bottom: 1px solid var(--b0); transition: filter .4s; }
     .stg-card-body { padding: 14px 18px 0; display: flex; flex-direction: column; gap: 6px; }
     .stg-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); }
     .stg-h { font-size: 17px; font-weight: 700; line-height: 1.12; letter-spacing: -.01em; margin: 0; }
     .stg-p { font-size: 12px; line-height: 1.45; margin: 2px 0 0; opacity: .8; }
     /* tarjeta central expandida — todo el texto */
-    .stg-card.is-center { width: min(620px, 92vw); height: 560px; background: #001F3F; color: #fff; border-color: var(--dark-acc); box-shadow: 0 16px 0 -2px rgba(212, 175, 55, .22); clip-path: polygon(0 0, calc(100% - 34px) 0, 100% 34px, 100% 100%, 34px 100%, 0 calc(100% - 34px)); }
-    .stg-card.is-center .stg-card-img { height: 19%; filter: none; border-bottom-color: rgba(212, 175, 55, .4); }
+    .stg-card.is-center { width: min(640px, 92vw); height: 600px; background: #001F3F; color: #fff; border-color: var(--dark-acc); box-shadow: 0 16px 0 -2px rgba(212, 175, 55, .22); clip-path: polygon(0 0, calc(100% - 34px) 0, 100% 34px, 100% 100%, 34px 100%, 0 calc(100% - 34px)); }
+    .stg-card.is-center .stg-card-img { height: 24%; filter: none; border-bottom-color: rgba(212, 175, 55, .4); }
     .stg-card.is-center .stg-tag { color: var(--dark-acc); }
     .stg-full { padding: 16px clamp(20px, 3vw, 30px) 18px; display: flex; flex-direction: column; gap: 9px; overflow: hidden; }
     .stg-fh { font-size: clamp(20px, 2vw, 26px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; margin: 0; color: #fff; }
@@ -1172,7 +1172,7 @@
     .stg-btn { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: var(--bg); border: 1px solid var(--b2); color: var(--t0); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
     .stg-btn:hover { background: #001F3F; color: #fff; border-color: #001F3F; }
     .stg-btn svg { width: 20px; height: 20px; }
-    @media (max-width: 760px) { .stagger { height: 620px; } .stg-card { width: 208px; height: 298px; } .stg-card.is-center { width: 92vw; height: 540px; } .stg-card.is-center .stg-card-img { height: 16%; } }
+    @media (max-width: 760px) { .stagger { height: 680px; } .stg-card { width: 216px; height: 330px; } .stg-card.is-center { width: 92vw; height: 580px; } .stg-card.is-center .stg-card-img { height: 20%; } }
     @media (prefers-reduced-motion: reduce) { .stg-card { transition: background .4s, border-color .4s; } }
     @media (prefers-reduced-motion: reduce) { .stg-card { transition: background .4s, border-color .4s; } }
   </style>
@@ -2285,14 +2285,14 @@
           close: 'Una sola imagen. Una decisión más rápida que la del adversario.'
         },
         {
-          tag: '/05 — Policía Nacional', h: 'Conciencia Situacional para la Seguridad Pública', tagline: 'Despliegue, jurisdicciones y respuesta de la Policía sobre el mismo mapa.', img: 'assets/Colombia-Fuerzas-Militares.webp',
-          intro: 'El componente de seguridad pública de NEXXO C2 lleva la imagen operacional común al servicio de policía: unidades, jurisdicciones y capacidades especiales sobre el mismo mapa que las Fuerzas Militares, para articular la acción del Estado en el territorio.',
+          tag: '/05 — Policía Nacional', h: 'Operaciones Coordinadas', tagline: 'La coordinación entre la Policía y las Fuerzas Militares sobre un solo mapa.', img: 'assets/forces-police.webp',
+          intro: 'El control territorial no termina donde termina la operación militar. NEXXO C2 extiende la imagen operacional común a la Policía Nacional, para que la coordinación entre instituciones deje de depender de llamadas, oficios y mapas que no coinciden.',
           bullets: [
-            { lead: 'Despliegue territorial:', rest: 'estaciones, distritos y unidades móviles georreferenciados, con disponibilidad y tiempos de respuesta por jurisdicción.' },
-            { lead: 'Acción unificada con las Fuerzas:', rest: 'coordinación entre Policía y Fuerzas Militares en zonas de seguridad, con medidas de control y enlace en tiempo real, sin sistemas separados.' },
-            { lead: 'Capacidades especiales:', rest: 'unidades de intervención, antiexplosivos y aviación policial integradas en la misma imagen operacional.' }
+            { lead: 'Una Fuerza Pública, un mapa:', rest: 'las unidades policiales se representan junto a las militares con la misma simbología y en el mismo instante — la patrulla de carabineros y el pelotón del Ejército saben dónde está el otro antes de entrar al área.' },
+            { lead: 'Relevo territorial visible:', rest: 'la transición del control militar a la consolidación policial se planea y sigue sobre el mapa — zonas, responsables y estado de cada área, sin ambigüedad sobre quién responde por qué terreno.' },
+            { lead: 'Información compartida con perfiles:', rest: 'cada institución accede a lo que le corresponde. La coordinación operacional fluye; la información judicial y de investigación de la Policía permanece bajo su control.' }
           ],
-          close: 'La seguridad del ciudadano y la defensa de la Nación, leídas en un solo plano.'
+          close: ''
         }
       ];
       let list = [FORCES[3], FORCES[4], FORCES[0], FORCES[1], FORCES[2]]; // centra Ejército al inicio
