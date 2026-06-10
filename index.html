@@ -725,6 +725,26 @@
       mix-blend-mode: luminosity;
     }
 
+    /* ── HERO OSCURO — shader WebGL de fondo (reemplaza el video) ── */
+    .mk-hero { background: #00070f; }
+    .mk-hero-bg { opacity: 1; mix-blend-mode: normal; filter: none; }
+    .mk-hero::after {
+      content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(180deg, rgba(0,7,15,.42) 0%, rgba(0,7,15,.10) 36%, rgba(0,7,15,.5) 72%, rgba(0,7,15,.88) 100%);
+    }
+    .mk-eyebrow-line { background: var(--dark-acc); }
+    .mk-eyebrow-txt { color: rgba(231,231,229,.66); }
+    .mk-h1 { color: #fff; text-shadow: 0 2px 28px rgba(0,5,12,.6), 0 1px 2px rgba(0,5,12,.5); }
+    .mk-h1 em { color: var(--dark-acc); }
+    .mk-hero-sub { color: rgba(231,231,229,.86); text-shadow: 0 1px 12px rgba(0,5,12,.6); }
+    .mk-hero-metrics { border-color: rgba(255,255,255,.14); }
+    .mk-metric { border-color: rgba(255,255,255,.14); }
+    .mk-metric-n { color: #fff; }
+    .mk-metric-l { color: rgba(231,231,229,.6); }
+    .mk-hero .bp { background: #fff; color: #000; }
+    .mk-hero .bg { color: #fff; border-color: rgba(255,255,255,.3); }
+    .mk-hero .bg:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.55); }
+
     /* ── HERO TACTICAL GRID OVERLAY ── */
     .mk-hero-grid {
       position: absolute;
@@ -1172,7 +1192,7 @@
   <!-- ═══════ HERO — MONKS EDITORIAL ═══════ -->
   <main id="main">
   <section class="mk-hero" id="inicio" aria-label="Presentación HOLO NEXXO C2">
-    <video src="assets/Holo_C2-opt.mp4" class="mk-hero-bg" poster="assets/hero-colombia.webp" autoplay loop muted playsinline preload="metadata" aria-hidden="true"></video>
+    <canvas class="mk-hero-bg" id="heroShader" aria-hidden="true"></canvas>
     <div class="mk-hero-grid" aria-hidden="true"></div>
     <div class="mk-hero-tricolor" aria-hidden="true"></div>
     <div class="mk-hero-flag" aria-hidden="true" title="Colombia"></div>
@@ -1795,7 +1815,7 @@
       'use strict';
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         const v = document.querySelector('.mk-hero-bg');
-        if (v) { v.removeAttribute('autoplay'); v.pause(); }
+        if (v && v.tagName === 'VIDEO') { v.removeAttribute('autoplay'); v.pause(); }
         return;
       }
 
@@ -2144,6 +2164,87 @@
         const io = new IntersectionObserver((es, o) => { es.forEach(e => { if (e.isIntersecting) { wrap.classList.add('is-revealed'); o.disconnect(); } }); }, { threshold: .25 });
         io.observe(wrap);
       } else { wrap.classList.add('is-revealed'); }
+    })();
+  </script>
+
+  <!-- ─── Shader del hero (WebGL) — patrón hex-esfera, navy + oro ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const canvas = document.getElementById('heroShader');
+      if (!canvas) return;
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) { canvas.style.background = '#00070f'; return; }
+
+      const VS = 'attribute vec2 p; void main(){ gl_Position = vec4(p,0.0,1.0); }';
+      const FS = [
+        'precision highp float;',
+        'uniform vec3 R; uniform float T;',
+        'vec4 th(vec4 x){ x = clamp(x,-10.0,10.0); vec4 e = exp(2.0*x); return (e-1.0)/(e+1.0); }',
+        'void main(){',
+        '  vec2 I = gl_FragCoord.xy;',
+        '  vec4 O = vec4(0.0);',
+        '  float z, t = T;',
+        '  for(int k=0;k<100;k++){',
+        '    float i = float(k)*0.01;',
+        '    vec2 v = R.xy;',
+        '    vec2 p = (I+I-v)/v.y * i;',
+        '    z = max(1.0 - dot(p,p), 0.0);',
+        '    p /= 0.2 + sqrt(z)*0.3;',
+        '    p.x = p.x/0.9 + t;',
+        '    p.y += fract(ceil(p.x)*0.5) + t*0.2;',
+        '    v = abs(fract(p) - 0.5);',
+        '    O += vec4(6.0,3.4,1.0,1.0)/2e3 * z / (abs(max(v.x*1.5+v, v+v).y - 1.0) + 0.1 - i*0.09);',
+        '  }',
+        '  O = th(O*O);',
+        '  vec3 col = vec3(0.0,0.045,0.10) + O.rgb * 0.92;',
+        '  gl_FragColor = vec4(col, 1.0);',
+        '}'
+      ].join('\n');
+
+      function sh(type, src){ const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+      const prog = gl.createProgram();
+      gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS));
+      gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS));
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { canvas.style.background = '#00070f'; return; }
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+      const loc = gl.getAttribLocation(prog, 'p');
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      const uR = gl.getUniformLocation(prog, 'R'), uT = gl.getUniformLocation(prog, 'T');
+
+      const DPR = Math.min(window.devicePixelRatio || 1, 1.75);
+      function resize(){
+        const w = canvas.clientWidth || canvas.offsetWidth, h = canvas.clientHeight || canvas.offsetHeight;
+        canvas.width = Math.max(1, Math.round(w * DPR));
+        canvas.height = Math.max(1, Math.round(h * DPR));
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      function frame(t){
+        gl.uniform3f(uR, canvas.width, canvas.height, 1.0);
+        gl.uniform1f(uT, t);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { frame(0); return; }
+
+      let raf = null, inView = true;
+      function loop(now){ frame(now * 0.001); raf = requestAnimationFrame(loop); }
+      function start(){ if (raf) return; raf = requestAnimationFrame(loop); }
+      function stop(){ if (raf) cancelAnimationFrame(raf); raf = null; }
+      function upd(){ (inView && !document.hidden) ? start() : stop(); }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((e) => { inView = e[0].isIntersecting; upd(); }, { threshold: 0 }).observe(canvas);
+      }
+      document.addEventListener('visibilitychange', upd);
+      upd();
     })();
   </script>
 </body>
