@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4FJTCX9CJ3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-4FJTCX9CJ3');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Planeamiento — HOLO</title>
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="assets/icon_golden.svg" />
+  <meta name="description"
+    content="HOLO Doctrine Layer: el PMTD traducido en cinco juicios asistidos por IA. La máquina propone, el experto interpreta, el comandante decide. Human-In-Command." />
+  <meta property="og:title" content="Planeamiento Asistido — HOLO" />
+  <meta property="og:description"
+    content="El PMTD de las Fuerzas Militares en cinco fases, con HOLO AI y juicio humano. Soberanía tecnológica, no dependencia." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://holo.com.co/planeamiento.html" />
+  <meta property="og:image" content="https://holo.com.co/assets/banners/og_share_holo.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="HOLO — Planeamiento Asistido" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ── PLANEAMIENTO — estilos de página (sistema Sovereign Meridian) ── */
+    .hl { color: var(--acc); }
+    .sub-hero h1 .hl { color: var(--dark-acc); }
+    .sh .hl { color: var(--acc); }
+
+    /* Lista de fases doctrinales */
+    .doc-list { margin-top: clamp(40px, 5vw, 64px); }
+    .doc-phase { display: grid; grid-template-columns: 120px 1fr; gap: clamp(20px, 4vw, 56px); padding: clamp(36px, 5vw, 60px) 0; border-top: 1px solid var(--b0); }
+    .doc-phase:last-child { border-bottom: 1px solid var(--b0); }
+    .doc-phase-n { font-family: var(--sans); font-weight: 700; font-size: clamp(44px, 5.5vw, 76px); line-height: .85; color: var(--bg3); letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+    .doc-phase-lbl { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--t1); margin-bottom: 16px; }
+    .doc-phase-lbl i { font-style: normal; color: var(--acc); font-size: 10px; }
+    .doc-phase-q { font-size: clamp(22px, 2.6vw, 34px); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; color: var(--t0); margin: 0 0 18px; max-width: 24ch; }
+    .doc-phase-line { font-size: clamp(15px, 1.5vw, 17px); line-height: 1.6; color: var(--t1); max-width: 62ch; margin: 0 0 26px; }
+    .doc-phase-line b { color: var(--t0); font-weight: 600; }
+    .doc-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 760px; }
+    .doc-card { border: 1px solid var(--b0); background: var(--bg1); padding: 20px 22px; transition: border-color .25s var(--ease), transform .25s var(--ease); }
+    .doc-card:hover { border-color: var(--b2); transform: translateY(-3px); }
+    .doc-card--ai { border-left: 2px solid var(--acc); }
+    .doc-card--ex { border-left: 2px solid #001F3F; }
+    .doc-role { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 9px; }
+    .doc-card--ai .doc-role { color: var(--acc); }
+    .doc-card--ex .doc-role { color: #001F3F; }
+    .doc-card p { font-size: 13.5px; line-height: 1.55; color: var(--t1); margin: 0; }
+
+    /* Principio Operativo — bloque oscuro */
+    .doc-principio { position: relative; overflow: hidden; background: #001528; color: #fff; padding: clamp(72px, 9vw, 124px) 0; }
+    .doc-principio::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 90% at 100% 0, rgba(212,175,55,.10), transparent 55%); }
+    .doc-principio .ct { position: relative; z-index: 1; }
+    .doc-principio-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--dark-acc); margin-bottom: 28px; }
+    .doc-principio-h { font-size: clamp(26px, 4vw, 50px); font-weight: 700; line-height: 1.2; letter-spacing: -.02em; color: #fff; margin: 0 0 46px; max-width: 22ch; }
+    .doc-principio-h em { font-style: normal; color: var(--dark-acc); }
+    .doc-auth { display: flex; flex-wrap: wrap; gap: 14px; }
+    .doc-auth-item { display: flex; flex-direction: column; gap: 5px; min-width: 168px; padding: 18px 22px; border: 1px solid rgba(255, 255, 255, .16); background: rgba(255, 255, 255, .02); }
+    .doc-auth-item span { font-family: var(--sans); font-weight: 700; font-size: 15px; letter-spacing: .02em; color: #fff; }
+    .doc-auth-item i { font-style: normal; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--dark-acc); }
+
+    @media (max-width: 720px) {
+      .doc-phase { grid-template-columns: 1fr; gap: 10px; }
+      .doc-phase-n { font-size: 42px; }
+      .doc-duo { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <!-- HEADER -->
+  <header class="header" id="mainHeader">
+    <div class="header-l">
+      <a href="index.html" class="header-logo"><img src="assets/banners/banner_blue.svg" alt="HOLO" width="357" height="134" decoding="async" /></a>
+      <div class="header-status">
+        <div class="header-dot"></div><span class="mono">NEXXO C2 ACTIVO</span>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="radar.html">RADAR</a>
+      <a href="iris.html">IRIS</a>
+      <a href="chat.html">NEXXO Chat</a>
+      <a href="memora.html">Memora</a>
+      <a href="ai.html">HOLO AI</a>
+      <a href="planeamiento.html" class="active">Planeamiento</a>
+      <a href="readings.html">Lecturas</a>
+    </nav>
+    <div class="header-r">
+      <a href="mailto:contacto@holo.com.co" class="header-cta">Solicitar Demo</a>
+      <button class="hb" id="hb" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mm">
+    <a href="index.html"><span class="mm-i">/00</span>Inicio</a>
+    <a href="radar.html"><span class="mm-i">/01</span>RADAR Dashboard</a>
+    <a href="iris.html"><span class="mm-i">/02</span>IRIS + PRISMA EDGE</a>
+    <a href="chat.html"><span class="mm-i">/03</span>NEXXO Chat</a>
+    <a href="memora.html"><span class="mm-i">/04</span>Memora</a>
+    <a href="ai.html"><span class="mm-i">/05</span>HOLO AI</a>
+    <a href="planeamiento.html"><span class="mm-i">/06</span>Planeamiento</a>
+    <a href="readings.html"><span class="mm-i">/07</span>Lecturas</a>
+  </div>
+
+  <!-- SUB-HERO -->
+  <section class="sub-hero">
+    <div class="sub-hero-bg" style="background-image:url(assets/hero-colombia.webp)"></div>
+    <div class="ct">
+      <div class="breadcrumb rv">
+        <a href="index.html">HOLO</a><span>/</span><a href="index.html#modulos">NEXXO C2</a><span>/</span><span
+          style="color:#fff">Planeamiento</span>
+      </div>
+      <div style="margin-bottom:16px" class="rv rd1"><span class="pill pill-active"><span class="pill-dot"></span>Doctrina
+          · Human-In-Command</span></div>
+      <h1 class="rv rd2">La máquina propone.<br>El experto interpreta.<br>El comandante <span class="hl">decide</span>.</h1>
+      <p class="sub-desc rv rd3">Cinco preguntas. Una doctrina. Una decisión humana al final del proceso. HOLO traduce el
+        <b>PMTD</b> de las Fuerzas Militares de Colombia en una secuencia de juicios asistidos por IA, con anclaje
+        doctrinal y trazabilidad de mando.</p>
+    </div>
+  </section>
+
+  <main id="main">
+
+    <!-- THESIS -->
+    <section class="sec">
+      <div class="ct">
+        <span class="si rv">/00 — Principio</span>
+        <h2 class="sh rv rd1">No se trata de qué puede hacer la IA,<br>sino de qué <span class="hl">debe</span> seguir
+          haciendo el ser humano.</h2>
+        <p class="ss rv rd2">El planeamiento militar es un método, no una corazonada. HOLO acelera cada fase con
+          inteligencia artificial — pero el juicio del experto y la autoridad del comandante son insustituibles. Esa es
+          la doctrina <b>Human-In-Command</b>: la IA como copiloto, nunca como piloto.</p>
+      </div>
+    </section>
+
+    <!-- 5 FASES -->
+    <section class="sec doc-phases">
+      <div class="ct">
+        <span class="si rv">/01 — El Método (PMTD)</span>
+        <h2 class="sh rv rd1">Cinco preguntas<br>que ordenan la decisión</h2>
+        <p class="ss rv rd2">Cada fase del PMTD es una pregunta. HOLO AI aporta velocidad y exhaustividad; el experto
+          militar aporta criterio y contexto. El comandante decide.</p>
+
+        <div class="doc-list">
+          <article class="doc-phase rv">
+            <div class="doc-phase-n">01</div>
+            <div class="doc-phase-c">
+              <div class="doc-phase-lbl">Recepción de la Misión <i>PMTD · 01</i></div>
+              <h3 class="doc-phase-q">¿Qué se nos ordena realmente, y qué se da por entendido?</h3>
+              <p class="doc-phase-line"><b>Decodificación de la intención del mando superior.</b> Tareas explícitas,
+                tareas implícitas, hechos, supuestos y restricciones. Sin esta lectura, todo lo que sigue arrastra un
+                error de origen.</p>
+              <div class="doc-duo">
+                <div class="doc-card doc-card--ai">
+                  <div class="doc-role">HOLO AI</div>
+                  <p>Parsea la orden en segundos. Extrae estructura, identifica vacíos doctrinales, sugiere CCIR
+                    candidatas.</p>
+                </div>
+                <div class="doc-card doc-card--ex">
+                  <div class="doc-role">Experto Militar</div>
+                  <p>Lee entre líneas: cultura del comandante superior, contexto del teatro, lo no escrito. La IA no lo
+                    sabe.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="doc-phase rv">
+            <div class="doc-phase-n">02</div>
+            <div class="doc-phase-c">
+              <div class="doc-phase-lbl">Análisis del Entorno Operacional <i>PMTD · 02 · JIPOE</i></div>
+              <h3 class="doc-phase-q">¿Dónde estamos parados, y quién más respira el mismo aire?</h3>
+              <p class="doc-phase-line"><b>JIPOE / PEMSITIM.</b> Terreno, clima, adversario, población civil,
+                infraestructura, tiempo. El campo de batalla nunca es neutral: leerlo bien es ya media decisión.</p>
+              <div class="doc-duo">
+                <div class="doc-card doc-card--ai">
+                  <div class="doc-role">HOLO AI</div>
+                  <p>Fusiona ISR multifuente (HUMINT · SIGINT · IMINT · OSINT). Mapea terreno, patrones de vida, COG
+                    candidatos.</p>
+                </div>
+                <div class="doc-card doc-card--ex">
+                  <div class="doc-role">Experto Militar</div>
+                  <p>Lee la geometría del adversario. Distingue lo medible de lo significativo. Aporta el «olfato del
+                    terreno».</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="doc-phase rv">
+            <div class="doc-phase-n">03</div>
+            <div class="doc-phase-c">
+              <div class="doc-phase-lbl">Desarrollo de Cursos de Acción <i>PMTD · 03 · COA</i></div>
+              <h3 class="doc-phase-q">¿Cuántas formas hay de cumplir, y cuál nos deja con más opciones?</h3>
+              <p class="doc-phase-line"><b>Espacio de soluciones factibles.</b> Una sola opción no es planeamiento, es
+                resignación. La buena decisión preserva libertad de acción para el comandante.</p>
+              <div class="doc-duo">
+                <div class="doc-card doc-card--ai">
+                  <div class="doc-role">HOLO AI</div>
+                  <p>Genera múltiples COA bajo restricciones (tiempo, recursos, terreno, ROE). Explora lo que el staff no
+                    alcanzaría.</p>
+                </div>
+                <div class="doc-card doc-card--ex">
+                  <div class="doc-role">Experto Militar</div>
+                  <p>Descarta lo doctrinalmente válido pero operacionalmente absurdo. Aporta el «esto en el terreno no
+                    funciona».</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="doc-phase rv">
+            <div class="doc-phase-n">04</div>
+            <div class="doc-phase-c">
+              <div class="doc-phase-lbl">Juego de Guerra · Comparación <i>PMTD · 04-05</i></div>
+              <h3 class="doc-phase-q">¿Qué pasa si me equivoco, y cuán reversible es el daño?</h3>
+              <p class="doc-phase-line"><b>Wargaming acción–reacción–contraacción.</b> Una decisión sin escenario adverso
+                no es plan, es deseo. Mecanismos de derrota propios y enemigos puestos en evidencia.</p>
+              <div class="doc-duo">
+                <div class="doc-card doc-card--ai">
+                  <div class="doc-role">HOLO AI</div>
+                  <p>Simula miles de iteraciones contra COA enemigos probables y peligrosos. Calcula matriz multicriterio
+                    explicable.</p>
+                </div>
+                <div class="doc-card doc-card--ex">
+                  <div class="doc-role">Experto Militar</div>
+                  <p>Inyecta hipótesis sobre la voluntad de combate del adversario. Pondera lo inaceptable según el
+                    comandante.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="doc-phase rv">
+            <div class="doc-phase-n">05</div>
+            <div class="doc-phase-c">
+              <div class="doc-phase-lbl">Aprobación del COA · OPORD <i>PMTD · 06-07</i></div>
+              <h3 class="doc-phase-q">¿Quién firma esta decisión, y qué asume al firmarla?</h3>
+              <p class="doc-phase-line"><b>Autoridad de mando.</b> La firma del comandante no es trámite: es el momento en
+                que la responsabilidad deja de ser distribuida y se vuelve personal. La IA puede recomendar; sólo el ser
+                humano puede asumir.</p>
+              <div class="doc-duo">
+                <div class="doc-card doc-card--ai">
+                  <div class="doc-role">HOLO AI</div>
+                  <p>Presenta opciones con evidencia, simulaciones y trazabilidad. Genera la OPORD con sus cinco párrafos
+                    y anexos.</p>
+                </div>
+                <div class="doc-card doc-card--ex">
+                  <div class="doc-role">Comandante</div>
+                  <p>Decide. Firma. Asume las consecuencias. La autoridad no se delega en algoritmos. Nunca.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRINCIPIO OPERATIVO -->
+    <section class="doc-principio">
+      <div class="ct">
+        <div class="doc-principio-tag rv">★ Principio Operativo ★</div>
+        <h2 class="doc-principio-h rv rd1">La inteligencia artificial <em>acelera</em> el análisis.<br>El experto
+          militar <em>interpreta</em> el contexto.<br>El comandante <em>asume</em> el mando.</h2>
+        <div class="doc-auth rv rd2">
+          <div class="doc-auth-item"><span>HOLO AI</span><i>Copiloto</i></div>
+          <div class="doc-auth-item"><span>Experto</span><i>Juicio</i></div>
+          <div class="doc-auth-item"><span>Comandante</span><i>Autoridad</i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-s">
+      <div class="ct">
+        <div class="cta-inner">
+          <h2 class="cta-h2 rv">Soberanía tecnológica,<br>no <em>dependencia</em>.</h2>
+          <p class="cta-body rv rd1">Construimos los sistemas de mando y control que las Fuerzas Militares de Colombia
+            necesitan para decidir más rápido que la amenaza.</p>
+          <div class="cta-acts rv rd2">
+            <a href="mailto:contacto@holo.com.co" class="bp">Solicitar Demo →</a>
+            <a href="radar.html" class="bg">Ver RADAR</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ct">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <div class="ft-logo">HOLO</div>
+          <p>Empresa colombiana de tecnología de defensa y seguridad nacional. Desarrolladores del ecosistema NEXXO C2.
+          </p>
+        </div>
+        <div>
+          <div class="ft-ct">Módulos</div>
+          <ul class="ft-links">
+            <li><a href="radar.html">RADAR</a></li>
+            <li><a href="iris.html">IRIS</a></li>
+            <li><a href="chat.html">NEXXO Chat</a></li>
+            <li><a href="memora.html">Memora</a></li>
+            <li><a href="ai.html">HOLO AI</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="ft-ct">Compañía</div>
+          <ul class="ft-links">
+            <li><a href="planeamiento.html">Planeamiento</a></li>
+            <li><a href="index.html#fuerzas">Fuerzas</a></li>
+            <li><a href="index.html#soberania">Soberanía</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="ft-ct">Legal</div>
+          <ul class="ft-links">
+            <li><a href="nexxo/eula.html">EULA</a></li>
+            <li><a href="privacy-policy.html">Privacidad</a></li>
+            <li><a href="nexxo/privacy-policy.html">Privacidad Nexxo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bot">
+        <p>© 2026 HOLO Technologies SAS — Colombia. <span style="opacity:0.6;margin-left:8px;">Doctrina: MFRE
+            1-02.1</span></p>
+        <p>NEXXO C2 v2.4 · SISTEMA: OPERATIVO</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const h = document.getElementById('mainHeader'); window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 40));
+    const hb = document.getElementById('hb'), mm = document.getElementById('mm');
+    hb.addEventListener('click', () => { const o = mm.classList.toggle('open'); hb.classList.toggle('open', o); hb.setAttribute('aria-expanded', o); document.body.style.overflow = o ? 'hidden' : '' });
+    mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mm.classList.remove('open'); hb.classList.remove('open'); document.body.style.overflow = '' }));
+    const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('iv'); obs.unobserve(x.target) } }), { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rv').forEach(e => obs.observe(e));
+  </script>
+</body>
+
+</html>
