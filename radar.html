@@ -348,6 +348,26 @@
     </div>
   </section>
 
+  <!-- PROCESO DE PLANEAMIENTO (órbita) -->
+  <section class="orbit-sec" aria-label="Fases del proceso de planeamiento">
+    <div class="ct">
+      <span class="si rv">/05 — Proceso de Planeamiento</span>
+      <h2 class="sh rv rd1">Del intento del mando<br>a la orden de operaciones</h2>
+      <p class="ss rv rd2">RADAR acompaña el ciclo PMTD: cinco fases, una doctrina, una decisión humana al final. Selecciona una fase para conocerla.</p>
+    </div>
+    <div class="orbit-wrap">
+      <div class="orbit" data-orbit>
+        <span class="orbit-ring" aria-hidden="true"></span>
+        <button class="orbit-core" type="button" data-orbit-core aria-label="Reiniciar la órbita">
+          <span class="orbit-core-k">PMTD</span><span class="orbit-core-v">5 FASES</span>
+        </button>
+      </div>
+      <div class="orbit-detail" data-orbit-detail aria-live="polite">
+        <span class="orbit-detail-hint">▸ Selecciona una fase en la órbita</span>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-s">
     <div class="ct">
@@ -734,6 +754,86 @@
       }
       document.addEventListener('visibilitychange', update);
       update();
+    })();
+  </script>
+
+  <!-- ─── Órbita de fases del planeamiento (PMTD) ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const orbit = document.querySelector('[data-orbit]');
+      if (!orbit) return;
+      const detail = document.querySelector('[data-orbit-detail]');
+      const core = document.querySelector('[data-orbit-core]');
+      const IC = {
+        inbox: '<path d="M3 13l3-8h12l3 8M3 13v6h18v-6M3 13h6l1 2h4l1-2h6"/>',
+        map: '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/>',
+        branch: '<circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="9" r="2"/><path d="M6 8v8M8 6h6a2 2 0 0 1 2 2v1"/>',
+        target: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>',
+        sign: '<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5"/><path d="M9 15l2 2 4-4"/>'
+      };
+      const PHASES = [
+        { n: '01', short: 'Recepción', ref: 'PMTD · 01', title: 'Recepción de la Misión', icon: IC.inbox, body: 'Decodificar la intención del mando: tareas explícitas e implícitas, hechos, supuestos y restricciones. El punto de partida que evita arrastrar un error de origen.' },
+        { n: '02', short: 'JIPOE', ref: 'PMTD · 02', title: 'Análisis del Entorno (JIPOE)', icon: IC.map, body: 'Leer el teatro de operaciones: terreno, clima, adversario, población e infraestructura. El campo de batalla nunca es neutral; leerlo bien es ya media decisión.' },
+        { n: '03', short: 'COA', ref: 'PMTD · 03', title: 'Desarrollo de Cursos de Acción', icon: IC.branch, body: 'Generar varios cursos de acción viables y compararlos. Elegir el que cumple la misión y deja más opciones abiertas al comandante.' },
+        { n: '04', short: 'Wargaming', ref: 'PMTD · 04', title: 'Juego de Guerra', icon: IC.target, body: 'Simular acción y reacción del adversario sobre cada curso de acción. ¿Qué pasa si me equivoco, y cuán reversible es el daño?' },
+        { n: '05', short: 'OPORD', ref: 'PMTD · 05', title: 'Aprobación · OPORD', icon: IC.sign, body: 'La decisión humana al final del proceso: el comandante firma, asume y emite la Orden de Operaciones. La máquina propuso; el mando decide.' }
+      ];
+      const SVG = (inner) => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">' + inner + '</svg>';
+
+      const nodes = PHASES.map((ph, i) => {
+        const node = document.createElement('div');
+        node.className = 'orbit-node';
+        node.innerHTML = '<button class="orbit-node-btn" type="button" aria-label="' + ph.title + '">' + SVG(ph.icon) + '</button><span class="orbit-node-lbl">' + ph.short + '</span>';
+        node.querySelector('button').addEventListener('click', () => toggle(i));
+        orbit.appendChild(node);
+        return node;
+      });
+
+      let angle = 0, paused = false, sel = -1;
+      const radius = () => orbit.offsetWidth * 0.37;
+      function place() {
+        const r = radius();
+        nodes.forEach((node, i) => {
+          const a = (i / PHASES.length) * Math.PI * 2 + angle - Math.PI / 2;
+          node.style.transform = 'translate(' + (Math.cos(a) * r).toFixed(1) + 'px,' + (Math.sin(a) * r).toFixed(1) + 'px)';
+        });
+      }
+      function show(i) {
+        const ph = PHASES[i];
+        detail.innerHTML = '<div><span class="orbit-detail-n">' + ph.n + '</span><span class="orbit-detail-ref">' + ph.ref + '</span></div>'
+          + '<h3 class="orbit-detail-title">' + ph.title + '</h3>'
+          + '<p class="orbit-detail-body">' + ph.body + '</p>';
+      }
+      function clear() {
+        detail.innerHTML = '<span class="orbit-detail-hint">▸ Selecciona una fase en la órbita</span>';
+      }
+      function toggle(i) {
+        if (sel === i) { reset(); return; }
+        sel = i; paused = true;
+        nodes.forEach((n, j) => n.classList.toggle('is-active', j === i));
+        show(i);
+      }
+      function reset() {
+        sel = -1; paused = false;
+        nodes.forEach((n) => n.classList.remove('is-active'));
+        clear();
+      }
+      core.addEventListener('click', reset);
+
+      place();
+      window.addEventListener('resize', place, { passive: true });
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // estático
+
+      let raf = null, inView = true;
+      function loop() { if (!paused) { angle += 0.0024; place(); } raf = requestAnimationFrame(loop); }
+      function start() { if (raf) return; raf = requestAnimationFrame(loop); }
+      function stop() { if (raf) cancelAnimationFrame(raf); raf = null; }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((e) => { inView = e[0].isIntersecting; (inView && !document.hidden) ? start() : stop(); }, { threshold: 0 }).observe(orbit);
+      } else { start(); }
+      document.addEventListener('visibilitychange', () => { (inView && !document.hidden) ? start() : stop(); });
     })();
   </script>
 </body>
