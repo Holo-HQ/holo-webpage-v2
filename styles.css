@@ -21,7 +21,24 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
-html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Anchored sections clear the 64px fixed header */
+section[id] { scroll-margin-top: calc(var(--header) + 16px); }
+
+/* Keyboard focus visibility (WCAG 2.4.7) */
+:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
+
+/* Skip-to-content link */
+.skip-link {
+  position: absolute; left: 16px; top: -56px; z-index: 1000;
+  padding: 10px 18px; background: #001F3F; color: #FFFFFF;
+  font-family: var(--sans); font-size: 13px; letter-spacing: .02em;
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 16px; }
 body {
   background: var(--bg); color: var(--t0); font-family: var(--sans);
   font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
