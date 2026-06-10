@@ -970,6 +970,31 @@
 
     /* Stable digit width so the count-up animation doesn't jitter */
     .mk-metric-n, .mk-proof-n { font-variant-numeric: tabular-nums; }
+
+    /* Punto de Certeza — reticle de adquisición de posición */
+    .mk-fix {
+      position: absolute;
+      top: calc(var(--header) + 26px);
+      right: clamp(20px, 4vw, 48px);
+      z-index: 3;
+      display: flex;
+      gap: 12px;
+      font-family: var(--mono);
+      color: var(--t2);
+      pointer-events: none;
+    }
+    .mk-fix-reticle { width: 38px; height: 38px; flex-shrink: 0; color: var(--t2); transition: color .45s var(--ease); }
+    .mk-fix-spin { transform-box: view-box; transform-origin: 19px 19px; animation: mk-fix-spin 2.6s linear infinite; }
+    @keyframes mk-fix-spin { to { transform: rotate(360deg); } }
+    .mk-fix-read { line-height: 1.5; }
+    .mk-fix-coord { font-size: 11px; letter-spacing: .06em; color: var(--t1); font-variant-numeric: tabular-nums; }
+    .mk-fix-status { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; margin-top: 5px; display: flex; align-items: center; transition: color .45s var(--ease); }
+    .mk-fix-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--acc); margin-right: 7px; box-shadow: 0 0 8px var(--acc); opacity: 0; transition: opacity .45s var(--ease); }
+    .mk-fix.is-locked, .mk-fix.is-locked .mk-fix-reticle, .mk-fix.is-locked .mk-fix-status { color: var(--acc); }
+    .mk-fix.is-locked .mk-fix-spin { animation: none; }
+    .mk-fix.is-locked .mk-fix-dot { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { .mk-fix-spin { animation: none; } }
+    @media (max-width: 860px) { .mk-fix { display: none; } }
   </style>
 </head>
 
@@ -1023,6 +1048,22 @@
     <div class="mk-hero-flag" aria-hidden="true" title="Colombia"></div>
     <canvas id="mk-canvas" class="mk-canvas" aria-hidden="true"></canvas>
     <div class="mk-noise" aria-hidden="true"></div>
+
+    <!-- Punto de Certeza — adquisición de posición (firma de marca) -->
+    <div class="mk-fix" data-fix aria-hidden="true">
+      <svg class="mk-fix-reticle" viewBox="0 0 38 38" fill="none">
+        <circle class="mk-fix-ring" cx="19" cy="19" r="13" stroke="currentColor" stroke-width="1" opacity=".45" />
+        <g class="mk-fix-spin"><line x1="19" y1="3" x2="19" y2="9" stroke="currentColor" stroke-width="1.2" /></g>
+        <line x1="19" y1="14.5" x2="19" y2="23.5" stroke="currentColor" stroke-width="1" opacity=".55" />
+        <line x1="14.5" y1="19" x2="23.5" y2="19" stroke="currentColor" stroke-width="1" opacity=".55" />
+        <circle cx="19" cy="19" r="1.6" fill="currentColor" />
+      </svg>
+      <div class="mk-fix-read">
+        <div class="mk-fix-coord" data-fix-lat>04°00′00″N</div>
+        <div class="mk-fix-coord" data-fix-lon>074°00′00″W</div>
+        <div class="mk-fix-status"><span class="mk-fix-dot"></span><span data-fix-status>Adquiriendo posición</span></div>
+      </div>
+    </div>
 
     <div class="mk-hero-body">
       <div class="mk-eyebrow rv">
@@ -1767,6 +1808,49 @@
         });
       }, { threshold: 0.4 });
       els.forEach((el) => obs.observe(el));
+    })();
+  </script>
+
+  <!-- ─── PUNTO DE CERTEZA: adquisición de posición ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const fix = document.querySelector('[data-fix]');
+      if (!fix) return;
+      const latEl = fix.querySelector('[data-fix-lat]');
+      const lonEl = fix.querySelector('[data-fix-lon]');
+      const statusEl = fix.querySelector('[data-fix-status]');
+      const LAT = '04°42′13″N';     // Bogotá HQ
+      const LON = '074°04′33″W';
+
+      function lock() {
+        latEl.textContent = LAT;
+        lonEl.textContent = LON;
+        statusEl.textContent = 'FIX — Bogotá HQ';
+        fix.classList.add('is-locked');
+      }
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { lock(); return; }
+
+      const DUR = 1200;
+      let start = null;
+      function scramble(el, target, p) {
+        const lockUpto = Math.floor(p * target.length);
+        let out = '';
+        for (let i = 0; i < target.length; i++) {
+          const c = target[i];
+          out += (i < lockUpto || !/[0-9]/.test(c)) ? c : (Math.random() * 10 | 0);
+        }
+        el.textContent = out;
+      }
+      function frame(now) {
+        if (start === null) start = now;
+        const p = Math.min(1, (now - start) / DUR);
+        scramble(latEl, LAT, p);
+        scramble(lonEl, LON, p);
+        if (p < 1) requestAnimationFrame(frame);
+        else lock();
+      }
+      requestAnimationFrame(frame);
     })();
   </script>
 </body>
