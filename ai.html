@@ -838,6 +838,7 @@
         const rim = new THREE.DirectionalLight(0xffcf73, 0.5); rim.position.set(65, 45, -75); scene.add(rim);
 
         const pivot = new THREE.Group(); scene.add(pivot);
+        pivot.rotation.y = -Math.PI / 6; // -30°
         const map = new THREE.Group(); map.rotation.x = -Math.PI / 2; pivot.add(map);
 
         let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
@@ -848,7 +849,7 @@
           polys.forEach(function (rings) { rings.forEach(function (r) { for (let k = 0; k < r.length; k++) { const a = r[k][0], b = r[k][1]; if (a < minX) minX = a; if (a > maxX) maxX = a; if (b < minY) minY = b; if (b > maxY) maxY = b; } }); });
         });
         const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2, cosLat = Math.cos(cy * Math.PI / 180);
-        const S = 124 / Math.max((maxX - minX) * cosLat, (maxY - minY));
+        const S = 150 / Math.max((maxX - minX) * cosLat, (maxY - minY));
         const px = function (lng) { return (lng - cx) * cosLat * S; };
         const py = function (lat) { return (lat - cy) * S; };
 
