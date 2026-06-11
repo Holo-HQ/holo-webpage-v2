@@ -838,7 +838,7 @@
         const rim = new THREE.DirectionalLight(0xffcf73, 0.5); rim.position.set(65, 45, -75); scene.add(rim);
 
         const pivot = new THREE.Group(); scene.add(pivot);
-        pivot.rotation.y = -Math.PI / 6; // -30°
+        pivot.rotation.y = Math.PI / 6; // +30° (giro de 60° desde -30°: ligeramente a la izquierda del original)
         const map = new THREE.Group(); map.rotation.x = -Math.PI / 2; pivot.add(map);
 
         let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
