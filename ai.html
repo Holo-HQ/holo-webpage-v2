@@ -129,6 +129,41 @@
       .ai-alert { opacity: 1 !important; transform: none !important; animation: none !important; }
       .ai-map-badge i, .ai-feat-arrow { animation: none !important; transition: none !important; }
     }
+
+    /* ── Carrusel editorial de visión (testimonial) ── */
+    .tst { position: relative; overflow: hidden; background: var(--bg1); padding: clamp(72px, 11vh, 130px) 0 clamp(108px, 14vh, 156px); }
+    .tst-wrap { position: relative; max-width: 1024px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 48px); }
+    .tst-num { position: absolute; left: -1vw; top: 50%; z-index: 0; font-family: var(--sans); font-weight: 800; font-size: clamp(170px, 30vw, 420px); line-height: .8; letter-spacing: -.06em; color: rgba(0, 31, 63, .05); pointer-events: none; user-select: none; transform: translateY(-50%); transition: transform .25s var(--ease); }
+    .tst-main { position: relative; z-index: 1; display: flex; gap: clamp(22px, 5vw, 60px); }
+    .tst-side { display: flex; flex-direction: column; align-items: center; padding-right: clamp(18px, 3vw, 40px); border-right: 1px solid var(--b1); flex-shrink: 0; }
+    .tst-side-lbl { writing-mode: vertical-rl; text-orientation: mixed; font-family: var(--mono); font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: var(--t2); }
+    .tst-line { position: relative; width: 1px; height: 108px; background: var(--b1); margin-top: 26px; }
+    .tst-line i { position: absolute; top: 0; left: 0; width: 100%; height: 0; background: var(--acc); transition: height .55s var(--ease); }
+    .tst-content { flex: 1; min-width: 0; }
+    .tst-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--t2); border: 1px solid var(--b1); border-radius: 99px !important; padding: 5px 13px; margin-bottom: clamp(22px, 4vh, 38px); }
+    .tst-badge i { width: 6px; height: 6px; border-radius: 50% !important; background: var(--acc); flex-shrink: 0; }
+    .tst-quote { font-size: clamp(25px, 4vw, 50px); font-weight: 300; line-height: 1.16; letter-spacing: -.02em; color: var(--t0); margin: 0 0 clamp(30px, 5vh, 50px); }
+    .tst-quote .w { display: inline-block; margin-right: .26em; }
+    .tst-quote .w strong { font-weight: 600; color: var(--acc); }
+    .tst .tst-quote .w { opacity: 0; transform: translateY(18px); animation: tstWord .55s var(--ease) forwards; }
+    @keyframes tstWord { to { opacity: 1; transform: none; } }
+    .tst-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+    .tst-author { display: flex; align-items: center; gap: 16px; min-width: 0; }
+    .tst-author-line { width: 32px; height: 1px; background: var(--t0); flex-shrink: 0; }
+    .tst-author-n { font-size: 15px; font-weight: 600; color: var(--t0); }
+    .tst-author-r { font-size: 13px; color: var(--t2); }
+    .tst-nav { display: flex; gap: 12px; flex-shrink: 0; }
+    .tst-nav button { width: 48px; height: 48px; border-radius: 50% !important; border: 1px solid var(--b1); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--t0); transition: background .3s var(--ease), color .3s, border-color .3s; }
+    .tst-nav button:hover { background: var(--t0); color: var(--bg); border-color: var(--t0); }
+    .tst-nav svg { width: 18px; height: 18px; }
+    .tst-ticker { position: absolute; bottom: clamp(34px, 5vh, 54px); left: 0; right: 0; overflow: hidden; opacity: .055; pointer-events: none; }
+    .tst-ticker div { display: inline-flex; white-space: nowrap; font-family: var(--sans); font-size: clamp(38px, 6vw, 72px); font-weight: 800; letter-spacing: -.02em; color: var(--t0); animation: tstTicker 30s linear infinite; }
+    @keyframes tstTicker { to { transform: translateX(-50%); } }
+    @media (max-width: 760px) { .tst-side { display: none; } .tst-foot { flex-direction: column; align-items: flex-start; gap: 24px; } }
+    @media (prefers-reduced-motion: reduce) {
+      .tst .tst-quote .w { opacity: 1 !important; transform: none !important; animation: none !important; }
+      .tst-ticker div { animation: none; } .tst-num { transition: none; }
+    }
   </style>
 </head>
 
@@ -237,14 +272,36 @@
     </div>
   </section>
 
-  <!-- VISION -->
-  <div class="stmt">
-    <div class="ct">
-      <p class="rv">El ciclo OODA de un comandante humano toma horas. <strong>HOLO AI lo comprime a minutos.</strong> No
-        reemplaza la decisión humana — la <strong>amplifica con datos procesados, patrones identificados y cursos de
-          acción propuestos</strong>.</p>
+  <!-- VISION — carrusel editorial -->
+  <section class="tst" data-tst aria-label="Visión de HOLO AI">
+    <div class="tst-wrap" data-tst-wrap>
+      <div class="tst-num" data-tst-num aria-hidden="true">01</div>
+      <div class="tst-main">
+        <div class="tst-side" aria-hidden="true">
+          <span class="tst-side-lbl">Manifiesto</span>
+          <div class="tst-line"><i data-tst-line></i></div>
+        </div>
+        <div class="tst-content">
+          <span class="tst-badge" data-tst-badge><i></i>Velocidad</span>
+          <blockquote class="tst-quote" data-tst-quote></blockquote>
+          <div class="tst-foot">
+            <div class="tst-author">
+              <span class="tst-author-line"></span>
+              <div>
+                <p class="tst-author-n" data-tst-n></p>
+                <p class="tst-author-r" data-tst-r></p>
+              </div>
+            </div>
+            <div class="tst-nav">
+              <button type="button" data-tst-prev aria-label="Anterior"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12 6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+              <button type="button" data-tst-next aria-label="Siguiente"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tst-ticker" aria-hidden="true"><div data-tst-ticker></div></div>
     </div>
-  </div>
+  </section>
 
   <!-- CORE CAPABILITIES -->
   <section class="sec">
@@ -981,6 +1038,74 @@
           io.observe(alerts);
         }
       }
+    })();
+  </script>
+
+  <!-- ─── Carrusel editorial de visión ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const tst = document.querySelector('[data-tst]');
+      if (!tst) return;
+      const wrap = tst.querySelector('[data-tst-wrap]');
+      const numEl = tst.querySelector('[data-tst-num]');
+      const badgeEl = tst.querySelector('[data-tst-badge]');
+      const quoteEl = tst.querySelector('[data-tst-quote]');
+      const authorN = tst.querySelector('[data-tst-n]');
+      const authorR = tst.querySelector('[data-tst-r]');
+      const lineFill = tst.querySelector('[data-tst-line]');
+      const ticker = tst.querySelector('[data-tst-ticker]');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const DATA = [
+        { tag: 'Velocidad', quote: 'El ciclo OODA de un comandante humano toma horas. *HOLO* *AI* lo comprime a *minutos.*', take: 'Decidir más rápido que la amenaza', role: 'Ventaja operacional' },
+        { tag: 'Inteligencia aumentada', quote: 'No reemplaza la decisión humana — la *amplifica* con datos, patrones y cursos de acción propuestos.', take: 'Amplificar, no reemplazar', role: 'Inteligencia aumentada' },
+        { tag: 'Human-In-Command', quote: 'La máquina propone, el experto interpreta, *el* *comandante* *decide.*', take: 'El juicio final es humano', role: 'Principio rector' }
+      ];
+      const N = DATA.length;
+      let active = 0, timer = null;
+
+      let half = '';
+      for (let i = 0; i < 4; i++) half += 'Ciclo OODA acelerado • Human-In-Command • Soberanía tecnológica • ';
+      ticker.innerHTML = '<span>' + half + '</span><span>' + half + '</span>';
+
+      function render() {
+        const s = DATA[active];
+        badgeEl.innerHTML = '<i></i>' + s.tag;
+        quoteEl.innerHTML = s.quote.split(' ').map(function (w, i) {
+          const bold = /^\*.*\*$/.test(w);
+          const t = bold ? w.slice(1, -1) : w;
+          const d = reduce ? '0' : (i * 0.045).toFixed(3);
+          return '<span class="w" style="animation-delay:' + d + 's">' + (bold ? '<strong>' + t + '</strong>' : t) + '</span>';
+        }).join(' ');
+        authorN.textContent = s.take;
+        authorR.textContent = s.role;
+        numEl.textContent = String(active + 1).padStart(2, '0');
+        lineFill.style.height = (((active + 1) / N) * 100) + '%';
+      }
+      function go(i) { active = ((i % N) + N) % N; render(); }
+      function start() { if (reduce || timer) return; timer = setInterval(function () { go(active + 1); }, 6000); }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+      function restart() { stop(); start(); }
+
+      tst.querySelector('[data-tst-next]').addEventListener('click', function () { go(active + 1); restart(); });
+      tst.querySelector('[data-tst-prev]').addEventListener('click', function () { go(active - 1); restart(); });
+      tst.addEventListener('mouseenter', stop);
+      tst.addEventListener('mouseleave', start);
+
+      if (!reduce) {
+        wrap.addEventListener('mousemove', function (e) {
+          const r = wrap.getBoundingClientRect();
+          const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+          const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+          numEl.style.transform = 'translateY(-50%) translate(' + (dx * 18).toFixed(1) + 'px,' + (dy * 10).toFixed(1) + 'px)';
+        }, { passive: true });
+      }
+
+      render();
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (e) { e[0].isIntersecting ? start() : stop(); }, { threshold: 0.25 }).observe(tst);
+      } else { start(); }
     })();
   </script>
 </body>
