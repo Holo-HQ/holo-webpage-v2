@@ -164,6 +164,24 @@
       .tst .tst-quote .w { opacity: 1 !important; transform: none !important; animation: none !important; }
       .tst-ticker div { animation: none; } .tst-num { transition: none; }
     }
+
+    /* ── Acordeón — Fases de Implementación ── */
+    .acc { border: 1px solid var(--b0); margin-top: clamp(40px, 5vw, 60px); }
+    .acc-item { border-bottom: 1px solid var(--b0); }
+    .acc-item:last-child { border-bottom: 0; }
+    .acc-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: clamp(18px, 2vw, 24px) clamp(20px, 2.5vw, 28px); background: none; border: 0; cursor: pointer; text-align: left; font-family: var(--sans); transition: background .25s var(--ease); }
+    .acc-trigger:hover { background: var(--bg1); }
+    .acc-title { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; font-size: clamp(16px, 1.7vw, 19px); font-weight: 600; color: var(--t0); letter-spacing: -.01em; }
+    .acc-n { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--acc); flex-shrink: 0; }
+    .acc-chev { width: 18px; height: 18px; flex-shrink: 0; color: var(--t2); transition: transform .3s var(--ease), color .3s; }
+    .acc-trigger[aria-expanded="true"] .acc-chev { transform: rotate(180deg); color: var(--acc); }
+    .acc-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s var(--ease); }
+    .acc-trigger[aria-expanded="true"] + .acc-content { grid-template-rows: 1fr; }
+    .acc-content-in { overflow: hidden; }
+    .acc-content p { margin: 0; padding: 0 clamp(20px, 2.5vw, 28px) clamp(20px, 2.5vw, 26px) clamp(48px, 5vw, 66px); font-size: 14.5px; line-height: 1.65; color: var(--t1); max-width: 72ch; }
+    .acc-content p strong { color: var(--t0); font-weight: 600; }
+    @media (max-width: 560px) { .acc-content p { padding-left: clamp(20px, 2.5vw, 28px); } }
+    @media (prefers-reduced-motion: reduce) { .acc-content, .acc-chev, .acc-trigger { transition: none; } }
   </style>
 </head>
 
@@ -396,31 +414,26 @@
       <span class="si rv">/03 — Roadmap de Desarrollo</span>
       <h2 class="sh rv rd1">Fases de Implementación</h2>
 
-      <div class="specs rv rd2">
-        <div class="specs-row">
-          <div class="specs-key">Fase 1</div>
-          <div class="specs-val"><strong>Asistente de Doctrina</strong> — LLM disponible en NEXXO Chat para consultas de
-            protocolos y manuales de campo. Ya integrado en la prueba piloto de Chat.</div>
+      <div class="acc rv rd2" data-acc>
+        <div class="acc-item">
+          <button class="acc-trigger" type="button" aria-expanded="true"><span class="acc-title"><span class="acc-n">Fase 1</span>Asistente de Doctrina</span><svg class="acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+          <div class="acc-content"><div class="acc-content-in"><p>LLM disponible en NEXXO Chat para consultas de protocolos y manuales de campo. <strong>Ya integrado en la prueba piloto de Chat.</strong></p></div></div>
         </div>
-        <div class="specs-row">
-          <div class="specs-key">Fase 2</div>
-          <div class="specs-val"><strong>Análisis de SITREPs</strong> — Procesamiento automático de reportes de campo.
-            Extracción de entidades, ubicaciones y clasificación por urgencia. Integración con RADAR para alertas.</div>
+        <div class="acc-item">
+          <button class="acc-trigger" type="button" aria-expanded="false"><span class="acc-title"><span class="acc-n">Fase 2</span>Análisis de SITREPs</span><svg class="acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+          <div class="acc-content"><div class="acc-content-in"><p>Procesamiento automático de reportes de campo: extracción de entidades, ubicaciones y clasificación por urgencia. Integración con RADAR para alertas.</p></div></div>
         </div>
-        <div class="specs-row">
-          <div class="specs-key">Fase 3</div>
-          <div class="specs-val"><strong>Fusión Multi-Fuente</strong> — Correlación cruzada de datos de todos los
-            módulos NEXXO. Detección de patrones entre HUMINT, SIGINT y datos geoespaciales.</div>
+        <div class="acc-item">
+          <button class="acc-trigger" type="button" aria-expanded="false"><span class="acc-title"><span class="acc-n">Fase 3</span>Fusión Multi-Fuente</span><svg class="acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+          <div class="acc-content"><div class="acc-content-in"><p>Correlación cruzada de datos de todos los módulos NEXXO. Detección de patrones entre HUMINT, SIGINT y datos geoespaciales.</p></div></div>
         </div>
-        <div class="specs-row">
-          <div class="specs-key">Fase 4</div>
-          <div class="specs-val"><strong>Análisis Predictivo</strong> — Modelos de ML entrenados con datos históricos
-            colombianos. Predicción de movimientos hostiles y generación automática de COA.</div>
+        <div class="acc-item">
+          <button class="acc-trigger" type="button" aria-expanded="false"><span class="acc-title"><span class="acc-n">Fase 4</span>Análisis Predictivo</span><svg class="acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+          <div class="acc-content"><div class="acc-content-in"><p>Modelos de aprendizaje automático entrenados con datos históricos colombianos. Predicción de movimientos hostiles y generación automática de COA.</p></div></div>
         </div>
-        <div class="specs-row">
-          <div class="specs-key">Fase 5</div>
-          <div class="specs-val"><strong>Sistema Multi-Agente</strong> — Arquitectura completa de agentes especializados
-            con coordinación autónoma. Human-in-the-loop para todas las decisiones críticas.</div>
+        <div class="acc-item">
+          <button class="acc-trigger" type="button" aria-expanded="false"><span class="acc-title"><span class="acc-n">Fase 5</span>Sistema Multi-Agente</span><svg class="acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></button>
+          <div class="acc-content"><div class="acc-content-in"><p>Arquitectura completa de agentes especializados con coordinación autónoma. <strong>Human-in-the-loop para todas las decisiones críticas.</strong></p></div></div>
         </div>
       </div>
     </div>
@@ -1093,6 +1106,23 @@
       if ('IntersectionObserver' in window) {
         new IntersectionObserver(function (e) { e[0].isIntersecting ? start() : stop(); }, { threshold: 0.25 }).observe(tst);
       } else { start(); }
+    })();
+  </script>
+
+  <!-- ─── Acordeón: Fases de Implementación ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const acc = document.querySelector('[data-acc]');
+      if (!acc) return;
+      const triggers = Array.prototype.slice.call(acc.querySelectorAll('.acc-trigger'));
+      triggers.forEach(function (t) {
+        t.addEventListener('click', function () {
+          const wasOpen = t.getAttribute('aria-expanded') === 'true';
+          triggers.forEach(function (o) { o.setAttribute('aria-expanded', 'false'); });
+          t.setAttribute('aria-expanded', wasOpen ? 'false' : 'true');
+        });
+      });
     })();
   </script>
 </body>
