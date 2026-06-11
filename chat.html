@@ -515,6 +515,84 @@
     .bento-cap p { font-size: clamp(13px, 1.4vw, 15.5px); line-height: 1.55; color: rgba(231, 231, 229, .76); margin: 16px 0 0; max-width: 44ch; }
     .bento-foot { position: absolute; z-index: 3; bottom: 12px; left: 16px; right: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: .05em; color: rgba(231, 231, 229, .72); pointer-events: none; }
     @media (prefers-reduced-motion: reduce) { .bento-pan-grid { animation: none; } }
+
+    /* ════════ HERO CINEMATOGRÁFICO (NEXXO Chat) ════════ */
+    .cine { position: relative; overflow: hidden; background: #050b16; color: #fff; padding: calc(var(--header) + 32px) 0 clamp(48px, 8vh, 88px); min-height: 96vh; display: flex; flex-direction: column; justify-content: center; perspective: 1500px; }
+    .cine-grain { position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: .05; mix-blend-mode: overlay; background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
+    .cine-grid { position: absolute; inset: 0; z-index: 0; pointer-events: none; background-size: 60px 60px; background-image: linear-gradient(to right, rgba(255, 255, 255, .045) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, .045) 1px, transparent 1px); -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 72%); mask-image: radial-gradient(ellipse at center, #000 0%, transparent 72%); }
+    .cine .ct { position: relative; z-index: 2; text-align: center; }
+    .cine-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: rgba(190, 210, 240, .6); margin-bottom: 22px; }
+    .cine-eyebrow .pill-dot { background: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, .8); }
+    .cine-tag { font-size: clamp(34px, 6vw, 82px); font-weight: 800; letter-spacing: -.035em; line-height: 1; margin: 0; }
+    .cine-tag-1 { color: #fff; text-shadow: 0 10px 34px rgba(0, 0, 0, .5); }
+    .cine-tag-2 { background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, .38) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 10px 22px rgba(0, 0, 0, .5)); }
+    /* tarjeta premium */
+    .cine-card { position: relative; margin: clamp(34px, 5vh, 60px) auto 0; width: min(1180px, 94vw); border-radius: 30px !important; overflow: hidden; padding: clamp(26px, 4vw, 46px); text-align: left; background: linear-gradient(145deg, #102e69 0%, #060d1c 100%); border: 1px solid rgba(255, 255, 255, .05); box-shadow: 0 40px 100px -20px rgba(0, 0, 0, .9), 0 20px 40px -20px rgba(0, 0, 0, .8), inset 0 1px 2px rgba(255, 255, 255, .18), inset 0 -2px 4px rgba(0, 0, 0, .8); }
+    .cine-sheen { position: absolute; inset: 0; z-index: 5; pointer-events: none; border-radius: inherit; background: radial-gradient(620px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .07), transparent 42%); mix-blend-mode: screen; }
+    .cine-grid3 { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(18px, 3vw, 44px); }
+    .cine-left h3 { font-size: clamp(20px, 2.1vw, 30px); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; color: #fff; margin: 0 0 13px; }
+    .cine-left p { font-size: 14px; line-height: 1.62; color: rgba(190, 210, 240, .7); max-width: 32ch; margin: 0; }
+    .cine-brand { display: flex; justify-content: flex-end; }
+    .cine-brand h2 { font-size: clamp(52px, 7.5vw, 116px); font-weight: 900; letter-spacing: -.05em; text-transform: uppercase; line-height: .9; background: linear-gradient(180deg, #fff 0%, #93a0b8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 12px 24px rgba(0, 0, 0, .7)); margin: 0; }
+    /* mockup iPhone */
+    .cine-mock { position: relative; display: flex; align-items: center; justify-content: center; }
+    .cine-phone { position: relative; width: 262px; height: 540px; border-radius: 46px !important; background: #111; box-shadow: inset 0 0 0 2px #52525b, inset 0 0 0 7px #000, 0 40px 80px -15px rgba(0, 0, 0, .9), 0 15px 25px -5px rgba(0, 0, 0, .7); transform-style: preserve-3d; will-change: transform; }
+    .cine-screen { position: absolute; inset: 7px; border-radius: 40px !important; background: #050914; overflow: hidden; box-shadow: inset 0 0 15px rgba(0, 0, 0, 1); }
+    .cine-glare { position: absolute; inset: 0; z-index: 5; pointer-events: none; background: linear-gradient(110deg, rgba(255, 255, 255, .08) 0%, rgba(255, 255, 255, 0) 45%); }
+    .cine-notch { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 92px; height: 25px; background: #000; border-radius: 99px !important; z-index: 7; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; }
+    .cine-notch i { width: 6px; height: 6px; border-radius: 50% !important; background: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, .8); animation: cinePulse 2s ease infinite; }
+    @keyframes cinePulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+    .cine-app { position: relative; z-index: 2; height: 100%; padding: 44px 14px 16px; display: flex; flex-direction: column; }
+    .cine-ah { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, .07); margin-bottom: 14px; }
+    .cine-ah-t { font-size: 12px; font-weight: 700; color: #fff; }
+    .cine-ah-s { font-size: 9px; color: rgba(160, 200, 160, .8); display: flex; align-items: center; gap: 4px; font-family: var(--mono); }
+    .cine-ah-s svg { width: 10px; height: 10px; }
+    .cine-ah-av { width: 30px; height: 30px; border-radius: 50% !important; background: linear-gradient(135deg, #1d4ed8, #0a1f4d); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; border: 1px solid rgba(255, 255, 255, .12); }
+    .cine-msgs { flex: 1; display: flex; flex-direction: column; gap: 9px; }
+    .cine-msg { max-width: 80%; padding: 8px 11px; border-radius: 14px !important; font-size: 10.5px; line-height: 1.4; position: relative; }
+    .cine-msg .t { display: block; font-size: 8px; color: rgba(255, 255, 255, .4); margin-top: 4px; font-family: var(--mono); }
+    .cine-msg.inc { align-self: flex-start; background: #18243d; color: #e6edf7; border-bottom-left-radius: 4px !important; }
+    .cine-msg.out { align-self: flex-end; background: linear-gradient(180deg, #2456c7, #1b3f93); color: #fff; border-bottom-right-radius: 4px !important; }
+    .cine-input { margin-top: 12px; height: 34px; border-radius: 99px !important; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .08); display: flex; align-items: center; padding: 0 6px 0 14px; gap: 8px; }
+    .cine-input span { flex: 1; font-size: 9.5px; color: rgba(255, 255, 255, .35); }
+    .cine-input b { width: 24px; height: 24px; border-radius: 50% !important; background: var(--dark-acc); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cine-input b svg { width: 12px; height: 12px; color: #06121f; }
+    /* badges flotantes */
+    .cine-badge { position: absolute; z-index: 8; display: flex; align-items: center; gap: 11px; padding: 11px 14px; border-radius: 16px !important; background: linear-gradient(135deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .01)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 25px 50px -12px rgba(0, 0, 0, .8), inset 0 1px 1px rgba(255, 255, 255, .2); }
+    .cine-b1 { top: 26px; left: -34px; }
+    .cine-b2 { bottom: 74px; right: -34px; }
+    .cine-badge-ic { width: 34px; height: 34px; border-radius: 50% !important; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, .14); }
+    .cine-badge-ic svg { width: 16px; height: 16px; }
+    .cine-badge-t { font-size: 12px; font-weight: 700; color: #fff; letter-spacing: -.01em; }
+    .cine-badge-d { font-size: 10px; color: rgba(190, 210, 240, .55); }
+    /* entrada */
+    .cine [data-cr] { opacity: 0; }
+    @keyframes cineUp { from { opacity: 0; transform: translateY(40px); filter: blur(12px); } to { opacity: 1; transform: none; filter: blur(0); } }
+    @keyframes cineCardUp { from { opacity: 0; transform: translateY(120px) scale(.96); } to { opacity: 1; transform: none; } }
+    @keyframes cinePhoneIn { from { opacity: 0; transform: translateY(60px) rotateX(38deg) scale(.7); } to { opacity: 1; transform: none; } }
+    @keyframes cineBadgeIn { from { opacity: 0; transform: scale(.6) translateY(40px); } to { opacity: 1; transform: none; } }
+    @keyframes cineSlideL { from { opacity: 0; transform: translateX(-44px); } to { opacity: 1; transform: none; } }
+    @keyframes cineSlideR { from { opacity: 0; transform: translateX(44px) scale(.85); } to { opacity: 1; transform: none; } }
+    .cine.is-in .cine-eyebrow { animation: cineUp .8s var(--ease) .05s forwards; }
+    .cine.is-in .cine-tag-1 { animation: cineUp .9s var(--ease) .15s forwards; }
+    .cine.is-in .cine-tag-2 { animation: cineUp .9s var(--ease) .3s forwards; }
+    .cine.is-in .cine-card { animation: cineCardUp 1.1s var(--ease) .45s forwards; }
+    .cine.is-in .cine-mock { animation: cinePhoneIn 1.3s var(--ease) .9s forwards; }
+    .cine.is-in .cine-left { animation: cineSlideL 1s var(--ease) 1.2s forwards; }
+    .cine.is-in .cine-brand { animation: cineSlideR 1s var(--ease) 1.2s forwards; }
+    .cine.is-in .cine-b1 { animation: cineBadgeIn 1s var(--ease) 1.5s forwards; }
+    .cine.is-in .cine-b2 { animation: cineBadgeIn 1s var(--ease) 1.7s forwards; }
+    @media (max-width: 900px) {
+      .cine-grid3 { grid-template-columns: 1fr; gap: 26px; text-align: center; }
+      .cine-brand { justify-content: center; order: -1; }
+      .cine-left { order: 1; }
+      .cine-left p { margin: 0 auto; }
+      .cine-b1 { left: 2px; } .cine-b2 { right: 2px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cine [data-cr] { opacity: 1 !important; animation: none !important; }
+      .cine-phone { transform: none !important; }
+    }
   </style>
 </head>
 
@@ -587,20 +665,60 @@
     <a href="readings.html"><span class="mm-i">/07</span>Lecturas</a>
   </div>
 
-  <!-- SUB-HERO -->
-  <section class="sub-hero">
-    <div class="sub-hero-bg" style="background-image:url('assets/chat-hero-bg.png')"></div>
+  <!-- HERO CINEMATOGRÁFICO -->
+  <section class="cine" data-cine aria-label="NEXXO Chat — mensajería de grado militar">
+    <div class="cine-grain" aria-hidden="true"></div>
+    <div class="cine-grid" aria-hidden="true"></div>
     <div class="ct">
-      <div class="breadcrumb rv">
-        <a href="index.html">HOLO</a><span>/</span><a href="index.html#modulos">NEXXO C2</a><span>/</span><span
-          style="color:var(--t0)">NEXXO Chat</span>
+      <span class="cine-eyebrow" data-cr><span class="pill-dot"></span>Prueba Piloto Activa · Cifrado E2E</span>
+      <h1 class="cine-tag cine-tag-1" data-cr>Comunicación que</h1>
+      <h1 class="cine-tag cine-tag-2" data-cr>no se intercepta.</h1>
+
+      <div class="cine-card" data-cr data-cine-card>
+        <div class="cine-sheen" data-cine-sheen aria-hidden="true"></div>
+        <div class="cine-grid3">
+          <div class="cine-left" data-cr>
+            <h3>Mensajería de grado militar.</h3>
+            <p>Cifrado de extremo a extremo en cada mensaje. Ni HOLO ni ningún proveedor accede al contenido —
+              solo el remitente y el destinatario.</p>
+          </div>
+
+          <div class="cine-mock" data-cr>
+            <div class="cine-phone" data-cine-phone>
+              <div class="cine-notch" aria-hidden="true"><i></i></div>
+              <div class="cine-screen">
+                <div class="cine-glare" aria-hidden="true"></div>
+                <div class="cine-app" aria-hidden="true">
+                  <div class="cine-ah">
+                    <div>
+                      <div class="cine-ah-t">Mando · Operaciones</div>
+                      <div class="cine-ah-s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>Cifrado E2E</div>
+                    </div>
+                    <div class="cine-ah-av">EM</div>
+                  </div>
+                  <div class="cine-msgs">
+                    <div class="cine-msg inc">Posición confirmada en el sector 4.<span class="t">09:41 · cifrado</span></div>
+                    <div class="cine-msg out">Recibido. Manténganse en cobertura.<span class="t">09:42</span></div>
+                    <div class="cine-msg inc">Coordenadas enviadas por canal seguro.<span class="t">09:44 · cifrado</span></div>
+                    <div class="cine-msg out">Confirmado. Procedan según orden.<span class="t">09:45</span></div>
+                  </div>
+                  <div class="cine-input"><span>Mensaje cifrado…</span><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m22 2-7 20-4-9-9-4 20-7z" /></svg></b></div>
+                </div>
+              </div>
+            </div>
+            <div class="cine-badge cine-b1" data-cr>
+              <span class="cine-badge-ic" style="background:linear-gradient(135deg,rgba(37,99,235,.3),rgba(10,30,80,.1));color:#7db0ff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg></span>
+              <div><div class="cine-badge-t">Cifrado E2E</div><div class="cine-badge-d">Extremo a extremo</div></div>
+            </div>
+            <div class="cine-badge cine-b2" data-cr>
+              <span class="cine-badge-ic" style="background:linear-gradient(135deg,rgba(212,175,55,.3),rgba(120,90,20,.1));color:#e3c469"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg></span>
+              <div><div class="cine-badge-t">Interfuerza</div><div class="cine-badge-d">3 fuerzas conectadas</div></div>
+            </div>
+          </div>
+
+          <div class="cine-brand" data-cr><h2>NEXXO</h2></div>
+        </div>
       </div>
-      <div style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap" class="rv rd1">
-        <span class="pill pill-pilot"><span class="pill-dot"></span>Prueba Piloto Activa</span>
-      </div>
-      <h1 class="rv rd2">NEXXO Chat</h1>
-      <p class="sub-desc rv rd3">El primer sistema de mensajería militar colombiano con cifrado end-to-end y asistente
-        de inteligencia artificial integrado para consultas de doctrina y coordinación operacional.</p>
     </div>
   </section>
 
@@ -1043,6 +1161,40 @@
       if ('IntersectionObserver' in window && pan) {
         new IntersectionObserver(function (e) { grid.style.animationPlayState = e[0].isIntersecting ? 'running' : 'paused'; }, { threshold: 0 }).observe(pan);
       }
+    })();
+  </script>
+
+  <!-- ─── Hero cinematográfico: entrada + parallax del teléfono + brillo ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const cine = document.querySelector('[data-cine]');
+      if (!cine) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) { cine.classList.add('is-in'); return; }
+      requestAnimationFrame(function () { requestAnimationFrame(function () { cine.classList.add('is-in'); }); });
+
+      const phone = cine.querySelector('[data-cine-phone]');
+      const card = cine.querySelector('[data-cine-card]');
+      let tx = 0, ty = 0, rx = 0, ry = 0, raf = 0;
+      function onMove(e) {
+        if (card) { const r = card.getBoundingClientRect(); card.style.setProperty('--mx', (e.clientX - r.left) + 'px'); card.style.setProperty('--my', (e.clientY - r.top) + 'px'); }
+        tx = (e.clientX / window.innerWidth - 0.5) * 2;
+        ty = (e.clientY / window.innerHeight - 0.5) * 2;
+        if (!raf) raf = requestAnimationFrame(tick);
+      }
+      function tick() {
+        ry += (tx * 12 - ry) * 0.1;
+        rx += (-ty * 12 - rx) * 0.1;
+        if (phone) phone.style.transform = 'rotateY(' + ry.toFixed(2) + 'deg) rotateX(' + rx.toFixed(2) + 'deg)';
+        if (Math.abs(tx * 12 - ry) > 0.04 || Math.abs(-ty * 12 - rx) > 0.04) raf = requestAnimationFrame(tick); else raf = 0;
+      }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (e) {
+          if (e[0].isIntersecting) window.addEventListener('mousemove', onMove, { passive: true });
+          else window.removeEventListener('mousemove', onMove);
+        }, { threshold: 0 }).observe(cine);
+      } else { window.addEventListener('mousemove', onMove, { passive: true }); }
     })();
   </script>
 </body>
