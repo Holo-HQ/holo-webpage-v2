@@ -77,12 +77,6 @@
     }
     @media (max-width: 1159px) { .cap-text { order: -1; } }
 
-    /* Fondo de la sección de Capacidades: oficial saludando (marca de agua) */
-    .cap-sec { position: relative; overflow: hidden; }
-    .cap-sec > .ct { position: relative; z-index: 1; }
-    .cap-bg { position: absolute; z-index: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: clamp(440px, 60vw, 880px); aspect-ratio: 5 / 4; background: url(assets/officer-salute.webp) center bottom / contain no-repeat; opacity: .16; mix-blend-mode: multiply; pointer-events: none; }
-    @media (max-width: 900px) { .cap-bg { width: 100%; opacity: .1; } }
-
     /* ── Hero RADAR: la pantalla del dashboard se endereza al hacer scroll ── */
     .csa { position: relative; overflow: hidden; background: linear-gradient(180deg, #00060f 0%, #00101e 100%); min-height: 122vh; padding-top: calc(var(--header) + 8px); }
     .csa::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 55% at 50% 0, rgba(212, 175, 55, .07), transparent 60%); }
@@ -254,8 +248,7 @@
   </section>
 
   <!-- CAPABILITIES -->
-  <section class="sec cap-sec">
-    <div class="cap-bg" aria-hidden="true"></div>
+  <section class="sec">
     <div class="ct">
       <div class="cap-split">
         <div class="cap-text">

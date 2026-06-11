@@ -147,18 +147,6 @@
       padding: 100px 0;
     }
 
-    .ch-threat-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      opacity: .18;
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
     .ch-threat-inner {
       position: relative;
       z-index: 2;
@@ -593,6 +581,13 @@
       .cine [data-cr] { opacity: 1 !important; animation: none !important; }
       .cine-phone { transform: none !important; }
     }
+
+    /* Píldora-badge (alerta) — interstitial de amenaza */
+    .btag { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(224, 72, 58, .42); border-radius: 99px !important; background: rgba(224, 72, 58, .1); padding: 5px; margin-bottom: 28px; max-width: 100%; }
+    .btag-badge { display: inline-flex; align-items: center; gap: 7px; background: #c0392b; color: #fff; border-radius: 99px !important; padding: 6px 13px; font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+    .btag-badge svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .btag-msg { padding-right: 13px; font-size: 13px; color: rgba(231, 231, 229, .8); }
+    @media (max-width: 600px) { .btag { flex-wrap: wrap; gap: 8px; } .btag-msg { padding: 0 8px 4px; } }
   </style>
 </head>
 
@@ -866,12 +861,14 @@
 
   <!-- THREAT INTERSTITIAL -->
   <div class="ch-threat">
-    <img src="assets/chat-threat-bg.png" class="ch-threat-bg" alt="" aria-hidden="true" />
     <div class="ch-threat-inner">
-      <h2 class="ch-threat-q rv">
-        WhatsApp no es<br>una opción.<br>
-        <em>Nunca lo fue.</em>
-      </h2>
+      <div>
+        <div class="btag rv"><span class="btag-badge"><svg viewBox="0 0 20 18" fill="none" aria-hidden="true"><path d="M10 6.5v3.334m0 3.333h.008M8.575 2.217 1.516 14a1.666 1.666 0 0 0 1.425 2.5h14.117a1.667 1.667 0 0 0 1.425-2.5L11.425 2.217a1.667 1.667 0 0 0-2.85 0" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></svg>Riesgo de soberanía</span><span class="btag-msg">Las apps extranjeras no responden ante Colombia.</span></div>
+        <h2 class="ch-threat-q rv rd1">
+          WhatsApp no es<br>una opción.<br>
+          <em>Nunca lo fue.</em>
+        </h2>
+      </div>
       <div class="ch-threat-side rv rd2">
         <div class="ch-threat-stat">
           <div class="ch-threat-stat-n">100%</div>
