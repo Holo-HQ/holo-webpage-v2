@@ -115,6 +115,13 @@
     .fcar-cap-tag { display: inline-block; background: var(--bg); color: var(--t0); padding: 4px 12px; border-radius: 99px !important; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 11px; border: 1px solid var(--b1); }
     .fcar-cap p { color: #fff; font-size: clamp(16px, 1.9vw, 21px); font-weight: 600; line-height: 1.24; letter-spacing: -.01em; margin: 0; text-shadow: 0 2px 10px rgba(0, 0, 0, .5); }
     @media (prefers-reduced-motion: reduce) { .fcar-chip, .fcar-card, .fcar-card img, .fcar-cap { transition: none !important; } }
+
+    /* Principio: texto + imagen multidominio al lado */
+    .thesis-grid { display: grid; gap: clamp(28px, 5vw, 64px); align-items: center; }
+    @media (min-width: 1000px) { .thesis-grid { grid-template-columns: 1.02fr 1fr; } }
+    .thesis-text .ss { max-width: 48ch; }
+    .thesis-fig { margin: 0; }
+    .thesis-fig img { width: 100%; height: auto; display: block; }
   </style>
 </head>
 
@@ -206,12 +213,21 @@
     <!-- THESIS -->
     <section class="sec">
       <div class="ct">
-        <span class="si rv">/00 — Principio</span>
-        <h2 class="sh rv rd1">No se trata de qué puede hacer la IA,<br>sino de qué <span class="hl">debe</span> seguir
-          haciendo el ser humano.</h2>
-        <p class="ss rv rd2">El planeamiento militar es un método, no una corazonada. HOLO acelera cada fase con
-          inteligencia artificial — pero el juicio del experto y la autoridad del comandante son insustituibles. Esa es
-          la doctrina <b>Human-In-Command</b>: la IA como copiloto, nunca como piloto.</p>
+        <div class="thesis-grid">
+          <div class="thesis-text">
+            <span class="si rv">/00 — Principio</span>
+            <h2 class="sh rv rd1">No se trata de qué puede hacer la IA,<br>sino de qué <span class="hl">debe</span> seguir
+              haciendo el ser humano.</h2>
+            <p class="ss rv rd2">El planeamiento militar es un método, no una corazonada. HOLO acelera cada fase con
+              inteligencia artificial — pero el juicio del experto y la autoridad del comandante son insustituibles. Esa
+              es la doctrina <b>Human-In-Command</b>: la IA como copiloto, nunca como piloto.</p>
+          </div>
+          <figure class="thesis-fig rv rd2">
+            <img src="assets/planeamiento-multidominio.webp"
+              alt="Vista en capas del teatro de operaciones: dominio aéreo y de mando y control, dominio marítimo-fluvial y dominio terrestre, integrados en una imagen multidominio."
+              loading="lazy" decoding="async" width="940" height="940" />
+          </figure>
+        </div>
       </div>
     </section>
 
