@@ -77,6 +77,44 @@
       .doc-phase-n { font-size: 42px; }
       .doc-duo { grid-template-columns: 1fr; }
     }
+
+    /* ── Carrusel de pasos (PMTD) ── */
+    .fcar { width: 100%; max-width: 1180px; margin: clamp(36px, 5vw, 60px) auto 0; }
+    .fcar-inner { position: relative; overflow: hidden; border-radius: 28px !important; display: flex; flex-direction: column; border: 1px solid var(--b1); min-height: 600px; }
+    @media (min-width: 900px) { .fcar-inner { flex-direction: row; aspect-ratio: 16 / 9; min-height: 0; } }
+    .fcar-left { position: relative; z-index: 3; width: 100%; min-height: 320px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 32px; background: linear-gradient(160deg, #002a52 0%, #001124 100%); }
+    @media (min-width: 900px) { .fcar-left { width: 42%; min-height: 0; justify-content: flex-start; padding-left: clamp(32px, 4vw, 60px); } }
+    .fcar-left::before, .fcar-left::after { content: ''; position: absolute; left: 0; right: 0; height: 70px; z-index: 4; pointer-events: none; }
+    .fcar-left::before { top: 0; background: linear-gradient(to bottom, #002a52, transparent); }
+    .fcar-left::after { bottom: 0; background: linear-gradient(to top, #001124, transparent); }
+    .fcar-chips { position: relative; width: 100%; height: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center; }
+    @media (min-width: 900px) { .fcar-chips { justify-content: flex-start; } }
+    .fcar-chip { position: absolute; height: 50px; display: inline-flex; align-items: center; gap: 11px; padding: 0 22px; border-radius: 99px !important; border: 1px solid rgba(255, 255, 255, .2); background: transparent; color: rgba(255, 255, 255, .55); font-family: var(--sans); font-size: 12.5px; font-weight: 500; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; cursor: pointer; transition: transform .7s var(--ease), opacity .7s var(--ease), background .45s var(--ease), color .45s, border-color .45s; }
+    .fcar-chip:hover { border-color: rgba(255, 255, 255, .45); color: #fff; }
+    .fcar-chip.is-active { background: #fff; color: #002a52; border-color: #fff; z-index: 6; }
+    .fcar-chip svg { width: 16px; height: 16px; flex-shrink: 0; color: rgba(255, 255, 255, .42); transition: color .4s; }
+    .fcar-chip.is-active svg { color: var(--acc); }
+    .fcar-chip .n { font-family: var(--mono); font-size: 11px; opacity: .55; }
+    .fcar-chip.is-active .n { opacity: .7; }
+    .fcar-right { position: relative; flex: 1; min-height: 440px; display: flex; align-items: center; justify-content: center; background: var(--bg1); padding: clamp(28px, 4vw, 52px); overflow: hidden; border-top: 1px solid var(--b0); }
+    @media (min-width: 900px) { .fcar-right { border-top: 0; border-left: 1px solid var(--b0); min-height: 0; } }
+    .fcar-cards { position: relative; width: 100%; max-width: 372px; aspect-ratio: 4 / 5; }
+    .fcar-card { position: absolute; inset: 0; border-radius: 22px !important; overflow: hidden; border: 6px solid var(--bg); background: var(--bg); transform-origin: center; transition: transform .6s var(--ease), opacity .6s var(--ease); will-change: transform, opacity; }
+    .fcar-card img { width: 100%; height: 100%; object-fit: cover; transition: filter .7s var(--ease); filter: grayscale(1) brightness(.72) blur(2px); }
+    .fcar-card[data-st="active"] { transform: translateX(0) scale(1) rotate(0); opacity: 1; z-index: 20; }
+    .fcar-card[data-st="active"] img { filter: none; }
+    .fcar-card[data-st="prev"] { transform: translateX(-24%) scale(.84) rotate(-3deg); opacity: .42; z-index: 10; }
+    .fcar-card[data-st="next"] { transform: translateX(24%) scale(.84) rotate(3deg); opacity: .42; z-index: 10; }
+    .fcar-card[data-st="hidden"] { transform: scale(.7); opacity: 0; z-index: 0; }
+    .fcar-live { position: absolute; top: 18px; left: 18px; z-index: 3; display: flex; align-items: center; gap: 8px; opacity: 0; transition: opacity .4s; }
+    .fcar-card[data-st="active"] .fcar-live { opacity: 1; }
+    .fcar-live i { width: 7px; height: 7px; border-radius: 50% !important; background: var(--dark-acc); box-shadow: 0 0 10px var(--dark-acc); }
+    .fcar-live span { font-family: var(--mono); font-size: 9px; letter-spacing: .24em; text-transform: uppercase; color: rgba(255, 255, 255, .82); }
+    .fcar-cap { position: absolute; inset-inline: 0; bottom: 0; z-index: 2; padding: 32px 22px 22px; background: linear-gradient(to top, rgba(0, 8, 16, .93), rgba(0, 8, 16, .35) 55%, transparent); opacity: 0; transition: opacity .5s var(--ease) .15s; pointer-events: none; }
+    .fcar-card[data-st="active"] .fcar-cap { opacity: 1; }
+    .fcar-cap-tag { display: inline-block; background: var(--bg); color: var(--t0); padding: 4px 12px; border-radius: 99px !important; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 11px; border: 1px solid var(--b1); }
+    .fcar-cap p { color: #fff; font-size: clamp(16px, 1.9vw, 21px); font-weight: 600; line-height: 1.24; letter-spacing: -.01em; margin: 0; text-shadow: 0 2px 10px rgba(0, 0, 0, .5); }
+    @media (prefers-reduced-motion: reduce) { .fcar-chip, .fcar-card, .fcar-card img, .fcar-cap { transition: none !important; } }
   </style>
 </head>
 
@@ -184,121 +222,19 @@
     <section class="sec doc-phases">
       <div class="ct">
         <span class="si rv">/01 — El Método (PMTD)</span>
-        <h2 class="sh rv rd1">Cinco preguntas<br>que ordenan la decisión</h2>
-        <p class="ss rv rd2">Cada fase del PMTD es una pregunta. HOLO AI aporta velocidad y exhaustividad; el experto
-          militar aporta criterio y contexto. El comandante decide.</p>
+        <h2 class="sh rv rd1">El proceso,<br>paso a paso</h2>
+        <p class="ss rv rd2">Cada paso del PMTD es una pregunta. HOLO AI aporta velocidad y exhaustividad; el experto
+          aporta criterio y contexto. Recorre el proceso — o déjalo avanzar solo.</p>
 
-        <div class="doc-list">
-          <article class="doc-phase rv">
-            <div class="doc-phase-n">01</div>
-            <div class="doc-phase-c">
-              <div class="doc-phase-lbl">Recepción de la Misión <i>PMTD · 01</i></div>
-              <h3 class="doc-phase-q">¿Qué se nos ordena realmente, y qué se da por entendido?</h3>
-              <p class="doc-phase-line"><b>Decodificación de la intención del mando superior.</b> Tareas explícitas,
-                tareas implícitas, hechos, supuestos y restricciones. Sin esta lectura, todo lo que sigue arrastra un
-                error de origen.</p>
-              <div class="doc-duo">
-                <div class="doc-card doc-card--ai">
-                  <div class="doc-role">HOLO AI</div>
-                  <p>Parsea la orden en segundos. Extrae estructura, identifica vacíos doctrinales, sugiere CCIR
-                    candidatas.</p>
-                </div>
-                <div class="doc-card doc-card--ex">
-                  <div class="doc-role">Experto Militar</div>
-                  <p>Lee entre líneas: cultura del comandante superior, contexto del teatro, lo no escrito. La IA no lo
-                    sabe.</p>
-                </div>
-              </div>
+        <div class="fcar rv rd3" data-fcar>
+          <div class="fcar-inner">
+            <div class="fcar-left">
+              <div class="fcar-chips" role="tablist" aria-label="Pasos del proceso" data-fcar-chips></div>
             </div>
-          </article>
-
-          <article class="doc-phase rv">
-            <div class="doc-phase-n">02</div>
-            <div class="doc-phase-c">
-              <div class="doc-phase-lbl">Análisis del Entorno Operacional <i>PMTD · 02 · JIPOE</i></div>
-              <h3 class="doc-phase-q">¿Dónde estamos parados, y quién más respira el mismo aire?</h3>
-              <p class="doc-phase-line"><b>JIPOE / PEMSITIM.</b> Terreno, clima, adversario, población civil,
-                infraestructura, tiempo. El campo de batalla nunca es neutral: leerlo bien es ya media decisión.</p>
-              <div class="doc-duo">
-                <div class="doc-card doc-card--ai">
-                  <div class="doc-role">HOLO AI</div>
-                  <p>Fusiona ISR multifuente (HUMINT · SIGINT · IMINT · OSINT). Mapea terreno, patrones de vida, COG
-                    candidatos.</p>
-                </div>
-                <div class="doc-card doc-card--ex">
-                  <div class="doc-role">Experto Militar</div>
-                  <p>Lee la geometría del adversario. Distingue lo medible de lo significativo. Aporta el «olfato del
-                    terreno».</p>
-                </div>
-              </div>
+            <div class="fcar-right">
+              <div class="fcar-cards" data-fcar-cards></div>
             </div>
-          </article>
-
-          <article class="doc-phase rv">
-            <div class="doc-phase-n">03</div>
-            <div class="doc-phase-c">
-              <div class="doc-phase-lbl">Desarrollo de Cursos de Acción <i>PMTD · 03 · COA</i></div>
-              <h3 class="doc-phase-q">¿Cuántas formas hay de cumplir, y cuál nos deja con más opciones?</h3>
-              <p class="doc-phase-line"><b>Espacio de soluciones factibles.</b> Una sola opción no es planeamiento, es
-                resignación. La buena decisión preserva libertad de acción para el comandante.</p>
-              <div class="doc-duo">
-                <div class="doc-card doc-card--ai">
-                  <div class="doc-role">HOLO AI</div>
-                  <p>Genera múltiples COA bajo restricciones (tiempo, recursos, terreno, ROE). Explora lo que el staff no
-                    alcanzaría.</p>
-                </div>
-                <div class="doc-card doc-card--ex">
-                  <div class="doc-role">Experto Militar</div>
-                  <p>Descarta lo doctrinalmente válido pero operacionalmente absurdo. Aporta el «esto en el terreno no
-                    funciona».</p>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="doc-phase rv">
-            <div class="doc-phase-n">04</div>
-            <div class="doc-phase-c">
-              <div class="doc-phase-lbl">Juego de Guerra · Comparación <i>PMTD · 04-05</i></div>
-              <h3 class="doc-phase-q">¿Qué pasa si me equivoco, y cuán reversible es el daño?</h3>
-              <p class="doc-phase-line"><b>Wargaming acción–reacción–contraacción.</b> Una decisión sin escenario adverso
-                no es plan, es deseo. Mecanismos de derrota propios y enemigos puestos en evidencia.</p>
-              <div class="doc-duo">
-                <div class="doc-card doc-card--ai">
-                  <div class="doc-role">HOLO AI</div>
-                  <p>Simula miles de iteraciones contra COA enemigos probables y peligrosos. Calcula matriz multicriterio
-                    explicable.</p>
-                </div>
-                <div class="doc-card doc-card--ex">
-                  <div class="doc-role">Experto Militar</div>
-                  <p>Inyecta hipótesis sobre la voluntad de combate del adversario. Pondera lo inaceptable según el
-                    comandante.</p>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="doc-phase rv">
-            <div class="doc-phase-n">05</div>
-            <div class="doc-phase-c">
-              <div class="doc-phase-lbl">Aprobación del COA · OPORD <i>PMTD · 06-07</i></div>
-              <h3 class="doc-phase-q">¿Quién firma esta decisión, y qué asume al firmarla?</h3>
-              <p class="doc-phase-line"><b>Autoridad de mando.</b> La firma del comandante no es trámite: es el momento en
-                que la responsabilidad deja de ser distribuida y se vuelve personal. La IA puede recomendar; sólo el ser
-                humano puede asumir.</p>
-              <div class="doc-duo">
-                <div class="doc-card doc-card--ai">
-                  <div class="doc-role">HOLO AI</div>
-                  <p>Presenta opciones con evidencia, simulaciones y trazabilidad. Genera la OPORD con sus cinco párrafos
-                    y anexos.</p>
-                </div>
-                <div class="doc-card doc-card--ex">
-                  <div class="doc-role">Comandante</div>
-                  <p>Decide. Firma. Asume las consecuencias. La autoridad no se delega en algoritmos. Nunca.</p>
-                </div>
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -397,6 +333,82 @@
     mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mm.classList.remove('open'); hb.classList.remove('open'); document.body.style.overflow = '' }));
     const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('iv'); obs.unobserve(x.target) } }), { threshold: .1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.rv').forEach(e => obs.observe(e));
+  </script>
+
+  <!-- ─── Carrusel de pasos del PMTD ─── -->
+  <script>
+    (function () {
+      'use strict';
+      const car = document.querySelector('[data-fcar]');
+      if (!car) return;
+      const chipsWrap = car.querySelector('[data-fcar-chips]');
+      const cardsWrap = car.querySelector('[data-fcar-cards]');
+      const IC = {
+        inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13l3.5 7v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z"/>',
+        target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>',
+        map: '<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>',
+        branch: '<circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="9" r="2.5"/><path d="M6 8.5v7M8.5 6h6a3 3 0 0 1 3 3"/>',
+        swords: '<path d="M14.5 17.5 3 6V3h3l11.5 11.5"/><path d="m13 19 6-6M16 16l5 5M19 21l2-2"/>',
+        scale: '<path d="M12 3v18M5 7h14"/><path d="M5 7 2 14a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/>',
+        check: '<path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/>',
+        file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/>',
+        flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V4s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22V4"/>'
+      };
+      const STEPS = [
+        { n: '01', label: 'Recepción de la Misión', tag: '01 · Recepción', ic: 'inbox', img: 'plan-01', alt: 'Recepción de la misión — capa doctrinal HOLO', d: 'Decodificar qué se ordena realmente — y qué se da por entendido.' },
+        { n: '02', label: 'Análisis de la Misión', tag: '02 · Análisis', ic: 'target', img: 'plan-02', alt: 'Análisis de la misión', d: 'Tareas explícitas e implícitas, restricciones y la intención del mando superior.' },
+        { n: '03', label: 'Análisis del Entorno', tag: '03 · JIPOE', ic: 'map', img: 'plan-03', alt: 'Análisis del entorno operacional', d: 'Terreno, clima, adversario y población: el espacio donde se decide.' },
+        { n: '04', label: 'Desarrollo de COA', tag: '04 · Cursos de Acción', ic: 'branch', img: 'plan-04', alt: 'Desarrollo de cursos de acción', d: 'El espacio de soluciones factibles. Una sola opción no es planeamiento.' },
+        { n: '05', label: 'Juego de Guerra', tag: '05 · Análisis de COA', ic: 'swords', img: 'plan-05', alt: 'Juego de guerra', d: 'Acción, reacción y contraacción: probar cada COA contra un adversario que piensa.' },
+        { n: '06', label: 'Comparación de Cursos', tag: '06 · Comparación', ic: 'scale', img: 'plan-06', alt: 'Comparación de cursos de acción', d: 'Criterios, riesgo y reversibilidad. ¿Qué pasa si me equivoco?' },
+        { n: '07', label: 'Aprobación del COA', tag: '07 · Decisión', ic: 'check', img: 'plan-07', alt: 'Aprobación del curso de acción', d: 'La firma del comandante no es trámite: es la decisión asumida.' },
+        { n: '08', label: 'Producción de la OPORD', tag: '08 · OPORD', ic: 'file', img: 'plan-08', alt: 'Producción de la orden de operaciones', d: 'De la intención del mando a una orden ejecutable y sincronizada.' },
+        { n: '09', label: 'Ejecución y Seguimiento', tag: '09 · Ejecución', ic: 'flag', img: 'plan-09', alt: 'Mapa táctico — ejecución y seguimiento', d: 'La decisión en el teatro. El juicio final es siempre humano.' }
+      ];
+      function svg(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[k] + '</svg>'; }
+      STEPS.forEach(function (s, i) {
+        const chip = document.createElement('button');
+        chip.className = 'fcar-chip'; chip.type = 'button'; chip.setAttribute('role', 'tab');
+        chip.innerHTML = svg(s.ic) + '<span class="n">' + s.n + '</span>' + s.label;
+        chip.addEventListener('click', function () { go(i); restart(); });
+        chipsWrap.appendChild(chip);
+        const card = document.createElement('div');
+        card.className = 'fcar-card'; card.dataset.st = 'hidden';
+        card.innerHTML = '<img src="assets/' + s.img + '.webp" alt="' + s.alt + '" loading="lazy" width="372" height="465" />'
+          + '<div class="fcar-live"><i></i><span>Análisis en vivo</span></div>'
+          + '<div class="fcar-cap"><span class="fcar-cap-tag">' + s.tag + '</span><p>' + s.d + '</p></div>';
+        cardsWrap.appendChild(card);
+      });
+      const chips = Array.prototype.slice.call(chipsWrap.children);
+      const cards = Array.prototype.slice.call(cardsWrap.children);
+      const N = STEPS.length, ITEM_H = 56;
+      let active = 0, paused = false, timer = null;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function wrapV(min, max, v) { const r = max - min; return ((((v - min) % r) + r) % r) + min; }
+      function render() {
+        chips.forEach(function (chip, i) {
+          const wd = wrapV(-(N / 2), N / 2, i - active);
+          chip.style.transform = 'translateY(' + (wd * ITEM_H).toFixed(1) + 'px)';
+          chip.style.opacity = Math.max(0, 1 - Math.abs(wd) * 0.28).toFixed(2);
+          chip.classList.toggle('is-active', i === active);
+          chip.setAttribute('aria-selected', i === active ? 'true' : 'false');
+        });
+        cards.forEach(function (card, i) {
+          let d = i - active; if (d > N / 2) d -= N; if (d < -N / 2) d += N;
+          card.dataset.st = d === 0 ? 'active' : d === -1 ? 'prev' : d === 1 ? 'next' : 'hidden';
+        });
+      }
+      function go(i) { active = ((i % N) + N) % N; render(); }
+      function start() { if (reduce || timer) return; timer = setInterval(function () { if (!paused) go(active + 1); }, 3200); }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+      function restart() { stop(); start(); }
+      car.addEventListener('mouseenter', function () { paused = true; });
+      car.addEventListener('mouseleave', function () { paused = false; });
+      render();
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (e) { e[0].isIntersecting ? start() : stop(); }, { threshold: 0.2 }).observe(car);
+      } else { start(); }
+    })();
   </script>
 </body>
 
