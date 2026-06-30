@@ -81,17 +81,6 @@
       background: var(--bg);
     }
 
-    .mk-hero-body {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 80px 48px 56px;
-      max-width: 1280px;
-      margin: 0 auto;
-      width: 100%;
-      position: relative;
-      z-index: 2;
-    }
 
     .mk-eyebrow {
       display: flex;
@@ -115,77 +104,16 @@
       color: var(--t2);
     }
 
-    .mk-h1 {
-      font-size: clamp(52px, 9.5vw, 116px);
-      font-weight: 700;
-      line-height: .93;
-      letter-spacing: -.04em;
-      color: var(--t0);
-      max-width: 880px;
-      margin-bottom: 40px;
-    }
 
-    .mk-h1 em {
-      font-style: normal;
-      color: var(--acc);
-    }
 
-    .mk-hero-sub {
-      font-size: clamp(15px, 1.7vw, 19px);
-      color: var(--t1);
-      max-width: 500px;
-      line-height: 1.6;
-      margin-bottom: 40px;
-    }
 
-    .mk-hero-acts {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
 
     /* Metrics bar — bottom of hero */
-    .mk-hero-metrics {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--b0);
-      position: relative;
-      z-index: 2;
-    }
 
-    .mk-metric {
-      padding: 28px 48px;
-      border-right: 1px solid var(--b0);
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
 
-    .mk-metric:last-child {
-      border-right: none;
-    }
 
-    .mk-metric-n {
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 700;
-      letter-spacing: -.035em;
-      color: var(--t0);
-      line-height: 1;
-    }
 
-    .mk-metric-n sup {
-      font-size: .48em;
-      vertical-align: super;
-    }
 
-    .mk-metric-l {
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--t2);
-      line-height: 1.5;
-    }
 
     /* ── NUMBERED MODULE LIST (Monks signature pattern) ── */
     .mk-mods {
@@ -566,13 +494,6 @@
       border-bottom: 1px solid var(--b0);
       color: #fff;
     }
-    .gov-tex {
-      position: absolute;
-      inset: 0;
-      background: url(assets/network-abstract.webp) center/cover;
-      opacity: .05;
-      pointer-events: none;
-    }
     .gov .ct { position: relative; z-index: 1; }
     .gov-si {
       display: block;
@@ -583,127 +504,19 @@
       color: var(--dark-acc);
       margin-bottom: 20px;
     }
-    .gov-h {
-      font-size: clamp(30px, 4.4vw, 52px);
-      font-weight: 700;
-      letter-spacing: -.025em;
-      line-height: 1.08;
-      max-width: 20ch;
-      color: #fff;
-      margin-bottom: 24px;
-    }
-    .gov-h em { font-style: normal; color: var(--dark-acc); }
-    .gov-lede {
-      font-size: clamp(15px, 1.5vw, 18px);
-      color: rgba(255, 255, 255, .78);
-      line-height: 1.7;
-      max-width: 62ch;
-    }
-    .gov-lede b { color: #fff; font-weight: 600; }
 
-    .gov-principle {
-      margin: clamp(48px, 6vw, 72px) 0 clamp(40px, 5vw, 64px);
-      padding: clamp(28px, 3.5vw, 44px);
-      border: 1px solid rgba(212, 175, 55, .32);
-      background: rgba(212, 175, 55, .05);
-      display: grid;
-      grid-template-columns: minmax(0, 190px) 1fr;
-      gap: clamp(20px, 3vw, 48px);
-      align-items: center;
-    }
     @media (max-width: 760px) { .gov-principle { grid-template-columns: 1fr; gap: 16px; } }
-    .gov-principle-tag {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--dark-acc);
-      line-height: 1.7;
-    }
-    .gov-principle-statement {
-      font-size: clamp(20px, 2.4vw, 30px);
-      font-weight: 700;
-      letter-spacing: -.02em;
-      line-height: 1.2;
-      color: #fff;
-    }
-    .gov-principle-statement em { font-style: normal; color: var(--dark-acc); }
-    .gov-principle-desc {
-      margin-top: 12px;
-      font-size: 14px;
-      color: rgba(255, 255, 255, .7);
-      line-height: 1.7;
-      max-width: 64ch;
-    }
 
     /* Capa labels */
-    .gov-cap { margin-top: clamp(40px, 5vw, 60px); }
-    .gov-cap-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-    .gov-cap-n {
-      font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
-      text-transform: uppercase; color: rgba(255, 255, 255, .45);
-    }
-    .gov-cap-h { font-size: clamp(19px, 2vw, 24px); font-weight: 700; letter-spacing: -.015em; color: #fff; }
-    .gov-cap-sub {
-      margin: 10px 0 22px; font-size: 14px; color: rgba(255, 255, 255, .62);
-      line-height: 1.65; max-width: 70ch;
-    }
 
     /* ── Interactive selector (paneles expandibles) ── */
-    .gov-selector { display: flex; gap: 10px; height: 440px; width: 100%; }
-    .gov-panel {
-      position: relative; flex: 1 1 0%; min-width: 56px; overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, .14); background: #0a1622;
-      cursor: pointer; padding: 0; margin: 0; color: #fff; text-align: left;
-      font-family: inherit; appearance: none; -webkit-appearance: none;
-      transition: flex-grow .65s var(--ease), border-color .4s, box-shadow .4s;
-      will-change: flex-grow;
-    }
     .gov-panel.is-active {
       flex-grow: 6.5; border-color: rgba(212, 175, 55, .55);
       box-shadow: 0 18px 52px rgba(0, 0, 0, .5);
     }
-    .gov-panel:focus-visible { outline: 2px solid var(--dark-acc); outline-offset: 2px; }
-    .gov-panel-bg { position: absolute; inset: 0; display: block; }
-    .gov-panel-bg img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center;
-      filter: brightness(.7) saturate(1.08); transform: scale(1.08);
-      transition: transform .8s var(--ease), filter .5s;
-    }
-    .gov-panel:hover .gov-panel-bg img { filter: brightness(.8) saturate(1.1); }
     .gov-panel.is-active .gov-panel-bg img { transform: scale(1); filter: brightness(.86) saturate(1.14); }
-    .gov-panel-scrim {
-      position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(180deg, rgba(0,16,30,.18) 0%, rgba(0,16,30,.04) 42%, rgba(0,8,18,.88) 100%);
-    }
-    .gov-panel-num {
-      position: absolute; top: 16px; left: 16px; z-index: 2;
-      font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: rgba(255, 255, 255, .72);
-    }
-    .gov-panel-label {
-      position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
-      display: flex; align-items: center; gap: 14px; padding: 20px; pointer-events: none;
-    }
-    .gov-panel-icon {
-      flex: 0 0 44px; width: 44px; height: 44px; display: grid; place-items: center;
-      border-radius: 50%; background: rgba(10, 18, 28, .72); border: 1px solid rgba(255, 255, 255, .22);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      transition: background .3s, border-color .3s;
-    }
-    .gov-panel-icon svg { width: 20px; height: 20px; color: #fff; }
     .gov-panel.is-active .gov-panel-icon { background: rgba(212, 175, 55, .16); border-color: rgba(212, 175, 55, .5); }
     .gov-panel.is-active .gov-panel-icon svg { color: var(--dark-acc); }
-    .gov-panel-text { min-width: 0; }
-    .gov-panel-title {
-      display: block; font-size: 16px; font-weight: 700; letter-spacing: -.01em; white-space: nowrap;
-      opacity: 0; transform: translateX(16px);
-      transition: opacity .5s var(--ease) .06s, transform .5s var(--ease) .06s;
-    }
-    .gov-panel-sub {
-      display: block; margin-top: 3px; font-size: 12.5px; color: rgba(255, 255, 255, .74);
-      line-height: 1.4; max-width: 46ch; opacity: 0; transform: translateX(16px);
-      transition: opacity .5s var(--ease) .12s, transform .5s var(--ease) .12s;
-    }
     .gov-panel.is-active .gov-panel-title,
     .gov-panel.is-active .gov-panel-sub { opacity: 1; transform: none; }
 
@@ -730,78 +543,13 @@
     }
 
     /* ── Capa 2: Flujos de Gobernanza (fila compacta) ── */
-    .gov-flows {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      border: 1px solid rgba(255, 255, 255, .12); margin-top: 22px;
-    }
     @media (max-width: 760px) { .gov-flows { grid-template-columns: 1fr; } }
-    .gov-flow { padding: clamp(22px, 2.6vw, 30px); }
-    .gov-flow + .gov-flow { border-left: 1px solid rgba(255, 255, 255, .12); }
     @media (max-width: 760px) {
       .gov-flow + .gov-flow { border-left: 0; border-top: 1px solid rgba(255, 255, 255, .12); }
     }
-    .gov-flow-h { display: flex; align-items: baseline; gap: 10px; font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -.01em; }
-    .gov-flow-h span { font-family: var(--mono); font-size: 10px; color: var(--dark-acc); }
-    .gov-flow-b { margin-top: 8px; font-size: 13px; color: rgba(255, 255, 255, .66); line-height: 1.6; }
 
-    .gov-foot {
-      margin-top: clamp(36px, 4vw, 52px);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 18px 28px;
-      justify-content: space-between;
-    }
-    .gov-foot-line {
-      font-size: 14px;
-      color: rgba(255, 255, 255, .72);
-      line-height: 1.65;
-      max-width: 54ch;
-    }
-    .gov-foot-line b { color: #fff; font-weight: 600; }
-    .gov-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--dark-acc);
-      border: 1px solid rgba(212, 175, 55, .35);
-      padding: 13px 18px;
-      transition: background .2s, border-color .2s, transform .2s;
-      white-space: nowrap;
-    }
-    .gov-link:hover { background: rgba(212, 175, 55, .1); border-color: var(--dark-acc); }
-    .gov-link:active { transform: translateY(1px); }
 
     /* ── Documento de perspectiva embebido (visor PDF) ── */
-    .gov-doc {
-      position: relative; z-index: 1; margin-top: clamp(40px, 5vw, 60px);
-      border: 1px solid rgba(255, 255, 255, .14); border-radius: 14px; overflow: hidden;
-      background: rgba(0, 8, 18, .5); box-shadow: 0 30px 70px rgba(0, 0, 0, .42);
-    }
-    .gov-doc-bar {
-      display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
-      padding: 13px 18px; border-bottom: 1px solid rgba(255, 255, 255, .12); background: rgba(8, 14, 26, .65);
-    }
-    .gov-doc-title {
-      display: inline-flex; align-items: center; gap: 9px;
-      font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .82);
-    }
-    .gov-doc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dark-cyan); box-shadow: 0 0 8px var(--dark-cyan); flex: 0 0 auto; }
-    .gov-doc-actions { display: inline-flex; align-items: center; gap: 8px; }
-    .gov-doc-link {
-      font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
-      color: rgba(255, 255, 255, .78); border: 1px solid rgba(255, 255, 255, .18); padding: 7px 13px; border-radius: 8px;
-      transition: background .2s, border-color .2s, color .2s;
-    }
-    .gov-doc-link:hover { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .4); color: #fff; }
-    .gov-doc-link--gold { color: var(--dark-acc); border-color: rgba(212, 175, 55, .4); }
-    .gov-doc-link--gold:hover { background: rgba(212, 175, 55, .12); border-color: var(--dark-acc); color: var(--dark-acc); }
-    .gov-doc-frame { position: relative; width: 100%; height: clamp(560px, 80vh, 860px); background: #525659; }
-    .gov-doc-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
     @media (max-width: 640px) { .gov-doc-frame { height: 70vh; } }
 
     /* ── Gobernanza — video en loop (box centrado) ── */
@@ -957,30 +705,8 @@
     }
 
     /* Noise scanline overlay on hero */
-    .mk-noise {
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(0deg,
-          transparent,
-          transparent 3px,
-          rgba(0, 0, 0, .03) 3px,
-          rgba(0, 0, 0, .03) 4px);
-      pointer-events: none;
-      z-index: 1;
-    }
 
     /* ── HERO BACKGROUND IMAGE ── */
-    .mk-hero-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: inherit;
-      opacity: .20;
-      pointer-events: none;
-      z-index: 0;
-      mix-blend-mode: luminosity;
-    }
 
     /* ── HERO SPLIT — texto sobre fondo blanco (izq) + video (der) ── */
     .mk-hero {
@@ -992,56 +718,11 @@
       overflow: visible;
       min-height: clamp(520px, 80vh, 740px);
     }
-    .mk-hero-body {
-      grid-area: body;
-      max-width: none;
-      margin: 0;
-      justify-content: flex-end;
-      padding: calc(var(--header) + 24px) clamp(24px, 4vw, 64px) 28px;
-    }
-    .mk-hero-body .mk-h1 { font-size: clamp(32px, 3.9vw, 56px); max-width: 100%; margin-bottom: 26px; }
-    .mk-hero-body .mk-hero-sub { margin-bottom: 28px; }
-    .mk-hero-metrics { grid-area: metrics; grid-template-columns: repeat(4, 1fr); }
-    .mk-metric { padding: 20px clamp(14px, 1.6vw, 26px); }
-    .mk-hero-media {
-      grid-area: media;
-      position: relative;
-      overflow: hidden;
-      background: #00070f;
-      border-left: 1px solid var(--b0);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: clamp(18px, 2.4vw, 38px);
-    }
-    .mk-hero-screen {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1916 / 1080;
-      overflow: hidden;
-      background: #00070f;
-      border: 1px solid rgba(212, 175, 55, .30);
-      box-shadow: 0 22px 55px rgba(0, 0, 0, .5);
-    }
     .mk-hero-video {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; object-position: center; z-index: 0;
       background: #00070f; pointer-events: none;
     }
-    .mk-screen-corner { position: absolute; width: 13px; height: 13px; border: 1.5px solid var(--dark-acc); z-index: 2; pointer-events: none; opacity: .9; }
-    .mk-screen-corner--tl { top: 7px; left: 7px; border-right: 0; border-bottom: 0; }
-    .mk-screen-corner--tr { top: 7px; right: 7px; border-left: 0; border-bottom: 0; }
-    .mk-screen-corner--bl { bottom: 7px; left: 7px; border-right: 0; border-top: 0; }
-    .mk-screen-corner--br { bottom: 7px; right: 7px; border-left: 0; border-top: 0; }
-    .mk-screen-label {
-      display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
-      width: 100%; font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
-      text-transform: uppercase; color: rgba(231, 231, 229, .58);
-    }
-    .mk-screen-live { display: flex; align-items: center; gap: 7px; color: rgba(231, 231, 229, .84); }
-    .mk-screen-live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dark-cyan); box-shadow: 0 0 8px var(--dark-cyan); animation: mk-live 1.6s ease-in-out infinite; }
     @keyframes mk-live { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
     @media (prefers-reduced-motion: reduce) { .mk-screen-live-dot { animation: none; } }
     @media (max-width: 900px) {
@@ -1136,51 +817,10 @@
     @media (prefers-reduced-motion: reduce) { .gh-dot { animation: none; } .gh-cta, .gh-pill { transition: none; } }
 
     /* ── HERO TACTICAL GRID OVERLAY ── */
-    .mk-hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(44, 74, 30, .06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(44, 74, 30, .06) 1px, transparent 1px),
-        linear-gradient(rgba(44, 74, 30, .025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(44, 74, 30, .025) 1px, transparent 1px);
-      background-size: 120px 120px, 120px 120px, 40px 40px, 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
 
     /* ── HERO COLOMBIA FLAG ACCENT ── */
-    .mk-hero-flag {
-      position: absolute;
-      right: 48px;
-      top: calc(var(--header) + 40px);
-      width: 36px;
-      height: 24px;
-      background: linear-gradient(to bottom,
-          #FCD116 0%, #FCD116 50%,
-          #003087 50%, #003087 75%,
-          #CE1126 75%, #CE1126 100%);
-      opacity: .75;
-      z-index: 3;
-      border: 1px solid rgba(255, 255, 255, .12);
-      box-shadow: 0 0 12px rgba(0, 0, 0, .4);
-    }
 
     /* Colombian flag tricolor strip along hero left edge */
-    .mk-hero-tricolor {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom,
-          #FCD116 0%, #FCD116 50%,
-          #003087 50%, #003087 75%,
-          #CE1126 75%, #CE1126 100%);
-      opacity: .5;
-      z-index: 3;
-      pointer-events: none;
-    }
 
     /* ── MODULE THUMBNAIL ── */
     .mk-mod {
@@ -1382,24 +1022,7 @@
     .mk-metric-n, .mk-proof-n { font-variant-numeric: tabular-nums; }
 
     /* Punto de Certeza — reticle de adquisición de posición */
-    .mk-fix {
-      position: absolute;
-      top: calc(var(--header) + 26px);
-      right: clamp(20px, 4vw, 48px);
-      z-index: 3;
-      display: flex;
-      gap: 12px;
-      font-family: var(--mono);
-      color: var(--t2);
-      pointer-events: none;
-    }
-    .mk-fix-reticle { width: 38px; height: 38px; flex-shrink: 0; color: var(--t2); transition: color .45s var(--ease); }
-    .mk-fix-spin { transform-box: view-box; transform-origin: 19px 19px; animation: mk-fix-spin 2.6s linear infinite; }
     @keyframes mk-fix-spin { to { transform: rotate(360deg); } }
-    .mk-fix-read { line-height: 1.5; }
-    .mk-fix-coord { font-size: 11px; letter-spacing: .06em; color: var(--t1); font-variant-numeric: tabular-nums; }
-    .mk-fix-status { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; margin-top: 5px; display: flex; align-items: center; transition: color .45s var(--ease); }
-    .mk-fix-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--acc); margin-right: 7px; box-shadow: 0 0 8px var(--acc); opacity: 0; transition: opacity .45s var(--ease); }
     .mk-fix.is-locked, .mk-fix.is-locked .mk-fix-reticle, .mk-fix.is-locked .mk-fix-status { color: var(--acc); }
     .mk-fix.is-locked .mk-fix-spin { animation: none; }
     .mk-fix.is-locked .mk-fix-dot { opacity: 1; }
@@ -1519,17 +1142,6 @@
       .arch-acc-item, .arch-acc-bg img, .arch-acc-vtitle, .arch-acc-panel { transition: none !important; }
     }
     .arch .ct { margin-bottom: clamp(2.5rem, 4vw, 3.5rem); }
-    .arch-stack { max-width: 1280px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 12px; }
-    .arch-layer { display: grid; grid-template-columns: 300px 1fr; gap: 28px; align-items: center; padding: 26px 28px; border: 1px solid var(--b0); background: var(--bg1); transition: border-color .3s var(--ease); }
-    .arch-layer:hover { border-color: var(--acc); }
-    .arch-layer-head { align-self: start; }
-    .arch-layer-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
-    .arch-layer-name { margin: 8px 0; font-size: clamp(18px, 1.6vw, 22px); font-weight: 700; letter-spacing: -.02em; color: var(--t0); }
-    .arch-layer-purpose { margin: 0; font-size: 13px; line-height: 1.55; color: var(--t1); max-width: 34ch; }
-    .arch-comps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    .arch-comp { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--b0); background: var(--bg); font-size: 13px; color: var(--t0); transition: border-color .2s, background .2s; }
-    .arch-comp:hover { border-color: var(--b2); background: var(--bg2); }
-    .arch-comp-n { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--acc); flex-shrink: 0; }
     @media (max-width: 860px) {
       .arch-stack { padding: 0 24px; }
       .arch-layer { grid-template-columns: 1fr; gap: 18px; }
@@ -1538,24 +1150,12 @@
     @media (prefers-reduced-motion: reduce) { .arch-layer, .arch-comp { transition: none; } }
 
     /* ===== Diagrama de arquitectura (sunburst radial) ===== */
-    .arch-diagram { width: min(440px, 86vw); margin: 0 auto clamp(32px, 4vw, 52px); }
-    .arch-stage { position: relative; width: 100%; aspect-ratio: 1; }
-    .arch-svg { width: 100%; height: 100%; display: block; overflow: visible; }
-    .arch-layer-seg { stroke: var(--bg); stroke-width: 1.5; }
-    .arch-layer-lbl { font-family: var(--mono); font-size: 8px; font-weight: 500; letter-spacing: .12em; fill: #D4AF37; pointer-events: none; }
-    .arch-layer-badge { fill: rgba(0,12,28,.62); stroke: rgba(212,175,55,.55); stroke-width: .6; }
-    .arch-node { cursor: pointer; opacity: 0; transition: opacity .5s var(--ease); }
     .arch-diagram.is-revealed .arch-node { opacity: 1; }
-    .arch-comp-seg { fill: var(--bg2); stroke: var(--bg); stroke-width: 1.5; transition: fill .25s var(--ease); }
-    .arch-comp-lbl { font-family: var(--mono); font-size: 8px; letter-spacing: .03em; fill: var(--t1); pointer-events: none; transition: fill .25s var(--ease); }
     .arch-node:hover .arch-comp-seg, .arch-node.is-active .arch-comp-seg { fill: var(--dark-acc); }
     .arch-node:hover .arch-comp-lbl, .arch-node.is-active .arch-comp-lbl { fill: #001F3F; }
-    .arch-core-ring { animation: arch-pulse 2.6s ease-in-out infinite; }
     @keyframes arch-pulse { 0%, 100% { opacity: .7; } 50% { opacity: .22; } }
     [data-arch-sweep] { transform-box: view-box; transform-origin: 210px 210px; animation: arch-rotate 9s linear infinite; }
     @keyframes arch-rotate { to { transform: rotate(360deg); } }
-    .arch-core-label { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; font-family: var(--sans); font-weight: 700; font-size: 15px; line-height: 1; color: #fff; letter-spacing: .02em; pointer-events: none; }
-    .arch-core-c2 { display: block; color: var(--dark-acc); font-family: var(--mono); font-size: 11px; letter-spacing: .14em; margin-top: 4px; }
     .arch-caption { text-align: center; max-width: 760px; margin: clamp(14px, 2vw, 20px) auto 0; padding: 0 24px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; color: var(--t2); line-height: 1.5; min-height: 2.4em; }
     .arch-caption b { color: var(--t0); font-weight: 600; letter-spacing: 0; }
     @media (prefers-reduced-motion: reduce) {
@@ -1564,20 +1164,8 @@
     }
 
     /* ===== Explorer: diagrama + panel de detalle ===== */
-    .arch-explorer { max-width: 1280px; margin: 0 auto clamp(40px, 5vw, 64px); padding: 0 48px; display: grid; grid-template-columns: minmax(0, 420px) 1fr; gap: clamp(28px, 4vw, 56px); align-items: center; }
-    .arch-explorer .arch-diagram { width: 100%; margin: 0; }
-    .arch-panel { align-self: stretch; display: flex; flex-direction: column; justify-content: center; min-height: 248px; padding: clamp(24px, 3vw, 36px); border: 1px solid var(--b0); background: var(--bg1); transition: border-color .3s var(--ease); }
     .arch-panel.is-active { border-color: var(--acc); }
-    .arch-panel-icon { width: 30px; height: 30px; color: var(--acc); display: block; margin-bottom: 18px; }
     .arch-panel:not(.is-active) .arch-panel-n { display: none; }
-    .arch-panel-top { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; }
-    .arch-panel-n { font-family: var(--sans); font-size: clamp(34px, 4vw, 50px); font-weight: 700; letter-spacing: -.04em; color: var(--acc); line-height: 1; font-variant-numeric: tabular-nums; }
-    .arch-panel-layer { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--t2); }
-    .arch-panel-name { font-size: clamp(20px, 2vw, 26px); font-weight: 700; letter-spacing: -.02em; color: var(--t0); margin: 0 0 12px; line-height: 1.15; }
-    .arch-panel-desc { font-size: 14px; line-height: 1.6; color: var(--t1); margin: 0; }
-    .arch-panel-goal { font-size: 14px; line-height: 1.6; color: var(--t0); margin: 14px 0 0; }
-    .arch-panel-goal:empty { display: none; }
-    .arch-panel-goal-k { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--acc); margin-right: 6px; }
     @media (max-width: 860px) {
       .arch-explorer { grid-template-columns: 1fr; padding: 0 24px; gap: 26px; }
       .arch-explorer .arch-diagram { max-width: 380px; margin: 0 auto; }
@@ -2223,47 +1811,6 @@
     );
     document.querySelectorAll('.rv').forEach(e => obs.observe(e));
 
-    // Gobernanza — selector interactivo de Controles
-    (function () {
-      const sel = document.querySelector('[data-gov-selector]');
-      if (!sel) return;
-      const panels = Array.prototype.slice.call(sel.querySelectorAll('.gov-panel'));
-      if (!panels.length) return;
-      sel.classList.add('gov-js');
-      let active = panels.findIndex(p => p.classList.contains('is-active'));
-      if (active < 0) active = 0;
-      function setActive(i) {
-        active = i;
-        panels.forEach((p, idx) => {
-          const on = idx === i;
-          p.classList.toggle('is-active', on);
-          p.setAttribute('aria-pressed', on ? 'true' : 'false');
-          p.tabIndex = on ? 0 : -1;
-        });
-      }
-      panels.forEach((p, i) => {
-        p.addEventListener('click', () => setActive(i));
-        p.addEventListener('focus', () => setActive(i));
-        p.addEventListener('keydown', (e) => {
-          const k = e.key;
-          if (k === 'ArrowRight' || k === 'ArrowDown') { e.preventDefault(); panels[(i + 1) % panels.length].focus(); }
-          else if (k === 'ArrowLeft' || k === 'ArrowUp') { e.preventDefault(); panels[(i - 1 + panels.length) % panels.length].focus(); }
-          else if (k === 'Home') { e.preventDefault(); panels[0].focus(); }
-          else if (k === 'End') { e.preventDefault(); panels[panels.length - 1].focus(); }
-        });
-      });
-      setActive(active);
-      const reveal = () => sel.classList.add('gov-ready');
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries, o) => {
-          entries.forEach((en) => { if (en.isIntersecting) { reveal(); o.disconnect(); } });
-        }, { threshold: 0.15 });
-        io.observe(sel);
-        setTimeout(reveal, 3000); // red de seguridad: nunca dejar los paneles ocultos
-      } else {
-        reveal();
-      }
-    })();
 
     // Arquitectura — acordeón de capas (hover en desktop + click/foco/flechas)
     (function () {
@@ -2420,225 +1967,8 @@
     })();
   </script>
 
-  <!-- ─── PUNTO DE CERTEZA: adquisición de posición ─── -->
-  <script>
-    (function () {
-      'use strict';
-      const fix = document.querySelector('[data-fix]');
-      if (!fix) return;
-      function lock() { fix.classList.add('is-locked'); }
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { lock(); return; }
-      setTimeout(lock, 1400);
-    })();
-  </script>
 
-  <!-- ─── DIAGRAMA DE ARQUITECTURA (sunburst radial) ─── -->
-  <script>
-    (function () {
-      'use strict';
-      const wrap = document.querySelector('[data-arch-diagram]');
-      if (!wrap) return;
-      const NS = 'http://www.w3.org/2000/svg';
-      const layersG = wrap.querySelector('[data-arch-layers]');
-      const compsG = wrap.querySelector('[data-arch-comps]');
-      const panel = document.querySelector('[data-arch-panel]');
-      const pN = panel.querySelector('[data-p-n]'), pLayer = panel.querySelector('[data-p-layer]');
-      const pName = panel.querySelector('[data-p-name]'), pDesc = panel.querySelector('[data-p-desc]'), pGoal = panel.querySelector('[data-p-goal]');
-      const pIcon = panel.querySelector('[data-p-icon]');
-      const ICON_DEFAULT = pIcon.innerHTML;
-      const cx = 210, cy = 210;
 
-      const LAYERS = [
-        { key: 'core', short: 'CORE', name: 'Datos e Infraestructura', op: .92 },
-        { key: 'serv', short: 'SERVICIOS', name: 'Servicios Agénticos', op: .74 },
-        { key: 'apps', short: 'APPS', name: 'Aplicación y Usuario', op: .58 },
-        { key: 'trans', short: 'TRANSVERSAL', name: 'Seguridad y Desarrollo', op: .42 },
-      ];
-      const IC = {
-        cpu: '<rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 7V4M14 7V4M10 20v-3M14 20v-3M7 10H4M7 14H4M20 10h-3M20 14h-3"/>',
-        graph: '<circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M6.7 7.4 10.5 16.2M17.3 7.4 13.5 16.2M7 6h10"/>',
-        layers: '<path d="M12 3 21 8 12 13 3 8z"/><path d="M3 12l9 5 9-5M3 16l9 5 9-5"/>',
-        eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>',
-        target: '<circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="2"/>',
-        cycle: '<path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 4v5h-5"/>',
-        zap: '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
-        monitor: '<rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/>',
-        building: '<path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-5h6v5"/><path d="M9 11h.01M15 11h.01"/>',
-        shield: '<path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><rect x="9.5" y="11" width="5" height="4" rx="1"/><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11"/>',
-        code: '<rect x="3" y="4" width="18" height="16" rx="1"/><path d="M8 10l-2 2 2 2M16 10l2 2-2 2M13 9l-2 6"/>',
-        deploy: '<path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>',
-      };
-      const COMPS = [
-        { n: '01', name: 'Integración Soberana de Modelos IA', layer: 'core', icon: IC.cpu, desc: 'Aloja y orquesta modelos de IA de última generación con inferencia en cómputo propio, dentro de la jurisdicción colombiana. Ningún dato operacional clasificado abandona el perímetro nacional para alcanzar capacidad de frontera.', goal: 'ejercer IA de vanguardia sin transferir soberanía sobre la información a potencias extranjeras.' },
-        { n: '04', name: 'Ontología de Defensa Colombiana', layer: 'core', icon: IC.graph, desc: 'Codifica en un modelo formal el universo de la defensa nacional: orden de batalla, doctrina conjunta, geografía del teatro y catálogo de amenazas. Es la base semántica sobre la que cada agente interpreta la realidad.', goal: 'que el razonamiento de la máquina hable el idioma de las Fuerzas Militares de Colombia.' },
-        { n: '05', name: 'Cómputo, Vectores y Multimedia', layer: 'core', icon: IC.layers, desc: 'Sostiene el sistema con cómputo de alto rendimiento, bases vectoriales para búsqueda semántica y procesamiento de imagen, video y señal. Infraestructura dimensionada para el tempo operacional, bajo custodia militar.', goal: 'una columna técnica resiliente que no dependa de nubes ni proveedores foráneos.' },
-        { n: '02', name: 'Observabilidad y Auditoría', layer: 'serv', icon: IC.eye, desc: 'Instrumenta cada consulta, inferencia y acción de los agentes con trazabilidad de extremo a extremo. Toda decisión asistida queda registrada, reproducible y sujeta a auditoría de mando.', goal: 'confianza verificable — saber por qué se concluyó, no solo qué se concluyó.' },
-        { n: '03', name: 'Ingeniería de Contexto Operacional', layer: 'serv', icon: IC.target, desc: 'Ensambla, para cada consulta, el contexto exacto que necesita el agente: datos vigentes, doctrina aplicable y situación táctica del momento. Convierte información dispersa en contexto accionable.', goal: 'respuestas ancladas a la operación real y a la doctrina, nunca improvisadas.' },
-        { n: '07', name: 'Ciclo de Vida de Agentes HOLO AI', layer: 'serv', icon: IC.cycle, desc: 'Gobierna la creación, el versionado, la evaluación y el despliegue de los agentes de razonamiento bajo control humano. Cada agente se prueba contra escenarios antes de entrar en operación y mejora sin perder trazabilidad.', goal: 'una fuerza de agentes que evoluciona con disciplina y rendición de cuentas.' },
-        { n: '08', name: 'Automatización Operacional', layer: 'serv', icon: IC.zap, desc: 'Encadena tareas, módulos y agentes en flujos de trabajo que ejecutan lo rutinario a velocidad de máquina, liberando al analista para el juicio que solo un humano debe emitir.', goal: 'comprimir el ciclo OODA y decidir más rápido que el adversario.' },
-        { n: '10', name: 'Aplicaciones Humano + IA', layer: 'apps', icon: IC.monitor, desc: 'Las interfaces donde el comandante y la tropa operan el ecosistema —RADAR, IRIS, NEXXO Chat— diseñadas para la carga cognitiva del combate. La IA asiste; el humano decide y comanda.', goal: 'potenciar al operador en el punto de decisión, manteniéndolo siempre al mando.' },
-        { n: '12', name: 'Automatización Institucional Militar', layer: 'apps', icon: IC.building, desc: 'Extiende la automatización a la administración, la logística y la gestión institucional de la Fuerza, reduciendo la fricción burocrática que distrae del esfuerzo principal.', goal: 'devolver tiempo y personal a la misión, no a los trámites.' },
-        { n: '06', name: 'Seguridad, Gobernanza y Soberanía', layer: 'trans', icon: IC.shield, desc: 'Cifrado, control de acceso por perfil, clasificación de la información y jurisdicción de los datos atraviesan cada capa del sistema. La seguridad no se añade al final: es la estructura misma.', goal: 'que la protección y la soberanía del dato sean condición de diseño, no un parche.' },
-        { n: '09', name: 'Entornos de Desarrollo Soberanos', layer: 'trans', icon: IC.code, desc: 'El instrumental con el que ingenieros militares colombianos construyen, prueban y mantienen la plataforma en territorio nacional. Transfiere capacidad, no solo tecnología.', goal: 'autonomía técnica para que Colombia opere y evolucione NEXXO C2 por sí misma.' },
-        { n: '11', name: 'Despliegue', layer: 'trans', icon: IC.deploy, desc: 'Lleva el sistema a donde la operación lo exige: on-premise, en nube soberana o en el borde táctico, resistente a entornos DDIL. Del centro de mando a la unidad en terreno.', goal: 'operar con o sin conectividad, sin atarse a infraestructura extranjera.' },
-      ];
-      const layerName = {}; LAYERS.forEach(l => layerName[l.key] = l.short);
-
-      const polar = (r, deg) => { const a = (deg - 90) * Math.PI / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
-      function seg(ri, ro, a0, a1) {
-        const [x0o, y0o] = polar(ro, a0), [x1o, y1o] = polar(ro, a1), [x1i, y1i] = polar(ri, a1), [x0i, y0i] = polar(ri, a0);
-        const large = (a1 - a0) > 180 ? 1 : 0;
-        return `M${x0o} ${y0o}A${ro} ${ro} 0 ${large} 1 ${x1o} ${y1o}L${x1i} ${y1i}A${ri} ${ri} 0 ${large} 0 ${x0i} ${y0i}Z`;
-      }
-      const mk = (name, attrs) => { const e = document.createElementNS(NS, name); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
-
-      // Anillo interior: capas
-      let start = 0;
-      LAYERS.forEach((l) => {
-        const count = COMPS.filter(c => c.layer === l.key).length;
-        const span = count * 30, a0 = start + 1, a1 = start + span - 1, mid = (a0 + a1) / 2;
-        layersG.appendChild(mk('path', { d: seg(58, 118, a0, a1), fill: `rgba(0,31,63,${l.op})`, class: 'arch-layer-seg', 'data-layer': l.key }));
-        const [lx, ly] = polar(87, mid);
-        const t = mk('text', { x: lx, y: ly, class: 'arch-layer-lbl', 'text-anchor': 'middle', 'dominant-baseline': 'central' });
-        t.textContent = l.short; layersG.appendChild(t);
-        const bb = t.getBBox();
-        const badge = mk('rect', { x: (bb.x - 5).toFixed(1), y: (bb.y - 3).toFixed(1), width: (bb.width + 10).toFixed(1), height: (bb.height + 6).toFixed(1), rx: 2, class: 'arch-layer-badge' });
-        layersG.insertBefore(badge, t);
-        start += span;
-      });
-
-      // Anillo exterior: componentes
-      COMPS.forEach((c, i) => {
-        const a0 = i * 30 + 1.2, a1 = (i + 1) * 30 - 1.2, mid = (a0 + a1) / 2;
-        const g = mk('g', { class: 'arch-node', 'data-i': i });
-        g.style.transitionDelay = (i * 45) + 'ms';
-        g.appendChild(mk('path', { d: seg(122, 188, a0, a1), class: 'arch-comp-seg' }));
-        const [nx, ny] = polar(155, mid);
-        const t = mk('text', { x: nx, y: ny, class: 'arch-comp-lbl', 'text-anchor': 'middle', 'dominant-baseline': 'central' });
-        t.textContent = c.n; g.appendChild(t);
-        const on = () => {
-          compsG.querySelectorAll('.arch-node').forEach(x => x.classList.remove('is-active'));
-          g.classList.add('is-active');
-          pN.textContent = c.n;
-          pLayer.textContent = 'Capa ' + layerName[c.layer];
-          pName.textContent = c.name;
-          pDesc.textContent = c.desc;
-          pGoal.innerHTML = '<span class="arch-panel-goal-k">Busca:</span> ' + c.goal;
-          pIcon.innerHTML = c.icon;
-          panel.classList.add('is-active');
-        };
-        g.addEventListener('mouseenter', on);
-        compsG.appendChild(g);
-      });
-      wrap.querySelector('.arch-stage').addEventListener('mouseleave', () => {
-        compsG.querySelectorAll('.arch-node').forEach(x => x.classList.remove('is-active'));
-        pN.textContent = '—';
-        pLayer.textContent = 'NEXXO C2 · 4 capas · 12 componentes';
-        pName.textContent = 'Una arquitectura con propósito';
-        pDesc.textContent = 'Doce componentes en cuatro capas forman un solo sistema de mando y control: soberano, auditable y diseñado para el teatro de operaciones colombiano. Recorre cada uno para conocer su misión.';
-        pGoal.textContent = '';
-        pIcon.innerHTML = ICON_DEFAULT;
-        panel.classList.remove('is-active');
-      });
-
-      // Revelado al entrar en vista
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((es, o) => { es.forEach(e => { if (e.isIntersecting) { wrap.classList.add('is-revealed'); o.disconnect(); } }); }, { threshold: .25 });
-        io.observe(wrap);
-      } else { wrap.classList.add('is-revealed'); }
-    })();
-  </script>
-
-  <!-- ─── Globo de puntos del hero (proyección ortográfica, vanilla, sin dependencias) ─── -->
-  <script>
-    (function () {
-      'use strict';
-      const canvas = document.getElementById('heroGlobe');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) { canvas.style.background = '#00070f'; return; }
-      const DEG = Math.PI / 180, TAU = Math.PI * 2;
-      const DPR = Math.min(window.devicePixelRatio || 1, 1.6);
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      let dots = null, w = 0, h = 0, cx = 0, cy = 0, R = 0, dotR = 1.3;
-      let lng0 = -68, phi0 = -10; // orientación inicial: las Américas al frente
-      let haloGrad = null, oceanGrad = null;
-      const BUCKETS = [[], [], [], [], []];
-
-      function resize() {
-        w = canvas.clientWidth; h = canvas.clientHeight;
-        canvas.width = Math.max(1, Math.round(w * DPR));
-        canvas.height = Math.max(1, Math.round(h * DPR));
-        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-        const big = w >= 760;
-        cx = w * (big ? 0.72 : 0.5);
-        cy = h * (big ? 0.40 : 0.28);
-        R = Math.min(w, h) * (big ? 0.56 : 0.46);
-        dotR = Math.max(1, R * 0.0052);
-        haloGrad = ctx.createRadialGradient(cx, cy, R * 0.62, cx, cy, R * 1.55);
-        haloGrad.addColorStop(0, 'rgba(212,175,55,.07)'); haloGrad.addColorStop(1, 'rgba(212,175,55,0)');
-        oceanGrad = ctx.createRadialGradient(cx - R * 0.32, cy - R * 0.32, R * 0.1, cx, cy, R);
-        oceanGrad.addColorStop(0, '#11375c'); oceanGrad.addColorStop(1, '#06192d');
-      }
-      function proj(lng, lat, cosP, sinP) {
-        const lr = (lng - lng0) * DEG, ph = lat * DEG, cf = Math.cos(ph);
-        const px = cf * Math.sin(lr), py = Math.sin(ph), pz = cf * Math.cos(lr);
-        return [cx + R * px, cy - R * (py * cosP - pz * sinP), py * sinP + pz * cosP];
-      }
-      function render() {
-        ctx.clearRect(0, 0, w, h);
-        const cosP = Math.cos(phi0 * DEG), sinP = Math.sin(phi0 * DEG);
-        ctx.fillStyle = haloGrad; ctx.beginPath(); ctx.arc(cx, cy, R * 1.55, 0, TAU); ctx.fill();
-        ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.fillStyle = oceanGrad; ctx.fill();
-        ctx.lineWidth = 1.3; ctx.strokeStyle = 'rgba(212,175,55,.6)'; ctx.stroke();
-        ctx.strokeStyle = 'rgba(212,175,55,.16)'; ctx.lineWidth = 1;
-        for (let lng = -180; lng < 180; lng += 20) {
-          ctx.beginPath(); let pen = false;
-          for (let lat = -80; lat <= 80; lat += 4) { const p = proj(lng, lat, cosP, sinP); if (p[2] > 0) { pen ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); pen = true; } else pen = false; }
-          ctx.stroke();
-        }
-        for (let lat = -80; lat <= 80; lat += 20) {
-          ctx.beginPath(); let pen = false;
-          for (let lng = -180; lng <= 180; lng += 4) { const p = proj(lng, lat, cosP, sinP); if (p[2] > 0) { pen ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); pen = true; } else pen = false; }
-          ctx.stroke();
-        }
-        if (!dots) return;
-        for (let b = 0; b < 5; b++) BUCKETS[b].length = 0;
-        for (let i = 0; i < dots.length; i += 2) {
-          const lr = (dots[i] - lng0) * DEG, ph = dots[i + 1] * DEG, cf = Math.cos(ph);
-          const py = Math.sin(ph), pz = cf * Math.cos(lr);
-          const pz2 = py * sinP + pz * cosP;
-          if (pz2 <= 0.02) continue;
-          BUCKETS[pz2 >= 0.98 ? 4 : (pz2 * 5) | 0].push(cx + R * cf * Math.sin(lr), cy - R * (py * cosP - pz * sinP));
-        }
-        for (let b = 0; b < 5; b++) {
-          const arr = BUCKETS[b]; if (!arr.length) continue;
-          ctx.fillStyle = 'rgba(235,229,214,' + (0.44 + 0.5 * ((b + 0.5) / 5)).toFixed(2) + ')';
-          ctx.beginPath();
-          for (let j = 0; j < arr.length; j += 2) { ctx.moveTo(arr[j] + dotR, arr[j + 1]); ctx.arc(arr[j], arr[j + 1], dotR, 0, TAU); }
-          ctx.fill();
-        }
-      }
-      let raf = null, inView = true;
-      function loop() { lng0 += 0.12; render(); raf = requestAnimationFrame(loop); }
-      function start() { if (!raf && !reduce) raf = requestAnimationFrame(loop); }
-      function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
-      function upd() { (inView && !document.hidden) ? start() : stop(); }
-      function init() {
-        resize();
-        window.addEventListener('resize', function () { resize(); render(); }, { passive: true });
-        render();
-        if (reduce) return;
-        if ('IntersectionObserver' in window) {
-          new IntersectionObserver(function (e) { inView = e[0].isIntersecting; upd(); }, { threshold: 0 }).observe(canvas);
-        }
-        document.addEventListener('visibilitychange', upd);
-        start();
-      }
-      fetch('assets/world-globe-dots.json').then(function (r) { return r.json(); }).then(function (d) { dots = d; init(); }).catch(function (e) { console.warn('[hero globe] no se pudieron cargar los puntos:', e); init(); });
-    })();
-  </script>
 
   <!-- ─── Carrusel escalonado — Tres Fuerzas ─── -->
   <script>
