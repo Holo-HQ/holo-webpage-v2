@@ -270,7 +270,7 @@ a { text-decoration: none; color: inherit; }
    ECOSYSTEM GRID
    ═══════════════════════════════════════════ */
 .eco { padding: 128px 0; border-top: 1px solid var(--b0); position: relative; overflow: hidden; }
-.eco-bg { position: absolute; inset: 0; background: url(assets/network-abstract.png) center/cover; opacity: .04; }
+.eco-bg { position: absolute; inset: 0; background: url(assets/network-abstract.webp) center/cover; opacity: .04; }
 .eco-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; margin-top: 64px; border: 1px solid var(--b0); }
 @media(max-width:900px) { .eco-grid { grid-template-columns: 1fr; } }
 .eco-card { padding: 40px 32px; border-right: 1px solid var(--b0); border-bottom: 1px solid var(--b0); transition: background .3s; position: relative; cursor: pointer; display: block; color: var(--t0); }
@@ -413,7 +413,7 @@ a { text-decoration: none; color: inherit; }
    SOVEREIGNTY
    ═══════════════════════════════════════════ */
 .sov { padding: 128px 0; border-top: 1px solid var(--b0); position: relative; overflow: hidden; }
-.sov-bg { position: absolute; inset: 0; background: url(assets/network-abstract.png) center/cover; opacity: .05; }
+.sov-bg { position: absolute; inset: 0; background: url(assets/network-abstract.webp) center/cover; opacity: .05; }
 .sov-ct { position: relative; z-index: 1; }
 .sov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 64px; border: 1px solid var(--b0); }
 @media(max-width:768px) { .sov-grid { grid-template-columns: 1fr; } }
