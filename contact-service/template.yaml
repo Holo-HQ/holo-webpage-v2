@@ -1,0 +1,110 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: API segura para enviar solicitudes de demostracion de HOLO por SMTP.
+
+Parameters:
+  AllowedOrigin:
+    Type: String
+    Description: Origen exacto del sitio web, sin barra final (por ejemplo https://holo.com.co).
+  SmtpSecretArn:
+    Type: String
+    Description: ARN de un secreto existente de Secrets Manager con la configuracion SMTP.
+  RecipientEmails:
+    Type: CommaDelimitedList
+    Description: Uno o mas destinatarios de las solicitudes de demo.
+  MailSubjectPrefix:
+    Type: String
+    Default: '[HOLO] Solicitud de demostracion'
+  WafRateLimit:
+    Type: Number
+    Default: 300
+    MinValue: 10
+    Description: Solicitudes maximas por IP en una ventana de cinco minutos.
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Timeout: 15
+    MemorySize: 256
+    Tracing: Active
+    Environment:
+      Variables:
+        SMTP_SECRET_ARN: !Ref SmtpSecretArn
+        ALLOWED_ORIGIN: !Ref AllowedOrigin
+        RECIPIENT_EMAILS: !Join [',', !Ref RecipientEmails]
+        MAIL_SUBJECT_PREFIX: !Ref MailSubjectPrefix
+
+Resources:
+  ContactApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      EndpointConfiguration: REGIONAL
+      Cors:
+        AllowOrigin: !Sub "'${AllowedOrigin}'"
+        AllowHeaders: "'Content-Type'"
+        AllowMethods: "'POST,OPTIONS'"
+        MaxAge: "'600'"
+
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: app.lambda_handler
+      Policies:
+        - AWSSecretsManagerGetSecretValuePolicy:
+            SecretArn: !Ref SmtpSecretArn
+      Events:
+        SubmitContact:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ContactApi
+            Path: /contact
+            Method: post
+
+  ContactWebAcl:
+    Type: AWS::WAFv2::WebACL
+    Properties:
+      Name: holo-contact-service-rate-limit
+      Scope: REGIONAL
+      DefaultAction:
+        Allow: {}
+      VisibilityConfig:
+        CloudWatchMetricsEnabled: true
+        MetricName: holoContactServiceWebAcl
+        SampledRequestsEnabled: true
+      Rules:
+        - Name: RateLimitPerIp
+          Priority: 0
+          Action:
+            Block: {}
+          Statement:
+            RateBasedStatement:
+              AggregateKeyType: IP
+              Limit: !Ref WafRateLimit
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: rateLimitPerIp
+            SampledRequestsEnabled: true
+
+  ContactWebAclAssociation:
+    Type: AWS::WAFv2::WebACLAssociation
+    DependsOn: ContactApiProdStage
+    Properties:
+      ResourceArn: !Sub 'arn:${AWS::Partition}:apigateway:${AWS::Region}::/restapis/${ContactApi}/stages/Prod'
+      WebACLArn: !GetAtt ContactWebAcl.Arn
+
+  ContactLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${ContactFunction}'
+      RetentionInDays: 90
+
+Outputs:
+  ContactApiUrl:
+    Description: URL publica que debe configurarse en contact-config.js.
+    Value: !Sub 'https://${ContactApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/Prod/contact'
+  ContactFunctionName:
+    Value: !Ref ContactFunction
+  ContactWebAclArn:
+    Value: !GetAtt ContactWebAcl.Arn

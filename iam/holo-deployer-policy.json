@@ -1,0 +1,59 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CloudFormation",
+      "Effect": "Allow",
+      "Action": "cloudformation:*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "DeploymentBuckets",
+      "Effect": "Allow",
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::holo-deployment-artifacts-121470661386-us-east-1",
+        "arn:aws:s3:::holo-deployment-artifacts-121470661386-us-east-1/*",
+        "arn:aws:s3:::holo-web2-site-121470661386-us-east-1",
+        "arn:aws:s3:::holo-web2-site-121470661386-us-east-1/*"
+      ]
+    },
+    {
+      "Sid": "ContactLambdaRole",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole", "iam:DeleteRole", "iam:GetRole", "iam:TagRole",
+        "iam:UntagRole", "iam:PutRolePolicy", "iam:GetRolePolicy",
+        "iam:DeleteRolePolicy", "iam:AttachRolePolicy", "iam:DetachRolePolicy"
+      ],
+      "Resource": "arn:aws:iam::121470661386:role/holo-contact-service-*"
+    },
+    {
+      "Sid": "PassContactLambdaRole",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::121470661386:role/holo-contact-service-*",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "lambda.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Sid": "ContactServiceResources",
+      "Effect": "Allow",
+      "Action": ["lambda:*", "apigateway:*", "wafv2:*", "logs:*", "xray:PutTraceSegments", "xray:PutTelemetryRecords"],
+      "Resource": "*"
+    },
+    {
+      "Sid": "CertificateAndCloudFront",
+      "Effect": "Allow",
+      "Action": [
+        "acm:RequestCertificate", "acm:DescribeCertificate", "acm:ListCertificates",
+        "acm:DeleteCertificate", "acm:AddTagsToCertificate", "acm:ListTagsForCertificate",
+        "cloudfront:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
