@@ -63,6 +63,7 @@
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="contact-config.js"></script>
   <style>
     /* ─────────────────────────────────────────────────────────
    MONKS-INSPIRED EXTENSIONS FOR HOLO
@@ -1634,8 +1635,7 @@
         <h3 class="mk-form-title">Solicitar Demostración</h3>
         <p class="mk-form-sub">Sesión técnica con el equipo HOLO</p>
         <div id="form-container">
-          <form name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="demo-form">
-            <input type="hidden" name="form-name" value="demo-request" />
+          <form id="demo-form">
             <p class="hidden" style="display:none">
               <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
             </p>
@@ -1891,7 +1891,7 @@
       });
     });
 
-    // Form submission handling for Netlify
+    // Form submission handling for the AWS contact API.
     const demoForm = document.getElementById('demo-form');
     if (demoForm) {
       demoForm.addEventListener('submit', function (e) {
@@ -1904,10 +1904,18 @@
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span class="pill-dot" style="animation: pulse 1s infinite"></span> Enviando...';
 
-        fetch('/', {
+        const contactApiUrl = window.HOLO_CONTACT_API_URL;
+        if (!contactApiUrl) {
+          alert('El formulario aún no está configurado. Por favor usa contacto@holo.com.co.');
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Enviar Solicitud →';
+          return;
+        }
+
+        fetch(contactApiUrl, {
           method: 'POST',
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString()
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(Object.fromEntries(formData.entries()))
         }).then(response => {
           if (!response.ok) throw new Error('Server responded with ' + response.status);
           formContainer.style.display = 'none';
