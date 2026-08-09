@@ -2,7 +2,7 @@
 
 ## Recursos y límites
 
-La región es `us-east-1` y todos los comandos usan `--profile holo`. El dominio principal existente no se modifica. El sitio de pruebas se publica únicamente en `web2.holo.com.co`.
+La región es `us-east-1` y todos los comandos usan `--profile holo`. El sitio se publica en `holo.com.co`, `www.holo.com.co` y `web2.holo.com.co`.
 
 - `holo/contact-service/smtp`: secreto SMTP existente; la Lambda es el único recurso que puede leerlo.
 - `holo-contact-service`: API Gateway REST regional, Lambda y WAF rate-limit de 300 solicitudes/IP cada cinco minutos.
@@ -31,7 +31,7 @@ scripts/deploy-contact-service.sh
 scripts/deploy-web2.sh --certificate-arn <ARN_EMITIDO_POR_ACM>
 ```
 
-El segundo comando devuelve el dominio de CloudFront. En Hostinger cree el CNAME `web2` hacia ese dominio, sin protocolo ni ruta. Espere la propagación DNS y valide `https://web2.holo.com.co`.
+El segundo comando devuelve el dominio de CloudFront. En Hostinger cree el CNAME `web2` y `www` hacia ese dominio. Para el dominio raíz `@`, cree un registro **ALIAS** hacia el mismo destino; Hostinger aplana ese registro para que pueda coexistir con MX y TXT. Espere la propagación DNS y valide los tres URLs HTTPS.
 
 El script de publicación no sube infraestructura, documentación, secretos ni archivos de configuración de otros hosts. Genera `contact-config.js` temporalmente con la URL pública de API Gateway y lo publica con caché deshabilitada. Los HTML, CSS y configuraciones también evitan caché; los assets se publican con caché de un año y cada publicación invalida CloudFront.
 

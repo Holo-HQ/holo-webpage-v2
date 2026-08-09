@@ -6,7 +6,7 @@ region="${AWS_REGION:-us-east-1}"
 stack_name="holo-contact-service"
 artifact_bucket="holo-deployment-artifacts-121470661386-us-east-1"
 secret_arn="arn:aws:secretsmanager:us-east-1:121470661386:secret:holo/contact-service/smtp-E70xNg"
-origin="https://web2.holo.com.co"
+origins="https://holo.com.co,https://www.holo.com.co,https://web2.holo.com.co"
 recipients="andres@holo.com.co,dickinson@holo.com.co,julian@holo.com.co"
 service_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/../contact-service" && pwd)"
 package_file="$(mktemp)"
@@ -31,7 +31,7 @@ aws --profile "$profile" --region "$region" cloudformation deploy \
   --stack-name "$stack_name" \
   --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND \
   --parameter-overrides \
-    "AllowedOrigin=$origin" \
+    "AllowedOrigins=$origins" \
     "SmtpSecretArn=$secret_arn" \
     "RecipientEmails=$recipients" \
     WafRateLimit=300

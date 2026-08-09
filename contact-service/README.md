@@ -136,7 +136,7 @@ aws cloudformation deploy \
   --stack-name holo-contact-service \
   --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND \
   --parameter-overrides \
-    AllowedOrigin=https://web2.holo.com.co \
+    AllowedOrigins=https://holo.com.co,https://www.holo.com.co,https://web2.holo.com.co \
     SmtpSecretArn=ARN_DEL_SECRETO \
     RecipientEmails=andres@holo.com.co,dickinson@holo.com.co,julian@holo.com.co \
   --profile holo \
@@ -162,7 +162,7 @@ Copie [contact-config.example.js](../contact-config.example.js) sobre `contact-c
 - Rotar credenciales SMTP: actualice el valor del mismo secreto. La Lambda lo reutiliza mientras está caliente; un nuevo contenedor leerá el valor actualizado. Para aplicarlo de inmediato, despliegue de nuevo o espere un nuevo inicio de Lambda.
 - Consultar errores: CloudWatch Logs, grupo `/aws/lambda/<ContactFunctionName>`. Las respuestas al navegador no revelan información del proveedor SMTP.
 - Ver trazas: X-Ray está habilitado en la función.
-- Cambiar dominio: actualice `AllowedOrigin`, vuelva a desplegar y publique la nueva URL/configuración si cambia la API.
+- Cambiar dominio: actualice `AllowedOrigins`, vuelva a desplegar y publique la nueva URL/configuración si cambia la API.
 
 ## Seguridad y límites
 

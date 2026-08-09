@@ -21,13 +21,23 @@ MAX_LENGTHS = {
 REQUIRED_FIELDS = ("nombre", "cargo", "email", "organizacion")
 
 
-def response(status_code, body):
-    return {"statusCode": status_code, "headers": {
-                "content-type": "application/json",
-                "access-control-allow-origin": os.environ["ALLOWED_ORIGIN"],
-                "access-control-allow-methods": "POST,OPTIONS",
-                "access-control-allow-headers": "Content-Type",
-            },
+def origin_from_event(event):
+    headers = event.get("headers") or {}
+    origin = next((value for key, value in headers.items() if key.lower() == "origin"), None)
+    allowed = {item.strip() for item in os.environ["ALLOWED_ORIGINS"].split(",")}
+    return origin if origin in allowed else None
+
+
+def response(status_code, body, origin=None):
+    headers = {"content-type": "application/json"}
+    if origin:
+        headers.update({
+            "access-control-allow-origin": origin,
+            "access-control-allow-methods": "POST,OPTIONS",
+            "access-control-allow-headers": "Content-Type",
+            "vary": "Origin",
+        })
+    return {"statusCode": status_code, "headers": headers,
             "body": json.dumps(body)}
 
 
@@ -60,14 +70,18 @@ def validate(payload):
 
 
 def lambda_handler(event, _context):
+    origin = origin_from_event(event)
+    if event.get("httpMethod") == "OPTIONS":
+        return response(204, {}, origin)
+
     try:
         payload = json.loads(event.get("body") or "{}")
     except json.JSONDecodeError:
-        return response(400, {"message": "JSON invalido"})
+        return response(400, {"message": "JSON invalido"}, origin)
 
     error = validate(payload)
     if error:
-        return response(400, {"message": error})
+        return response(400, {"message": error}, origin)
 
     try:
         config = get_smtp_config()
@@ -100,6 +114,6 @@ def lambda_handler(event, _context):
     except Exception:
         # No revelar detalles de SMTP ni de configuracion al navegador.
         logger.exception("No fue posible enviar la solicitud de demostracion")
-        return response(500, {"message": "No fue posible enviar la solicitud"})
+        return response(500, {"message": "No fue posible enviar la solicitud"}, origin)
 
-    return response(202, {"message": "Solicitud recibida"})
+    return response(202, {"message": "Solicitud recibida"}, origin)

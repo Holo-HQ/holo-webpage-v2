@@ -1,10 +1,13 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Hosting privado S3 y CloudFront para web2.holo.com.co.
+Description: Hosting privado S3 y CloudFront para HOLO.
 
 Parameters:
-  DomainName:
+  PrimaryDomainName:
     Type: String
-    Default: web2.holo.com.co
+    Default: holo.com.co
+  DomainAliases:
+    Type: CommaDelimitedList
+    Default: holo.com.co,www.holo.com.co,web2.holo.com.co
   CertificateArn:
     Type: String
     Description: ARN de certificado ACM emitido en us-east-1 que cubra el dominio.
@@ -111,8 +114,7 @@ Resources:
     Properties:
       DistributionConfig:
         Enabled: true
-        Aliases:
-          - !Ref DomainName
+        Aliases: !Ref DomainAliases
         DefaultRootObject: index.html
         HttpVersion: http2and3
         IPV6Enabled: true
@@ -198,4 +200,4 @@ Outputs:
   DistributionDomainName:
     Value: !GetAtt SiteDistribution.DomainName
   WebsiteUrl:
-    Value: !Sub 'https://${DomainName}'
+    Value: !Sub 'https://${PrimaryDomainName}'

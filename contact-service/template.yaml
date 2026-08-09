@@ -3,9 +3,9 @@ Transform: AWS::Serverless-2016-10-31
 Description: API segura para enviar solicitudes de demostracion de HOLO por SMTP.
 
 Parameters:
-  AllowedOrigin:
-    Type: String
-    Description: Origen exacto del sitio web, sin barra final (por ejemplo https://holo.com.co).
+  AllowedOrigins:
+    Type: CommaDelimitedList
+    Description: Origenes exactos autorizados, sin barra final.
   SmtpSecretArn:
     Type: String
     Description: ARN de un secreto existente de Secrets Manager con la configuracion SMTP.
@@ -30,7 +30,7 @@ Globals:
     Environment:
       Variables:
         SMTP_SECRET_ARN: !Ref SmtpSecretArn
-        ALLOWED_ORIGIN: !Ref AllowedOrigin
+        ALLOWED_ORIGINS: !Join [',', !Ref AllowedOrigins]
         RECIPIENT_EMAILS: !Join [',', !Ref RecipientEmails]
         MAIL_SUBJECT_PREFIX: !Ref MailSubjectPrefix
 
@@ -40,11 +40,6 @@ Resources:
     Properties:
       StageName: Prod
       EndpointConfiguration: REGIONAL
-      Cors:
-        AllowOrigin: !Sub "'${AllowedOrigin}'"
-        AllowHeaders: "'Content-Type'"
-        AllowMethods: "'POST,OPTIONS'"
-        MaxAge: "'600'"
 
   ContactFunction:
     Type: AWS::Serverless::Function
@@ -60,7 +55,7 @@ Resources:
           Properties:
             RestApiId: !Ref ContactApi
             Path: /contact
-            Method: post
+            Method: any
 
   ContactWebAcl:
     Type: AWS::WAFv2::WebACL

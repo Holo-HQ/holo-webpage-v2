@@ -9,7 +9,8 @@ fi
 profile="${AWS_PROFILE:-holo}"
 region="${AWS_REGION:-us-east-1}"
 certificate_arn="$2"
-domain="web2.holo.com.co"
+primary_domain="holo.com.co"
+domain_aliases="holo.com.co,www.holo.com.co,web2.holo.com.co"
 stack_name="holo-web2-hosting"
 site_bucket="holo-web2-site-121470661386-us-east-1"
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -43,7 +44,7 @@ fi
 aws --profile "$profile" --region "$region" cloudformation deploy \
   --template-file "$repo_root/web-hosting/template.yaml" \
   --stack-name "$stack_name" \
-  --parameter-overrides "DomainName=$domain" "CertificateArn=$certificate_arn"
+  --parameter-overrides "PrimaryDomainName=$primary_domain" "DomainAliases=$domain_aliases" "CertificateArn=$certificate_arn"
 
 distribution_id="$(aws --profile "$profile" --region "$region" cloudformation describe-stacks \
   --stack-name "$stack_name" --query "Stacks[0].Outputs[?OutputKey=='DistributionId'].OutputValue" --output text)"
